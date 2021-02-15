@@ -1,4 +1,4 @@
-package progettoV1;
+package rete;
 
 public class Transizione extends ElementoSemplice {
 
