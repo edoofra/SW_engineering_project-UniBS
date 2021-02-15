@@ -16,9 +16,10 @@ public class Rete {
 		this.relazioneFlusso = new HashSet<ElemFlusso>();	
 	}
 	
-	//controlla se uno dei due è vuoto
+	//controlla se uno dei tre è vuoto
 	public boolean emptyControl() {
-		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty()) return true;
+		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
+			return true;
 		else return false;
 	}
 	
@@ -33,6 +34,13 @@ public class Rete {
 	public boolean addPosto(Posto posto) {
 		if (insiemePosti.contains(posto)) return false;
 		insiemePosti.add(posto);
-		return true;
+		return true;		
 	}
+	
+	/**
+	 * ordine di inserimento per rete corretta:
+	 * 
+	 * 
+	 * 
+	 */
 }
