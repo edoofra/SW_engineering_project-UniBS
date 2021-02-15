@@ -1,5 +1,5 @@
 package progettoV1;
 
-public class ElementoSemplice {
+public abstract class ElementoSemplice {
 
 }
