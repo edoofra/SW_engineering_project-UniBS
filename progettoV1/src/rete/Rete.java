@@ -15,6 +15,20 @@ public class Rete {
 		this.insiemeTransizioni = new HashSet<Transizione>();
 		this.relazioneFlusso = new HashSet<ElemFlusso>();	
 	}
+
+	//Ritorna la lista dei posti
+	public HashSet<Posto> getInsiemePosti() {
+		return insiemePosti;
+	}
+	//Ritorna la lista delle transizioni
+	public HashSet<Transizione> getInsiemeTransizioni() {
+		return insiemeTransizioni;
+	}
+	//Ritorna la relazione di flusso
+	public HashSet<ElemFlusso> getRelazioneFlusso() {
+		return relazioneFlusso;
+	}
+
 	
 	//controlla se uno dei tre è vuoto
 	public boolean emptyControl() {
@@ -35,6 +49,23 @@ public class Rete {
 		if (insiemePosti.contains(posto)) return false;
 		insiemePosti.add(posto);
 		return true;		
+	}
+	
+	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e 
+	//controlla che un Elemento di flusso sia composto da una coppia (Posto, Transizione) o viceversa 
+	//altrimenti non lo aggiunge e ritorna false 
+	public boolean addElemFlusso(ElemFlusso elem) {
+		if ((elem.getElem1().getClass().toString() == "java.rete.posto" )&&(elem.getElem2().getClass().toString() == "java.rete.transizione" )) 
+		{
+			relazioneFlusso.add(elem);
+			return true;
+		}
+		else if ((elem.getElem2().getClass().toString() == "java.rete.transizione" )&&(elem.getElem1().getClass().toString() == "java.rete.posto" ))
+		{
+			relazioneFlusso.add(elem);
+			return true;
+		}
+		else return false; 
 	}
 	
 	
