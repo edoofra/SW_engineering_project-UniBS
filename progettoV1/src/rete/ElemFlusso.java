@@ -10,4 +10,13 @@ public class ElemFlusso {
 		this.elem2 = elem2;
 	}
 	
+	public ElementoSemplice getElem1() {
+		return elem1;
+	}
+
+	public ElementoSemplice getElem2() {
+		return elem2;
+	}
+
+	
 }
