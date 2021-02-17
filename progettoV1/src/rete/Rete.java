@@ -55,12 +55,25 @@ public class Rete {
 	//controlla che un Elemento di flusso sia composto da una coppia (Posto, Transizione) o viceversa 
 	//altrimenti non lo aggiunge e ritorna false 
 	public boolean addElemFlusso(ElemFlusso elem) {
-		if ((elem.getElem1().getClass().toString() == "java.rete.posto" )&&(elem.getElem2().getClass().toString() == "java.rete.transizione" )) 
-		{
+		/**if ((elem.getElem1().getClass().toString() == "java.rete.posto" )&&
+				(elem.getElem2().getClass().toString() == "java.rete.transizione" )) 
+				{
 			relazioneFlusso.add(elem);
 			return true;
 		}
 		else if ((elem.getElem2().getClass().toString() == "java.rete.transizione" )&&(elem.getElem1().getClass().toString() == "java.rete.posto" ))
+		{
+			relazioneFlusso.add(elem);
+			return true;
+		}
+		else return false; */
+		boolean postoTransizione = elem.getElem1() instanceof Posto &&
+				elem.getElem2() instanceof Transizione;
+		
+		boolean transizionePosto = elem.getElem1() instanceof Transizione &&
+				elem.getElem2() instanceof Posto;
+		
+		if(postoTransizione || transizionePosto)
 		{
 			relazioneFlusso.add(elem);
 			return true;
