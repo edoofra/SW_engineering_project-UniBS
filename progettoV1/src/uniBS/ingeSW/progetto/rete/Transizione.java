@@ -1,4 +1,4 @@
-package rete;
+package uniBS.ingeSW.progetto.rete;
 
 public class Transizione extends ElementoSemplice {
 	
