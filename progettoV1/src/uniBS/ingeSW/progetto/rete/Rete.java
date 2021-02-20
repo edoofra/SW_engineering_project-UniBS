@@ -68,13 +68,5 @@ public class Rete {
 			return true;
 		}
 		else return false; 
-	}
-	
-	
-	/**
-	 * ordine di inserimento per rete corretta:
-	 * 
-	 * 
-	 * 
-	 */
+	}	
 }
