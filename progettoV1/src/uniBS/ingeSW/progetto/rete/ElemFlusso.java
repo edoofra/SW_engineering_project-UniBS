@@ -17,6 +17,10 @@ public class ElemFlusso {
 	public ElementoSemplice getElem2() {
 		return elem2;
 	}
+	
+	public String getName() {
+	    return "( " + elem1.getName() + "," + elem2.getName() + " )";
+	}
 
 	
 }
