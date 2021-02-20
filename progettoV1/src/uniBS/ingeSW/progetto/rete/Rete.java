@@ -39,15 +39,15 @@ public class Rete {
 	
 	//aggiunge una transizione, rstituisce bool così so se è andata
 	// a buon fine nel metodo esterno che la chiama
-	public boolean addTrans(Transizione trans) {
-		if (insiemeTransizioni.contains(trans)) return false;
-		insiemeTransizioni.add(trans);
+	public boolean addTrans(Transizione toAdd) {
+		if (insiemeTransizioni.contains(toAdd)) return false;
+		insiemeTransizioni.add(toAdd);
 		return true;
 	}
 	
-	public boolean addPosto(Posto posto) {
-		if (insiemePosti.contains(posto)) return false;
-		insiemePosti.add(posto);
+	public boolean addPosto(Posto toAdd) {
+		if (insiemePosti.contains(toAdd)) return false;
+		insiemePosti.add(toAdd);
 		return true;		
 	}
 	
