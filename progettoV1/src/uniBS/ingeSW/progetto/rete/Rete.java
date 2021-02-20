@@ -1,6 +1,5 @@
 package uniBS.ingeSW.progetto.rete;
 
-import java.lang.reflect.Array;
 import java.util.HashSet;
 
 public class Rete {
@@ -35,7 +34,7 @@ public class Rete {
     public String getStringList(ElementoSemplice[] list) {
 	StringBuilder StringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {
-	    StringList.append(list[i].getName() + "   ");
+	    StringList.append(list[i].getProperties() + "   ");
 	}
 	StringList.append(" }");
 	return StringList.toString();

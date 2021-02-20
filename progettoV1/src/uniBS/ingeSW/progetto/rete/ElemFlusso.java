@@ -19,7 +19,7 @@ public class ElemFlusso {
 	}
 	
 	public String getName() {
-	    return "( " + elem1.getName() + "," + elem2.getName() + " )";
+	    return "( " + elem1.getProperties() + "," + elem2.getProperties() + " )";
 	}
 
 	

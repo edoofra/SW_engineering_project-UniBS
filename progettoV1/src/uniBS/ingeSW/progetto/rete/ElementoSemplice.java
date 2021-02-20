@@ -4,7 +4,7 @@ public abstract class ElementoSemplice {
 	
 	String nome;
 	
-	public String getName() {
+	public String getProperties() {
 		return this.nome;
 	}
 	
