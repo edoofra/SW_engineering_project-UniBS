@@ -1,8 +1,6 @@
 package uniBS.ingeSW.progetto.gestioneReti;
 
 import java.util.HashMap;
-import java.util.Set;
-
 import uniBS.ingeSW.progetto.rete.Rete;
 
 //classe per la gestione di tutte le reti salvate dal configuratore
