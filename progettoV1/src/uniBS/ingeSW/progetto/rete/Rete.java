@@ -16,21 +16,24 @@ public class Rete {
 	this.relazioneFlusso = new HashSet<ElemFlusso>();
     }
 
-    // Ritorna la lista dei posti
+    // Ritorna la lista dei posti come Array (più facile da gestire)
     public Posto[] getInsiemePosti() {
 	return (Posto[]) insiemePosti.toArray();
     }
 
-    // Ritorna la lista delle transizioni
+    // Ritorna la lista delle transizioni come Array
     public Transizione[] getInsiemeTransizioni() {
 	return (Transizione[]) insiemeTransizioni.toArray();
     }
 
-    // Ritorna la relazione di flusso
+    // Ritorna la relazione di flusso come Array
     public ElemFlusso[] getRelazioneFlusso() {
 	return (ElemFlusso[]) relazioneFlusso.toArray();
     }
 
+    //ritorna la lista delle stringhe con i nomi di posti / transizioni
+    //metodo usato nel toString
+    //metodo overloaded
     public String getStringList(ElementoSemplice[] list) {
 	StringBuilder StringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {
@@ -40,6 +43,9 @@ public class Rete {
 	return StringList.toString();
     }
 
+    //ritorna la lista delle stringhe con i nomi delle coppie del flusso
+    //metodo usato nel toString
+    //metodo overloaded
     public String getStringList(ElemFlusso[] list) {
 	StringBuilder StringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {

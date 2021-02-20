@@ -8,6 +8,7 @@ public class GestoreReti {
 
     HashMap<String, Rete> listaRetiConfiguratore;
 
+    //costruttore
     public GestoreReti() {
 
 	this.listaRetiConfiguratore = new HashMap<String, Rete>();
@@ -18,11 +19,16 @@ public class GestoreReti {
 	return listaRetiConfiguratore;
     }
     
+    //ritorna la lista delle chiavi come Array ( più comodo da gestire )
     public String[] getKeyLIst() {
 	
 	return (String[]) listaRetiConfiguratore.keySet().toArray();
     }
 
+    //aggiunge una rete alla map con controlli
+    //ritorna codice errore 1 se esiste già nome
+    //ritorna codice errore 2 se esiste già rete
+    //gestione codice errori andrà fatta in interazione con utente
     public int addRete(String name, Rete toAdd) {
 
 	if (listaRetiConfiguratore.containsKey(name))
