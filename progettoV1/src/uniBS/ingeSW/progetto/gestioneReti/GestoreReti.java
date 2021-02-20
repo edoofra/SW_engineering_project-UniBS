@@ -16,8 +16,13 @@ public class GestoreReti {
     }
 
     public HashMap<String, Rete> getListaRetiConfiguratore() {
-	
+
 	return listaRetiConfiguratore;
+    }
+    
+    public String[] getKeyLIst() {
+	
+	return (String[]) listaRetiConfiguratore.keySet().toArray();
     }
 
     public int addRete(String name, Rete toAdd) {
@@ -29,16 +34,16 @@ public class GestoreReti {
 	listaRetiConfiguratore.put(name, toAdd);
 	return 0;
     }
-    
+
     public String toString() {
-	
+
 	StringBuilder StringList = new StringBuilder();
-        String[] keyList = (String[]) listaRetiConfiguratore.keySet().toArray();
-        for(int i=0; i<keyList.length; i++) {
-            StringList.append(keyList[i]);
-        }
-        return StringList.toString();
-	
+	String[] keyList = getKeyLIst();
+	for (int i = 0; i < keyList.length; i++) {
+	    StringList.append(keyList[i]);
+	}
+	return StringList.toString();
+
     }
 
 }
