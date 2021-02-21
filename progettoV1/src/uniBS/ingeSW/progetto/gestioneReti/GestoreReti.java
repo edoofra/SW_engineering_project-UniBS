@@ -10,27 +10,23 @@ public class GestoreReti {
 
     //costruttore
     public GestoreReti() {
-
 	this.listaRetiConfiguratore = new HashMap<String, Rete>();
     }
 
     public HashMap<String, Rete> getListaRetiConfiguratore() {
-
 	return listaRetiConfiguratore;
     }
     
-    //ritorna la lista delle chiavi come Array ( più comodo da gestire )
+    //ritorna la lista delle chiavi come Array ( piu' comodo da gestire )
     public String[] getKeyLIst() {
-	
 	return (String[]) listaRetiConfiguratore.keySet().toArray();
     }
 
     //aggiunge una rete alla map con controlli
-    //ritorna codice errore 1 se esiste già nome
-    //ritorna codice errore 2 se esiste già rete
-    //gestione codice errori andrà fatta in interazione con utente
+    //ritorna codice errore 1 se esiste gia' nome
+    //ritorna codice errore 2 se esiste gia' rete
+    //gestione codice errori andra' fatta in interazione con utente
     public int addRete(String name, Rete toAdd) {
-
 	if (listaRetiConfiguratore.containsKey(name))
 	    return 1;
 	if (listaRetiConfiguratore.containsValue(toAdd))
@@ -40,7 +36,6 @@ public class GestoreReti {
     }
 
     public String toString() {
-
 	StringBuilder StringList = new StringBuilder();
 	String[] keyList = getKeyLIst();
 	for (int i = 0; i < keyList.length; i++) {

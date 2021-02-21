@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Rete {
 
     // insieme non ordinato di elementi univoci
-    // se provo ad aggiungere elem che cè già me lo ignora
+    // se provo ad aggiungere elem che c'e' gia' me lo ignora
     HashSet<Posto> insiemePosti;
     HashSet<Transizione> insiemeTransizioni;
     HashSet<ElemFlusso> relazioneFlusso;
@@ -16,7 +16,7 @@ public class Rete {
 	this.relazioneFlusso = new HashSet<ElemFlusso>();
     }
 
-    // Ritorna la lista dei posti come Array (più facile da gestire)
+    // Ritorna la lista dei posti come Array (piu' facile da gestire)
     public Posto[] getInsiemePosti() {
 	return (Posto[]) insiemePosti.toArray();
     }
@@ -31,9 +31,9 @@ public class Rete {
 	return (ElemFlusso[]) relazioneFlusso.toArray();
     }
 
-    //ritorna la lista delle stringhe con i nomi di posti / transizioni
-    //metodo usato nel toString
-    //metodo overloaded
+    // ritorna la lista delle stringhe con i nomi di posti / transizioni
+    // metodo usato nel toString
+    // metodo overloaded
     public String getStringList(ElementoSemplice[] list) {
 	StringBuilder StringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {
@@ -43,9 +43,9 @@ public class Rete {
 	return StringList.toString();
     }
 
-    //ritorna la lista delle stringhe con i nomi delle coppie del flusso
-    //metodo usato nel toString
-    //metodo overloaded
+    // ritorna la lista delle stringhe con i nomi delle coppie del flusso
+    // metodo usato nel toString
+    // metodo overloaded
     public String getStringList(ElemFlusso[] list) {
 	StringBuilder StringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {
@@ -55,7 +55,7 @@ public class Rete {
 	return StringList.toString();
     }
 
-    // controlla se uno dei tre è vuoto
+    // controlla se uno dei tre e' vuoto
     public boolean emptyControl() {
 	if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
 	    return true;
@@ -63,7 +63,7 @@ public class Rete {
 	    return false;
     }
 
-    // aggiunge una transizione, rstituisce bool così so se è andata
+    // aggiunge una transizione, rstituisce bool cosi' so se e' andata
     // a buon fine nel metodo esterno che la chiama
     public boolean addTrans(Transizione toAdd) {
 	if (insiemeTransizioni.contains(toAdd))
@@ -97,13 +97,12 @@ public class Rete {
     }
 
     public String toString() {
-	StringBuilder description = new StringBuilder("descrizione della rete: ");
+	StringBuilder description = new StringBuilder("descrizione della rete: \n");
 	description.append("POSTI: " + getStringList(getInsiemePosti()));
 	description.append("TRANSIZIONI: " + getStringList(getInsiemeTransizioni()));
 	description.append("RELAZIONE FLUSSO: " + getStringList(getRelazioneFlusso()));
 	return description.toString();
-	
-	}
 
     }
 
+}
