@@ -1,6 +1,8 @@
 package uniBS.ingeSW.progetto.gestioneReti;
 
 import java.util.HashMap;
+
+import uniBS.ingeSW.progetto.rete.ElemFlusso;
 import uniBS.ingeSW.progetto.rete.Rete;
 
 //classe per la gestione di tutte le reti salvate dal configuratore
@@ -33,6 +35,23 @@ public class GestoreReti {
 	    return 2;
 	listaRetiConfiguratore.put(name, toAdd);
 	return 0;
+    }
+    
+    public boolean isEqual (Rete rete1, Rete rete2) {
+	ElemFlusso [] flusso1 = rete1.getRelazioneFlusso();
+	ElemFlusso [] flusso2 = rete2.getRelazioneFlusso();
+	boolean uguali = false;
+	
+	for (ElemFlusso elem1 : flusso1) {
+	    for (ElemFlusso elem2 : flusso2) {
+		if(elem1.equals(elem2)) {
+		    uguali = true;
+		    break;
+		}
+	    }
+	    if(!uguali) return false;
+	}
+	return true;
     }
 
     public String toString() {

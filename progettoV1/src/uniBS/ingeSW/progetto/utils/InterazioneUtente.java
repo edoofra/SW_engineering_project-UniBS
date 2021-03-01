@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progetto.utils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InterazioneUtente {
