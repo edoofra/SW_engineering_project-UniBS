@@ -38,12 +38,10 @@ public class GestoreReti {
     }
     
     public boolean isEqual (Rete rete1, Rete rete2) {
-	ElemFlusso [] flusso1 = rete1.getRelazioneFlusso();
-	ElemFlusso [] flusso2 = rete2.getRelazioneFlusso();
 	boolean uguali = false;
 	
-	for (ElemFlusso elem1 : flusso1) {
-	    for (ElemFlusso elem2 : flusso2) {
+	for (ElemFlusso elem1 : rete1.getRelazioneFlusso()) {
+	    for (ElemFlusso elem2 : rete2.getRelazioneFlusso()) {
 		if(elem1.equals(elem2)) {
 		    uguali = true;
 		    break;
