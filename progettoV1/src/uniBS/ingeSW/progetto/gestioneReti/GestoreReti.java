@@ -1,7 +1,6 @@
 package uniBS.ingeSW.progetto.gestioneReti;
 
 import java.util.HashMap;
-
 import uniBS.ingeSW.progetto.rete.ElemFlusso;
 import uniBS.ingeSW.progetto.rete.Rete;
 
