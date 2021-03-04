@@ -3,6 +3,10 @@ package uniBS.ingeSW.progetto.utils;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import uniBS.ingeSW.progetto.rete.Posto;
+import uniBS.ingeSW.progetto.rete.Rete;
+import uniBS.ingeSW.progetto.rete.Transizione;
+
 public class InterazioneUtente {
     private static Scanner lettore = creaScanner();
 	  
@@ -11,7 +15,6 @@ public class InterazioneUtente {
 	  private final static String ERRORE_STRINGA_VUOTA= "Attenzione: non hai inserito alcun carattere";
 	  private final static String ERRORE_MASSIMO= "Attenzione: e' richiesto un valore minore o uguale a ";
 	  private final static String MESSAGGIO_AMMISSIBILI= "Attenzione: i caratteri ammissibili sono: ";
-
 	  private final static char RISPOSTA_SI='S';
 	  private final static char RISPOSTA_NO='N';
 
@@ -201,6 +204,61 @@ public class InterazioneUtente {
 		  else
 			return false;
 	  }
+	  
+	 
+	 public static void creazioneRete(Rete daCreare) {
+	     System.out.println("hai deciso di creare una rete");
+	     aggiuntaPosto(daCreare);
+	     aggiuntaTransizione(daCreare);
+	     aggiuntaElementoFlusso(daCreare);
+	     
+	     
+	 }
+
+	private static void aggiuntaPosto(Rete daCreare) {
+	    boolean risposta = true;
+	     System.out.println("per prima cosa devi aggiungere i posti.");
+	     while (risposta != false) {
+		 
+		 String nome = leggiStringaNonVuota("scegli un nome per il posto");
+		 Posto nuovo = new Posto(nome);
+		 daCreare.addPosto(nuovo);
+		 risposta = yesOrNo("vuoi aggiungere altri posti?");
+	     }
+	}
+	
+	private static void aggiuntaTransizione(Rete daCreare) {
+	    boolean risposta = true;
+	     System.out.println("ora devi aggiungere le transizioni");
+	     while (risposta != false) {
+		 
+		 String nome = leggiStringaNonVuota("scegli un nome per la transizione");
+		 Transizione nuovo = new Transizione(nome);
+		 daCreare.addTrans(nuovo);
+		 risposta = yesOrNo("vuoi aggiungere altre transizioni?");
+	     }
+	}
+	
+	private static void aggiuntaElementoFlusso(Rete daCreare) {
+	    boolean risposta = true;
+	     System.out.println("ora devi aggiungere gli elementi di flusso");
+	     while (risposta != false) {
+		 
+		 int scelta = leggiIntero("vuoi partire da un posto (1) o da una transizione(2)?", 1, 2);
+		 if(scelta == 1) {
+		     System.out.println(daCreare.getInsiemePosti());
+		 }
+		 else System.out.println(daCreare.getInsiemeTransizioni());
+		 //chiamo metodo per cercare obj da stringa
+		 //printo altra lista
+		 //chiamo metodo x secondo obj
+		 //creo elem flusso
+		 //aggiungo elem flusso
+		 risposta = yesOrNo("vuoi aggiungere altri elementi di flusso?");
+	     }
+	}
+	  
+	  
 
 
 }

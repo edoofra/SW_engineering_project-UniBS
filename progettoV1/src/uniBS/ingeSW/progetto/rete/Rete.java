@@ -86,7 +86,6 @@ public class Rete {
     public boolean addElemFlusso(ElemFlusso elem) {
 
 	boolean postoTransizione = elem.getElem1() instanceof Posto && elem.getElem2() instanceof Transizione;
-
 	boolean transizionePosto = elem.getElem1() instanceof Transizione && elem.getElem2() instanceof Posto;
 
 	if (postoTransizione || transizionePosto) {
