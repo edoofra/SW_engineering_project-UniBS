@@ -30,6 +30,24 @@ public class Rete {
     public ElemFlusso[] getRelazioneFlusso() {
 	return (ElemFlusso[]) relazioneFlusso.toArray();
     }
+    
+    //restituisce un posto dalla lista cercandolo per nome
+    public Posto getSinglePosto(String daCercare) {
+	for (Posto elem : getInsiemePosti()) {
+	    if(elem.nome.equalsIgnoreCase(daCercare)) return elem;
+	}
+	return null;
+    }
+    
+    //restituisce una trans dalla lista cercandola per nome
+    public Transizione getSingleTrans(String daCercare) {
+	for (Transizione elem : getInsiemeTransizioni()) {
+	    if(elem.nome.equalsIgnoreCase(daCercare)) return elem;
+	}
+	return null;
+    }
+    
+    
 
     // ritorna la lista delle stringhe con i nomi di posti / transizioni
     // metodo usato nel toString
