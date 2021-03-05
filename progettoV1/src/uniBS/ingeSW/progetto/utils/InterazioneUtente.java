@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import uniBS.ingeSW.progetto.rete.ElemFlusso;
-import uniBS.ingeSW.progetto.rete.ElementoSemplice;
 import uniBS.ingeSW.progetto.rete.Posto;
 import uniBS.ingeSW.progetto.rete.Rete;
 import uniBS.ingeSW.progetto.rete.Transizione;
