@@ -3,6 +3,7 @@ package uniBS.ingeSW.progetto.utils;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import uniBS.ingeSW.progetto.rete.ElemFlusso;
 import uniBS.ingeSW.progetto.rete.ElementoSemplice;
 import uniBS.ingeSW.progetto.rete.Posto;
 import uniBS.ingeSW.progetto.rete.Rete;
@@ -210,26 +211,28 @@ public class InterazioneUtente {
 			if (scelta == 1) {
 				System.out.println(daCreare.getInsiemePosti());
 				String nome=leggiStringaNonVuota("scegli il posto da cui far partire il flusso.");
-				ElementoSemplice elem1 = cercaPerNome(nome, daCreare.getInsiemePosti());
+				Posto elem1 = daCreare.getSinglePosto(nome);
+				if(elem1 != null){
+					System.out.println(daCreare.getInsiemeTransizioni());
+					nome = leggiStringaNonVuota("ora scegli la transizione di destinazione");
+					Transizione elem2 = daCreare.getSingleTrans(nome);
+					if(elem2 != null){
+						daCreare.addElemFlusso(new ElemFlusso(elem1, elem2));
+					}
+					//vanno gestiti casi in cui è null
+					//vanno estratti i due metodi
+					
+				}
 			} else
 				System.out.println(daCreare.getInsiemeTransizioni());
+				//stessa cosa ma per transizione
+				//qualcuno riesce a trovare un fottuto modo per non ripetere tutto?
 			
 			
 			
-			// chiamo metodo per cercare obj da stringa
-			// printo altra lista
-			// chiamo metodo x secondo obj
-			// creo elem flusso
-			// aggiungo elem flusso
 			risposta = yesOrNo("vuoi aggiungere altri elementi di flusso?");
 		}
 	}
 
-	private static ElementoSemplice cercaPerNome(String daCercare, ElementoSemplice[] lista){
-		for(ElementoSemplice elem : lista){
-			if(elem.getName().equalsIgnoreCase(daCercare)) return elem;
-		}
-		return null;
-	}
-
+	
 }
