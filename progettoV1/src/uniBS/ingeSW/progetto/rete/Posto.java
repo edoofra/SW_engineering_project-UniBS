@@ -5,6 +5,10 @@ public class Posto extends ElementoSemplice {
 	public Posto(String nome) {
 		this.nome = "P:" + nome;
 	}
+
+	public String getProperties(){
+		return this.nome;
+	}
 	
 
 }

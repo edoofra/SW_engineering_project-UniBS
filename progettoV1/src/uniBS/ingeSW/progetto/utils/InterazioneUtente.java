@@ -3,6 +3,7 @@ package uniBS.ingeSW.progetto.utils;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import uniBS.ingeSW.progetto.rete.ElementoSemplice;
 import uniBS.ingeSW.progetto.rete.Posto;
 import uniBS.ingeSW.progetto.rete.Rete;
 import uniBS.ingeSW.progetto.rete.Transizione;
@@ -208,8 +209,13 @@ public class InterazioneUtente {
 			int scelta = leggiIntero("vuoi partire da un posto (1) o da una transizione(2)?", 1, 2);
 			if (scelta == 1) {
 				System.out.println(daCreare.getInsiemePosti());
+				String nome=leggiStringaNonVuota("scegli il posto da cui far partire il flusso.");
+				ElementoSemplice elem1 = cercaPerNome(nome, daCreare.getInsiemePosti());
 			} else
 				System.out.println(daCreare.getInsiemeTransizioni());
+			
+			
+			
 			// chiamo metodo per cercare obj da stringa
 			// printo altra lista
 			// chiamo metodo x secondo obj
@@ -217,6 +223,13 @@ public class InterazioneUtente {
 			// aggiungo elem flusso
 			risposta = yesOrNo("vuoi aggiungere altri elementi di flusso?");
 		}
+	}
+
+	private static ElementoSemplice cercaPerNome(String daCercare, ElementoSemplice[] lista){
+		for(ElementoSemplice elem : lista){
+			if(elem.getName().equalsIgnoreCase(daCercare)) return elem;
+		}
+		return null;
 	}
 
 }
