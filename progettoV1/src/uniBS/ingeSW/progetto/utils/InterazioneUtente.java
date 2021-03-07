@@ -208,13 +208,9 @@ public class InterazioneUtente {
 
 			int scelta = leggiIntero("vuoi partire da un posto (1) o da una transizione(2)?", 1, 2);
 			if (scelta == 1) {
-				System.out.println(daCreare.getInsiemePosti());
-				String nome=leggiStringaNonVuota("scegli il posto da cui far partire il flusso.");
-				Posto elem1 = daCreare.getSinglePosto(nome);
+				Posto elem1 = cercaPostoPerNome(daCreare);
 				if(elem1 != null){
-					System.out.println(daCreare.getInsiemeTransizioni());
-					nome = leggiStringaNonVuota("ora scegli la transizione di destinazione");
-					Transizione elem2 = daCreare.getSingleTrans(nome);
+					Transizione elem2 = cercaTransizionePerNome(daCreare);
 					if(elem2 != null){
 						daCreare.addElemFlusso(new ElemFlusso(elem1, elem2));
 					}
@@ -233,5 +229,18 @@ public class InterazioneUtente {
 		}
 	}
 
+	private static Posto cercaPostoPerNome(Rete lista){
+		System.out.println(lista.getInsiemePosti());
+				String nome=leggiStringaNonVuota("scegli il posto");
+				return lista.getSinglePosto(nome);
+	}
+
+	private static Transizione cercaTransizionePerNome(Rete lista){
+		System.out.println(lista.getInsiemePosti());
+				String nome=leggiStringaNonVuota("scegli la transizione");
+				return lista.getSingleTrans(nome);
+	}
+
+	
 	
 }
