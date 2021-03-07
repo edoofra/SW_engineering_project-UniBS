@@ -236,7 +236,7 @@ public class InterazioneUtente {
 	}
 
 	private static Transizione cercaTransizionePerNome(Rete lista){
-		System.out.println(lista.getInsiemePosti());
+		System.out.println(lista.getInsiemeTransizioni());
 				String nome=leggiStringaNonVuota("scegli la transizione");
 				return lista.getSingleTrans(nome);
 	}
