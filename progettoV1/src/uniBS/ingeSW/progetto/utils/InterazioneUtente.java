@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import uniBS.ingeSW.progetto.rete.ElemFlusso;
+import uniBS.ingeSW.progetto.rete.ElementoSemplice;
 import uniBS.ingeSW.progetto.rete.Posto;
 import uniBS.ingeSW.progetto.rete.Rete;
 import uniBS.ingeSW.progetto.rete.Transizione;
@@ -205,42 +206,34 @@ public class InterazioneUtente {
 		boolean risposta = true;
 		System.out.println("ora devi aggiungere gli elementi di flusso");
 		while (risposta != false) {
-
-			int scelta = leggiIntero("vuoi partire da un posto (1) o da una transizione(2)?", 1, 2);
-			if (scelta == 1) {
-				Posto elem1 = cercaPostoPerNome(daCreare);
-				if(elem1 != null){
-					Transizione elem2 = cercaTransizionePerNome(daCreare);
-					if(elem2 != null){
-						daCreare.addElemFlusso(new ElemFlusso(elem1, elem2));
-					}
-					//vanno gestiti casi in cui è null
-					//vanno estratti i due metodi
-					
-				}
-			} else
-				System.out.println(daCreare.getInsiemeTransizioni());
-				//stessa cosa ma per transizione
-				//qualcuno riesce a trovare un fottuto modo per non ripetere tutto?
-			
-			
-			
+			ElemFlusso nuovo = creaElementoFlusso(daCreare);
+			if(nuovo!=null) daCreare.addElemFlusso(nuovo);
 			risposta = yesOrNo("vuoi aggiungere altri elementi di flusso?");
 		}
 	}
 
-	private static Posto cercaPostoPerNome(Rete lista){
-		System.out.println(lista.getInsiemePosti());
-				String nome=leggiStringaNonVuota("scegli il posto");
-				return lista.getSinglePosto(nome);
-	}
 
-	private static Transizione cercaTransizionePerNome(Rete lista){
-		System.out.println(lista.getInsiemeTransizioni());
-				String nome=leggiStringaNonVuota("scegli la transizione");
-				return lista.getSingleTrans(nome);
-	}
+    private static ElemFlusso creaElementoFlusso(Rete rete){
+		ElementoSemplice elem1 = null;
+		ElementoSemplice elem2 = null;
+		System.out.println("scegli tra le seguenti transizioni e posti presenti attualmente nella tua rete."); 
+		System.out.println("Ricorda che un elemento di flusso deve essere composto da due elementi di tipo diverso.");
+		System.out.println(rete.getInsiemePosti());
+		System.out.println(rete.getInsiemeTransizioni());
+		String nome1 = leggiStringaNonVuota("scegli il nome del primo elemento preceduto da P: se è un posto e da T: se è una transizione");
+		String nome2 = leggiStringaNonVuota("scegli il nome del secondo elemento preceduto da P: se è un posto e da T: se è una transizione");
+		if(nome1.charAt(0)=='P') elem1 = rete.getSinglePosto(nome1);
+		else elem1 = rete.getSingleTrans(nome1);
+		
+		if(nome2.charAt(0)=='P') elem2 = rete.getSinglePosto(nome2);
+		else elem2 = rete.getSingleTrans(nome2);
 
-	
-	
+		//da sistemare per ritornare elmento nullo
+		if(elem1==null || elem2==null){
+			System.out.println("Uno dei due elementi non è stato trovato");
+			return null;
+		} 
+		return new ElemFlusso(elem1, elem2);
+		
+	}	
 }
