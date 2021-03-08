@@ -62,4 +62,6 @@ public class GestoreReti {
 
 	}
 
+	//fare metodo toArray
+
 }

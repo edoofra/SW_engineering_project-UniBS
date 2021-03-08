@@ -3,6 +3,7 @@ package uniBS.ingeSW.progetto.utils;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import uniBS.ingeSW.progetto.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progetto.rete.ElemFlusso;
 import uniBS.ingeSW.progetto.rete.ElementoSemplice;
 import uniBS.ingeSW.progetto.rete.Posto;
@@ -175,7 +176,9 @@ public class InterazioneUtente {
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
-
+		
+		//metodo rete corretta
+		//metodo salvataggio rete
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {
@@ -236,4 +239,15 @@ public class InterazioneUtente {
 		return new ElemFlusso(elem1, elem2);
 		
 	}	
+
+	public static void visualizzaReteDaGestore(GestoreReti lista){
+		System.out.println("scegli una tra le seguenti reti da visualizzare");
+		System.out.println(lista);
+		String daVisualizzare = leggiStringaNonVuota("->");
+		for(String elem : lista.getKeyLIst()){
+			if (elem.equalsIgnoreCase(daVisualizzare)) System.out.println(lista.
+					getListaRetiConfiguratore().get(daVisualizzare));
+			else System.out.println("Non esiste una rete con questo");
+		}
+	}
 }
