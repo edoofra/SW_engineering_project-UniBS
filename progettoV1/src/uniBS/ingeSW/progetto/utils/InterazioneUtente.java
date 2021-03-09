@@ -221,7 +221,7 @@ public class InterazioneUtente {
 		ElementoSemplice elem2 = null;
 		System.out.println("scegli tra le seguenti transizioni e posti presenti attualmente nella tua rete."); 
 		System.out.println("Ricorda che un elemento di flusso deve essere composto da due elementi di tipo diverso.");
-		System.out.println(rete.getInsiemePosti();
+		System.out.println(rete.getInsiemePosti());
 		System.out.println(rete.getInsiemeTransizioni());
 		String nome1 = leggiStringaNonVuota("scegli il nome del primo elemento preceduto da P: se è un posto e da T: se è una transizione");
 		String nome2 = leggiStringaNonVuota("scegli il nome del secondo elemento preceduto da P: se è un posto e da T: se è una transizione");
