@@ -18,17 +18,17 @@ public class Rete {
 
 	// Ritorna la lista dei posti come Array (piu' facile da gestire)
 	public Posto[] getInsiemePosti() {
-		return (Posto[]) insiemePosti.toArray();
+		return (Posto[]) insiemePosti.toArray(new Posto[0]);
 	}
 
 	// Ritorna la lista delle transizioni come Array
 	public Transizione[] getInsiemeTransizioni() {
-		return (Transizione[]) insiemeTransizioni.toArray();
+		return (Transizione[]) insiemeTransizioni.toArray(new Transizione[0]);
 	}
 
 	// Ritorna la relazione di flusso come Array
 	public ElemFlusso[] getRelazioneFlusso() {
-		return (ElemFlusso[]) relazioneFlusso.toArray();
+		return (ElemFlusso[]) relazioneFlusso.toArray(new ElemFlusso[0]);
 	}
 
 	// restituisce un posto dalla lista cercandolo per nome

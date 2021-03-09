@@ -20,7 +20,7 @@ public class GestoreReti {
 
 	// ritorna la lista delle chiavi come Array ( piu' comodo da gestire )
 	public String[] getKeyLIst() {
-		return (String[]) listaRetiConfiguratore.keySet().toArray();
+		return (String[]) listaRetiConfiguratore.keySet().toArray(new String[0]);
 	}
 
 	// aggiunge una rete alla map con controlli
