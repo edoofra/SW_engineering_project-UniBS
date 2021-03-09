@@ -2,7 +2,6 @@ package uniBS.ingeSW.progetto.utils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import uniBS.ingeSW.progetto.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progetto.rete.ElemFlusso;
 import uniBS.ingeSW.progetto.rete.ElementoSemplice;
