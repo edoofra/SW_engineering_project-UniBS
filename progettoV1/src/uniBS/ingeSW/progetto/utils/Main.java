@@ -9,7 +9,7 @@ public class Main {
      "visualizza le reti esistenti"};
 
     public static void main(String[] args) {
-        
+
         Menu menuIniziale = new Menu("Seleziona una tra le seguenti scelte", VOCI_MENU_INIZIALE );
         GestoreReti retiSalvate = new GestoreReti();
         boolean fine = false;
