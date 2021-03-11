@@ -3,7 +3,8 @@ package uniBS.ingeSW.progetto.rete;
 /**
  * @author Camilla Bonomini
  * @author Edoardo Fratus
- * @author Lorenzo Bargnani Classe per implementazione di un posto di una rete
+ * @author Lorenzo Bargnani 
+ * 		   Classe per implementazione di un posto di una rete
  *         Eredita dalla classe ElementoSemplice
  */
 public class Posto extends ElementoSemplice {

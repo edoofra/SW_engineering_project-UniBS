@@ -23,6 +23,7 @@ public class Main {
                         break;
 
                 case 0: fine=true;
+                        break;
                         
                 default : System.out.println("attenzione selezione non valida");
                 
