@@ -1,7 +1,5 @@
 package uniBS.ingeSW.progetto.utils;
 import com.google.gson.Gson;
-
-
 import uniBS.ingeSW.progetto.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progetto.rete.ElementoSemplice;
 
