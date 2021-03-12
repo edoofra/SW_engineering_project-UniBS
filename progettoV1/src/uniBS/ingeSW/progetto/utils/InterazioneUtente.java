@@ -247,6 +247,7 @@ public class InterazioneUtente {
 			if (elem.equalsIgnoreCase(daVisualizzare)) System.out.println(lista.
 					getListaRetiConfiguratore().get(daVisualizzare));
 			else System.out.println("Non esiste una rete con questo");
+			
 		}
 	}
 }
