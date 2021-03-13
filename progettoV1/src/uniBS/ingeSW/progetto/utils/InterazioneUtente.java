@@ -180,7 +180,7 @@ public class InterazioneUtente {
 		if(risposta) {
 			String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? -> ");
 			listaReti.addRete(nome, daCreare);
-			//metodo salvataggio GestoreReti
+			salvataggioFile.salvaGestoreReti(listaReti);
 		}
 	}
 
