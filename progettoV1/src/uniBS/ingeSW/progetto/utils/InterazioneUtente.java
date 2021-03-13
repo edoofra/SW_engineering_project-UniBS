@@ -171,7 +171,7 @@ public class InterazioneUtente {
 	}
 
 	public static void creazioneRete(Rete daCreare) {
-		System.out.println("hai deciso di creare una rete");
+		System.out.println("Hai deciso di creare una rete");
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
@@ -182,35 +182,35 @@ public class InterazioneUtente {
 
 	private static void aggiuntaPosto(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("per prima cosa devi aggiungere i posti.");
+		System.out.println("Per prima cosa devi aggiungere i posti.");
 		while (risposta != false) {
 
-			String nome = leggiStringaNonVuota("scegli un nome per il posto");
+			String nome = leggiStringaNonVuota("Scegli un nome per il posto");
 			Posto nuovo = new Posto(nome);
 			daCreare.addPosto(nuovo);
-			risposta = yesOrNo("vuoi aggiungere altri posti?");
+			risposta = yesOrNo("Vuoi aggiungere altri posti?");
 		}
 	}
 
 	private static void aggiuntaTransizione(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("ora devi aggiungere le transizioni");
+		System.out.println("Ora devi aggiungere le transizioni");
 		while (risposta != false) {
 
-			String nome = leggiStringaNonVuota("scegli un nome per la transizione");
+			String nome = leggiStringaNonVuota("Scegli un nome per la transizione");
 			Transizione nuovo = new Transizione(nome);
 			daCreare.addTrans(nuovo);
-			risposta = yesOrNo("vuoi aggiungere altre transizioni?");
+			risposta = yesOrNo("Vuoi aggiungere altre transizioni?");
 		}
 	}
 
 	private static void aggiuntaElementoFlusso(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("ora devi aggiungere gli elementi di flusso");
+		System.out.println("Ora devi aggiungere gli elementi di flusso");
 		while (risposta != false) {
 			ElemFlusso nuovo = creaElementoFlusso(daCreare);
 			if(nuovo!=null) daCreare.addElemFlusso(nuovo);
-			risposta = yesOrNo("vuoi aggiungere altri elementi di flusso?");
+			risposta = yesOrNo("Vuoi aggiungere altri elementi di flusso?");
 		}
 	}
 
@@ -218,12 +218,12 @@ public class InterazioneUtente {
     private static ElemFlusso creaElementoFlusso(Rete rete){
 		ElementoSemplice elem1 = null;
 		ElementoSemplice elem2 = null;
-		System.out.println("scegli tra le seguenti transizioni e posti presenti attualmente nella tua rete."); 
+		System.out.println("Scegli tra le seguenti transizioni e posti presenti attualmente nella tua rete."); 
 		System.out.println("Ricorda che un elemento di flusso deve essere composto da due elementi di tipo diverso.");
 		System.out.println(rete.getStringList(rete.getInsiemePosti()));
 		System.out.println(rete.getStringList(rete.getInsiemeTransizioni()));
-		String nome1 = leggiStringaNonVuota("scegli il nome del primo elemento preceduto da P: se è un posto e da T: se è una transizione");
-		String nome2 = leggiStringaNonVuota("scegli il nome del secondo elemento preceduto da P: se è un posto e da T: se è una transizione");
+		String nome1 = leggiStringaNonVuota("Scegli il nome del primo elemento preceduto da P: se è un posto e da T: se è una transizione");
+		String nome2 = leggiStringaNonVuota("Scegli il nome del secondo elemento preceduto da P: se è un posto e da T: se è una transizione");
 		if(nome1.charAt(0)=='P') elem1 = rete.getSinglePosto(nome1);
 		else elem1 = rete.getSingleTrans(nome1);
 		
@@ -240,14 +240,16 @@ public class InterazioneUtente {
 	}	
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
-		System.out.println("scegli una tra le seguenti reti da visualizzare");
-		System.out.println(lista);
-		String daVisualizzare = leggiStringaNonVuota("->");
-		for(String elem : lista.getKeyLIst()){
-			if (elem.equalsIgnoreCase(daVisualizzare)) System.out.println(lista.
+		if(lista.getListaRetiConfiguratore().isEmpty())System.out.println("La lista di reti è vuota");
+		else {
+			System.out.println("Scegli una tra le seguenti reti da visualizzare");
+			System.out.println(lista);
+			String daVisualizzare = leggiStringaNonVuota("->");
+			for(String elem : lista.getKeyLIst()){
+				if (elem.equalsIgnoreCase(daVisualizzare)) System.out.println(lista.
 					getListaRetiConfiguratore().get(daVisualizzare));
-			else System.out.println("Non esiste una rete con questo");
+				else System.out.println("Non esiste una rete con questo nome");
 			
-		}
+		}	}
 	}
 }
