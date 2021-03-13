@@ -170,14 +170,18 @@ public class InterazioneUtente {
 			return false;
 	}
 
-	public static void creazioneRete(Rete daCreare) {
+	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
 		System.out.println("Hai deciso di creare una rete");
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
-		
-		//metodo rete corretta
-		//metodo salvataggio rete
+		//metodo verifica rete corretta
+		boolean risposta = yesOrNo("vuoi salvare in modo permanente la tua rete?");
+		if(risposta) {
+			String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? -> ");
+			listaReti.addRete(nome, daCreare);
+			//metodo salvataggio GestoreReti
+		}
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {

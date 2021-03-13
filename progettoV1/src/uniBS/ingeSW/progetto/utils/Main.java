@@ -17,7 +17,7 @@ public class Main {
         do{
             int scelta1 = menuIniziale.scegli();
             switch(scelta1){
-                case 1: InterazioneUtente.creazioneRete(new Rete());
+                case 1: InterazioneUtente.creazioneRete(new Rete(), retiSalvate);
                         break;
                 case 2: InterazioneUtente.visualizzaReteDaGestore(retiSalvate);
                         break;
