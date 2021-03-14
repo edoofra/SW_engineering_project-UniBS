@@ -175,6 +175,8 @@ public class InterazioneUtente {
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
+
+		System.out.println(daCreare.controlloConnessione());
 		//metodo verifica rete corretta
 		boolean risposta = yesOrNo("vuoi salvare in modo permanente la tua rete?");
 		if(risposta) {

@@ -1,5 +1,7 @@
 package uniBS.ingeSW.progetto.rete;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Rete {
@@ -112,6 +114,47 @@ public class Rete {
 		} else
 			return false;
 	}
+
+	public boolean controlloConnessione(){
+		HashMap<ElementoSemplice,Boolean> visitati1 = new HashMap<ElementoSemplice,Boolean>();
+		HashMap<ElementoSemplice,Boolean> visitati2 = new HashMap<ElementoSemplice,Boolean>();
+		for (ElemFlusso elem : this.getRelazioneFlusso()){
+			visitati1.put(elem.getElem2(), true);
+			visitati2.put(elem.getElem1(), true);
+		}
+		for (Posto posto : this.getInsiemePosti()){
+			if(! visitati1.containsKey(posto)) {
+				if(! visitati2.containsKey(posto)){
+					return false;
+				}
+			}
+		}
+
+		for (Transizione trans : this.getInsiemeTransizioni()){
+			if(! visitati1.containsKey(trans)) {
+				if(! visitati2.containsKey(trans)){
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	public ArrayList <CoppiaPosti> getCoppieDiposti(){
+		ArrayList<CoppiaPosti> archiDiRete= new ArrayList<CoppiaPosti>();
+		ElemFlusso[] listaElementi= this.getRelazioneFlusso();
+		for (ElemFlusso elemento : listaElementi) {
+		  if(elemento.getElem1().getName().charAt(0) == 'P'){
+			Transizione transizioneDiElemento = (Transizione)elemento.getElem2();
+			for (ElemFlusso elemento1 : listaElementi) {
+			  elemento1.getElem1().equals(transizioneDiElemento);
+			  archiDiRete.add(new CoppiaPosti((Posto)elemento.getElem1(), (Posto)elemento1.getElem2()));
+			}
+		  }
+		}
+		return archiDiRete;
+	  }
 
 	public String toString() {
 		StringBuilder description = new StringBuilder("descrizione della rete: \n");
