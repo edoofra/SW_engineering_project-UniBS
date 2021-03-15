@@ -1,1 +1,1 @@
-{"listaRetiConfiguratore":{"rete2":{"insiemePosti":[{"nome":"P:1"},{"nome":"P:1"}],"insiemeTransizioni":[{"nome":"T:1"},{"nome":"T:1"}],"relazioneFlusso":[{"elem1":{"nome":"P:1"},"elem2":{"nome":"T:1"}}]},"rete1":{"insiemePosti":[{"nome":"P:1"}],"insiemeTransizioni":[{"nome":"T:1"}],"relazioneFlusso":[{"elem1":{"nome":"P:1"},"elem2":{"nome":"T:1"}},{"elem1":{"nome":"P:1"},"elem2":{"nome":"T:1"}}]}}}
+{"listaRetiConfiguratore":{"rete1":{"insiemePosti":[{"nome":"P:1"}],"insiemeTransizioni":[{"nome":"T:1"}],"relazioneFlusso":[{"elem1":{"nome":"P:1"},"elem2":{"nome":"T:1"}}]}}}

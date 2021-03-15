@@ -8,14 +8,14 @@ public class Rete {
 
 	// insieme non ordinato di elementi univoci
 	// se provo ad aggiungere elem che c'e' gia' me lo ignora
-	HashSet<Posto> insiemePosti;
-	HashSet<Transizione> insiemeTransizioni;
-	HashSet<ElemFlusso> relazioneFlusso;
+	ArrayList<ElementoSemplice> insiemePosti;
+	ArrayList<ElementoSemplice> insiemeTransizioni;
+	ArrayList<ElemFlusso> relazioneFlusso;
 
 	public Rete() {
-		this.insiemePosti = new HashSet<Posto>();
-		this.insiemeTransizioni = new HashSet<Transizione>();
-		this.relazioneFlusso = new HashSet<ElemFlusso>();
+		this.insiemePosti = new ArrayList<ElementoSemplice>();
+		this.insiemeTransizioni = new ArrayList<ElementoSemplice>();
+		this.relazioneFlusso = new ArrayList<ElemFlusso>();
 	}
 
 	// Ritorna la lista dei posti come Array (piu' facile da gestire)
