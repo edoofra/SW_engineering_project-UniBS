@@ -2,19 +2,18 @@ package uniBS.ingeSW.progetto.rete;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Rete {
 
 	// insieme non ordinato di elementi univoci
 	// se provo ad aggiungere elem che c'e' gia' me lo ignora
-	ArrayList<ElementoSemplice> insiemePosti;
-	ArrayList<ElementoSemplice> insiemeTransizioni;
+	ArrayList<Posto> insiemePosti;
+	ArrayList<Transizione> insiemeTransizioni;
 	ArrayList<ElemFlusso> relazioneFlusso;
 
 	public Rete() {
-		this.insiemePosti = new ArrayList<ElementoSemplice>();
-		this.insiemeTransizioni = new ArrayList<ElementoSemplice>();
+		this.insiemePosti = new ArrayList<Posto>();
+		this.insiemeTransizioni = new ArrayList<Transizione>();
 		this.relazioneFlusso = new ArrayList<ElemFlusso>();
 	}
 
