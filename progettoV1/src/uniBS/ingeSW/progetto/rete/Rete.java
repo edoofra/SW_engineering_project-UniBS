@@ -157,20 +157,22 @@ public class Rete {
 		return true;
 	}
 
-	public ArrayList <CoppiaPosti> getCoppieDiposti(){
-		ArrayList<CoppiaPosti> archiDiRete= new ArrayList<CoppiaPosti>();
-		ElemFlusso[] listaElementi= this.getRelazioneFlusso();
-		for (ElemFlusso elemento : listaElementi) {
-		  if(elemento.getElem1().getName().charAt(0) == 'P'){
-			Transizione transizioneDiElemento = (Transizione)elemento.getElem2();
-			for (ElemFlusso elemento1 : listaElementi) {
-			  elemento1.getElem1().equals(transizioneDiElemento);
-			  archiDiRete.add(new CoppiaPosti((Posto)elemento.getElem1(), (Posto)elemento1.getElem2()));
+	public boolean controlloCorrettezza(){
+		boolean corretta = false;
+		for(Transizione trans : this.getInsiemeTransizioni()){
+			for(ElemFlusso flusso : this.getRelazioneFlusso()){
+				if(flusso.getElem1().getName().equalsIgnoreCase(trans.getName())){
+					corretta=true;
+					break;
+				}
+				corretta=false;
 			}
-		  }
+			if(!corretta) return false;
 		}
-		return archiDiRete;
-	  }
+		return corretta;
+	}
+
+	
 
 	public String toString() {
 		StringBuilder description = new StringBuilder("descrizione della rete: \n");

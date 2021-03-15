@@ -177,14 +177,17 @@ public class InterazioneUtente {
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
 
-		System.out.println(daCreare.controlloConnessione());
-		//metodo verifica rete corretta
-		boolean risposta = yesOrNo("vuoi salvare in modo permanente la tua rete? \n->");
-		if(risposta) {
-			String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? \n-> ");
-			listaReti.addRete(nome, daCreare);
-			salvataggioFile.salvaGestoreReti(listaReti);
+		if(controlloRete(daCreare)){
+			
+			boolean risposta = yesOrNo("vuoi salvare in modo permanente la tua rete? \n->");
+			if(risposta) {
+				//verificare unicità rete
+				String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? \n-> ");
+				listaReti.addRete(nome, daCreare);
+				salvataggioFile.salvaGestoreReti(listaReti);
+			}
 		}
+		
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {
@@ -258,5 +261,14 @@ public class InterazioneUtente {
 				else System.out.println("Non esiste una rete con questo nome");
 			
 		}	}
+	}
+
+	private static boolean controlloRete(Rete daControllare){
+		boolean connessa = daControllare.controlloConnessione();
+		boolean corretta = daControllare.controlloCorrettezza();
+		if(!connessa) System.out.println("La tua rete non è connessa!\n");
+		if(!corretta) System.out.println("La tua rete non è corretta!\n");
+
+		return (connessa && corretta);
 	}
 }

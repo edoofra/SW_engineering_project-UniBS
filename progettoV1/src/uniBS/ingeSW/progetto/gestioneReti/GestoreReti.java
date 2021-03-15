@@ -45,6 +45,7 @@ public class GestoreReti {
 					uguali = true;
 					break;
 				}
+				uguali = false;
 			}
 			if (!uguali)
 				return false;
