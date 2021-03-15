@@ -1,10 +1,6 @@
 package uniBS.ingeSW.progetto.utils;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-
 import uniBS.ingeSW.progetto.gestioneReti.GestoreReti;
 
 
