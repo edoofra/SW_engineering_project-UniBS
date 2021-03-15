@@ -99,6 +99,18 @@ public class Rete {
 		return true;
 	}
 
+	//controlla che elementi flusso siano univoci
+	private boolean uniqueElemFlusso(ElemFlusso toCheck){
+		for(ElemFlusso elem : this.getRelazioneFlusso()){
+			if(elem.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName())){
+				if(elem.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName())){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
 	// controlla che un Elemento di flusso sia composto da una coppia (Posto,
 	// Transizione) o viceversa
@@ -109,10 +121,14 @@ public class Rete {
 		boolean transizionePosto = elem.getElem1() instanceof Transizione && elem.getElem2() instanceof Posto;
 
 		if (postoTransizione || transizionePosto) {
-			relazioneFlusso.add(elem);
-			return true;
-		} else
-			return false;
+
+			if(uniqueElemFlusso(elem)){
+				relazioneFlusso.add(elem);
+				return true;
+			}
+			
+		} 
+		return false;
 	}
 
 	public boolean controlloConnessione(){
