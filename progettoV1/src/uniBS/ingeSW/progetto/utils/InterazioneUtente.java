@@ -172,18 +172,26 @@ public class InterazioneUtente {
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
 		System.out.println("Hai deciso di creare una rete!");
-		System.out.println("--------------------------------\n");
+		System.out.println("--------------------------------");
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
 
 		if(controlloRete(daCreare)){
-			
 			boolean risposta = yesOrNo("vuoi salvare in modo permanente la tua rete? \n->");
 			if(risposta) {
-				//verificare unicità rete
-				String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? \n-> ");
-				listaReti.addRete(nome, daCreare);
+				boolean rifare = false;
+				do{
+					//verificare unicità rete
+					String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? \n-> ");
+					boolean aggiunta = listaReti.addRete(nome, daCreare);
+					if(!aggiunta){
+						System.out.println("Esiste già una rete con questo nome.");
+						rifare = yesOrNo("vuoi cambiare nome? (S|N) ->\n"); 
+					}
+					else rifare = false;
+					
+				}while(rifare);
 				salvataggioFile.salvaGestoreReti(listaReti);
 			}
 		}
@@ -253,14 +261,15 @@ public class InterazioneUtente {
 		if(lista.getListaRetiConfiguratore().isEmpty())System.out.println("La lista di reti è vuota");
 		else {
 			System.out.println("Scegli una tra le seguenti reti da visualizzare");
-			System.out.println(lista);
+			System.out.println(lista.toString());
 			String daVisualizzare = leggiStringaNonVuota("->");
 			for(String elem : lista.getKeyLIst()){
 				if (elem.equalsIgnoreCase(daVisualizzare)) System.out.println(lista.
 					getListaRetiConfiguratore().get(daVisualizzare));
 				else System.out.println("Non esiste una rete con questo nome");
 			
-		}	}
+			}
+		}
 	}
 
 	private static boolean controlloRete(Rete daControllare){
@@ -268,6 +277,7 @@ public class InterazioneUtente {
 		boolean corretta = daControllare.controlloCorrettezza();
 		if(!connessa) System.out.println("La tua rete non è connessa!\n");
 		if(!corretta) System.out.println("La tua rete non è corretta!\n");
+		if(corretta && connessa) System.out.println("Complimenti! La tua rete è corretta e connessa! \n");
 
 		return (connessa && corretta);
 	}

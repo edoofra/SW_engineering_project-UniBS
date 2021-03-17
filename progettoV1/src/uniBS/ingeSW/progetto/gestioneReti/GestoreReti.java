@@ -27,13 +27,11 @@ public class GestoreReti {
 	// ritorna codice errore 1 se esiste gia' nome
 	// ritorna codice errore 2 se esiste gia' rete
 	// gestione codice errori andra' fatta in interazione con utente
-	public int addRete(String name, Rete toAdd) {
+	public boolean addRete(String name, Rete toAdd) {
 		if (listaRetiConfiguratore.containsKey(name))
-			return 1;
-		if (listaRetiConfiguratore.containsValue(toAdd))
-			return 2;
+			return false;
 		listaRetiConfiguratore.put(name, toAdd);
-		return 0;
+		return true;
 	}
 
 	public boolean isEqual(Rete rete1, Rete rete2) {
