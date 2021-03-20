@@ -14,7 +14,6 @@ public class salvataggioFile {
             fileSalvataggio.write(ConvertitoreJson.daOggettoAJson(daSalvare));
             fileSalvataggio.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
