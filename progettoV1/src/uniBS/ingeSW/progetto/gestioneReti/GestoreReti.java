@@ -52,12 +52,13 @@ public class GestoreReti {
 	}
 
 	public String toString() {
-		StringBuilder StringList = new StringBuilder();
+		StringBuilder stringList = new StringBuilder("{ ");
 		String[] keyList = getKeyLIst();
 		for (int i = 0; i < keyList.length; i++) {
-			StringList.append(keyList[i]);
+			stringList.append((i+1)+ ":" + keyList[i] + " ");
 		}
-		return StringList.toString();
+		stringList.append("}");
+		return stringList.toString();
 
 	}
 

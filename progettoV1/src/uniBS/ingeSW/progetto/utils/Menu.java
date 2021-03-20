@@ -2,9 +2,9 @@ package uniBS.ingeSW.progetto.utils;
 
 public class Menu {
 
-  final private static String CORNICE = "--------------------------------";
+  final private static String CORNICE = "------------------------------------------------";
   final private static String VOCE_USCITA = "0\tEsci";
-  final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
+  final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata -> ";
 
   private String titolo;
   private String[] voci;
@@ -28,6 +28,7 @@ public class Menu {
     }
     System.out.println();
     System.out.println(VOCE_USCITA);
+    System.out.println(CORNICE);
     System.out.println();
   }
 

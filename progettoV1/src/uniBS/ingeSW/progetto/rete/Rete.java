@@ -54,24 +54,28 @@ public class Rete {
 	// metodo usato nel toString
 	// metodo overloaded
 	public String getStringList(ElementoSemplice[] list) {
-		StringBuilder StringList = new StringBuilder("{ ");
+		StringBuilder stringList = new StringBuilder("{ ");
 		for (int i = 0; i < list.length; i++) {
-			StringList.append(list[i].getProperties() + "   ");
+			stringList.append(list[i].getProperties() + ", ");
 		}
-		StringList.append(" }");
-		return StringList.toString();
+		int last = stringList.length();
+		stringList.delete(last-2, last-1);
+		stringList.append("}");
+		return stringList.toString();
 	}
 
 	// ritorna la lista delle stringhe con i nomi delle coppie del flusso
 	// metodo usato nel toString
 	// metodo overloaded
 	public String getStringList(ElemFlusso[] list) {
-		StringBuilder StringList = new StringBuilder("{ ");
+		StringBuilder stringList = new StringBuilder("{ ");
 		for (int i = 0; i < list.length; i++) {
-			StringList.append(list[i].getName() + "   ");
+			stringList.append(list[i].getName() + ", ");
 		}
-		StringList.append(" }");
-		return StringList.toString();
+		int last = stringList.length();
+		stringList.delete(last-2, last-1);
+		stringList.append("}");
+		return stringList.toString();
 	}
 
 	// controlla se uno dei tre e' vuoto
@@ -174,10 +178,10 @@ public class Rete {
 	
 
 	public String toString() {
-		StringBuilder description = new StringBuilder("descrizione della rete: \n");
-		description.append("POSTI: " + getStringList(getInsiemePosti()));
-		description.append("TRANSIZIONI: " + getStringList(getInsiemeTransizioni()));
-		description.append("RELAZIONE FLUSSO: " + getStringList(getRelazioneFlusso()));
+		StringBuilder description = new StringBuilder("Descrizione della rete: \n");
+		description.append("POSTI: " + getStringList(getInsiemePosti()) + "\n");
+		description.append("TRANSIZIONI: " + getStringList(getInsiemeTransizioni()) + "\n");
+		description.append("RELAZIONE FLUSSO: " + getStringList(getRelazioneFlusso()) + "\n");
 		return description.toString();
 
 	}

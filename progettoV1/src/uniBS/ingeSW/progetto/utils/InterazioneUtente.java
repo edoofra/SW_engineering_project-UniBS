@@ -161,7 +161,7 @@ public class InterazioneUtente {
 	}
 
 	public static boolean yesOrNo(String messaggio) {
-		String mioMessaggio = messaggio + "(" + RISPOSTA_SI + "/" + RISPOSTA_NO + ")";
+		String mioMessaggio = messaggio;
 		char valoreLetto = leggiUpperChar(mioMessaggio, String.valueOf(RISPOSTA_SI) + String.valueOf(RISPOSTA_NO));
 
 		if (valoreLetto == RISPOSTA_SI)
@@ -171,23 +171,23 @@ public class InterazioneUtente {
 	}
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
-		System.out.println("Hai deciso di creare una rete!");
-		System.out.println("--------------------------------");
+		System.out.println("\nHAI DECISO DI CREARE UNA RETE!\n");
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
+		System.out.println("");
 
 		if(controlloRete(daCreare)){
-			boolean risposta = yesOrNo("vuoi salvare in modo permanente la tua rete? \n->");
+			boolean risposta = yesOrNo("Vuoi salvare in modo permanente la tua rete? -> ");
 			if(risposta) {
 				boolean rifare = false;
 				do{
 					//verificare unicità rete
-					String nome = leggiStringaNonVuota("che nome vuoi dare a questa rete? \n-> ");
+					String nome = leggiStringaNonVuota("Che nome vuoi dare a questa rete? -> ");
 					boolean aggiunta = listaReti.addRete(nome, daCreare);
 					if(!aggiunta){
-						System.out.println("Esiste già una rete con questo nome.");
-						rifare = yesOrNo("vuoi cambiare nome? (S|N) ->\n"); 
+						System.out.println("Attenzione: esiste già una rete con questo nome.");
+						rifare = yesOrNo("vuoi cambiare nome? (S|N) -> "); 
 					}
 					else rifare = false;
 					
@@ -200,35 +200,43 @@ public class InterazioneUtente {
 
 	private static void aggiuntaPosto(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("Per prima cosa devi aggiungere i posti!\n");
+		System.out.println("Per iniziare devi aggiungere almeno un posto!");
 		while (risposta != false) {
 
-			String nome = leggiStringaNonVuota("Scegli un nome per il posto \n->");
+			String nome = leggiStringaNonVuota("\tScegli un nome per il posto -> ");
 			Posto nuovo = new Posto(nome);
 			daCreare.addPosto(nuovo);
-			risposta = yesOrNo("Vuoi aggiungere altri posti? \n->");
+			risposta = yesOrNo("\tVuoi aggiungere altri posti? (S|N) -> ");
 		}
 	}
 
 	private static void aggiuntaTransizione(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("Ora devi aggiungere le transizioni! \n");
+		System.out.println("\nOra devi aggiungere almeno una transizione!");
 		while (risposta != false) {
 
-			String nome = leggiStringaNonVuota("Scegli un nome per la transizione \n->");
+			String nome = leggiStringaNonVuota("\tScegli un nome per la transizione -> ");
 			Transizione nuovo = new Transizione(nome);
 			daCreare.addTrans(nuovo);
-			risposta = yesOrNo("Vuoi aggiungere altre transizioni? \n->");
+			risposta = yesOrNo("\tVuoi aggiungere altre transizioni? (S|N) -> ");
 		}
 	}
 
 	private static void aggiuntaElementoFlusso(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("Ora devi aggiungere gli elementi di flusso! \n");
+		System.out.println("\nCi siamo quasi! Ora devi aggiungere gli elementi di flusso!");
+		System.out.println("ATTENZIONE: sono ammesse solo le seguenti combinazioni:");
+		System.out.println("Elemento di flusso = (posto -> transizione)");
+		System.out.println("Elemento di flusso = (transizione -> posto)\n");
 		while (risposta != false) {
 			ElemFlusso nuovo = creaElementoFlusso(daCreare);
-			if(nuovo!=null) daCreare.addElemFlusso(nuovo);
-			risposta = yesOrNo("Vuoi aggiungere altri elementi di flusso? \n->");
+			if(nuovo!=null) {
+				boolean corretto = daCreare.addElemFlusso(nuovo);
+				if(!corretto) System.out.println("\tAttenzione: l'elemento non è corretto!");
+			}	
+			risposta = yesOrNo("\tVuoi aggiungere altri elementi di flusso? (S|N) -> ");
+			System.out.println("");
+			
 		}
 	}
 
@@ -236,21 +244,20 @@ public class InterazioneUtente {
     private static ElemFlusso creaElementoFlusso(Rete rete){
 		ElementoSemplice elem1 = null;
 		ElementoSemplice elem2 = null;
-		System.out.println("Scegli tra le seguenti transizioni e posti presenti attualmente nella tua rete."); 
-		System.out.println("Ricorda che un elemento di flusso deve essere composto da due elementi di tipo diverso.");
-		System.out.println(rete.getStringList(rete.getInsiemePosti()));
-		System.out.println(rete.getStringList(rete.getInsiemeTransizioni()));
-		String nome1 = leggiStringaNonVuota("Scegli il nome del primo elemento preceduto da P: se è un posto e da T: se è una transizione \n->");
-		String nome2 = leggiStringaNonVuota("Scegli il nome del secondo elemento preceduto da P: se è un posto e da T: se è una transizione \n->");
+		System.out.println("\tElementi della tua rete:"); 
+		System.out.println("\tPOSTI: " + rete.getStringList(rete.getInsiemePosti()));
+		System.out.println("\tTRANSIZIONI " + rete.getStringList(rete.getInsiemeTransizioni()) + "\n");
+		String nome1 = leggiStringaNonVuota("\tElemento 1 -> ");
+		String nome2 = leggiStringaNonVuota("\tElemento 2 -> ");
+
 		if(nome1.charAt(0)=='P') elem1 = rete.getSinglePosto(nome1);
 		else elem1 = rete.getSingleTrans(nome1);
 		
 		if(nome2.charAt(0)=='P') elem2 = rete.getSinglePosto(nome2);
 		else elem2 = rete.getSingleTrans(nome2);
 
-		//da sistemare per ritornare elmento nullo
-		if(elem1==null || elem2==null){
-			System.out.println("Uno dei due elementi non è stato trovato! \n");
+		if(elem1 == null || elem2 == null){
+			System.out.println("\tUno dei due elementi non è stato trovato! \n");
 			return null;
 		} 
 		return new ElemFlusso(elem1, elem2);
@@ -258,15 +265,16 @@ public class InterazioneUtente {
 	}	
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
-		if(lista.getListaRetiConfiguratore().isEmpty())System.out.println("La lista di reti è vuota");
+		if(lista.getListaRetiConfiguratore().isEmpty())
+		System.out.println("\nAttenzione: La lista di reti è vuota");
 		else {
-			System.out.println("Scegli una tra le seguenti reti da visualizzare");
-			System.out.println(lista.toString());
-			String daVisualizzare = leggiStringaNonVuota("->");
+			System.out.println("\nScegli una tra le seguenti reti da visualizzare: \n");
+			System.out.println("\t" + lista.toString());
+			String daVisualizzare = leggiStringaNonVuota("\n-> ");
 			for(String elem : lista.getKeyLIst()){
 				if (elem.equalsIgnoreCase(daVisualizzare)) System.out.println(lista.
 					getListaRetiConfiguratore().get(daVisualizzare));
-				else System.out.println("Non esiste una rete con questo nome");
+				else System.out.println("Attenzione: Non esiste una rete con questo nome");
 			
 			}
 		}
@@ -275,9 +283,9 @@ public class InterazioneUtente {
 	private static boolean controlloRete(Rete daControllare){
 		boolean connessa = daControllare.controlloConnessione();
 		boolean corretta = daControllare.controlloCorrettezza();
-		if(!connessa) System.out.println("La tua rete non è connessa!\n");
-		if(!corretta) System.out.println("La tua rete non è corretta!\n");
-		if(corretta && connessa) System.out.println("Complimenti! La tua rete è corretta e connessa! \n");
+		if(!connessa) System.out.println("Attenzione: la tua rete non è connessa!\n");
+		if(!corretta) System.out.println("Attenzione: la tua rete non è corretta!\n");
+		if(corretta && connessa) System.out.println("COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n");
 
 		return (connessa && corretta);
 	}
