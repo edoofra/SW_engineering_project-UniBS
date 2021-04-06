@@ -25,9 +25,6 @@ public class ElemFlusso {
 		return elem2;
 	}
 	
-	/**
-	 * @return nome dell'elemento di flusso dato da nome partenza + nome arrivo
-	 */
 	public String getName() {
 	    return "( " + elem1.getProperties() + "," + elem2.getProperties() + " )";
 	}
