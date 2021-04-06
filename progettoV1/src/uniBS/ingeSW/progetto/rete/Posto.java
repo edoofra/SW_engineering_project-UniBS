@@ -5,13 +5,10 @@ package uniBS.ingeSW.progetto.rete;
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani 
  * 	Classe per implementazione di un posto di una rete
- *  Eredita dalla classe ElementoSemplice
  */
 public class Posto extends ElementoSemplice {
 
 	/**
-	 * Costruttore
-	 * 
 	 * @param nome nome scelto dal configuratore al momento della creazione
 	 */
 	public Posto(String nome) {
