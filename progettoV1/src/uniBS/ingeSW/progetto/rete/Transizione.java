@@ -3,7 +3,7 @@ package uniBS.ingeSW.progetto.rete;
  * @author Edoardo Fratus
  * @author Camilla Bonomini
  * @author Lorenzo Bargnani
- * Classe per l'implementazion di una transizione in una rete
+ * Classe per l'implementazione di una transizione in una rete
  */
 public class Transizione extends ElementoSemplice {
 	
