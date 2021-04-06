@@ -11,10 +11,14 @@ public abstract class ElementoSemplice {
 	/**
 	 * nome dell'elemento della rete
 	 */
-	String nome;
+	private String nome;
 
 	public String getName(){
 		return this.nome;
+	}
+
+	public void setName(String name){
+		this.nome = name;
 	}
 	/**
 	 * Metodo per ottenere le proprietà principali di ogni elemento 

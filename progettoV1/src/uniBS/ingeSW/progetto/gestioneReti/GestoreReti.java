@@ -7,7 +7,7 @@ import uniBS.ingeSW.progetto.rete.Rete;
 //classe per la gestione di tutte le reti salvate dal configuratore
 public class GestoreReti {
 
-	HashMap<String, Rete> listaRetiConfiguratore;
+	private HashMap<String, Rete> listaRetiConfiguratore;
 
 	// costruttore
 	public GestoreReti() {

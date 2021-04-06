@@ -7,9 +7,9 @@ public class Rete {
 
 	// insieme non ordinato di elementi univoci
 	// se provo ad aggiungere elem che c'e' gia' me lo ignora
-	ArrayList<Posto> insiemePosti;
-	ArrayList<Transizione> insiemeTransizioni;
-	ArrayList<ElemFlusso> relazioneFlusso;
+	private ArrayList<Posto> insiemePosti;
+	private ArrayList<Transizione> insiemeTransizioni;
+	private ArrayList<ElemFlusso> relazioneFlusso;
 
 	public Rete() {
 		this.insiemePosti = new ArrayList<Posto>();
@@ -35,7 +35,7 @@ public class Rete {
 	// restituisce un posto dalla lista cercandolo per nome
 	public Posto getSinglePosto(String daCercare) {
 		for (Posto elem : getInsiemePosti()) {
-			if (elem.nome.equalsIgnoreCase(daCercare))
+			if (elem.getName().equalsIgnoreCase(daCercare))
 				return elem;
 		}
 		return null;
@@ -44,7 +44,7 @@ public class Rete {
 	// restituisce una trans dalla lista cercandola per nome
 	public Transizione getSingleTrans(String daCercare) {
 		for (Transizione elem : getInsiemeTransizioni()) {
-			if (elem.nome.equalsIgnoreCase(daCercare))
+			if (elem.getName().equalsIgnoreCase(daCercare))
 				return elem;
 		}
 		return null;

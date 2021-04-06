@@ -15,7 +15,7 @@ public class Posto extends ElementoSemplice {
 	 * @param nome nome scelto dal configuratore al momento della creazione
 	 */
 	public Posto(String nome) {
-		this.nome = "P:" + nome;
+		setName(nome);
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class Posto extends ElementoSemplice {
 	 */
 	@Override
 	public String getProperties() {
-		return this.nome;
+		return this.getName();
 	}
 
 }

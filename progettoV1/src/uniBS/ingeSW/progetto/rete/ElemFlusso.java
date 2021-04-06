@@ -2,8 +2,8 @@ package uniBS.ingeSW.progetto.rete;
 
 public class ElemFlusso {
 
-	ElementoSemplice elem1;
-	ElementoSemplice elem2;
+	private ElementoSemplice elem1;
+	private ElementoSemplice elem2;
 	
 	public ElemFlusso(ElementoSemplice elem1, ElementoSemplice elem2) {
 		this.elem1 = elem1;
