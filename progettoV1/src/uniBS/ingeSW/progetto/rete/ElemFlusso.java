@@ -33,7 +33,6 @@ public class ElemFlusso {
 	 * confronta due elementi di flusso per valutare se siano uguali o meno
 	 * @param flusso1
 	 * @param flusso2
-	 * @return true se sono uguali, false altrimenti
 	 */
 	public boolean equal(ElemFlusso flusso1, ElemFlusso flusso2) {
 	    

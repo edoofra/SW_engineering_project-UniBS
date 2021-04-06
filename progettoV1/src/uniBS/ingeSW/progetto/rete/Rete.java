@@ -3,10 +3,14 @@ package uniBS.ingeSW.progetto.rete;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Edoardo Fratus
+ * @author Lorenzo Bargnani
+ * @author Camilla Bonomini
+ * classe per l'implementazione di una rete composta da posti, transizioni e elementi di flusso
+ */
 public class Rete {
 
-	// insieme non ordinato di elementi univoci
-	// se provo ad aggiungere elem che c'e' gia' me lo ignora
 	private ArrayList<Posto> insiemePosti;
 	private ArrayList<Transizione> insiemeTransizioni;
 	private ArrayList<ElemFlusso> relazioneFlusso;
@@ -17,17 +21,14 @@ public class Rete {
 		this.relazioneFlusso = new ArrayList<ElemFlusso>();
 	}
 
-	// Ritorna la lista dei posti come Array (piu' facile da gestire)
 	public Posto[] getInsiemePosti() {
 		return (Posto[]) insiemePosti.toArray(new Posto[0]);
 	}
 
-	// Ritorna la lista delle transizioni come Array
 	public Transizione[] getInsiemeTransizioni() {
 		return (Transizione[]) insiemeTransizioni.toArray(new Transizione[0]);
 	}
 
-	// Ritorna la relazione di flusso come Array
 	public ElemFlusso[] getRelazioneFlusso() {
 		return (ElemFlusso[]) relazioneFlusso.toArray(new ElemFlusso[0]);
 	}
