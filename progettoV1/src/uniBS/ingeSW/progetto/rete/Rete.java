@@ -2,6 +2,7 @@ package uniBS.ingeSW.progetto.rete;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Stream;
 
 /**
  * @author Edoardo Fratus
@@ -35,20 +36,32 @@ public class Rete {
 
 	// restituisce un posto dalla lista cercandolo per nome
 	public Posto getSinglePosto(String daCercare) {
-		for (Posto elem : getInsiemePosti()) {
+
+		return Stream.of(getInsiemePosti())
+					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
+					.findFirst()
+					.orElse(null);
+
+		/*for (Posto elem : getInsiemePosti()) {
 			if (elem.getName().equalsIgnoreCase(daCercare))
 				return elem;
 		}
-		return null;
+		return null;*/
 	}
 
 	// restituisce una trans dalla lista cercandola per nome
 	public Transizione getSingleTrans(String daCercare) {
-		for (Transizione elem : getInsiemeTransizioni()) {
+		
+		return Stream.of(getInsiemeTransizioni())
+					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
+					.findFirst()
+					.orElse(null);
+		
+		/*for (Transizione elem : getInsiemeTransizioni()) {
 			if (elem.getName().equalsIgnoreCase(daCercare))
 				return elem;
 		}
-		return null;
+		return null; */
 	}
 
 	// ritorna la lista delle stringhe con i nomi di posti / transizioni
@@ -105,14 +118,20 @@ public class Rete {
 
 	//controlla che elementi flusso siano univoci
 	private boolean uniqueElemFlusso(ElemFlusso toCheck){
-		for(ElemFlusso elem : this.getRelazioneFlusso()){
+		
+		return Stream.of(getRelazioneFlusso())
+					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
+					 n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
+					
+		
+		/*for(ElemFlusso elem : this.getRelazioneFlusso()){
 			if(elem.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName())){
 				if(elem.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName())){
 					return false;
 				}
 			}
 		}
-		return true;
+		return true; */
 	}
 
 	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
