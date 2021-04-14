@@ -22,11 +22,12 @@ public class Main {
 
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE );
         
+        //fare metodo per ciclo perchè entry point deve essere piccolo
         GestoreReti retiSalvate = new GestoreReti();
         boolean fine = false;
         System.out.println(TITOLO);
         do{
-
+            //vuole chiamata a un solo metodo nello switch e con nomi che si capiscano
             int scelta1 = menuIniziale.scegli();
             switch(scelta1){
                 case 1: InterazioneUtente.creazioneRete(new Rete(), retiSalvate);
@@ -41,6 +42,5 @@ public class Main {
                 
             }
         }while(fine == false);
-
     }
 }

@@ -11,7 +11,8 @@ import java.util.stream.Stream;
  * classe per l'implementazione di una rete composta da posti, transizioni e elementi di flusso
  */
 public class Rete {
-
+//cambiare dichiarazione variabile con il tipo più generale possibile
+//cambiare tipo ritornato dai metodi con tipo più generale possibile
 	private ArrayList<Posto> insiemePosti;
 	private ArrayList<Transizione> insiemeTransizioni;
 	private ArrayList<ElemFlusso> relazioneFlusso;
