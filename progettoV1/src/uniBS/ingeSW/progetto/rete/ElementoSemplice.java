@@ -11,7 +11,7 @@ public abstract class ElementoSemplice {
 	/**
 	 * nome dell'elemento della rete
 	 */
-	private String nome;
+	public String nome;
 
 	public String getName(){
 		return this.nome;
