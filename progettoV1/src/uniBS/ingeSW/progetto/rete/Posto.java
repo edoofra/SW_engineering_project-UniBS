@@ -14,13 +14,4 @@ public class Posto extends ElementoSemplice {
 	public Posto(String nome) {
 		setName(nome);
 	}
-
-	/**
-	 * @return le proprietà principali che descrivono un posto in una rete
-	 */
-	@Override
-	public String getProperties() {
-		return this.getName();
-	}
-
 }
