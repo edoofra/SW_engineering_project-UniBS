@@ -37,32 +37,18 @@ public class Rete {
 
 	// restituisce un posto dalla lista cercandolo per nome
 	public Posto getPostoByName(String daCercare) {
-
 		return Stream.of(getInsiemePosti())
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-
-		/*for (Posto elem : getInsiemePosti()) {
-			if (elem.getName().equalsIgnoreCase(daCercare))
-				return elem;
-		}
-		return null;*/
 	}
 
 	// restituisce una trans dalla lista cercandola per nome
 	public Transizione getTransByName(String daCercare) {
-		
 		return Stream.of(getInsiemeTransizioni())
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		
-		/*for (Transizione elem : getInsiemeTransizioni()) {
-			if (elem.getName().equalsIgnoreCase(daCercare))
-				return elem;
-		}
-		return null; */
 	}
 
 	// ritorna la lista delle stringhe con i nomi di posti / transizioni
