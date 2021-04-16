@@ -1,7 +1,6 @@
 package uniBS.ingeSW.progetto.gestioneReti;
 
 import java.util.HashMap;
-import uniBS.ingeSW.progetto.rete.ElemFlusso;
 import uniBS.ingeSW.progetto.rete.Rete;
 
 //classe per la gestione di tutte le reti salvate dal configuratore
@@ -9,7 +8,6 @@ public class GestoreReti {
 
 	private HashMap<String, Rete> listaRetiConfiguratore;
 
-	// costruttore
 	public GestoreReti() {
 		this.listaRetiConfiguratore = new HashMap<String, Rete>();
 	}
