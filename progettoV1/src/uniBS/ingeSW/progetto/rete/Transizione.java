@@ -13,13 +13,5 @@ public class Transizione extends ElementoSemplice {
 	 */
 	public Transizione(String nome) {
 		setName(nome);
-	}
-
-	/**
-	 * @return proprietà principali che descrivono una transizione in una rete
-	 */
-	@Override
-	public String getProperties(){
-		return this.getName();
-	}
+	}	
 }
