@@ -28,27 +28,15 @@ public class GestoreReti {
 	// ritorna codice errore 2 se esiste gia' rete
 	// gestione codice errori andra' fatta in interazione con utente
 	public boolean addRete(String name, Rete toAdd) {
-		if (listaRetiConfiguratore.containsKey(name))
-			return false;
-		listaRetiConfiguratore.put(name, toAdd);
-		return true;
+		if (listaRetiConfiguratore.containsKey(name)) return false;			
+		else {
+			listaRetiConfiguratore.put(name, toAdd);
+			return true;
+		}
 	}
 
 	public boolean isEqual(Rete rete1, Rete rete2) {
-		boolean uguali = false;
-
-		for (ElemFlusso elem1 : rete1.getRelazioneFlusso()) {
-			for (ElemFlusso elem2 : rete2.getRelazioneFlusso()) {
-				if (elem1.equals(elem2)) {
-					uguali = true;
-					break;
-				}
-				uguali = false;
-			}
-			if (!uguali)
-				return false;
-		}
-		return true;
+		return rete1.isEqual(rete2);		
 	}
 
 	public String toString() {
@@ -61,7 +49,4 @@ public class GestoreReti {
 		return stringList.toString();
 
 	}
-
-	
-
 }

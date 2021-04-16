@@ -51,6 +51,23 @@ public class Rete {
 					.orElse(null);
 	}
 
+	public boolean isEqual(Rete toCheck){
+		boolean uguali = false;
+
+		for (ElemFlusso elem1 : this.getRelazioneFlusso()) {
+			for (ElemFlusso elem2 : toCheck.getRelazioneFlusso()) {
+				if (elem1.equals(elem2)) {
+					uguali = true;
+					break;
+				}
+				uguali = false;
+			}
+			if (!uguali)
+				return false;
+		}
+		return true; 
+	}
+
 	// ritorna la lista delle stringhe con i nomi di posti / transizioni
 	// metodo usato nel toString
 	// metodo overloaded
