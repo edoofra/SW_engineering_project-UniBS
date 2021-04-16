@@ -166,8 +166,6 @@ public class Rete {
 		return corretta;
 	}
 
-	
-
 	public String toString() {
 		StringBuilder description = new StringBuilder("Descrizione della rete: \n");
 		description.append("POSTI: " + getStringList(getInsiemePosti()) + "\n");
