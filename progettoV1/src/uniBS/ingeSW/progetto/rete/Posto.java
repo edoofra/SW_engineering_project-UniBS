@@ -12,6 +12,6 @@ public class Posto extends ElementoSemplice {
 	 * @param nome nome scelto dal configuratore al momento della creazione
 	 */
 	public Posto(String nome) {
-		setName(nome);
+		setName("P:"+ nome);
 	}
 }

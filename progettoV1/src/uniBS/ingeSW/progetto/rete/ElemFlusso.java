@@ -1,5 +1,4 @@
 package uniBS.ingeSW.progetto.rete;
-
 /**
  * @author Lorenzo Bargnani
  * @author Edoardo Fratus
@@ -26,6 +25,12 @@ public class ElemFlusso {
 	
 	public String getName() {
 	    return "( " + elem1.getProperties() + "," + elem2.getProperties() + " )";
+	}
+
+	public boolean areSameType(){
+		boolean doublePosto = this.getElem1() instanceof Posto && this.getElem2() instanceof Posto;
+		boolean doubleTransizione = this.getElem1() instanceof Transizione && this.getElem2() instanceof Transizione;
+		return (doublePosto || doubleTransizione);
 	}
 	
 	/**

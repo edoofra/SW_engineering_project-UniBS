@@ -105,20 +105,9 @@ public class Rete {
 
 	//controlla che elementi flusso siano univoci
 	private boolean uniqueElemFlusso(ElemFlusso toCheck){
-		
 		return Stream.of(getRelazioneFlusso())
 					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
 					 n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
-					
-		
-		/*for(ElemFlusso elem : this.getRelazioneFlusso()){
-			if(elem.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName())){
-				if(elem.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName())){
-					return false;
-				}
-			}
-		}
-		return true; */
 	}
 
 	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
@@ -126,17 +115,11 @@ public class Rete {
 	// Transizione) o viceversa
 	// altrimenti non lo aggiunge e ritorna false
 	public boolean addElemFlusso(ElemFlusso elem) {
-
-		boolean postoTransizione = elem.getElem1() instanceof Posto && elem.getElem2() instanceof Transizione;
-		boolean transizionePosto = elem.getElem1() instanceof Transizione && elem.getElem2() instanceof Posto;
-
-		if (postoTransizione || transizionePosto) {
-
+		if (!elem.areSameType()) {
 			if(uniqueElemFlusso(elem)){
 				relazioneFlusso.add(elem);
 				return true;
 			}
-			
 		} 
 		return false;
 	}
