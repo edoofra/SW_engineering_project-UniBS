@@ -9,7 +9,6 @@ public class ConvertitoreJson {
     public static String daOggettoAJson(GestoreReti oggetto){
         Gson convertitore = new Gson();
         return convertitore.toJson(oggetto);
-
     }
 
     public static GestoreReti daJsonAOggettoHashSet(String json){
