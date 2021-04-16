@@ -20,6 +20,11 @@ public abstract class ElementoSemplice {
 	public void setName(String name){
 		this.nome = name;
 	}
+
+	public boolean equalControl(ElementoSemplice toCheck){
+		return (this.nome.equalsIgnoreCase(toCheck.getName()));
+	}
+	
 	/**
 	 * Metodo per ottenere le proprietà principali di ogni elemento 
 	 * Viene fatto override in ogni elemento che eredita da questa classe 
