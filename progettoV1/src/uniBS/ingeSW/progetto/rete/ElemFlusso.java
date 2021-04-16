@@ -37,8 +37,6 @@ public class ElemFlusso {
 	public boolean equal(ElemFlusso flusso1, ElemFlusso flusso2) {
 	    
 	    return ((flusso1.getElem1().equals(flusso2.getElem1()) && 
-		    (flusso1.getElem2().equals(flusso2.getElem2()))) ? true : false);
-	}
-
-	
+		    (flusso1.getElem2().equals(flusso2.getElem2()))));
+	}	
 }
