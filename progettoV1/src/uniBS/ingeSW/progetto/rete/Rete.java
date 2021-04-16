@@ -104,10 +104,11 @@ public class Rete {
 	}
 
 	//controlla che elementi flusso siano univoci
-	private boolean uniqueElemFlusso(ElemFlusso toCheck){
+	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
 		return Stream.of(getRelazioneFlusso())
 					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
 					 n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
+		
 	}
 
 	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
@@ -116,7 +117,7 @@ public class Rete {
 	// altrimenti non lo aggiunge e ritorna false
 	public boolean addElemFlusso(ElemFlusso elem) {
 		if (!elem.areSameType()) {
-			if(uniqueElemFlusso(elem)){
+			if(!duplicatedElemFlusso(elem)){
 				relazioneFlusso.add(elem);
 				return true;
 			}
