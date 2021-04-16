@@ -32,15 +32,16 @@ public class Main {
             switch(scelta1){
                 case 1: InterazioneUtente.creazioneRete(new Rete(), retiSalvate);
                         break;
+                        
                 case 2: InterazioneUtente.visualizzaReteDaGestore(retiSalvate);
                         break;
 
                 case 0: fine=true;
                         break;
-                        
+
                 default : System.out.println("Attenzione selezione non valida");
-                
             }
         }while(fine == false);
     }
 }
+
