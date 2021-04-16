@@ -250,11 +250,11 @@ public class InterazioneUtente {
 		String nome1 = leggiStringaNonVuota("\tElemento 1 -> ");
 		String nome2 = leggiStringaNonVuota("\tElemento 2 -> ");
 
-		if(nome1.charAt(0)=='P') elem1 = rete.getSinglePosto(nome1);
-		else elem1 = rete.getSingleTrans(nome1);
+		if(nome1.charAt(0)=='P') elem1 = rete.getPostoByName(nome1);
+		else elem1 = rete.getTransByName(nome1);
 		
-		if(nome2.charAt(0)=='P') elem2 = rete.getSinglePosto(nome2);
-		else elem2 = rete.getSingleTrans(nome2);
+		if(nome2.charAt(0)=='P') elem2 = rete.getPostoByName(nome2);
+		else elem2 = rete.getTransByName(nome2);
 
 		if(elem1 == null || elem2 == null){
 			System.out.println("\tUno dei due elementi non è stato trovato! \n");

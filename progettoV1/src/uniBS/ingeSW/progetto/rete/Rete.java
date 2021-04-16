@@ -36,7 +36,7 @@ public class Rete {
 	}
 
 	// restituisce un posto dalla lista cercandolo per nome
-	public Posto getSinglePosto(String daCercare) {
+	public Posto getPostoByName(String daCercare) {
 
 		return Stream.of(getInsiemePosti())
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
@@ -51,7 +51,7 @@ public class Rete {
 	}
 
 	// restituisce una trans dalla lista cercandola per nome
-	public Transizione getSingleTrans(String daCercare) {
+	public Transizione getTransByName(String daCercare) {
 		
 		return Stream.of(getInsiemeTransizioni())
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
