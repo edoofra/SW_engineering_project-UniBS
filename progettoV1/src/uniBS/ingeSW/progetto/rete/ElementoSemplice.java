@@ -8,9 +8,6 @@ package uniBS.ingeSW.progetto.rete;
  */
 public class ElementoSemplice {
 	
-	/**
-	 * nome dell'elemento della rete
-	 */
 	private String nome;
 
 	public String getName(){
@@ -21,6 +18,7 @@ public class ElementoSemplice {
 		this.nome = name;
 	}
 
+	//due elementi semplici con lo stesso nome sono considerati uguali
 	public boolean equalControl(ElementoSemplice toCheck){
 		return (this.nome.equalsIgnoreCase(toCheck.getName()));
 	}
