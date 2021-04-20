@@ -1,5 +1,7 @@
 package uniBS.ingeSW.progetto.utils;
 
+import java.io.File;
+
 import uniBS.ingeSW.progetto.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progetto.rete.Rete;
 
@@ -23,7 +25,7 @@ public class Main {
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE );
         
         //fare metodo per ciclo perchè entry point deve essere piccolo
-        GestoreReti retiSalvate = new GestoreReti();
+        GestoreReti retiSalvate = recuperoOCreazione();
         boolean fine = false;
         System.out.println(TITOLO);
         do{
@@ -42,6 +44,17 @@ public class Main {
                 default : System.out.println("Attenzione selezione non valida");
             }
         }while(fine == false);
+    }
+
+    public static GestoreReti recuperoOCreazione(){
+        GestoreReti retiSalvate;
+        File fileSalvataggio = new File("ListaRetiConfiguratore.json");
+        if(fileSalvataggio.exists()) {
+            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile();
+            retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
+            return retiSalvate;
+        }
+        return new GestoreReti();
     }
 }
 
