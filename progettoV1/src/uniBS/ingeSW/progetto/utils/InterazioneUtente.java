@@ -192,7 +192,8 @@ public class InterazioneUtente {
 					else rifare = false;
 					
 				}while(rifare);
-				salvataggioFile.salvaGestoreReti(listaReti);
+				String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
+				salvataggioFile.salvaGestoreReti(listaRetiJSON);
 			}
 		}
 		

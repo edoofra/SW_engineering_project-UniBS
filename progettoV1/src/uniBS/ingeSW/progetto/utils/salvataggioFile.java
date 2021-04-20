@@ -8,10 +8,10 @@ import uniBS.ingeSW.progetto.gestioneReti.GestoreReti;
 
 public class salvataggioFile {
     
-    public static void salvaGestoreReti(GestoreReti daSalvare){
+    public static void salvaGestoreReti(String daSalvare){
         try {
             FileWriter fileSalvataggio = new FileWriter("ListaRetiConfiguratore.json");
-            fileSalvataggio.write(ConvertitoreJson.daOggettoAJson(daSalvare));
+            fileSalvataggio.write(daSalvare);
             fileSalvataggio.close();
         } catch (IOException e) {
             e.printStackTrace();
