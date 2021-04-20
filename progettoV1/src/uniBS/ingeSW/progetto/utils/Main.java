@@ -20,14 +20,26 @@ public class Main {
         "$$    $$  $$           $$     $$                 $$$       $$        $$   $$$\n" +
         "$$    $$  $$$$$$$$     $$     $$$$$$$$            $      $$$$$$  $$   $$$$$$\n";                                                                               
                                                                             
-    public static void main(String[] args) {
-
-        Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE );
-        
-        //fare metodo per ciclo perchè entry point deve essere piccolo
+    public static void main(String[] args) {  
         GestoreReti retiSalvate = recuperoOCreazione();
-        boolean fine = false;
         System.out.println(TITOLO);
+        cicloSceltaMenu(retiSalvate);
+    }
+
+    public static GestoreReti recuperoOCreazione(){
+        GestoreReti retiSalvate;
+        File fileSalvataggio = new File("ListaRetiConfiguratore.json");
+        if(fileSalvataggio.exists()) {
+            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile();
+            retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
+            return retiSalvate;
+        }
+        return new GestoreReti();
+    }
+
+    public static void cicloSceltaMenu(GestoreReti retiSalvate){
+        Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
+        boolean fine = false;
         do{
             //vuole chiamata a un solo metodo nello switch e con nomi che si capiscano
             int scelta1 = menuIniziale.scegli();
@@ -44,17 +56,6 @@ public class Main {
                 default : System.out.println("Attenzione selezione non valida");
             }
         }while(fine == false);
-    }
-
-    public static GestoreReti recuperoOCreazione(){
-        GestoreReti retiSalvate;
-        File fileSalvataggio = new File("ListaRetiConfiguratore.json");
-        if(fileSalvataggio.exists()) {
-            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile();
-            retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
-            return retiSalvate;
-        }
-        return new GestoreReti();
     }
 }
 
