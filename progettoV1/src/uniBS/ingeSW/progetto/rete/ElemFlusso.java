@@ -27,6 +27,10 @@ public class ElemFlusso {
 	    return "( " + elem1.getProperties() + "," + elem2.getProperties() + " )";
 	}
 
+	/**
+	 * Controlla che l'elemento sia corretto
+	 * Un elemento di flusso è corretto se è composto da due elementi di rete diversi
+	 */
 	public boolean areSameType(){
 		boolean doublePosto = this.getElem1() instanceof Posto && this.getElem2() instanceof Posto;
 		boolean doubleTransizione = this.getElem1() instanceof Transizione && this.getElem2() instanceof Transizione;
@@ -35,6 +39,7 @@ public class ElemFlusso {
 	
 	/**
 	 * confronta due elementi di flusso per valutare se siano uguali o meno
+	 * sono uguali se entrambi gli elementi interni sono uguali e sono nello stesso ordine
 	 * @param flusso1
 	 * @param flusso2
 	 */
