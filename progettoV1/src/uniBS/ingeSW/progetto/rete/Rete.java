@@ -11,11 +11,13 @@ import java.util.stream.Stream;
  * classe per l'implementazione di una rete composta da posti, transizioni e elementi di flusso
  */
 public class Rete {
-//cambiare dichiarazione variabile con il tipo più generale possibile
-//cambiare tipo ritornato dai metodi con tipo più generale possibile
+
 	private ArrayList<Posto> insiemePosti;
 	private ArrayList<Transizione> insiemeTransizioni;
 	private ArrayList<ElemFlusso> relazioneFlusso;
+
+
+
 
 	public Rete() {
 		this.insiemePosti = new ArrayList<Posto>();
@@ -51,14 +53,60 @@ public class Rete {
 					.orElse(null);
 	}
 
+	/**************************************************************************************************************************/
+	//SEZIONE AGGIUNTE
+
+	// aggiunge una transizione, rstituisce bool cosi' so se e' andata
+	// a buon fine nel metodo esterno che la chiama
+	public boolean addTrans(Transizione toAdd) {
+		if (insiemeTransizioni.contains(toAdd))
+			return false;
+		insiemeTransizioni.add(toAdd);
+		return true;
+	}
+
+	public boolean addPosto(Posto toAdd) {
+		if (insiemePosti.contains(toAdd))
+			return false;
+		insiemePosti.add(toAdd);
+		return true;
+	}
+
+	
+
+	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
+	// controlla che un Elemento di flusso sia composto da una coppia (Posto,
+	// Transizione) o viceversa
+	// altrimenti non lo aggiunge e ritorna false
+	public boolean addElemFlusso(ElemFlusso elem) {
+		if (!elem.areSameType()) {
+			if(!duplicatedElemFlusso(elem)){
+				relazioneFlusso.add(elem);
+				return true;
+			}
+		} 
+		return false;
+	}
+
+	/**************************************************************************************************************************/
+	//SEZIONE CONTROLLI
+
+	/**
+	 * Metodo per controllare se due reti sono o meno uguali
+	 * Due reti si considerano uguali se tutti i loro elementi di flusso sono uguali 
+	 * Si assume che le reti siano corrette, quindi connesse, quindi se gli elementi di flusso sono tutti uguali
+	 * lo sono anche tutti gli elementi della rete
+	 */
 	public boolean isEqual(Rete toCheck){
 		boolean uguali = false;
 
-		for (ElemFlusso elem1 : this.getRelazioneFlusso()) {
-			for (ElemFlusso elem2 : toCheck.getRelazioneFlusso()) {
-				if (elem1.equals(elem2)) {
+		for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
+			for (ElemFlusso elemRete2 : toCheck.getRelazioneFlusso()) {
+				if (elemRete1.equals(elemRete2)) {
 					uguali = true;
 					break;
+					//se ne trovo uno uguale esco dal ciclo interno 
+					//con valore true
 				}
 				uguali = false;
 			}
@@ -67,6 +115,78 @@ public class Rete {
 		}
 		return true; 
 	}
+
+	// controlla se uno dei tre e' vuoto
+	public boolean emptyControl() {
+		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
+			return true;
+		else
+			return false;
+	}
+
+	//controlla che elementi flusso siano univoci
+	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
+		return Stream.of(getRelazioneFlusso())
+					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
+					n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
+		
+	}
+
+	/**
+	 * Metodo per il conrollo della connessione della rete
+	 * Visitati1 = lista degli ElementiSemplici raggiunti dagli elementi di flusso della rete
+	 * Visitati2 = lista degli ElementiSemplici raggiunti considerando invertiti gli elementi di flusso
+	 * Se un posto o una transizione non è contenuto ne in Visitati1 ne in Visitati2 allora è isolato e la rete non è connessa
+	 */
+	public boolean controlloConnessione(){
+		HashMap<ElementoSemplice,Boolean> visitati1 = new HashMap<ElementoSemplice,Boolean>();
+		HashMap<ElementoSemplice,Boolean> visitati2 = new HashMap<ElementoSemplice,Boolean>();
+		for (ElemFlusso elem : this.getRelazioneFlusso()){
+			visitati1.put(elem.getElem2(), true); //secondo elemento è quello verso cui punta la freccia
+			visitati2.put(elem.getElem1(), true); //inverto gli elementi di flusso
+		}
+		for (Posto posto : this.getInsiemePosti()){
+			if(! visitati1.containsKey(posto)) {
+				if(! visitati2.containsKey(posto)){
+					return false;
+				}
+			}
+		}
+
+		for (Transizione trans : this.getInsiemeTransizioni()){
+			if(! visitati1.containsKey(trans)) {
+				if(! visitati2.containsKey(trans)){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Metodo che controlla se una rete è corretta 
+	 * Una rete è corretta se ha almeno un posto e una transizione e se ogni transizione
+	 * non si trova mai come ultimo elemento della rete
+	 */
+	public boolean controlloCorrettezza(){
+		if(emptyControl()) return false;
+		boolean corretta = false;
+		for(Transizione trans : this.getInsiemeTransizioni()){
+			for(ElemFlusso flusso : this.getRelazioneFlusso()){
+				if(flusso.getElem1().getName().equalsIgnoreCase(trans.getName())){
+					corretta=true;
+					break;
+				}
+				corretta=false;
+			}
+			if(!corretta) return false;
+		}
+		return corretta;
+	}
+
+	/**************************************************************************************************************************/
+	//SEZIONE TOSTRING (DA ELIMINARE)
+
 
 	// ritorna la lista delle stringhe con i nomi di posti / transizioni
 	// metodo usato nel toString
@@ -94,93 +214,6 @@ public class Rete {
 		stringList.delete(last-2, last-1);
 		stringList.append("}");
 		return stringList.toString();
-	}
-
-	// controlla se uno dei tre e' vuoto
-	public boolean emptyControl() {
-		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
-			return true;
-		else
-			return false;
-	}
-
-	// aggiunge una transizione, rstituisce bool cosi' so se e' andata
-	// a buon fine nel metodo esterno che la chiama
-	public boolean addTrans(Transizione toAdd) {
-		if (insiemeTransizioni.contains(toAdd))
-			return false;
-		insiemeTransizioni.add(toAdd);
-		return true;
-	}
-
-	public boolean addPosto(Posto toAdd) {
-		if (insiemePosti.contains(toAdd))
-			return false;
-		insiemePosti.add(toAdd);
-		return true;
-	}
-
-	//controlla che elementi flusso siano univoci
-	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
-		return Stream.of(getRelazioneFlusso())
-					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
-					 n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
-		
-	}
-
-	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
-	// controlla che un Elemento di flusso sia composto da una coppia (Posto,
-	// Transizione) o viceversa
-	// altrimenti non lo aggiunge e ritorna false
-	public boolean addElemFlusso(ElemFlusso elem) {
-		if (!elem.areSameType()) {
-			if(!duplicatedElemFlusso(elem)){
-				relazioneFlusso.add(elem);
-				return true;
-			}
-		} 
-		return false;
-	}
-
-	public boolean controlloConnessione(){
-		HashMap<ElementoSemplice,Boolean> visitati1 = new HashMap<ElementoSemplice,Boolean>();
-		HashMap<ElementoSemplice,Boolean> visitati2 = new HashMap<ElementoSemplice,Boolean>();
-		for (ElemFlusso elem : this.getRelazioneFlusso()){
-			visitati1.put(elem.getElem2(), true);
-			visitati2.put(elem.getElem1(), true);
-		}
-		for (Posto posto : this.getInsiemePosti()){
-			if(! visitati1.containsKey(posto)) {
-				if(! visitati2.containsKey(posto)){
-					return false;
-				}
-			}
-		}
-
-		for (Transizione trans : this.getInsiemeTransizioni()){
-			if(! visitati1.containsKey(trans)) {
-				if(! visitati2.containsKey(trans)){
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
-
-	public boolean controlloCorrettezza(){
-		boolean corretta = false;
-		for(Transizione trans : this.getInsiemeTransizioni()){
-			for(ElemFlusso flusso : this.getRelazioneFlusso()){
-				if(flusso.getElem1().getName().equalsIgnoreCase(trans.getName())){
-					corretta=true;
-					break;
-				}
-				corretta=false;
-			}
-			if(!corretta) return false;
-		}
-		return corretta;
 	}
 
 	public String toString() {
