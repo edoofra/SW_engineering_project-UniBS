@@ -6,7 +6,7 @@ package uniBS.ingeSW.progetto.rete;
  * @author Edoardo Fratus
  * Classe per la gestione ad un livello più alto di posti e transizioni
  */
-public abstract class ElementoSemplice {
+public class ElementoSemplice {
 	
 	/**
 	 * nome dell'elemento della rete
