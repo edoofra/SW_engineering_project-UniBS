@@ -13,6 +13,8 @@ public class InterazioneUtente {
 	
 	private static Scanner lettore = creaScanner();
 
+	private static final boolean BOOL_CONST_FALSE = false;
+	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
 	private static final String WARNING_RETE_NON_CORRETTA = "Attenzione: la tua rete non è corretta!\n";
 	private static final String WARNING_RETE_NON_CONNESSA = "Attenzione: la tua rete non è connessa!\n";
@@ -62,13 +64,13 @@ public class InterazioneUtente {
 	}
 
 	public static String leggiStringaNonVuota(String messaggio) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		String lettura = null;
 		do {
 			lettura = leggiStringa(messaggio);
 			lettura = lettura.trim();
 			if (lettura.length() > 0)
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			else
 				System.out.println(ERRORE_STRINGA_VUOTA);
 		} while (!finito);
@@ -77,14 +79,14 @@ public class InterazioneUtente {
 	}
 
 	public static char leggiChar(String messaggio) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		char valoreLetto = '\0';
 		do {
 			System.out.print(messaggio);
 			String lettura = lettore.next();
 			if (lettura.length() > 0) {
 				valoreLetto = lettura.charAt(0);
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			} else {
 				System.out.println(ERRORE_STRINGA_VUOTA);
 			}
@@ -93,13 +95,13 @@ public class InterazioneUtente {
 	}
 
 	public static char leggiUpperChar(String messaggio, String ammissibili) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		char valoreLetto = '\0';
 		do {
 			valoreLetto = leggiChar(messaggio);
 			valoreLetto = Character.toUpperCase(valoreLetto);
 			if (ammissibili.indexOf(valoreLetto) != -1)
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			else
 				System.out.println(MESSAGGIO_AMMISSIBILI + ammissibili);
 		} while (!finito);
@@ -107,13 +109,13 @@ public class InterazioneUtente {
 	}
 
 	public static int leggiIntero(String messaggio) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		int valoreLetto = 0;
 		do {
 			System.out.print(messaggio);
 			try {
 				valoreLetto = lettore.nextInt();
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			} catch (InputMismatchException e) {
 				System.out.println(ERRORE_FORMATO);
 				String daButtare = lettore.next();
@@ -131,12 +133,12 @@ public class InterazioneUtente {
 	}
 
 	public static int leggiInteroConMinimo(String messaggio, int minimo) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		int valoreLetto = 0;
 		do {
 			valoreLetto = leggiIntero(messaggio);
 			if (valoreLetto >= minimo)
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			else
 				System.out.println(ERRORE_MINIMO + minimo);
 		} while (!finito);
@@ -145,12 +147,12 @@ public class InterazioneUtente {
 	}
 
 	public static int leggiIntero(String messaggio, int minimo, int massimo) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		int valoreLetto = 0;
 		do {
 			valoreLetto = leggiIntero(messaggio);
 			if (valoreLetto >= minimo && valoreLetto <= massimo)
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			else if (valoreLetto < minimo)
 				System.out.println(ERRORE_MINIMO + minimo);
 			else
@@ -161,13 +163,13 @@ public class InterazioneUtente {
 	}
 
 	public static double leggiDouble(String messaggio) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		double valoreLetto = 0;
 		do {
 			System.out.print(messaggio);
 			try {
 				valoreLetto = lettore.nextDouble();
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			} catch (InputMismatchException e) {
 				System.out.println(ERRORE_FORMATO);
 				String daButtare = lettore.next();
@@ -177,12 +179,12 @@ public class InterazioneUtente {
 	}
 
 	public static double leggiDoubleConMinimo(String messaggio, double minimo) {
-		boolean finito = false;
+		boolean finito = BOOL_CONST_FALSE;
 		double valoreLetto = 0;
 		do {
 			valoreLetto = leggiDouble(messaggio);
 			if (valoreLetto >= minimo)
-				finito = true;
+				finito = BOOL_CONST_TRUE;
 			else
 				System.out.println(ERRORE_MINIMO + minimo);
 		} while (!finito);
@@ -195,9 +197,9 @@ public class InterazioneUtente {
 		char valoreLetto = leggiUpperChar(mioMessaggio, String.valueOf(RISPOSTA_SI) + String.valueOf(RISPOSTA_NO));
 
 		if (valoreLetto == RISPOSTA_SI)
-			return true;
+			return BOOL_CONST_TRUE;
 		else
-			return false;
+			return BOOL_CONST_FALSE;
 	}
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
@@ -210,7 +212,7 @@ public class InterazioneUtente {
 		if(controlloRete(daCreare)){
 			boolean risposta = yesOrNo(DOMANDA_SALVATAGGIO_RETE);
 			if(risposta) {
-				boolean rifare = false;
+				boolean rifare = BOOL_CONST_FALSE;
 				do{
 					//verificare unicità rete
 					String nome = leggiStringaNonVuota(DOMANDA_NOME_RETE);
@@ -219,7 +221,7 @@ public class InterazioneUtente {
 						System.out.println(WARNING_NOME_GIA_USATO);
 						rifare = yesOrNo(DOMANDA_CAMBIO_NOME); 
 					}
-					else rifare = false;
+					else rifare = BOOL_CONST_FALSE;
 					
 				}while(rifare);
 				String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
@@ -229,9 +231,9 @@ public class InterazioneUtente {
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {
-		boolean risposta = true;
+		boolean risposta = BOOL_CONST_TRUE;
 		System.out.println(AVVERTIMENTO_INIZIALE_POSTO);
-		while (risposta != false) {
+		while (risposta != BOOL_CONST_FALSE) {
 
 			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
 			Posto nuovo = new Posto(nome);
@@ -241,9 +243,9 @@ public class InterazioneUtente {
 	}
 
 	private static void aggiuntaTransizione(Rete daCreare) {
-		boolean risposta = true;
+		boolean risposta = BOOL_CONST_TRUE;
 		System.out.println(AVVERTIMENTO_INIZIALE_TRANSIZIONE);
-		while (risposta != false) {
+		while (risposta != BOOL_CONST_FALSE) {
 
 			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_TRANSIZIONE);
 			Transizione nuovo = new Transizione(nome);
@@ -253,12 +255,12 @@ public class InterazioneUtente {
 	}
 
 	private static void aggiuntaElementoFlusso(Rete daCreare) {
-		boolean risposta = true;
+		boolean risposta = BOOL_CONST_TRUE;
 		System.out.println(MESSAGGIO_INIZIALE_FLUSSO);
 		System.out.println(AVVERTIMENTO_INIZIALE_FLUSSO);
 		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_1);
 		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_2);
-		while (risposta != false) {
+		while (risposta != BOOL_CONST_FALSE) {
 			ElemFlusso nuovo = creaElementoFlusso(daCreare);
 			if(nuovo!=null) {
 				boolean corretto = daCreare.addElemFlusso(nuovo);
@@ -299,13 +301,13 @@ public class InterazioneUtente {
 		System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
 			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
-			boolean trovato = false;
+			boolean trovato = BOOL_CONST_FALSE;
 			System.out.println("\t" + lista.toString());
 			String daVisualizzare = leggiStringaNonVuota("\n-> ");
 			for(String elem : lista.getKeyLIst()){
 				if (elem.equalsIgnoreCase(daVisualizzare)){
 					System.out.println(lista.getListaRetiConfiguratore().get(daVisualizzare));
-					trovato = true;
+					trovato = BOOL_CONST_TRUE;
 				} 
 			}
 			if(!trovato) System.out.println(WARNING_RETE_NON_ESISTE);			
