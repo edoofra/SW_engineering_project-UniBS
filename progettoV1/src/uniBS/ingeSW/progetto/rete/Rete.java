@@ -224,5 +224,4 @@ public class Rete {
 		return description.toString();
 
 	}
-
 }

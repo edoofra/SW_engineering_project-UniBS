@@ -195,8 +195,7 @@ public class InterazioneUtente {
 				String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
 				salvataggioFile.salvaGestoreReti(listaRetiJSON);
 			}
-		}
-		
+		}		
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {
