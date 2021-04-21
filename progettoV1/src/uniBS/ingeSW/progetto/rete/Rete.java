@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
+
+
 /**
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
@@ -11,6 +13,9 @@ import java.util.stream.Stream;
  * classe per l'implementazione di una rete composta da posti, transizioni e elementi di flusso
  */
 public class Rete {
+
+	private static final boolean BOOL_CONST_TRUE = true;
+	private static final boolean BOOL_CONST_FALSE = false;
 
 	private ArrayList<Posto> insiemePosti;
 	private ArrayList<Transizione> insiemeTransizioni;
@@ -60,16 +65,16 @@ public class Rete {
 	// a buon fine nel metodo esterno che la chiama
 	public boolean addTrans(Transizione toAdd) {
 		if (insiemeTransizioni.contains(toAdd))
-			return false;
+			return BOOL_CONST_FALSE;
 		insiemeTransizioni.add(toAdd);
-		return true;
+		return BOOL_CONST_TRUE;
 	}
 
 	public boolean addPosto(Posto toAdd) {
 		if (insiemePosti.contains(toAdd))
-			return false;
+			return BOOL_CONST_FALSE;
 		insiemePosti.add(toAdd);
-		return true;
+		return BOOL_CONST_TRUE;
 	}
 
 	
@@ -77,15 +82,15 @@ public class Rete {
 	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
 	// controlla che un Elemento di flusso sia composto da una coppia (Posto,
 	// Transizione) o viceversa
-	// altrimenti non lo aggiunge e ritorna false
+	// altrimenti non lo aggiunge e ritorna BOOL_CONST_FALSE
 	public boolean addElemFlusso(ElemFlusso elem) {
 		if (!elem.areSameType()) {
 			if(!duplicatedElemFlusso(elem)){
 				relazioneFlusso.add(elem);
-				return true;
+				return BOOL_CONST_TRUE;
 			}
 		} 
-		return false;
+		return BOOL_CONST_FALSE;
 	}
 
 	/**************************************************************************************************************************/
@@ -98,30 +103,30 @@ public class Rete {
 	 * lo sono anche tutti gli elementi della rete
 	 */
 	public boolean isEqual(Rete toCheck){
-		boolean uguali = false;
+		boolean uguali = BOOL_CONST_FALSE;
 
 		for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
 			for (ElemFlusso elemRete2 : toCheck.getRelazioneFlusso()) {
 				if (elemRete1.equals(elemRete2)) {
-					uguali = true;
+					uguali = BOOL_CONST_TRUE;
 					break;
 					//se ne trovo uno uguale esco dal ciclo interno 
-					//con valore true
+					//con valore BOOL_CONST_TRUE
 				}
-				uguali = false;
+				uguali = BOOL_CONST_FALSE;
 			}
 			if (!uguali)
-				return false;
+				return BOOL_CONST_FALSE;
 		}
-		return true; 
+		return BOOL_CONST_TRUE; 
 	}
 
 	// controlla se uno dei tre e' vuoto
 	public boolean emptyControl() {
 		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
-			return true;
+			return BOOL_CONST_TRUE;
 		else
-			return false;
+			return BOOL_CONST_FALSE;
 	}
 
 	//controlla che elementi flusso siano univoci
@@ -142,13 +147,13 @@ public class Rete {
 		HashMap<ElementoSemplice,Boolean> visitati1 = new HashMap<ElementoSemplice,Boolean>();
 		HashMap<ElementoSemplice,Boolean> visitati2 = new HashMap<ElementoSemplice,Boolean>();
 		for (ElemFlusso elem : this.getRelazioneFlusso()){
-			visitati1.put(elem.getElem2(), true); //secondo elemento è quello verso cui punta la freccia
-			visitati2.put(elem.getElem1(), true); //inverto gli elementi di flusso
+			visitati1.put(elem.getElem2(), BOOL_CONST_TRUE); //secondo elemento è quello verso cui punta la freccia
+			visitati2.put(elem.getElem1(), BOOL_CONST_TRUE); //inverto gli elementi di flusso
 		}
 		for (Posto posto : this.getInsiemePosti()){
 			if(! visitati1.containsKey(posto)) {
 				if(! visitati2.containsKey(posto)){
-					return false;
+					return BOOL_CONST_FALSE;
 				}
 			}
 		}
@@ -156,11 +161,11 @@ public class Rete {
 		for (Transizione trans : this.getInsiemeTransizioni()){
 			if(! visitati1.containsKey(trans)) {
 				if(! visitati2.containsKey(trans)){
-					return false;
+					return BOOL_CONST_FALSE;
 				}
 			}
 		}
-		return true;
+		return BOOL_CONST_TRUE;
 	}
 
 	/**
@@ -169,17 +174,17 @@ public class Rete {
 	 * non si trova mai come ultimo elemento della rete
 	 */
 	public boolean controlloCorrettezza(){
-		if(emptyControl()) return false;
-		boolean corretta = false;
+		if(emptyControl()) return BOOL_CONST_FALSE;
+		boolean corretta = BOOL_CONST_FALSE;
 		for(Transizione trans : this.getInsiemeTransizioni()){
 			for(ElemFlusso flusso : this.getRelazioneFlusso()){
 				if(flusso.getElem1().getName().equalsIgnoreCase(trans.getName())){
-					corretta=true;
+					corretta=BOOL_CONST_TRUE;
 					break;
 				}
-				corretta=false;
+				corretta=BOOL_CONST_FALSE;
 			}
-			if(!corretta) return false;
+			if(!corretta) return BOOL_CONST_FALSE;
 		}
 		return corretta;
 	}

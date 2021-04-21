@@ -9,9 +9,14 @@ package uniBS.ingeSW.progetto.rete;
 public class Posto extends ElementoSemplice {
 
 	/**
+	 *
+	 */
+	private static final String PREFISSO_POSTO = "P:";
+
+	/**
 	 * @param nome nome scelto dal configuratore al momento della creazione
 	 */
 	public Posto(String nome) {
-		setName("P:"+ nome);
+		setName(PREFISSO_POSTO+ nome);
 	}
 }

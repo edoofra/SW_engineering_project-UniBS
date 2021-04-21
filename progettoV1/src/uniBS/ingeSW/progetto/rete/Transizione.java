@@ -9,9 +9,14 @@ package uniBS.ingeSW.progetto.rete;
 public class Transizione extends ElementoSemplice {
 	
 	/**
+	 *
+	 */
+	private static final String PREFISSO_TRANSIZIONE = "T:";
+
+	/**
 	 * @param nome scelto dal configuratore al momento della creazione
 	 */
 	public Transizione(String nome) {
-		setName("T:" + nome);
+		setName(PREFISSO_TRANSIZIONE + nome);
 	}	
 }
