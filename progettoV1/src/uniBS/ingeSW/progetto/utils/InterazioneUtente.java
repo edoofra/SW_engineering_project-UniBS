@@ -10,8 +10,38 @@ import uniBS.ingeSW.progetto.rete.Rete;
 import uniBS.ingeSW.progetto.rete.Transizione;
 
 public class InterazioneUtente {
+	
 	private static Scanner lettore = creaScanner();
 
+	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
+	private static final String WARNING_RETE_NON_CORRETTA = "Attenzione: la tua rete non è corretta!\n";
+	private static final String WARNING_RETE_NON_CONNESSA = "Attenzione: la tua rete non è connessa!\n";
+	private static final String WARNING_RETE_NON_ESISTE = "Attenzione: Non esiste una rete con questo nome";
+	private static final String MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE = "\nScegli una tra le seguenti reti da visualizzare: \n";
+	private static final String WARNING_LISTA_RETI_VUOTA = "\nAttenzione: La lista di reti è vuota";
+	private static final String WARNING_ELEMENTO_INTERNO_FLUSSO_NON_TROVATO = "\tUno dei due elementi non è stato trovato! \n";
+	private static final String MESSAGGIO_SCELTA_ELEMENTO_2_FLUSSO = "\tElemento 2 -> ";
+	private static final String MESSAGGIO_SCELTA_ELEMENTO_1_FLUSSO = "\tElemento 1 -> ";
+	private static final String TRANSIZIONI = "\tTRANSIZIONI ";
+	private static final String POSTI = "\tPOSTI: ";
+	private static final String ELEMENTI_DELLA_TUA_RETE = "\tElementi della tua rete:";
+	private static final String DOMANDA_AGGIUNTA_ALTRI_FLUSSO = "\tVuoi aggiungere altri elementi di flusso? (S|N) -> ";
+	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non è corretto!";
+	private static final String COMBINAZIONE_AMMESSA_FLUSSO_2 = "Elemento di flusso = (transizione -> posto)\n";
+	private static final String COMBINAZIONE_AMMESSA_FLUSSO_1 = "Elemento di flusso = (posto -> transizione)";
+	private static final String AVVERTIMENTO_INIZIALE_FLUSSO = "ATTENZIONE: sono ammesse solo le seguenti combinazioni:";
+	private static final String MESSAGGIO_INIZIALE_FLUSSO = "\nCi siamo quasi! Ora devi aggiungere gli elementi di flusso!";
+	private static final String MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI = "\tVuoi aggiungere altre transizioni? (S|N) -> ";
+	private static final String MESSAGGIO_SCELTA_NOME_TRANSIZIONE = "\tScegli un nome per la transizione -> ";
+	private static final String AVVERTIMENTO_INIZIALE_TRANSIZIONE = "\nOra devi aggiungere almeno una transizione!";
+	private static final String DOMANDA_AGGIUNTA_ALTRI_POSTI = "\tVuoi aggiungere altri posti? (S|N) -> ";
+	private static final String MESSAGGIO_SCELTA_NOME_POSTO = "\tScegli un nome per il posto -> ";
+	private static final String AVVERTIMENTO_INIZIALE_POSTO = "Per iniziare devi aggiungere almeno un posto!";
+	private static final String DOMANDA_CAMBIO_NOME = "vuoi cambiare nome? (S|N) -> ";
+	private static final String WARNING_NOME_GIA_USATO = "Attenzione: esiste già una rete con questo nome.";
+	private static final String DOMANDA_NOME_RETE = "Che nome vuoi dare a questa rete? -> ";
+	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? -> ";
+	private static final String MESSAGGIO_CREAZIONE_RETE = "\nHAI DECISO DI CREARE UNA RETE!\n";
 	private final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
 	private final static String ERRORE_MINIMO = "Attenzione: e' richiesto un valore maggiore o uguale a ";
 	private final static String ERRORE_STRINGA_VUOTA = "Attenzione: non hai inserito alcun carattere";
@@ -171,23 +201,23 @@ public class InterazioneUtente {
 	}
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
-		System.out.println("\nHAI DECISO DI CREARE UNA RETE!\n");
+		System.out.println(MESSAGGIO_CREAZIONE_RETE);
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
 		aggiuntaElementoFlusso(daCreare);
 		System.out.println("");
 
 		if(controlloRete(daCreare)){
-			boolean risposta = yesOrNo("Vuoi salvare in modo permanente la tua rete? -> ");
+			boolean risposta = yesOrNo(DOMANDA_SALVATAGGIO_RETE);
 			if(risposta) {
 				boolean rifare = false;
 				do{
 					//verificare unicità rete
-					String nome = leggiStringaNonVuota("Che nome vuoi dare a questa rete? -> ");
+					String nome = leggiStringaNonVuota(DOMANDA_NOME_RETE);
 					boolean aggiunta = listaReti.addRete(nome, daCreare);
 					if(!aggiunta){
-						System.out.println("Attenzione: esiste già una rete con questo nome.");
-						rifare = yesOrNo("vuoi cambiare nome? (S|N) -> "); 
+						System.out.println(WARNING_NOME_GIA_USATO);
+						rifare = yesOrNo(DOMANDA_CAMBIO_NOME); 
 					}
 					else rifare = false;
 					
@@ -200,41 +230,41 @@ public class InterazioneUtente {
 
 	private static void aggiuntaPosto(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("Per iniziare devi aggiungere almeno un posto!");
+		System.out.println(AVVERTIMENTO_INIZIALE_POSTO);
 		while (risposta != false) {
 
-			String nome = leggiStringaNonVuota("\tScegli un nome per il posto -> ");
+			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
 			Posto nuovo = new Posto(nome);
 			daCreare.addPosto(nuovo);
-			risposta = yesOrNo("\tVuoi aggiungere altri posti? (S|N) -> ");
+			risposta = yesOrNo(DOMANDA_AGGIUNTA_ALTRI_POSTI);
 		}
 	}
 
 	private static void aggiuntaTransizione(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("\nOra devi aggiungere almeno una transizione!");
+		System.out.println(AVVERTIMENTO_INIZIALE_TRANSIZIONE);
 		while (risposta != false) {
 
-			String nome = leggiStringaNonVuota("\tScegli un nome per la transizione -> ");
+			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_TRANSIZIONE);
 			Transizione nuovo = new Transizione(nome);
 			daCreare.addTrans(nuovo);
-			risposta = yesOrNo("\tVuoi aggiungere altre transizioni? (S|N) -> ");
+			risposta = yesOrNo(MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI);
 		}
 	}
 
 	private static void aggiuntaElementoFlusso(Rete daCreare) {
 		boolean risposta = true;
-		System.out.println("\nCi siamo quasi! Ora devi aggiungere gli elementi di flusso!");
-		System.out.println("ATTENZIONE: sono ammesse solo le seguenti combinazioni:");
-		System.out.println("Elemento di flusso = (posto -> transizione)");
-		System.out.println("Elemento di flusso = (transizione -> posto)\n");
+		System.out.println(MESSAGGIO_INIZIALE_FLUSSO);
+		System.out.println(AVVERTIMENTO_INIZIALE_FLUSSO);
+		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_1);
+		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_2);
 		while (risposta != false) {
 			ElemFlusso nuovo = creaElementoFlusso(daCreare);
 			if(nuovo!=null) {
 				boolean corretto = daCreare.addElemFlusso(nuovo);
-				if(!corretto) System.out.println("\tAttenzione: l'elemento non è corretto!");
+				if(!corretto) System.out.println(WARNING_ELEMENTO_SCORRETTO);
 			}	
-			risposta = yesOrNo("\tVuoi aggiungere altri elementi di flusso? (S|N) -> ");
+			risposta = yesOrNo(DOMANDA_AGGIUNTA_ALTRI_FLUSSO);
 			System.out.println("");
 			
 		}
@@ -244,11 +274,11 @@ public class InterazioneUtente {
     private static ElemFlusso creaElementoFlusso(Rete rete){
 		ElementoSemplice elem1 = null;
 		ElementoSemplice elem2 = null;
-		System.out.println("\tElementi della tua rete:"); 
-		System.out.println("\tPOSTI: " + rete.getStringList(rete.getInsiemePosti()));
-		System.out.println("\tTRANSIZIONI " + rete.getStringList(rete.getInsiemeTransizioni()) + "\n");
-		String nome1 = leggiStringaNonVuota("\tElemento 1 -> ");
-		String nome2 = leggiStringaNonVuota("\tElemento 2 -> ");
+		System.out.println(ELEMENTI_DELLA_TUA_RETE); 
+		System.out.println(POSTI + rete.getStringList(rete.getInsiemePosti()));
+		System.out.println(TRANSIZIONI + rete.getStringList(rete.getInsiemeTransizioni()) + "\n");
+		String nome1 = leggiStringaNonVuota(MESSAGGIO_SCELTA_ELEMENTO_1_FLUSSO);
+		String nome2 = leggiStringaNonVuota(MESSAGGIO_SCELTA_ELEMENTO_2_FLUSSO);
 
 		if(nome1.charAt(0)=='P') elem1 = rete.getPostoByName(nome1);
 		else elem1 = rete.getTransByName(nome1);
@@ -257,7 +287,7 @@ public class InterazioneUtente {
 		else elem2 = rete.getTransByName(nome2);
 
 		if(elem1 == null || elem2 == null){
-			System.out.println("\tUno dei due elementi non è stato trovato! \n");
+			System.out.println(WARNING_ELEMENTO_INTERNO_FLUSSO_NON_TROVATO);
 			return null;
 		} 
 		return new ElemFlusso(elem1, elem2);
@@ -266,9 +296,9 @@ public class InterazioneUtente {
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
 		if(lista.getListaRetiConfiguratore().isEmpty())
-		System.out.println("\nAttenzione: La lista di reti è vuota");
+		System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
-			System.out.println("\nScegli una tra le seguenti reti da visualizzare: \n");
+			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
 			boolean trovato = false;
 			System.out.println("\t" + lista.toString());
 			String daVisualizzare = leggiStringaNonVuota("\n-> ");
@@ -278,16 +308,16 @@ public class InterazioneUtente {
 					trovato = true;
 				} 
 			}
-			if(!trovato) System.out.println("Attenzione: Non esiste una rete con questo nome");			
+			if(!trovato) System.out.println(WARNING_RETE_NON_ESISTE);			
 		}
 	}
 
 	private static boolean controlloRete(Rete daControllare){
 		boolean connessa = daControllare.controlloConnessione();
 		boolean corretta = daControllare.controlloCorrettezza();
-		if(!connessa) System.out.println("Attenzione: la tua rete non è connessa!\n");
-		if(!corretta) System.out.println("Attenzione: la tua rete non è corretta!\n");
-		if(corretta && connessa) System.out.println("COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n");
+		if(!connessa) System.out.println(WARNING_RETE_NON_CONNESSA);
+		if(!corretta) System.out.println(WARNING_RETE_NON_CORRETTA);
+		if(corretta && connessa) System.out.println(MESSAGGIO_RETE_CORRETTA_CONNESSA);
 
 		return (connessa && corretta);
 	}
