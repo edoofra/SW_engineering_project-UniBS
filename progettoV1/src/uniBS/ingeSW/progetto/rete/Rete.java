@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
-
-
 /**
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
@@ -20,9 +18,6 @@ public class Rete {
 	private ArrayList<Posto> insiemePosti;
 	private ArrayList<Transizione> insiemeTransizioni;
 	private ArrayList<ElemFlusso> relazioneFlusso;
-
-
-
 
 	public Rete() {
 		this.insiemePosti = new ArrayList<Posto>();
