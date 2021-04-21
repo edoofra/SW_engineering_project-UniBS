@@ -26,6 +26,11 @@ public class InterazioneUtente {
 		return creato;
 	}
 
+	public static String leggiStringa(String messaggio) {
+		System.out.print(messaggio);
+		return lettore.next();
+	}
+
 	public static String leggiStringaNonVuota(String messaggio) {
 		boolean finito = false;
 		String lettura = null;
@@ -39,6 +44,22 @@ public class InterazioneUtente {
 		} while (!finito);
 
 		return lettura;
+	}
+
+	public static char leggiChar(String messaggio) {
+		boolean finito = false;
+		char valoreLetto = '\0';
+		do {
+			System.out.print(messaggio);
+			String lettura = lettore.next();
+			if (lettura.length() > 0) {
+				valoreLetto = lettura.charAt(0);
+				finito = true;
+			} else {
+				System.out.println(ERRORE_STRINGA_VUOTA);
+			}
+		} while (!finito);
+		return valoreLetto;
 	}
 
 	public static char leggiUpperChar(String messaggio, String ammissibili) {
@@ -106,6 +127,22 @@ public class InterazioneUtente {
 				System.out.println(ERRORE_MASSIMO + massimo);
 		} while (!finito);
 
+		return valoreLetto;
+	}
+
+	public static double leggiDouble(String messaggio) {
+		boolean finito = false;
+		double valoreLetto = 0;
+		do {
+			System.out.print(messaggio);
+			try {
+				valoreLetto = lettore.nextDouble();
+				finito = true;
+			} catch (InputMismatchException e) {
+				System.out.println(ERRORE_FORMATO);
+				String daButtare = lettore.next();
+			}
+		} while (!finito);
 		return valoreLetto;
 	}
 
@@ -203,6 +240,7 @@ public class InterazioneUtente {
 		}
 	}
 
+
     private static ElemFlusso creaElementoFlusso(Rete rete){
 		ElementoSemplice elem1 = null;
 		ElementoSemplice elem2 = null;
@@ -231,16 +269,16 @@ public class InterazioneUtente {
 		System.out.println("\nAttenzione: La lista di reti è vuota");
 		else {
 			System.out.println("\nScegli una tra le seguenti reti da visualizzare: \n");
-			System.out.println("\t" + lista.toString());
 			boolean trovato = false;
+			System.out.println("\t" + lista.toString());
 			String daVisualizzare = leggiStringaNonVuota("\n-> ");
 			for(String elem : lista.getKeyLIst()){
-				if (elem.equalsIgnoreCase(daVisualizzare)) {
+				if (elem.equalsIgnoreCase(daVisualizzare)){
 					System.out.println(lista.getListaRetiConfiguratore().get(daVisualizzare));
 					trovato = true;
-				}			
+				} 
 			}
-			if(!trovato) System.out.println("Attenzione: Non esiste una rete con questo nome");
+			if(!trovato) System.out.println("Attenzione: Non esiste una rete con questo nome");			
 		}
 	}
 
