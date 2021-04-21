@@ -41,9 +41,11 @@ public class GestoreReti {
 		StringBuilder stringList = new StringBuilder("{ ");
 		String[] keyList = getKeyLIst();
 		for (int i = 0; i < keyList.length; i++) {
-			stringList.append((i+1)+ ":" + keyList[i] + " ");
+			stringList.append(( keyList[i] + ", ");
 		}
-		stringList.append("}");
+		int size = stringList.length();
+		stringList.delete(size-2, size-1);
+		stringList.append(" }");
 		return stringList.toString();
 
 	}
