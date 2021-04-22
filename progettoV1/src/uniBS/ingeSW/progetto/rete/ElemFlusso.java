@@ -43,6 +43,7 @@ public class ElemFlusso {
 	 * @param flusso1
 	 * @param flusso2
 	 */
+	//@requires flusso2 != null;
 	public boolean equal( ElemFlusso flusso2) {
 	    return ((this.getElem1().equalControl(flusso2.getElem1()) && 
 		    (this.getElem2().equalControl(flusso2.getElem2()))));
