@@ -37,9 +37,7 @@ public class Main {
         return new GestoreReti();
     }
 
-    /*
-     * @requires retiSalvate !=  null;
-     */
+    
     public static void cicloSceltaMenu(GestoreReti retiSalvate){
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
         boolean fine = false;
