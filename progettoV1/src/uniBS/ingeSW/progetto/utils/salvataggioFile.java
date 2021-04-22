@@ -7,9 +7,14 @@ import java.nio.file.Paths;
 
 public class salvataggioFile {
     
+    /**
+     *
+     */
+    private static final String PATH = "ListaRetiConfiguratore.json";
+
     public static void salvaGestoreReti(String daSalvare){
         try {
-            FileWriter fileSalvataggio = new FileWriter("ListaRetiConfiguratore.json");
+            FileWriter fileSalvataggio = new FileWriter(PATH);
             fileSalvataggio.write(daSalvare);
             fileSalvataggio.close();
         } catch (IOException e) {
@@ -19,7 +24,7 @@ public class salvataggioFile {
 
     public static String leggiGestoreRetiDaFile(){
         try {
-            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get("ListaRetiConfiguratore.json")));
+            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(PATH)));
             return gestoreRetiJSON;
         } catch (IOException e) {
             e.printStackTrace();
