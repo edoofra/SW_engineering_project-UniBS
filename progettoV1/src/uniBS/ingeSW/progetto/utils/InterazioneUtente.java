@@ -9,10 +9,17 @@ import uniBS.ingeSW.progetto.rete.Posto;
 import uniBS.ingeSW.progetto.rete.Rete;
 import uniBS.ingeSW.progetto.rete.Transizione;
 
-public class InterazioneUtente {
+public class InterazioneUtente {	
+
+	/**
+	 *
+	 */
 	
 	private static Scanner lettore = creaScanner();
 
+	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione è già stata aggiunta";
+	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto è già stato aggiunto";
+	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete è già presente!";
 	private static final boolean BOOL_CONST_FALSE = false;
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
@@ -209,12 +216,11 @@ public class InterazioneUtente {
 		aggiuntaElementoFlusso(daCreare);
 		System.out.println("");
 
-		if(controlloRete(daCreare)){
+		if(controlloRete(daCreare, listaReti)){
 			boolean risposta = yesOrNo(DOMANDA_SALVATAGGIO_RETE);
 			if(risposta) {
 				boolean rifare = BOOL_CONST_FALSE;
 				do{
-					//verificare unicità rete
 					String nome = leggiStringaNonVuota(DOMANDA_NOME_RETE);
 					boolean aggiunta = listaReti.addRete(nome, daCreare);
 					if(!aggiunta){
@@ -237,7 +243,8 @@ public class InterazioneUtente {
 
 			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
 			Posto nuovo = new Posto(nome);
-			daCreare.addPosto(nuovo);
+			boolean aggiuntoCorrettamente = daCreare.addPosto(nuovo);
+			if(!aggiuntoCorrettamente) System.out.println(WARNING_POSTO_GIA_AGGIUNTO);
 			risposta = yesOrNo(DOMANDA_AGGIUNTA_ALTRI_POSTI);
 		}
 	}
@@ -249,7 +256,8 @@ public class InterazioneUtente {
 
 			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_TRANSIZIONE);
 			Transizione nuovo = new Transizione(nome);
-			daCreare.addTrans(nuovo);
+			boolean aggiuntaCorrettamente = daCreare.addTrans(nuovo);
+			if(!aggiuntaCorrettamente) System.out.println(WARNING_TRANSIZIONE_GIA_PRESENTE);
 			risposta = yesOrNo(MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI);
 		}
 	}
@@ -314,13 +322,19 @@ public class InterazioneUtente {
 		}
 	}
 
-	private static boolean controlloRete(Rete daControllare){
+	private static boolean controlloRete(Rete daControllare, GestoreReti listaReti){
 		boolean connessa = daControllare.controlloConnessione();
 		boolean corretta = daControllare.controlloCorrettezza();
 		if(!connessa) System.out.println(WARNING_RETE_NON_CONNESSA);
 		if(!corretta) System.out.println(WARNING_RETE_NON_CORRETTA);
 		if(corretta && connessa) System.out.println(MESSAGGIO_RETE_CORRETTA_CONNESSA);
-
+		for(String nomeRete : listaReti.getKeyLIst()){
+			if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(daControllare)) {
+				System.out.println(WARNING_RETE_GIA_PRESENTE);
+				return BOOL_CONST_FALSE;
+			}
+			
+		}
 		return (connessa && corretta);
 	}
 }

@@ -59,15 +59,19 @@ public class Rete {
 	// aggiunge una transizione, rstituisce bool cosi' so se e' andata
 	// a buon fine nel metodo esterno che la chiama
 	public boolean addTrans(Transizione toAdd) {
-		if (insiemeTransizioni.contains(toAdd))
-			return BOOL_CONST_FALSE;
+		boolean giaPresente = Stream.of(insiemeTransizioni.toArray(new Transizione[0]))
+								.anyMatch(n -> n.getName().equalsIgnoreCase(toAdd.getName()));
+
+		if (giaPresente) return BOOL_CONST_FALSE;
 		insiemeTransizioni.add(toAdd);
 		return BOOL_CONST_TRUE;
 	}
 
 	public boolean addPosto(Posto toAdd) {
-		if (insiemePosti.contains(toAdd))
-			return BOOL_CONST_FALSE;
+		boolean giaPresente = Stream.of(insiemePosti.toArray(new Posto[0]))
+								.anyMatch(n -> n.getName().equalsIgnoreCase(toAdd.getName()));
+
+		if (giaPresente) return BOOL_CONST_FALSE;
 		insiemePosti.add(toAdd);
 		return BOOL_CONST_TRUE;
 	}
