@@ -306,7 +306,7 @@ public class InterazioneUtente {
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
 		if(lista.getListaRetiConfiguratore().isEmpty())
-		System.out.println(WARNING_LISTA_RETI_VUOTA);
+			System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
 			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
 			boolean trovato = BOOL_CONST_FALSE;
