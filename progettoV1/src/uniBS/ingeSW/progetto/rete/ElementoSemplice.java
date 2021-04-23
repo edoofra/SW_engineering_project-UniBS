@@ -20,6 +20,7 @@ public class ElementoSemplice {
 
 	//due elementi semplici con lo stesso nome sono considerati uguali
 	public boolean equalControl(ElementoSemplice toCheck){
+	    assert toCheck != null : "ElementoSemplice = null"; //precondizione 
 		return (this.nome.equalsIgnoreCase(toCheck.getName()));
 	}
 	
