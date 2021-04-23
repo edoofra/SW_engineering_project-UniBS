@@ -45,6 +45,7 @@ public class ElemFlusso {
 	 */
 	//@requires flusso2 != null;
 	public boolean equal( ElemFlusso flusso2) {
+	    assert flusso2 != null : "elemFlusso = null"; //precondizione
 	    return ((this.getElem1().equalControl(flusso2.getElem1()) && 
 		    (this.getElem2().equalControl(flusso2.getElem2()))));
 	}	
