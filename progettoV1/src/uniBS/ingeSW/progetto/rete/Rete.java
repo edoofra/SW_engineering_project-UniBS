@@ -68,16 +68,19 @@ public class Rete {
 		if (giaPresente) return BOOL_CONST_FALSE;
 		int size = insiemeTransizioni.size();
 		insiemeTransizioni.add(toAdd);
-		assert size < insiemeTransizioni.size() : "error add";
+		assert size < insiemeTransizioni.size() : "error add"; //postcondizione
 		return BOOL_CONST_TRUE;
 	}
 
 	public boolean addPosto(Posto toAdd) {
+	    assert toAdd != null : "Posto da aggiungere = null"; //precondizione
 		boolean giaPresente = Stream.of(insiemePosti.toArray(new Posto[0]))
 								.anyMatch(n -> n.getName().equalsIgnoreCase(toAdd.getName()));
 
 		if (giaPresente) return BOOL_CONST_FALSE;
+		int size = insiemePosti.size();
 		insiemePosti.add(toAdd);
+		assert size < insiemePosti.size() : "error add"; //postcondizione
 		return BOOL_CONST_TRUE;
 	}
 
@@ -88,9 +91,12 @@ public class Rete {
 	// Transizione) o viceversa
 	// altrimenti non lo aggiunge e ritorna BOOL_CONST_FALSE
 	public boolean addElemFlusso(ElemFlusso elem) {
+	    assert elem != null : "elem = null"; //precondizione
 		if (!elem.areSameType()) {
 			if(!duplicatedElemFlusso(elem)){
+			    	int size = relazioneFlusso.size();
 				relazioneFlusso.add(elem);
+				assert size < relazioneFlusso.size() : "error in add"; //postcondizione
 				return BOOL_CONST_TRUE;
 			}
 		} 
@@ -107,6 +113,7 @@ public class Rete {
 	 * lo sono anche tutti gli elementi della rete
 	 */
 	public boolean isEqual(Rete toCheck){
+	    assert toCheck != null : "toCheck = null";
 		boolean uguali = BOOL_CONST_FALSE;
 
 		for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
@@ -135,6 +142,7 @@ public class Rete {
 
 	//controlla che elementi flusso siano univoci
 	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
+	    assert toCheck != null : "toCheck = null";
 		return Stream.of(getRelazioneFlusso())
 					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
 					n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
