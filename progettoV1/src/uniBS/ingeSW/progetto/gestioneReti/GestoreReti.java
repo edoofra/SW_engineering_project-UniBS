@@ -25,16 +25,26 @@ public class GestoreReti {
 	// ritorna codice errore 1 se esiste gia' nome
 	// ritorna codice errore 2 se esiste gia' rete
 	// gestione codice errori andra' fatta in interazione con utente
+
 	public boolean addRete(String name, Rete toAdd) {
+		assert name != null : "name = null"; //precondizione
+		assert toAdd !=null : "toAdd = null"; //precondizione
+		int beforeAdd = listaRetiConfiguratore.size();
+
 		if (listaRetiConfiguratore.containsKey(name)) return false;			
 		else {
 			listaRetiConfiguratore.put(name, toAdd);
+			int nextAdd = listaRetiConfiguratore.size();
+			assert nextAdd == beforeAdd +1 : "size error"; //postcondizione
 			return true;
 		}
+
 	}
 
 	
 	public boolean isEqual(Rete rete1, Rete rete2) {
+		assert rete1 != null : "rete1 = null"; //precondizione
+		assert rete2 != null : "rete2 = null"; //precondizione
 		return rete1.isEqual(rete2);		
 	}
 
