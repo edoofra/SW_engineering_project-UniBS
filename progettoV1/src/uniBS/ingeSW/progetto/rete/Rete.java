@@ -39,6 +39,7 @@ public class Rete {
 
 	// restituisce un posto dalla lista cercandolo per nome
 	public Posto getPostoByName(String daCercare) {
+	    assert daCercare != null : "stringaNome = null"; //precondizione
 		return Stream.of(getInsiemePosti())
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
@@ -47,6 +48,7 @@ public class Rete {
 
 	// restituisce una trans dalla lista cercandola per nome
 	public Transizione getTransByName(String daCercare) {
+	    assert daCercare != null : "stringaNome = null"; //precondizione
 		return Stream.of(getInsiemeTransizioni())
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
@@ -59,11 +61,14 @@ public class Rete {
 	// aggiunge una transizione, rstituisce bool cosi' so se e' andata
 	// a buon fine nel metodo esterno che la chiama
 	public boolean addTrans(Transizione toAdd) {
+	    assert toAdd != null : "Transizione da aggiungere = null"; //precondizione
 		boolean giaPresente = Stream.of(insiemeTransizioni.toArray(new Transizione[0]))
 								.anyMatch(n -> n.getName().equalsIgnoreCase(toAdd.getName()));
 
 		if (giaPresente) return BOOL_CONST_FALSE;
+		int size = insiemeTransizioni.size();
 		insiemeTransizioni.add(toAdd);
+		assert size < insiemeTransizioni.size() : "error add";
 		return BOOL_CONST_TRUE;
 	}
 
