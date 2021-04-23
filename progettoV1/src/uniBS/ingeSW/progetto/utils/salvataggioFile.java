@@ -13,6 +13,7 @@ public class salvataggioFile {
     private static final String PATH = "ListaRetiConfiguratore.json";
 
     public static void salvaGestoreReti(String daSalvare){
+        assert daSalvare != null : "daSalvare = null"; //precondizione
         try {
             FileWriter fileSalvataggio = new FileWriter(PATH);
             fileSalvataggio.write(daSalvare);
