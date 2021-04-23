@@ -210,6 +210,7 @@ public class InterazioneUtente {
 	}
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
+		assert daCreare != null && listaReti != null;  //precondizione
 		System.out.println(MESSAGGIO_CREAZIONE_RETE);
 		aggiuntaPosto(daCreare);
 		aggiuntaTransizione(daCreare);
@@ -233,10 +234,12 @@ public class InterazioneUtente {
 				String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
 				salvataggioFile.salvaGestoreReti(listaRetiJSON);
 			}
-		}		
+		}
+		//postcondizione se file exist EDO
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {
+		assert daCreare != null; //precondizione
 		boolean risposta = BOOL_CONST_TRUE;
 		System.out.println(AVVERTIMENTO_INIZIALE_POSTO);
 		while (risposta != BOOL_CONST_FALSE) {
@@ -250,6 +253,7 @@ public class InterazioneUtente {
 	}
 
 	private static void aggiuntaTransizione(Rete daCreare) {
+		assert daCreare != null; //precondizione
 		boolean risposta = BOOL_CONST_TRUE;
 		System.out.println(AVVERTIMENTO_INIZIALE_TRANSIZIONE);
 		while (risposta != BOOL_CONST_FALSE) {
@@ -263,6 +267,7 @@ public class InterazioneUtente {
 	}
 
 	private static void aggiuntaElementoFlusso(Rete daCreare) {
+		assert daCreare != null; //precondizione
 		boolean risposta = BOOL_CONST_TRUE;
 		System.out.println(MESSAGGIO_INIZIALE_FLUSSO);
 		System.out.println(AVVERTIMENTO_INIZIALE_FLUSSO);
@@ -282,6 +287,7 @@ public class InterazioneUtente {
 
 
     private static ElemFlusso creaElementoFlusso(Rete rete){
+    	assert rete != null; //precondizione
 		ElementoSemplice elem1 = null;
 		ElementoSemplice elem2 = null;
 		System.out.println(ELEMENTI_DELLA_TUA_RETE); 
@@ -305,6 +311,7 @@ public class InterazioneUtente {
 	}	
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
+		assert lista != null; //precondizione
 		if(lista.getListaRetiConfiguratore().isEmpty())
 			System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
@@ -323,6 +330,7 @@ public class InterazioneUtente {
 	}
 
 	private static boolean controlloRete(Rete daControllare, GestoreReti listaReti){
+		assert daControllare != null && listaReti != null; //precondizioni
 		boolean connessa = daControllare.controlloConnessione();
 		boolean corretta = daControllare.controlloCorrettezza();
 		if(!connessa) System.out.println(WARNING_RETE_NON_CONNESSA);
