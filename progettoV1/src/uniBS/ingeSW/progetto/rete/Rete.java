@@ -198,6 +198,17 @@ public class Rete {
 			}
 			if(!corretta) return BOOL_CONST_FALSE;
 		}
+		corretta = false;
+		for(Transizione trans : this.getInsiemeTransizioni()){
+			for(ElemFlusso flusso : this.getRelazioneFlusso()){
+				if(flusso.getElem2().getName().equalsIgnoreCase(trans.getName())){
+					corretta=BOOL_CONST_TRUE;
+					break;
+				}
+				corretta=BOOL_CONST_FALSE;
+			}
+			if(!corretta) return BOOL_CONST_FALSE;
+		}
 		return corretta;
 	}
 
