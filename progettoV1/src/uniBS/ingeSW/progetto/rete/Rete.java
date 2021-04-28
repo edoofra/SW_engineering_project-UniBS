@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 /**
+ * Classe per l'implementazione di una rete composta da posti, transizioni ed elementi di flusso.
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
- * classe per l'implementazione di una rete composta da posti, transizioni e elementi di flusso
  */
 public class Rete {
 
