@@ -15,9 +15,9 @@ public class Rete {
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final boolean BOOL_CONST_FALSE = false;
 
-	private ArrayList<Posto> insiemePosti;
-	private ArrayList<Transizione> insiemeTransizioni;
-	private ArrayList<ElemFlusso> relazioneFlusso;
+	protected ArrayList<Posto> insiemePosti;
+	protected ArrayList<Transizione> insiemeTransizioni;
+	protected ArrayList<ElemFlusso> relazioneFlusso;
 
 	public Rete() {
 		this.insiemePosti = new ArrayList<Posto>();
@@ -25,22 +25,22 @@ public class Rete {
 		this.relazioneFlusso = new ArrayList<ElemFlusso>();
 	}
 
-	public Posto[] getInsiemePosti() {
-		return (Posto[]) insiemePosti.toArray(new Posto[0]);
+	public ArrayList<Posto> getInsiemePosti() {
+		return this.insiemePosti;
 	}
 
-	public Transizione[] getInsiemeTransizioni() {
-		return (Transizione[]) insiemeTransizioni.toArray(new Transizione[0]);
+	public ArrayList<Transizione> getInsiemeTransizioni() {
+		return this.insiemeTransizioni;
 	}
 
-	public ElemFlusso[] getRelazioneFlusso() {
-		return (ElemFlusso[]) relazioneFlusso.toArray(new ElemFlusso[0]);
+	public ArrayList<ElemFlusso> getRelazioneFlusso() {
+		return this.relazioneFlusso;
 	}
 
 	// restituisce un posto dalla lista cercandolo per nome
 	public Posto getPostoByName(String daCercare) {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
-		return Stream.of(getInsiemePosti())
+		return Stream.of(getInsiemePosti().toArray(new Posto[0]))
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
@@ -49,7 +49,7 @@ public class Rete {
 	// restituisce una trans dalla lista cercandola per nome
 	public Transizione getTransByName(String daCercare) {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
-		return Stream.of(getInsiemeTransizioni())
+		return Stream.of(getInsiemeTransizioni().toArray(new Transizione[0]))
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
@@ -143,7 +143,7 @@ public class Rete {
 	//controlla che elementi flusso siano univoci
 	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
 	    assert toCheck != null : "toCheck = null";
-		return Stream.of(getRelazioneFlusso())
+		return Stream.of(getRelazioneFlusso().toArray(new ElemFlusso[0]))
 					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
 					n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
 		

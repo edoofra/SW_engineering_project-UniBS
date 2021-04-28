@@ -2,7 +2,9 @@ package uniBS.ingeSW.progettoV2.view;
 
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice;
+import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
+import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
 
 public class RetePresentation {
     
@@ -37,9 +39,9 @@ public class RetePresentation {
     
     public String toString() {
 	StringBuilder description = new StringBuilder("Descrizione della rete: \n");
-	description.append("POSTI: " + getStringList(daPresentare.getInsiemePosti()) + "\n");
-	description.append("TRANSIZIONI: " + getStringList(daPresentare.getInsiemeTransizioni()) + "\n");
-	description.append("RELAZIONE FLUSSO: " + getStringList(daPresentare.getRelazioneFlusso()) + "\n");
+	description.append("POSTI: " + getStringList(daPresentare.getInsiemePosti().toArray(new Posto[0])) + "\n");
+	description.append("TRANSIZIONI: " + getStringList(daPresentare.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
+	description.append("RELAZIONE FLUSSO: " + getStringList(daPresentare.getRelazioneFlusso().toArray(new ElemFlusso[0])) + "\n");
 	return description.toString();
 
 }
