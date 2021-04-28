@@ -22,10 +22,6 @@ public class ElemFlusso {
 	public ElementoSemplice getElem2() {
 		return elem2;
 	}
-	
-	public String getName() {
-	    return "( " + elem1.getProperties() + "," + elem2.getProperties() + " )";
-	}
 
 	/**
 	 * Controlla che l'elemento sia corretto

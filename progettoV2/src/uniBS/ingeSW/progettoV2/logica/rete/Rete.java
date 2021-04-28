@@ -211,45 +211,4 @@ public class Rete {
 		}
 		return corretta;
 	}
-
-	/**************************************************************************************************************************/
-	//SEZIONE TOSTRING (DA ELIMINARE)
-
-
-	// ritorna la lista delle stringhe con i nomi di posti / transizioni
-	// metodo usato nel toString
-	// metodo overloaded
-	public String getStringList(ElementoSemplice[] list) {
-		StringBuilder stringList = new StringBuilder("{ ");
-		for (int i = 0; i < list.length; i++) {
-			stringList.append(list[i].getProperties() + ", ");
-		}
-		int last = stringList.length();
-		stringList.delete(last-2, last-1);
-		stringList.append("}");
-		return stringList.toString();
-	}
-
-	// ritorna la lista delle stringhe con i nomi delle coppie del flusso
-	// metodo usato nel toString
-	// metodo overloaded
-	public String getStringList(ElemFlusso[] list) {
-		StringBuilder stringList = new StringBuilder("{ ");
-		for (int i = 0; i < list.length; i++) {
-			stringList.append(list[i].getName() + ", ");
-		}
-		int last = stringList.length();
-		stringList.delete(last-2, last-1);
-		stringList.append("}");
-		return stringList.toString();
-	}
-
-	public String toString() {
-		StringBuilder description = new StringBuilder("Descrizione della rete: \n");
-		description.append("POSTI: " + getStringList(getInsiemePosti()) + "\n");
-		description.append("TRANSIZIONI: " + getStringList(getInsiemeTransizioni()) + "\n");
-		description.append("RELAZIONE FLUSSO: " + getStringList(getRelazioneFlusso()) + "\n");
-		return description.toString();
-
-	}
 }
