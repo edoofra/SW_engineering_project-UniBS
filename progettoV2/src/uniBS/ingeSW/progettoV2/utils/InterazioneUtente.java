@@ -314,9 +314,10 @@ public class InterazioneUtente {
 		if(lista.getListaRetiConfiguratore().isEmpty())
 			System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
+			GestoreRetiPresentation listaView = new GestoreRetiPresentation(lista);
 			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
 			boolean trovato = BOOL_CONST_FALSE;
-			System.out.println("\t" + lista.toString());
+			System.out.println("\t" + listaView.toString());
 			String daVisualizzare = leggiStringaNonVuota("\n-> ");
 			for(String elem : lista.getKeyLIst()){
 				if (elem.equalsIgnoreCase(daVisualizzare)){

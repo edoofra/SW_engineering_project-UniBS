@@ -49,17 +49,5 @@ public class GestoreReti {
 		return rete1.isEqual(rete2);		
 	}
 
-	//da togliere
-	public String toString() {
-		StringBuilder stringList = new StringBuilder("{ ");
-		String[] keyList = getKeyLIst();
-		for (int i = 0; i < keyList.length; i++) {
-			stringList.append(( keyList[i] + ", "));
-		}
-		int size = stringList.length();
-		stringList.delete(size-2, size-1);
-		stringList.append(" }");
-		return stringList.toString();
-
-	}
+	
 }
