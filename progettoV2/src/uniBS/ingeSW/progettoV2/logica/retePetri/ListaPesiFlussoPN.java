@@ -11,9 +11,9 @@ public class ListaPesiFlussoPN {
 private HashMap<ElemFlusso, Integer> listaPesi;
     
     public ListaPesiFlussoPN(List<ElemFlusso> daAssociare) {
-	for(int i=0; i<daAssociare.size(); i++) {
-	    listaPesi.put(daAssociare.get(i), 1);
-	}
+		for(int i=0; i<daAssociare.size(); i++) {
+			listaPesi.put(daAssociare.get(i), 1);
+		}
     }
     
     public boolean impostaPeso(String nomeElemento1, String nomeElemento2, int nuovoPeso) {
