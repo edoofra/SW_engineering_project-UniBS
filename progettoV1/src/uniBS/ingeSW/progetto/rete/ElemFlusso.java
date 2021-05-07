@@ -1,15 +1,22 @@
 package uniBS.ingeSW.progetto.rete;
 /**
- * @author Lorenzo Bargnani
- * @author Edoardo Fratus
+ * Classe che descrive l'implementazione di un elemento di flusso all'interno di una rete.
+ * ElemFlusso è visto come una coppia di <em> due elementi semplici </em>.
  * @author Camilla Bonomini
- * classe per l'implementazione di un elemento di flusso di una rete
+ * @author Edoardo Fratus
+ * @author Lorenzo Bargnani 
+ * @version 1.0
  */
 public class ElemFlusso {
 
 	private ElementoSemplice elem1; //elemento di partenza	
 	private ElementoSemplice elem2; //elemento di arrivo
 	
+	/**
+	 * Metodo che crea un elemento di flusso a partire da due elementi semplici.
+	 * @param elem1 elemento di partenza.
+	 * @param elem2 elemento di arrivo.
+	 */
 	public ElemFlusso(ElementoSemplice elem1, ElementoSemplice elem2) {
 		this.elem1 = elem1;
 		this.elem2 = elem2;
@@ -23,13 +30,19 @@ public class ElemFlusso {
 		return elem2;
 	}
 	
+	/**
+	 * Metodo che compone il nome dell'elemento di flusso combinanod i nomi dei due elementi semplici contenuti.
+	 * @return stringa che descrive l'elemento di flusso.
+	 */
 	public String getName() {
 	    return "( " + elem1.getProperties() + "," + elem2.getProperties() + " )";
 	}
 
 	/**
-	 * Controlla che l'elemento sia corretto
-	 * Un elemento di flusso è corretto se è composto da due elementi di rete diversi
+	 * Metodo che controlla che l'elemento sia corretto.
+	 * Un elemento di flusso è corretto se è composto da due elementi di rete diversi.
+	 * Non sono ammessse coppie transizione-transizione o posto-posto.
+	 * @return boolean che dice se l'elemento è corretto.
 	 */
 	public boolean areSameType(){
 		boolean doublePosto = this.getElem1() instanceof Posto && this.getElem2() instanceof Posto;
@@ -38,12 +51,11 @@ public class ElemFlusso {
 	}
 	
 	/**
-	 * confronta due elementi di flusso per valutare se siano uguali o meno
-	 * sono uguali se entrambi gli elementi interni sono uguali e sono nello stesso ordine
-	 * @param flusso1
-	 * @param flusso2
+	 * Metodo che confronta due elementi di flusso per valutare se siano uguali o meno.
+	 * Sono uguali se entrambi gli elementi interni sono uguali e sono nello stesso ordine.
+	 * @param flusso2 elemento di flusso con cui svolgere il confronto.
+	 * @return boolean che indica se i nomi degli elementi semplici coincidono.
 	 */
-	//@requires flusso2 != null;
 	public boolean equal( ElemFlusso flusso2) {
 	    assert flusso2 != null : "elemFlusso = null"; //precondizione
 	    return ((this.getElem1().equalControl(flusso2.getElem1()) && 
