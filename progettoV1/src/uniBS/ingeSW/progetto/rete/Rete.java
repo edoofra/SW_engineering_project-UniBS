@@ -5,10 +5,13 @@ import java.util.HashMap;
 import java.util.stream.Stream;
 
 /**
- * Classe per l'implementazione di una rete composta da posti, transizioni ed elementi di flusso.
+ * Classe per l'implementazione di una rete.
+ * Una rete è composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di ekementi di flusso </em> </li> </ul>
+ * Una rete deve essere connessa per essere tale, ovvero ogni elemento di rete deve essere raggiunto da alemno un elemento di flusso.
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
+ * @version 1.0
  */
 public class Rete {
 
@@ -19,6 +22,10 @@ public class Rete {
 	private ArrayList<Transizione> insiemeTransizioni;
 	private ArrayList<ElemFlusso> relazioneFlusso;
 
+	/**
+	 * Metodo per la creazione di una rete.
+	 * Vengono istanziati i 3 insiemi, implementati attraverso un arrayList.
+	 */
 	public Rete() {
 		this.insiemePosti = new ArrayList<Posto>();
 		this.insiemeTransizioni = new ArrayList<Transizione>();
@@ -37,7 +44,12 @@ public class Rete {
 		return (ElemFlusso[]) relazioneFlusso.toArray(new ElemFlusso[0]);
 	}
 
-	// restituisce un posto dalla lista cercandolo per nome
+	/**
+	 * Metodo che, dato il nome di un posto, lo cerca all'interno dell'insieme e restituisce l'oggetto 
+	 * posto corrispondente.
+	 * @param daCercare il nome del posto da cercare.
+	 * @return il posto cercato o <em> NULL </em> se non è stato trovato.
+	 */
 	public Posto getPostoByName(String daCercare) {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
 		return Stream.of(getInsiemePosti())
@@ -46,7 +58,12 @@ public class Rete {
 					.orElse(null);
 	}
 
-	// restituisce una trans dalla lista cercandola per nome
+	/**
+	 * Metodo che, dato il nome di una transizione, la cerca all'interno dell'insieme e restituisce l'oggetto 
+	 * transizione corrispondente.
+	 * @param daCercare il nome della transizione da cercare.
+	 * @return la transizione cercata o <em> NULL </em> se non è stato trovata.
+	 */
 	public Transizione getTransByName(String daCercare) {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
 		return Stream.of(getInsiemeTransizioni())
@@ -58,8 +75,12 @@ public class Rete {
 	/**************************************************************************************************************************/
 	//SEZIONE AGGIUNTE
 
-	// aggiunge una transizione, rstituisce bool cosi' so se e' andata
-	// a buon fine nel metodo esterno che la chiama
+	/**
+	 * Metodo che aggiunge una transizione all'insieme delle transizioni.
+	 * Una transizione non può essere aggiunta se all'interno dell'insieme è già presente una transizione con lo stesso nome.
+	 * @param toAdd Transizione da aggiungere.
+	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 */
 	public boolean addTrans(Transizione toAdd) {
 	    assert toAdd != null : "Transizione da aggiungere = null"; //precondizione
 		boolean giaPresente = Stream.of(insiemeTransizioni.toArray(new Transizione[0]))
@@ -72,6 +93,12 @@ public class Rete {
 		return BOOL_CONST_TRUE;
 	}
 
+	/**
+	 * Metodo che aggiunge un posto all'insieme dei posti.
+	 * Un posto non può essere aggiunto se all'interno dell'insieme è già presente un posto con lo stesso nome.
+	 * @param toAdd Posto da aggiungere.
+	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 */
 	public boolean addPosto(Posto toAdd) {
 	    assert toAdd != null : "Posto da aggiungere = null"; //precondizione
 		boolean giaPresente = Stream.of(insiemePosti.toArray(new Posto[0]))
@@ -86,10 +113,12 @@ public class Rete {
 
 	
 
-	// Metodo che aggiunge un elemento di flusso alla relazione di flusso e
-	// controlla che un Elemento di flusso sia composto da una coppia (Posto,
-	// Transizione) o viceversa
-	// altrimenti non lo aggiunge e ritorna BOOL_CONST_FALSE
+	/**
+	 * Metodo che aggiunge un elemento di flusso all'insieme degli elementi di flusso.
+	 * Un elemento di flusso non può essere aggiunto se è duplicato o se non è corretto.
+	 * @param toAdd ElemFlusso da aggiungere.
+	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 */
 	public boolean addElemFlusso(ElemFlusso elem) {
 	    assert elem != null : "elem = null"; //precondizione
 		if (!elem.areSameType()) {
