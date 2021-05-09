@@ -149,7 +149,7 @@ public class Rete {
 
 		for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
 			for (ElemFlusso elemRete2 : toCheck.getRelazioneFlusso()) {
-				if (elemRete1.equals(elemRete2)) {
+				if (elemRete1.controlloUguali(elemRete2)) {
 					uguali = BOOL_CONST_TRUE;
 					break;
 					//se ne trovo uno uguale esco dal ciclo interno 

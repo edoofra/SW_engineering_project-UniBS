@@ -56,7 +56,7 @@ public class ElemFlusso {
 	 * @param flusso2 elemento di flusso con cui svolgere il confronto.
 	 * @return boolean che indica se i nomi degli elementi semplici coincidono.
 	 */
-	public boolean equal( ElemFlusso flusso2) {
+	public boolean controlloUguali( ElemFlusso flusso2) {
 	    assert flusso2 != null : "elemFlusso = null"; //precondizione
 	    return ((this.getElem1().equalControl(flusso2.getElem1()) && 
 		    (this.getElem2().equalControl(flusso2.getElem2()))));
