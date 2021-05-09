@@ -137,9 +137,11 @@ public class Rete {
 
 	/**
 	 * Metodo per controllare se due reti sono o meno uguali
-	 * Due reti si considerano uguali se tutti i loro elementi di flusso sono uguali 
+	 * <em> Due reti si considerano uguali se tutti i loro elementi di flusso sono uguali </em>
 	 * Si assume che le reti siano corrette, quindi connesse, quindi se gli elementi di flusso sono tutti uguali
 	 * lo sono anche tutti gli elementi della rete
+	 * @param toCheck rete da comparare
+	 * @return boolean che indica se le due reti sono uguali o meno 
 	 */
 	public boolean isEqual(Rete toCheck){
 	    assert toCheck != null : "toCheck = null";
@@ -161,7 +163,10 @@ public class Rete {
 		return BOOL_CONST_TRUE; 
 	}
 
-	// controlla se uno dei tre e' vuoto
+	/**
+	 * Metodo che controlla se uno o più insiemi della rete sono vuoti.
+	 * @return boolean ch eindica se un insieme è vuoto.
+	 */
 	public boolean emptyControl() {
 		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
 			return BOOL_CONST_TRUE;
@@ -169,7 +174,11 @@ public class Rete {
 			return BOOL_CONST_FALSE;
 	}
 
-	//controlla che elementi flusso siano univoci
+	/**
+	 * Metodo che controlla se due elementi di flusso sono uguali.
+	 * @param toCheck elemento di flusso da comparare.
+	 * @return boolean che indica se i due elementi sono uguali.
+	 */
 	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
 	    assert toCheck != null : "toCheck = null";
 		return Stream.of(getRelazioneFlusso())
@@ -183,6 +192,7 @@ public class Rete {
 	 * Visitati1 = lista degli ElementiSemplici raggiunti dagli elementi di flusso della rete
 	 * Visitati2 = lista degli ElementiSemplici raggiunti considerando invertiti gli elementi di flusso
 	 * Se un posto o una transizione non è contenuto ne in Visitati1 ne in Visitati2 allora è isolato e la rete non è connessa
+	 * @return boolean che indica se la rete è connessa o meno.
 	 */
 	public boolean controlloConnessione(){
 		HashMap<ElementoSemplice,Boolean> visitati1 = new HashMap<ElementoSemplice,Boolean>();
@@ -213,6 +223,7 @@ public class Rete {
 	 * Metodo che controlla se una rete è corretta 
 	 * Una rete è corretta se ha almeno un posto e una transizione e se ogni transizione
 	 * non si trova mai come ultimo elemento della rete
+	 * @return boolean che indica se la rete è corretta o meno.
 	 */
 	public boolean controlloCorrettezza(){
 		if(emptyControl()) return BOOL_CONST_FALSE;
@@ -244,10 +255,11 @@ public class Rete {
 	/**************************************************************************************************************************/
 	//SEZIONE TOSTRING (DA ELIMINARE)
 
-
-	// ritorna la lista delle stringhe con i nomi di posti / transizioni
-	// metodo usato nel toString
-	// metodo overloaded
+	/**
+	 * Metodo che ritorna una stringa composta dai nomi dei posti e delle transizioni della rete.
+	 * @overloaded
+	 * @return stringa creata.
+	 */
 	public String getStringList(ElementoSemplice[] list) {
 		StringBuilder stringList = new StringBuilder("{ ");
 		for (int i = 0; i < list.length; i++) {
@@ -259,9 +271,11 @@ public class Rete {
 		return stringList.toString();
 	}
 
-	// ritorna la lista delle stringhe con i nomi delle coppie del flusso
-	// metodo usato nel toString
-	// metodo overloaded
+	/**
+	 * Metodo che ritorna una stringa composta dai nomi degli elementi di flusso.
+	 * @overloaded
+	 * @return stringa creata.
+	 */
 	public String getStringList(ElemFlusso[] list) {
 		StringBuilder stringList = new StringBuilder("{ ");
 		for (int i = 0; i < list.length; i++) {
