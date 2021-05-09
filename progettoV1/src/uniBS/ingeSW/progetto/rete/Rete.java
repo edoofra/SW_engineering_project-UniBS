@@ -77,7 +77,7 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge una transizione all'insieme delle transizioni.
-	 * Una transizione non puo' essere aggiunta se all'interno dell'insieme e' gia'  presente una transizione con lo stesso nome.
+	 * Una transizione non puo' essere aggiunta se all'interno dell'insieme e' gia'ï¿½ presente una transizione con lo stesso nome.
 	 * @param toAdd Transizione da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
@@ -95,7 +95,7 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge un posto all'insieme dei posti.
-	 * Un posto non puo' essere aggiunto se all'interno dell'insieme e' gia'  presente un posto con lo stesso nome.
+	 * Un posto non puo' essere aggiunto se all'interno dell'insieme e' gia'ï¿½ presente un posto con lo stesso nome.
 	 * @param toAdd Posto da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
@@ -116,7 +116,7 @@ public class Rete {
 	/**
 	 * Metodo che aggiunge un elemento di flusso all'insieme degli elementi di flusso.
 	 * Un elemento di flusso non puo' essere aggiunto se e' duplicato o se non e' corretto.
-	 * @param toAdd ElemFlusso da aggiungere.
+	 * @param elem ElemFlusso da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
 	public boolean addElemFlusso(ElemFlusso elem) {
