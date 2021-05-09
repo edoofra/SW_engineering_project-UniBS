@@ -2,7 +2,7 @@ package uniBS.ingeSW.progetto.rete;
 
 /**
  * Classe che descrive l'implementazione di una transizione all'interno di una rete.
- * Transizione è vista come un' <em> estensione di un elemento semplice </em>.
+ * Transizione e' vista come un' <em> estensione di un elemento semplice </em>.
  * @author Camilla Bonomini
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani 
