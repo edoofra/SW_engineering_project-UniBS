@@ -1,5 +1,0 @@
-PIANO DI TEST
-
-1- rete corretta e connessa, salvataggio si
-2- rete corretta e connessa, salvataggio no  
-3- 
