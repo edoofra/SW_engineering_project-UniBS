@@ -6,14 +6,30 @@ import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
 
+/**
+ * Classe per la gestione della <em>presentazione </em> della classe Rete.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+ */
 public class RetePresentation {
     
     private Rete daPresentare;
     
+	/**
+	 * Metodo per istanziare la rete da presentare.
+	 * @param daPresentare Rete di cui costruire la presentazione.
+	 */
     public RetePresentation(Rete daPresentare) {
 	this.daPresentare = daPresentare;
     }
-    
+
+	/**
+	 * Metodo che ritorna una stringa composta dai nomi dei posti e delle transizioni della rete.
+	 * @overloaded
+	 * @return stringa creata.
+	 */
     public String getStringList(ElementoSemplice[] list) {
 	StringBuilder stringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {
@@ -25,6 +41,11 @@ public class RetePresentation {
 	return stringList.toString();
     }
     
+	/**
+	 * Metodo che ritorna una stringa composta dai nomi degli elementi di flusso.
+	 * @overloaded
+	 * @return stringa creata.
+	 */
     public String getStringList(ElemFlusso[] list) {
 	StringBuilder stringList = new StringBuilder("{ ");
 	for (int i = 0; i < list.length; i++) {
