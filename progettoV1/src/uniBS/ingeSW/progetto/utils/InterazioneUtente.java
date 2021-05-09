@@ -17,9 +17,9 @@ public class InterazioneUtente {
 	
 	private static Scanner lettore = creaScanner();
 
-	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione e' già stata aggiunta";
-	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto e' già stato aggiunto";
-	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' già presente!";
+	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione e' gia' stata aggiunta";
+	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto e' gia' stato aggiunto";
+	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' gia' presente!";
 	private static final boolean BOOL_CONST_FALSE = false;
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
@@ -47,7 +47,7 @@ public class InterazioneUtente {
 	private static final String MESSAGGIO_SCELTA_NOME_POSTO = "\tScegli un nome per il posto -> ";
 	private static final String AVVERTIMENTO_INIZIALE_POSTO = "Per iniziare devi aggiungere almeno un posto!";
 	private static final String DOMANDA_CAMBIO_NOME = "vuoi cambiare nome? (S|N) -> ";
-	private static final String WARNING_NOME_GIA_USATO = "Attenzione: esiste già una rete con questo nome.";
+	private static final String WARNING_NOME_GIA_USATO = "Attenzione: esiste gia' una rete con questo nome.";
 	private static final String DOMANDA_NOME_RETE = "Che nome vuoi dare a questa rete? -> ";
 	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? -> ";
 	private static final String MESSAGGIO_CREAZIONE_RETE = "\nHAI DECISO DI CREARE UNA RETE!\n";
