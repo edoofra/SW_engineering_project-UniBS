@@ -17,25 +17,25 @@ public class InterazioneUtente {
 	
 	private static Scanner lettore = creaScanner();
 
-	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione è già stata aggiunta";
-	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto è già stato aggiunto";
-	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete è già presente!";
+	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione e' già stata aggiunta";
+	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto e' già stato aggiunto";
+	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' già presente!";
 	private static final boolean BOOL_CONST_FALSE = false;
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
-	private static final String WARNING_RETE_NON_CORRETTA = "Attenzione: la tua rete non è corretta!\n";
-	private static final String WARNING_RETE_NON_CONNESSA = "Attenzione: la tua rete non è connessa!\n";
+	private static final String WARNING_RETE_NON_CORRETTA = "Attenzione: la tua rete non e' corretta!\n";
+	private static final String WARNING_RETE_NON_CONNESSA = "Attenzione: la tua rete non e' connessa!\n";
 	private static final String WARNING_RETE_NON_ESISTE = "Attenzione: Non esiste una rete con questo nome";
 	private static final String MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE = "\nScegli una tra le seguenti reti da visualizzare: \n";
-	private static final String WARNING_LISTA_RETI_VUOTA = "\nAttenzione: La lista di reti è vuota";
-	private static final String WARNING_ELEMENTO_INTERNO_FLUSSO_NON_TROVATO = "\tUno dei due elementi non è stato trovato! \n";
+	private static final String WARNING_LISTA_RETI_VUOTA = "\nAttenzione: La lista di reti e' vuota";
+	private static final String WARNING_ELEMENTO_INTERNO_FLUSSO_NON_TROVATO = "\tUno dei due elementi non e' stato trovato! \n";
 	private static final String MESSAGGIO_SCELTA_ELEMENTO_2_FLUSSO = "\tElemento 2 -> ";
 	private static final String MESSAGGIO_SCELTA_ELEMENTO_1_FLUSSO = "\tElemento 1 -> ";
 	private static final String TRANSIZIONI = "\tTRANSIZIONI ";
 	private static final String POSTI = "\tPOSTI: ";
 	private static final String ELEMENTI_DELLA_TUA_RETE = "\tElementi della tua rete:";
 	private static final String DOMANDA_AGGIUNTA_ALTRI_FLUSSO = "\tVuoi aggiungere altri elementi di flusso? (S|N) -> ";
-	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non è corretto!";
+	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non e' corretto!";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_2 = "Elemento di flusso = (transizione -> posto)\n";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_1 = "Elemento di flusso = (posto -> transizione)";
 	private static final String AVVERTIMENTO_INIZIALE_FLUSSO = "ATTENZIONE: sono ammesse solo le seguenti combinazioni:";
