@@ -236,6 +236,11 @@ public class InterazioneUtente {
 		return nomi;
 	}
 
+	public static void controlloRete(int tipoMessaggio){
+		String[] possibiliPresentazioni = {WARNING_RETE_NON_CONNESSA,WARNING_RETE_NON_CORRETTA,WARNING_RETE_GIA_PRESENTE,MESSAGGIO_RETE_CORRETTA_CONNESSA };
+		System.out.println(possibiliPresentazioni[tipoMessaggio]);
+	}
+
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
 		assert daCreare != null && listaReti != null;  //precondizione
 		System.out.println(MESSAGGIO_CREAZIONE_RETE);
@@ -357,22 +362,7 @@ public class InterazioneUtente {
 		}
 	}
 
-	private static boolean controlloRete(Rete daControllare, GestoreReti listaReti){
-		assert daControllare != null && listaReti != null; //precondizioni
-		boolean connessa = daControllare.controlloConnessione();
-		boolean corretta = daControllare.controlloCorrettezza();
-		if(!connessa) System.out.println(WARNING_RETE_NON_CONNESSA);
-		if(!corretta) System.out.println(WARNING_RETE_NON_CORRETTA);
-		if(corretta && connessa) System.out.println(MESSAGGIO_RETE_CORRETTA_CONNESSA);
-		for(String nomeRete : listaReti.getKeyLIst()){
-			if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(daControllare)) {
-				System.out.println(WARNING_RETE_GIA_PRESENTE);
-				return BOOL_CONST_FALSE;
-			}
-			
-		}
-		return (connessa && corretta);
-	}
+	
 	
 	public void estensioneReteInPN(GestoreReti listaRetiPetri, GestoreReti listaReti) {
 	    assert listaReti != null; //precondizione

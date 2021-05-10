@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progettoV2.utils;
 
+import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
@@ -77,4 +78,39 @@ public class InterazioneUtenteModel {
             ex2.printStackTrace();
         }
 	}
+
+    private static void creazioneRete(Rete daCreare){
+        assert daCreare != null;
+        aggiuntaPosto(daCreare);
+        aggiuntaTransizione(daCreare);
+        aggiuntaElemFlusso(daCreare);
+    }
+
+    private static boolean controlloRete(Rete daControllare, GestoreReti listaReti){
+        assert daControllare != null && listaReti != null; //precondizioni
+		boolean connessa = daControllare.controlloConnessione();
+        if(!connessa) InterazioneUtente.controlloRete(0);
+		boolean corretta = daControllare.controlloCorrettezza();
+        if(!corretta) InterazioneUtente.controlloRete(1);
+        if(corretta && connessa) InterazioneUtente.controlloRete(2);
+        boolean duplicata = false;
+        for(String nomeRete : listaReti.getKeyLIst()){
+			if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(daControllare)) {
+				duplicata = true;
+			}			
+		}
+        if(duplicata)InterazioneUtente.controlloRete(3);
+        if(corretta && connessa && !duplicata) return true;
+        else return false;
+    }
+
+    private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti){
+
+    }
+
+    public static void aggiuntaRete(Rete daCreare, GestoreReti listaReti){
+        creazioneRete(daCreare);
+        boolean possibileSalvataggio = controlloRete(daCreare,listaReti);
+        
+    }
 }
