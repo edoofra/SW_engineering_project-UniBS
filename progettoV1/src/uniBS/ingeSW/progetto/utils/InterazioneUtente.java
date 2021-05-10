@@ -312,7 +312,7 @@ public class InterazioneUtente {
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
 		assert lista != null; //precondizione
-		if(lista.getListaRetiConfiguratore().isEmpty())
+		if(lista.getListaRetiConfiguratore().size() == 0)
 			System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
 			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);

@@ -29,12 +29,12 @@ public class Main {
     public static GestoreReti recuperoOCreazione(){
         GestoreReti retiSalvate;
         File fileSalvataggio = new File("ListaRetiConfiguratore.json");
-        if(fileSalvataggio.exists()) {
+        if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
             String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile();
             retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
             return retiSalvate;
         }
-        return new GestoreReti();
+        else return new GestoreReti();
     }
 
     
