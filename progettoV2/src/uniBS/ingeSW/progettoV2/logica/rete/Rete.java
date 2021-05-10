@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
+import uniBS.ingeSW.progettoV2.utils.eccezioni.ErroreFormatoException;
+import uniBS.ingeSW.progettoV2.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
 /**
@@ -51,13 +53,16 @@ public class Rete {
 	 * posto corrispondente.
 	 * @param daCercare il nome del posto da cercare.
 	 * @return il posto cercato o <em> NULL </em> se non è stato trovato.
+	 * @throws NonPresenteException
 	 */
-	public Posto getPostoByName(String daCercare) {
+	public Posto getPostoByName(String daCercare) throws NonPresenteException {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
-		return Stream.of(getInsiemePosti().toArray(new Posto[0]))
-					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
-					.findFirst()
-					.orElse(null);
+		var trovato = Stream.of(getInsiemePosti().toArray(new Posto[0]))
+						.filter(n -> n.getName().equalsIgnoreCase(daCercare))
+						.findFirst()
+						.orElse(null);
+		if(trovato == null) throw new NonPresenteException();				
+		return trovato;
 	}
 
 	/**
@@ -65,13 +70,16 @@ public class Rete {
 	 * transizione corrispondente.
 	 * @param daCercare il nome della transizione da cercare.
 	 * @return la transizione cercata o <em> NULL </em> se non è stato trovata.
+	 * @throws NonPresenteException
 	 */
-	public Transizione getTransByName(String daCercare) {
+	public Transizione getTransByName(String daCercare) throws NonPresenteException {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
-		return Stream.of(getInsiemeTransizioni().toArray(new Transizione[0]))
+		var trovato = Stream.of(getInsiemeTransizioni().toArray(new Transizione[0]))
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
+		if(trovato == null) throw new NonPresenteException();
+		return trovato;
 	}
 
 	/**************************************************************************************************************************/
@@ -90,8 +98,8 @@ public class Rete {
 
 		if (!giaPresente) {
 			int size = insiemeTransizioni.size();
-		insiemeTransizioni.add(toAdd);
-		assert size < insiemeTransizioni.size() : "error add"; //postcondizione
+			insiemeTransizioni.add(toAdd);
+			assert size < insiemeTransizioni.size() : "error add"; //postcondizione
 		}
 		else throw new giaPresenteException();
 	}
@@ -102,16 +110,17 @@ public class Rete {
 	 * @param toAdd Posto da aggiungere.
 	 * @return boolean che indica se l'aggiunta è andata a buon fine.
 	 */
-	public boolean addPosto(Posto toAdd) {
+	public void addPosto(Posto toAdd) throws giaPresenteException{
 	    assert toAdd != null : "Posto da aggiungere = null"; //precondizione
 		boolean giaPresente = Stream.of(insiemePosti.toArray(new Posto[0]))
 								.anyMatch(n -> n.getName().equalsIgnoreCase(toAdd.getName()));
 
-		if (giaPresente) return BOOL_CONST_FALSE;
-		int size = insiemePosti.size();
-		insiemePosti.add(toAdd);
-		assert size < insiemePosti.size() : "error add"; //postcondizione
-		return BOOL_CONST_TRUE;
+		if (!giaPresente) {
+			int size = insiemePosti.size();
+			insiemePosti.add(toAdd);
+			assert size < insiemePosti.size() : "error add"; //postcondizione
+		}
+		else throw new giaPresenteException();
 	}
 
 	
@@ -121,18 +130,20 @@ public class Rete {
 	 * Un elemento di flusso non può essere aggiunto se è duplicato o se non è corretto.
 	 * @param toAdd ElemFlusso da aggiungere.
 	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 * @throws giaPresenteException
+	 * @throws ErroreFormatoException
 	 */
-	public boolean addElemFlusso(ElemFlusso elem) {
+	public void addElemFlusso(ElemFlusso elem) throws giaPresenteException, ErroreFormatoException {
 	    assert elem != null : "elem = null"; //precondizione
 		if (!elem.areSameType()) {
 			if(!duplicatedElemFlusso(elem)){
-			    	int size = relazioneFlusso.size();
+			    int size = relazioneFlusso.size();
 				relazioneFlusso.add(elem);
 				assert size < relazioneFlusso.size() : "error in add"; //postcondizione
-				return BOOL_CONST_TRUE;
 			}
+			else throw new giaPresenteException();
 		} 
-		return BOOL_CONST_FALSE;
+		else throw new ErroreFormatoException();
 	}
 
 	/**************************************************************************************************************************/

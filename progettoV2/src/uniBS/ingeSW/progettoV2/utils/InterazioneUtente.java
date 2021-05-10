@@ -208,7 +208,7 @@ public class InterazioneUtente {
 	}
 
 	public static String aggiuntaElemento(int tipoAggiunta){
-		String[] possibiliPresentazioni = {AVVERTIMENTO_INIZIALE_POSTO, AVVERTIMENTO_INIZIALE_TRANSIZIONE, AVVERTIMENTO_INIZIALE_FLUSSO };
+		String[] possibiliPresentazioni = {AVVERTIMENTO_INIZIALE_POSTO, AVVERTIMENTO_INIZIALE_TRANSIZIONE};
 		System.out.println(possibiliPresentazioni[tipoAggiunta]);
 		String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
 		return nome;
@@ -218,6 +218,22 @@ public class InterazioneUtente {
 		String[] possibiliPresentazioni = {DOMANDA_AGGIUNTA_ALTRI_POSTI, MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI, DOMANDA_AGGIUNTA_ALTRI_FLUSSO};
 		boolean risposta = yesOrNo(possibiliPresentazioni[tipoAggiunta]);
 		return risposta;
+	}
+
+	public static String[] aggiuntaFlusso(Rete rete){
+		assert rete != null; //precondizione
+		RetePresentation reteView = new RetePresentation(rete);
+		System.out.println(MESSAGGIO_INIZIALE_FLUSSO);
+		System.out.println(AVVERTIMENTO_INIZIALE_FLUSSO);
+		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_1);
+		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_2);
+		System.out.println(ELEMENTI_DELLA_TUA_RETE); 
+		System.out.println(POSTI + reteView.getStringList(rete.getInsiemePosti().toArray(new Posto[0])));
+		System.out.println(TRANSIZIONI + reteView.getStringList(rete.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
+		String nome1 = leggiStringaNonVuota(MESSAGGIO_SCELTA_ELEMENTO_1_FLUSSO);
+		String nome2 = leggiStringaNonVuota(MESSAGGIO_SCELTA_ELEMENTO_2_FLUSSO);
+		String[] nomi = {nome1, nome2};
+		return nomi;
 	}
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
@@ -296,10 +312,9 @@ public class InterazioneUtente {
 		}
 	}
 
-
     private static ElemFlusso creaElementoFlusso(Rete rete){
     	assert rete != null; //precondizione
-    		RetePresentation reteView = new RetePresentation(rete);
+    	RetePresentation reteView = new RetePresentation(rete);
 		ElementoSemplice elem1 = null;
 		ElementoSemplice elem2 = null;
 		System.out.println(ELEMENTI_DELLA_TUA_RETE); 
