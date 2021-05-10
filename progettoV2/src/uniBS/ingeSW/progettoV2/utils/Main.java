@@ -2,7 +2,6 @@ package uniBS.ingeSW.progettoV2.utils;
 
 import java.io.File;
 
-import uniBS.ingeSW.progettoV2.logica.*;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 

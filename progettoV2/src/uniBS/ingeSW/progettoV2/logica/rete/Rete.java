@@ -162,10 +162,11 @@ public class Rete {
 		boolean uguali = BOOL_CONST_FALSE;
 
 		for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
+			ciclo2:
 			for (ElemFlusso elemRete2 : toCheck.getRelazioneFlusso()) {
-				if (elemRete1.equals(elemRete2)) {
+				if (elemRete1.controlloUguali(elemRete2)) {
 					uguali = BOOL_CONST_TRUE;
-					break;
+					break ciclo2;
 					//se ne trovo uno uguale esco dal ciclo interno 
 					//con valore BOOL_CONST_TRUE
 				}

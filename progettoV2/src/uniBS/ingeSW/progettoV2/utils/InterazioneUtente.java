@@ -266,7 +266,7 @@ public class InterazioneUtente {
 			String daVisualizzare = leggiStringaNonVuota("\n-> ");
 			for(String elem : lista.getKeyLIst()){
 				if (elem.equals(daVisualizzare)){
-					System.out.println(lista.getListaRetiConfiguratore().get(daVisualizzare));
+					System.out.println(new RetePresentation(lista.getListaRetiConfiguratore().get(daVisualizzare)));
 					trovato = BOOL_CONST_TRUE;
 				} 
 			}
