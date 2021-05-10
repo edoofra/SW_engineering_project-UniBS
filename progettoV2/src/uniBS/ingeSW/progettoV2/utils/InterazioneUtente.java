@@ -241,106 +241,17 @@ public class InterazioneUtente {
 		System.out.println(possibiliPresentazioni[tipoMessaggio]);
 	}
 
-	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
-		assert daCreare != null && listaReti != null;  //precondizione
+	public static String salvataggioRete(){
+		boolean risposta = yesOrNo(DOMANDA_SALVATAGGIO_RETE);
+		if(risposta){
+			return leggiStringaNonVuota(DOMANDA_NOME_RETE);
+		}
+		else return null;
+	}
+
+	public static void aggiuntaRete(){
 		System.out.println(MESSAGGIO_CREAZIONE_RETE);
-		aggiuntaPosto(daCreare);
-		aggiuntaTransizione(daCreare);
-		aggiuntaElementoFlusso(daCreare);
-		System.out.println("");
-
-		if(controlloRete(daCreare, listaReti)){
-			boolean risposta = yesOrNo(DOMANDA_SALVATAGGIO_RETE);
-			if(risposta) {
-				boolean rifare = BOOL_CONST_FALSE;
-				do{
-					String nome = leggiStringaNonVuota(DOMANDA_NOME_RETE);
-					boolean aggiunta = listaReti.addRete(nome, daCreare);
-					if(!aggiunta){
-						System.out.println(WARNING_NOME_GIA_USATO);
-						rifare = yesOrNo(DOMANDA_CAMBIO_NOME); 
-					}
-					else rifare = BOOL_CONST_FALSE;
-					
-				}while(rifare);
-				String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
-				salvataggioFile.salvaGestoreReti(listaRetiJSON);
-			}
-		}
-		//postcondizione se file exist EDO
 	}
-
-	private static void aggiuntaPosto(Rete daCreare) {
-		assert daCreare != null; //precondizione
-		boolean risposta = BOOL_CONST_TRUE;
-		System.out.println(AVVERTIMENTO_INIZIALE_POSTO);
-		while (risposta != BOOL_CONST_FALSE) {
-
-			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
-			Posto nuovo = new Posto(nome);
-			boolean aggiuntoCorrettamente = daCreare.addPosto(nuovo);
-			if(!aggiuntoCorrettamente) System.out.println(WARNING_POSTO_GIA_AGGIUNTO);
-			risposta = yesOrNo(DOMANDA_AGGIUNTA_ALTRI_POSTI);
-		}
-	}
-
-	private static void aggiuntaTransizione(Rete daCreare) {
-		assert daCreare != null; //precondizione
-		boolean risposta = BOOL_CONST_TRUE;
-		System.out.println(AVVERTIMENTO_INIZIALE_TRANSIZIONE);
-		while (risposta != BOOL_CONST_FALSE) {
-
-			String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_TRANSIZIONE);
-			Transizione nuovo = new Transizione(nome);
-			boolean aggiuntaCorrettamente = daCreare.addTrans(nuovo);
-			if(!aggiuntaCorrettamente) System.out.println(WARNING_TRANSIZIONE_GIA_PRESENTE);
-			risposta = yesOrNo(MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI);
-		}
-	}
-
-	private static void aggiuntaElementoFlusso(Rete daCreare) {
-		assert daCreare != null; //precondizione
-		boolean risposta = BOOL_CONST_TRUE;
-		System.out.println(MESSAGGIO_INIZIALE_FLUSSO);
-		System.out.println(AVVERTIMENTO_INIZIALE_FLUSSO);
-		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_1);
-		System.out.println(COMBINAZIONE_AMMESSA_FLUSSO_2);
-		while (risposta != BOOL_CONST_FALSE) {
-			ElemFlusso nuovo = creaElementoFlusso(daCreare);
-			if(nuovo!=null) {
-				boolean corretto = daCreare.addElemFlusso(nuovo);
-				if(!corretto) System.out.println(WARNING_ELEMENTO_SCORRETTO);
-			}	
-			risposta = yesOrNo(DOMANDA_AGGIUNTA_ALTRI_FLUSSO);
-			System.out.println("");
-			
-		}
-	}
-
-    private static ElemFlusso creaElementoFlusso(Rete rete){
-    	assert rete != null; //precondizione
-    	RetePresentation reteView = new RetePresentation(rete);
-		ElementoSemplice elem1 = null;
-		ElementoSemplice elem2 = null;
-		System.out.println(ELEMENTI_DELLA_TUA_RETE); 
-		System.out.println(POSTI + reteView.getStringList(rete.getInsiemePosti().toArray(new Posto[0])));
-		System.out.println(TRANSIZIONI + reteView.getStringList(rete.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
-		String nome1 = leggiStringaNonVuota(MESSAGGIO_SCELTA_ELEMENTO_1_FLUSSO);
-		String nome2 = leggiStringaNonVuota(MESSAGGIO_SCELTA_ELEMENTO_2_FLUSSO);
-
-		if(nome1.charAt(0)=='P') elem1 = rete.getPostoByName(nome1);
-		else elem1 = rete.getTransByName(nome1);
-		
-		if(nome2.charAt(0)=='P') elem2 = rete.getPostoByName(nome2);
-		else elem2 = rete.getTransByName(nome2);
-
-		if(elem1 == null || elem2 == null){
-			System.out.println(WARNING_ELEMENTO_INTERNO_FLUSSO_NON_TROVATO);
-			return null;
-		} 
-		return new ElemFlusso(elem1, elem2);
-		
-	}	
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
 		assert lista != null; //precondizione

@@ -3,6 +3,7 @@ package uniBS.ingeSW.progettoV2.logica.gestioneReti;
 import java.util.HashMap;
 
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
+import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
 /**
  * Classe per la gestione delle reti da salvare in modo persistente.
@@ -38,20 +39,19 @@ public class GestoreReti {
 	 * @param name nome della nuova rete da aggiungere
 	 * @param toAdd rete da aggungere 
 	 * @return boolean che indica se l'aggiunta è andata a buon fine o meno.
+	 * @throws giaPresenteException
 	 */
-	public boolean addRete(String name, Rete toAdd) {
+	public void addRete(String name, Rete toAdd) throws giaPresenteException {
 		assert name != null : "name = null"; //precondizione
 		assert toAdd !=null : "toAdd = null"; //precondizione
 		int beforeAdd = listaRetiConfiguratore.size();
 
-		if (listaRetiConfiguratore.containsKey(name)) return false;			
+		if (listaRetiConfiguratore.containsKey(name)) throw new giaPresenteException();			
 		else {
 			listaRetiConfiguratore.put(name, toAdd);
 			int nextAdd = listaRetiConfiguratore.size();
 			assert nextAdd == beforeAdd +1 : "size error"; //postcondizione
-			return true;
 		}
-
 	}
 
 	/**

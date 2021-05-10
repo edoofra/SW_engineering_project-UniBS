@@ -105,12 +105,22 @@ public class InterazioneUtenteModel {
     }
 
     private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti){
-
+        String nomeRete = InterazioneUtente.salvataggioRete();
+        if(nomeRete != null){
+            try {
+                listaReti.addRete(nomeRete, daSalvare);
+                String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
+				salvataggioFile.salvaGestoreReti(listaRetiJSON);
+            } catch (giaPresenteException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void aggiuntaRete(Rete daCreare, GestoreReti listaReti){
+        InterazioneUtente.aggiuntaRete();
         creazioneRete(daCreare);
         boolean possibileSalvataggio = controlloRete(daCreare,listaReti);
-        
+        if(possibileSalvataggio) salvataggioRete(daCreare,listaReti);        
     }
 }
