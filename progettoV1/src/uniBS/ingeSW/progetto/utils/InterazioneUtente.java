@@ -320,7 +320,7 @@ public class InterazioneUtente {
 			System.out.println("\t" + lista.toString());
 			String daVisualizzare = leggiStringaNonVuota("\n-> ");
 			for(String elem : lista.getKeyLIst()){
-				if (elem.equalsIgnoreCase(daVisualizzare)){
+				if (elem.equals(daVisualizzare)){
 					System.out.println(lista.getListaRetiConfiguratore().get(daVisualizzare));
 					trovato = BOOL_CONST_TRUE;
 				} 
