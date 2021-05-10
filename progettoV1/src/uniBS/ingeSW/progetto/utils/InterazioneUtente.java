@@ -19,7 +19,7 @@ public class InterazioneUtente {
 
 	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione e' gia' stata aggiunta";
 	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto e' gia' stato aggiunto";
-	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' gia' presente!";
+	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' gia' presente, non sono ammessi duplicati!";
 	private static final boolean BOOL_CONST_FALSE = false;
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
