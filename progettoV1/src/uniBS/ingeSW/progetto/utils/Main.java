@@ -52,6 +52,7 @@ public class Main {
                         break;
 
                 case 0: fine=true;
+                        InterazioneUtente.salutoFinale();
                         break;
 
                 default : System.out.println("Attenzione selezione non valida");

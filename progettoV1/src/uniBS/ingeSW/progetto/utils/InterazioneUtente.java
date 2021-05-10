@@ -35,7 +35,7 @@ public class InterazioneUtente {
 	private static final String POSTI = "\tPOSTI: ";
 	private static final String ELEMENTI_DELLA_TUA_RETE = "\tElementi della tua rete:";
 	private static final String DOMANDA_AGGIUNTA_ALTRI_FLUSSO = "\tVuoi aggiungere altri elementi di flusso? (S|N) -> ";
-	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non e' corretto!";
+	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non e' corretto o e' duplicato!";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_2 = "Elemento di flusso = (transizione -> posto)\n";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_1 = "Elemento di flusso = (posto -> transizione)";
 	private static final String AVVERTIMENTO_INIZIALE_FLUSSO = "ATTENZIONE: sono ammesse solo le seguenti combinazioni:";
@@ -49,13 +49,14 @@ public class InterazioneUtente {
 	private static final String DOMANDA_CAMBIO_NOME = "vuoi cambiare nome? (S|N) -> ";
 	private static final String WARNING_NOME_GIA_USATO = "Attenzione: esiste gia' una rete con questo nome.";
 	private static final String DOMANDA_NOME_RETE = "Che nome vuoi dare a questa rete? -> ";
-	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? -> ";
+	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? (S|N) -> ";
 	private static final String MESSAGGIO_CREAZIONE_RETE = "\nHAI DECISO DI CREARE UNA RETE!\n";
 	private final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
 	private final static String ERRORE_MINIMO = "Attenzione: e' richiesto un valore maggiore o uguale a ";
 	private final static String ERRORE_STRINGA_VUOTA = "Attenzione: non hai inserito alcun carattere";
 	private final static String ERRORE_MASSIMO = "Attenzione: e' richiesto un valore minore o uguale a ";
 	private final static String MESSAGGIO_AMMISSIBILI = "Attenzione: i caratteri ammissibili sono: ";
+	private final static String MESSAGGIO_SALUTO_FINALE = "Il programma è terminato! Alla prossima!";
 	private final static char RISPOSTA_SI = 'S';
 	private final static char RISPOSTA_NO = 'N';
 
@@ -207,6 +208,10 @@ public class InterazioneUtente {
 			return BOOL_CONST_TRUE;
 		else
 			return BOOL_CONST_FALSE;
+	}
+
+	public static void salutoFinale(){
+		System.out.println(MESSAGGIO_SALUTO_FINALE);
 	}
 
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
