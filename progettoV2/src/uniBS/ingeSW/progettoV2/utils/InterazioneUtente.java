@@ -210,7 +210,8 @@ public class InterazioneUtente {
 	public static String aggiuntaElemento(int tipoAggiunta){
 		String[] possibiliPresentazioni = {AVVERTIMENTO_INIZIALE_POSTO, AVVERTIMENTO_INIZIALE_TRANSIZIONE};
 		System.out.println(possibiliPresentazioni[tipoAggiunta]);
-		String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
+		String[] possibiliDomande = {MESSAGGIO_SCELTA_NOME_POSTO,MESSAGGIO_SCELTA_NOME_TRANSIZIONE };
+		String nome = leggiStringaNonVuota(possibiliDomande[tipoAggiunta]);
 		return nome;
 	}
 
