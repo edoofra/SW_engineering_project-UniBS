@@ -207,6 +207,19 @@ public class InterazioneUtente {
 			return BOOL_CONST_FALSE;
 	}
 
+	public static String aggiuntaElemento(int tipoAggiunta){
+		String[] possibiliPresentazioni = {AVVERTIMENTO_INIZIALE_POSTO, AVVERTIMENTO_INIZIALE_TRANSIZIONE, AVVERTIMENTO_INIZIALE_FLUSSO };
+		System.out.println(possibiliPresentazioni[tipoAggiunta]);
+		String nome = leggiStringaNonVuota(MESSAGGIO_SCELTA_NOME_POSTO);
+		return nome;
+	}
+
+	public static boolean continuareAggiuntaYesOrNo(int tipoAggiunta){
+		String[] possibiliPresentazioni = {DOMANDA_AGGIUNTA_ALTRI_POSTI, MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI, DOMANDA_AGGIUNTA_ALTRI_FLUSSO};
+		boolean risposta = yesOrNo(possibiliPresentazioni[tipoAggiunta]);
+		return risposta;
+	}
+
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
 		assert daCreare != null && listaReti != null;  //precondizione
 		System.out.println(MESSAGGIO_CREAZIONE_RETE);

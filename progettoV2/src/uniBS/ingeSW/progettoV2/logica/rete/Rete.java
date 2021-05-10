@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Stream;
 
+import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
+
 /**
  * Classe per l'implementazione di una rete.
  * Una rete è composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di ekementi di flusso </em> </li> </ul>
@@ -81,16 +83,17 @@ public class Rete {
 	 * @param toAdd Transizione da aggiungere.
 	 * @return boolean che indica se l'aggiunta è andata a buon fine.
 	 */
-	public boolean addTrans(Transizione toAdd) {
+	public void addTrans(Transizione toAdd) throws giaPresenteException {
 	    assert toAdd != null : "Transizione da aggiungere = null"; //precondizione
 		boolean giaPresente = Stream.of(insiemeTransizioni.toArray(new Transizione[0]))
 								.anyMatch(n -> n.getName().equalsIgnoreCase(toAdd.getName()));
 
-		if (giaPresente) return BOOL_CONST_FALSE;
-		int size = insiemeTransizioni.size();
+		if (!giaPresente) {
+			int size = insiemeTransizioni.size();
 		insiemeTransizioni.add(toAdd);
 		assert size < insiemeTransizioni.size() : "error add"; //postcondizione
-		return BOOL_CONST_TRUE;
+		}
+		else throw new giaPresenteException();
 	}
 
 	/**
