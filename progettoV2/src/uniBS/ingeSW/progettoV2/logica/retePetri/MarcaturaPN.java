@@ -38,6 +38,10 @@ public class MarcaturaPN {
 		
 		//per snellirlo devo assumere che la lista sia ordinata
 		//ma devo prima ordinarla da un'altra parte 
+		
+		//per ordinare la hashmap in base alle chiavi: Object[] keys = map.keySet().toArray(); mi dà l'array delle chiavi
+		//Arrays.sort(keys); mette in ordine l'array delle chiavi
+		//poi itero la hashmap per ogni chiave e recupero il valore dei posti
 		Posto[] arrayPosti1 = this.getMarcatura().keySet().toArray(new Posto[0]);
 		Posto[] arrayPosti2 = toCompare.getMarcatura().keySet().toArray(new Posto[0]);
 
