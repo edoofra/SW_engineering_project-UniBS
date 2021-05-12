@@ -153,7 +153,7 @@ public class Rete {
 				if (elemRete1.controlloUguali(elemRete2)) {
 					uguali = BOOL_CONST_TRUE;
 					break ciclo2;
-					//se ne trovo uno uguale esco dal ciclo interno 
+					
 					//con valore BOOL_CONST_TRUE
 				}
 				uguali = BOOL_CONST_FALSE;
