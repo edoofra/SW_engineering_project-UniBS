@@ -19,7 +19,7 @@ public class InterazioneUtente {
 
 	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione e' gia' stata aggiunta";
 	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto e' gia' stato aggiunto";
-	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' gia' presente!";
+	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' gia' presente, non sono ammessi duplicati!";
 	private static final boolean BOOL_CONST_FALSE = false;
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
@@ -35,7 +35,7 @@ public class InterazioneUtente {
 	private static final String POSTI = "\tPOSTI: ";
 	private static final String ELEMENTI_DELLA_TUA_RETE = "\tElementi della tua rete:";
 	private static final String DOMANDA_AGGIUNTA_ALTRI_FLUSSO = "\tVuoi aggiungere altri elementi di flusso? (S|N) -> ";
-	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non e' corretto!";
+	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non e' corretto o e' duplicato!";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_2 = "Elemento di flusso = (transizione -> posto)\n";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_1 = "Elemento di flusso = (posto -> transizione)";
 	private static final String AVVERTIMENTO_INIZIALE_FLUSSO = "ATTENZIONE: sono ammesse solo le seguenti combinazioni:";
@@ -49,13 +49,14 @@ public class InterazioneUtente {
 	private static final String DOMANDA_CAMBIO_NOME = "vuoi cambiare nome? (S|N) -> ";
 	private static final String WARNING_NOME_GIA_USATO = "Attenzione: esiste gia' una rete con questo nome.";
 	private static final String DOMANDA_NOME_RETE = "Che nome vuoi dare a questa rete? -> ";
-	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? -> ";
+	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? (S|N) -> ";
 	private static final String MESSAGGIO_CREAZIONE_RETE = "\nHAI DECISO DI CREARE UNA RETE!\n";
 	private final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
 	private final static String ERRORE_MINIMO = "Attenzione: e' richiesto un valore maggiore o uguale a ";
 	private final static String ERRORE_STRINGA_VUOTA = "Attenzione: non hai inserito alcun carattere";
 	private final static String ERRORE_MASSIMO = "Attenzione: e' richiesto un valore minore o uguale a ";
 	private final static String MESSAGGIO_AMMISSIBILI = "Attenzione: i caratteri ammissibili sono: ";
+	private final static String MESSAGGIO_SALUTO_FINALE = "Il programma è terminato! Alla prossima!";
 	private final static char RISPOSTA_SI = 'S';
 	private final static char RISPOSTA_NO = 'N';
 
@@ -209,6 +210,10 @@ public class InterazioneUtente {
 			return BOOL_CONST_FALSE;
 	}
 
+	public static void salutoFinale(){
+		System.out.println(MESSAGGIO_SALUTO_FINALE);
+	}
+
 	public static void creazioneRete(Rete daCreare, GestoreReti listaReti) {
 		assert daCreare != null && listaReti != null;  //precondizione
 		System.out.println(MESSAGGIO_CREAZIONE_RETE);
@@ -312,7 +317,7 @@ public class InterazioneUtente {
 
 	public static void visualizzaReteDaGestore(GestoreReti lista){
 		assert lista != null; //precondizione
-		if(lista.getListaRetiConfiguratore().isEmpty())
+		if(lista.getListaRetiConfiguratore().size() == 0)
 			System.out.println(WARNING_LISTA_RETI_VUOTA);
 		else {
 			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
