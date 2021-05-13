@@ -123,4 +123,19 @@ public class InterazioneUtenteModel {
         boolean possibileSalvataggio = controlloRete(daCreare,listaReti);
         if(possibileSalvataggio) salvataggioRete(daCreare,listaReti);        
     }
+
+    public static void visualizzaRetiDaGestore(GestoreReti listaReti){
+        assert listaReti != null; //precondizione
+        if(listaReti.getListaRetiConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        else{
+            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+            for(String elem : listaReti.getKeyLIst()){
+				if (elem.equals(nomeReteDaVisualizzare)){
+                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
+                }
+            }    
+        }
+    }
 }

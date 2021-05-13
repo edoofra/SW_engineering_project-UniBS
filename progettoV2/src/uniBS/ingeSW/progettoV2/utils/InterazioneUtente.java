@@ -254,7 +254,27 @@ public class InterazioneUtente {
 		System.out.println(MESSAGGIO_CREAZIONE_RETE);
 	}
 
-	public static void visualizzaReteDaGestore(GestoreReti lista){
+	public static void messaggioErroreListaRetiDaVisualizzareVuota(){
+		System.out.println(WARNING_LISTA_RETI_VUOTA);
+	}
+
+	public static String getNomeReteDaVisualizzare(GestoreReti listaReti){
+		System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
+		stampaListaRetiGestore(listaReti);
+		String daVisualizzare = leggiStringaNonVuota("\n-> ");
+		return daVisualizzare;
+	}
+
+	public static void stampaListaRetiGestore(GestoreReti listaReti){
+		GestoreRetiPresentation listaView = new GestoreRetiPresentation(listaReti);
+		System.out.println("\t" + listaView.toString());
+	}
+
+	public static void stampaReteSceltaPerVisualizzazione(Rete daVisualizzare){
+		System.out.println(new RetePresentation(daVisualizzare));
+	}
+
+    /*	public static void visualizzaReteDaGestore(GestoreReti lista){
 		assert lista != null; //precondizione
 		if(lista.getListaRetiConfiguratore().isEmpty())
 			System.out.println(WARNING_LISTA_RETI_VUOTA);
@@ -272,7 +292,7 @@ public class InterazioneUtente {
 			}
 			if(!trovato) System.out.println(WARNING_RETE_NON_ESISTE);			
 		}
-	}
+	} */
 
 	
 	

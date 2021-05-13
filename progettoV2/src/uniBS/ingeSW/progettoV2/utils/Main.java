@@ -48,7 +48,8 @@ public class Main {
                 case 1: InterazioneUtenteModel.aggiuntaRete(new Rete(), retiSalvate);
                         break;
                         
-                case 2: InterazioneUtente.visualizzaReteDaGestore(retiSalvate);
+                case 2: //InterazioneUtente.visualizzaReteDaGestore(retiSalvate);
+                        InterazioneUtenteModel.visualizzaRetiDaGestore(retiSalvate);
                         break;
 
                 case 0: fine=true;
