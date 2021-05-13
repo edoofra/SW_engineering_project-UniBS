@@ -6,6 +6,7 @@ public class RetePetri extends Rete {
     
     private MarcaturaPN marcatura;
     private ListaPesiFlussoPN listaPesi;
+	//in caso aggiungere variabile che tiene in memoria la rete da cui deriva
     
     public RetePetri(Rete daUsare) {
 		this.insiemePosti = daUsare.getInsiemePosti();
@@ -25,12 +26,9 @@ public class RetePetri extends Rete {
 
 	public boolean isEqual(RetePetri toCompare){
 		if(super.isEqual(toCompare)){
-			if(this.getMarcatura().isEqual(toCompare.getMarcatura())){
+			if(this.getMarcatura().isEqual(toCompare.getMarcatura()) && this.getListaPesi().isEqual(toCompare.getListaPesi())){
 				return true;
-				//da completare con controllo listaPesi
-			}
-			
-			
+			}			
 		}
 		return false;
 	}
