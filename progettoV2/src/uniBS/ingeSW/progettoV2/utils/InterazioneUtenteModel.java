@@ -65,7 +65,7 @@ public class InterazioneUtenteModel {
 
                 daCreare.addElemFlusso(new ElemFlusso(elem1,elem2));
 
-                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(1);
+                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(2);
             }
         }
         catch (giaPresenteException ex){
@@ -100,8 +100,8 @@ public class InterazioneUtenteModel {
 			}			
 		}
         if(duplicata)InterazioneUtente.controlloRete(3);
-        if(corretta && connessa && !duplicata) return true;
-        else return false;
+        if(!corretta || !connessa || duplicata) return false;
+        else return true;
     }
 
     private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti){
