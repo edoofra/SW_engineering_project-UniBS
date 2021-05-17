@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.*;
 import uniBS.ingeSW.progettoV2.logica.rete.*;
+import uniBS.ingeSW.progettoV2.logica.retePetri.MarcaturaPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV2.view.*;
 
@@ -306,6 +307,22 @@ public class InterazioneUtente {
 		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
+	public static void printListaMarcature(MarcaturaPN marcatura){
+		MarcaturaView view = new MarcaturaView(marcatura);
+		System.out.println(view.toString());
+	}
+
+	public static String leggiElementoDaCambiare(int tipoElemento){
+		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:"};
+		String nomePosto = leggiStringaNonVuota(possibiliDomande[tipoElemento]);
+		return nomePosto;
+	}
+
+	public static int leggiNuovoValoreDaInserirePerCambiamentoDati(int tipoElemento){
+		int[] possibiliMinimi = {0,1};
+		int nuovoValore = leggiInteroConMinimo("scegli un nuovo valore: \n->", possibiliMinimi[tipoElemento]);
+		return nuovoValore;
+	}
 	
 }
 

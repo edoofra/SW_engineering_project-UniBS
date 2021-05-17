@@ -147,16 +147,18 @@ public class InterazioneUtenteModel {
         String nomeReteDaEstendere = InterazioneUtente.estendiReteView(listaReti);
         Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
         RetePetri retePN = new RetePetri(reteScelta);
+        cambiaMarcatura(retePN);
+        //cambiaPesi
     }
 
     private static void cambiaMarcatura(RetePetri retePN){
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(0);
         if(risposta){
             while(risposta != false){
-                //chiamare metodo che printa la lista delle marcature 
-                //String nome = INterwzioneUtente.leggiNomeMarcaturaDaCambiare(retePN);
-                //int nuovoValore = InterazioneUtente.leggiNuovoValore();
-                //retePn.getMarcatura.impostaMarcatura(nome, nuovoValore);
+                InterazioneUtente.printListaMarcature(retePN.getMarcatura()); 
+                String nome = InterazioneUtente.leggiElementoDaCambiare(0);
+                int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
+                retePN.getMarcatura().impostaMarcatura(nome, nuovoValore);
             }
         }
     }
