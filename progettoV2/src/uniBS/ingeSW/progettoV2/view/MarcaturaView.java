@@ -21,7 +21,6 @@ public class MarcaturaView {
         builder.delete(lenght-1, lenght);
         builder.append(" }");
         return builder.toString();
-
     }
 
 
