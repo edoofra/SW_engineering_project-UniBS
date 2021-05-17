@@ -6,6 +6,7 @@ import uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
+import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.ErroreFormatoException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
@@ -136,6 +137,27 @@ public class InterazioneUtenteModel {
                     InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
                 }
             }    
+        }
+    }
+
+    public static void estendiReteInPN(GestoreReti listaReti, GestoreReti listaPetriPN){
+        if(listaReti.getListaRetiConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        String nomeReteDaEstendere = InterazioneUtente.estendiReteView(listaReti);
+        Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
+        RetePetri retePN = new RetePetri(reteScelta);
+    }
+
+    private static void cambiaMarcatura(RetePetri retePN){
+        boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(0);
+        if(risposta){
+            while(risposta != false){
+                //chiamare metodo che printa la lista delle marcature 
+                //String nome = INterwzioneUtente.leggiNomeMarcaturaDaCambiare(retePN);
+                //int nuovoValore = InterazioneUtente.leggiNuovoValore();
+                //retePn.getMarcatura.impostaMarcatura(nome, nuovoValore);
+            }
         }
     }
 }

@@ -294,28 +294,16 @@ public class InterazioneUtente {
 		}
 	} */
 
-	
-	
-	public void estensioneReteInPN(GestoreReti listaRetiPetri, GestoreReti listaReti) {
-	    assert listaReti != null; //precondizione
-	    RetePetri reteEstesa = null;
-	    if (listaReti.getListaRetiConfiguratore().isEmpty())
-		System.out.println(WARNING_LISTA_RETI_VUOTA);
-	    else {
-		System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
-		boolean trovato = BOOL_CONST_FALSE;
-		System.out.println("\t" + listaReti.toString());
-		String daEstendere = leggiStringaNonVuota("\n-> ");
-		for(String elem : listaReti.getKeyLIst()){
-			if (elem.equalsIgnoreCase(daEstendere)){
-				reteEstesa = new RetePetri(listaReti.getListaRetiConfiguratore().get(daEstendere));
-				trovato = BOOL_CONST_TRUE;
-				//richiesta modifica
-				//richiesta salvataggio
-			} 
-		}
-		if(!trovato) System.out.println(WARNING_RETE_NON_ESISTE);
-	    } 
+	public static String estendiReteView(GestoreReti listaReti){
+		System.out.println("Scegli una delle seguenti reti da estendere in Rete di Petri:");
+		stampaListaRetiGestore(listaReti);
+		String nome = leggiStringaNonVuota("->");
+		return nome;
+	}
+
+	public static boolean domandaCambiamentoDatiRetePetri(int tipoDato){
+		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare qualche elemento di flusso?"};
+		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
 	

@@ -8,7 +8,7 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 public class Main {
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
-     "Visualizza le reti esistenti"};
+     "Visualizza le reti esistenti", "Estendi una rete di Petri"};
 
      private static final String TITOLO = 
   
@@ -22,12 +22,14 @@ public class Main {
                                                                             
     public static void main(String[] args) {  
         GestoreReti retiSalvate = recuperoOCreazione();
+        GestoreReti retiPNSalvate = null; // da cambiare
         System.out.println(TITOLO);
-        cicloSceltaMenu(retiSalvate);
+        cicloSceltaMenu(retiSalvate, retiPNSalvate);
     }
 
     public static GestoreReti recuperoOCreazione(){
         GestoreReti retiSalvate;
+        
         File fileSalvataggio = new File("ListaRetiConfiguratore.json");
         if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
             String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile();
@@ -38,7 +40,7 @@ public class Main {
     }
 
     
-    public static void cicloSceltaMenu(GestoreReti retiSalvate){
+    public static void cicloSceltaMenu(GestoreReti retiSalvate, GestoreReti retiPNSalvate){
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
         boolean fine = false;
         do{
@@ -51,6 +53,8 @@ public class Main {
                 case 2: //InterazioneUtente.visualizzaReteDaGestore(retiSalvate);
                         InterazioneUtenteModel.visualizzaRetiDaGestore(retiSalvate);
                         break;
+
+                case 3: InterazioneUtenteModel.estendiReteInPN(retiSalvate,retiPNSalvate);
 
                 case 0: fine=true;
                         break;
