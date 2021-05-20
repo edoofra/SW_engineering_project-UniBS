@@ -32,6 +32,7 @@ public class MarcaturaPN {
 			.filter(n -> n.getName().equalsIgnoreCase(nomePosto))
 			.findFirst()
 			.orElse(null);
+		//if null allora eccezione
 		if(postoDaCambiare != null) {
 			marcatura.replace(postoDaCambiare, nuovaMarcatura);
 			return true;		
