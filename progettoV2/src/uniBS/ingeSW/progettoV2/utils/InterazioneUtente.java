@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.*;
 import uniBS.ingeSW.progettoV2.logica.rete.*;
+import uniBS.ingeSW.progettoV2.logica.retePetri.ListaPesiFlussoPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.MarcaturaPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV2.view.*;
@@ -302,6 +303,11 @@ public class InterazioneUtente {
 		int[] possibiliMinimi = {0,1};
 		int nuovoValore = leggiInteroConMinimo("scegli un nuovo valore: \n->", possibiliMinimi[tipoElemento]);
 		return nuovoValore;
+	}
+
+	public static void printListaPesi(ListaPesiFlussoPN listaPesi){
+		ListaPesiPresentation view = new ListaPesiPresentation(listaPesi);
+		System.out.println(view.toString());
 	}
 	
 }

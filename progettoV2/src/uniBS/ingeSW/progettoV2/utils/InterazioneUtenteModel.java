@@ -148,7 +148,7 @@ public class InterazioneUtenteModel {
         Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
         RetePetri retePN = new RetePetri(reteScelta);
         cambiaMarcatura(retePN);
-        //cambiaPesi
+        cambiaPesi(retePN);
     }
 
     private static void cambiaMarcatura(RetePetri retePN){
@@ -159,6 +159,18 @@ public class InterazioneUtenteModel {
                 String nome = InterazioneUtente.leggiElementoDaCambiare(0);
                 int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
                 retePN.getMarcatura().impostaMarcatura(nome, nuovoValore);
+            }
+        }
+    }
+
+    private static void cambiaPesi(RetePetri retePN){
+        boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(1);
+        if(risposta){
+            while(risposta != false){
+                InterazioneUtente.printListaPesi(retePN.getListaPesi()); 
+                String nome = InterazioneUtente.leggiElementoDaCambiare(1);
+                int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
+                //cambiare flusso
             }
         }
     }
