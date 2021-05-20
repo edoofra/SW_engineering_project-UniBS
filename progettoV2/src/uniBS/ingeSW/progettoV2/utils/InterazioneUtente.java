@@ -288,7 +288,7 @@ public class InterazioneUtente {
 	}
 	
 	public static void printListaMarcature(MarcaturaPN marcatura){
-		MarcaturaView view = new MarcaturaView(marcatura);
+		MarcaturaPresentation view = new MarcaturaPresentation(marcatura);
 		System.out.println(view.toString());
 	}
 
