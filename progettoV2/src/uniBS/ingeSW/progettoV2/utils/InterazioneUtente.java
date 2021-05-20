@@ -275,26 +275,6 @@ public class InterazioneUtente {
 		System.out.println(new RetePresentation(daVisualizzare));
 	}
 
-    /*	public static void visualizzaReteDaGestore(GestoreReti lista){
-		assert lista != null; //precondizione
-		if(lista.getListaRetiConfiguratore().isEmpty())
-			System.out.println(WARNING_LISTA_RETI_VUOTA);
-		else {
-			GestoreRetiPresentation listaView = new GestoreRetiPresentation(lista);
-			System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
-			boolean trovato = BOOL_CONST_FALSE;
-			System.out.println("\t" + listaView.toString());
-			String daVisualizzare = leggiStringaNonVuota("\n-> ");
-			for(String elem : lista.getKeyLIst()){
-				if (elem.equals(daVisualizzare)){
-					System.out.println(new RetePresentation(lista.getListaRetiConfiguratore().get(daVisualizzare)));
-					trovato = BOOL_CONST_TRUE;
-				} 
-			}
-			if(!trovato) System.out.println(WARNING_RETE_NON_ESISTE);			
-		}
-	} */
-
 	public static String estendiReteView(GestoreReti listaReti){
 		System.out.println("Scegli una delle seguenti reti da estendere in Rete di Petri:");
 		stampaListaRetiGestore(listaReti);
