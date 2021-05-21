@@ -159,7 +159,9 @@ public class InterazioneUtenteModel {
                 String nome = InterazioneUtente.leggiElementoDaCambiare(0);
                 int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
                 retePN.getMarcatura().impostaMarcatura(nome, nuovoValore);
+                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(3);
             }
+           
         }
     }
 
@@ -170,7 +172,13 @@ public class InterazioneUtenteModel {
                 InterazioneUtente.printListaPesi(retePN.getListaPesi()); 
                 String nome = InterazioneUtente.leggiElementoDaCambiare(1);
                 int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
-                //cambiare flusso
+                try {
+                    ElemFlusso elemDaCambiare = retePN.getElemFlussoByName(nome);
+                    retePN.getListaPesi().impostaPeso(elemDaCambiare.getElem1().getName(), elemDaCambiare.getElem2().getName(), nuovoValore);
+                } catch (NonPresenteException e) {
+                    e.printStackTrace();
+                }
+                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(4);
             }
         }
     }

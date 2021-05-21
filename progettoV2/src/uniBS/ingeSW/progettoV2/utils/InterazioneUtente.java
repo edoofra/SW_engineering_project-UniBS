@@ -16,7 +16,8 @@ public class InterazioneUtente {
 	 */
 	
 	private static Scanner lettore = creaScanner();
-
+	private static final String DOMANDA_AGGIUNTA_ALTRI_PESI = "Vuoi cambiare altri pesi?";
+	private static final String DOMANDA_AGGIUNTA_ALTRE_MARCATURE = "Vuoi cambiare altre marcature?";
 	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione è già stata aggiunta";
 	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto è già stato aggiunto";
 	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete è già presente!";
@@ -218,7 +219,8 @@ public class InterazioneUtente {
 	}
 
 	public static boolean continuareAggiuntaYesOrNo(int tipoAggiunta){
-		String[] possibiliPresentazioni = {DOMANDA_AGGIUNTA_ALTRI_POSTI, MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI, DOMANDA_AGGIUNTA_ALTRI_FLUSSO};
+		String[] possibiliPresentazioni = {DOMANDA_AGGIUNTA_ALTRI_POSTI, MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI, DOMANDA_AGGIUNTA_ALTRI_FLUSSO,
+			 DOMANDA_AGGIUNTA_ALTRE_MARCATURE, DOMANDA_AGGIUNTA_ALTRI_PESI};
 		boolean risposta = yesOrNo(possibiliPresentazioni[tipoAggiunta]);
 		return risposta;
 	}

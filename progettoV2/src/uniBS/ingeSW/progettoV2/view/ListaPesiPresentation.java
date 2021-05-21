@@ -14,7 +14,7 @@ public class ListaPesiPresentation {
     public String toString(){
         StringBuilder builder = new StringBuilder("Lista pesi: \n { ");
         for(ElemFlusso eachFlusso : listaPesi.getListaPesi().keySet().toArray(new ElemFlusso[0])){
-            builder.append(new ElemFlussoPresentation(eachFlusso).toString()+ ":");
+            builder.append(new ElemFlussoPresentation(eachFlusso).getName()+ ":");
             builder.append(listaPesi.getListaPesi().get(eachFlusso) + ", ");
         }
         int lenght = builder.length();

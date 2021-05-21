@@ -11,7 +11,7 @@ public class ElemFlussoPresentation {
     }
     
     public String getName() {
-	    return "( " + daPresentare.getElem1().getProperties() + "," + daPresentare.getElem2().getProperties() + " )";
+	    return "(" + daPresentare.getElem1().getProperties() + "," + daPresentare.getElem2().getProperties() + ")";
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.ErroreFormatoException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
+import uniBS.ingeSW.progettoV2.view.ElemFlussoPresentation;
 
 /**
  * Classe per l'implementazione di una rete.
@@ -76,6 +77,16 @@ public class Rete {
 	    assert daCercare != null : "stringaNome = null"; //precondizione
 		var trovato = Stream.of(getInsiemeTransizioni().toArray(new Transizione[0]))
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
+					.findFirst()
+					.orElse(null);
+		if(trovato == null) throw new NonPresenteException();
+		return trovato;
+	}
+
+	public ElemFlusso getElemFlussoByName(String daCercare) throws NonPresenteException{
+		assert daCercare != null : "stringaNome = null"; //precondizione
+		var trovato = Stream.of(getRelazioneFlusso().toArray(new ElemFlusso[0]))
+					.filter(n -> new ElemFlussoPresentation(n).getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
 		if(trovato == null) throw new NonPresenteException();
