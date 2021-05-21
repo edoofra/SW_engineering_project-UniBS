@@ -16,6 +16,8 @@ public class InterazioneUtente {
 	 */
 	
 	private static Scanner lettore = creaScanner();
+	private static final String MESSAGGIO_RETE_PN_DUPLICATA = "Questa rete di Petri esiste già quindi non puo' essere salvata";
+	private static final String DOMANDA_SALVATAGGIO_RETEPN = "Vuoi salvare in modo persistente la rete di Petri appena creata?";
 	private static final String DOMANDA_AGGIUNTA_ALTRI_PESI = "Vuoi cambiare altri pesi?";
 	private static final String DOMANDA_AGGIUNTA_ALTRE_MARCATURE = "Vuoi cambiare altre marcature?";
 	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione è già stata aggiunta";
@@ -246,8 +248,9 @@ public class InterazioneUtente {
 		System.out.println(possibiliPresentazioni[tipoMessaggio]);
 	}
 
-	public static String salvataggioRete(){
-		boolean risposta = yesOrNo(DOMANDA_SALVATAGGIO_RETE);
+	public static String salvataggioRete(int tipoRete){
+		String[] possibiliPresentazioni = {DOMANDA_SALVATAGGIO_RETE, DOMANDA_SALVATAGGIO_RETEPN};
+		boolean risposta = yesOrNo(possibiliPresentazioni[tipoRete]);
 		if(risposta){
 			return leggiStringaNonVuota(DOMANDA_NOME_RETE);
 		}
@@ -310,6 +313,10 @@ public class InterazioneUtente {
 	public static void printListaPesi(ListaPesiFlussoPN listaPesi){
 		ListaPesiPresentation view = new ListaPesiPresentation(listaPesi);
 		System.out.println(view.toString());
+	}
+
+	public static void printErroreRetePNDuplicata(){
+		System.out.println(MESSAGGIO_RETE_PN_DUPLICATA);
 	}
 	
 }

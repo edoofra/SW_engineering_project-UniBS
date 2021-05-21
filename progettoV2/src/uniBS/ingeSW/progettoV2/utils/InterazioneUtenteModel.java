@@ -106,7 +106,7 @@ public class InterazioneUtenteModel {
     }
 
     private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti){
-        String nomeRete = InterazioneUtente.salvataggioRete();
+        String nomeRete = InterazioneUtente.salvataggioRete(0);
         if(nomeRete != null){
             try {
                 listaReti.addRete(nomeRete, daSalvare);
@@ -149,6 +149,19 @@ public class InterazioneUtenteModel {
         RetePetri retePN = new RetePetri(reteScelta);
         cambiaMarcatura(retePN);
         cambiaPesi(retePN);
+        if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
+            String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
+            if(nomeSalvataggio != null){
+                try {
+                    listaPetriPN.addRete(nomeSalvataggio, retePN);
+                } catch (giaPresenteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else{
+            InterazioneUtente.printErroreRetePNDuplicata();
+        }
     }
 
     private static void cambiaMarcatura(RetePetri retePN){
@@ -181,5 +194,12 @@ public class InterazioneUtenteModel {
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(4);
             }
         }
+    }
+
+    private static boolean controlloRetePetriDuplicata(RetePetri daControllare, GestoreReti listaReti){
+        for(int i=0; i<listaReti.getListaRetiConfiguratore().keySet().toArray(new String[0]).length; i++){
+            if(daControllare.isEqual(listaReti.getListaRetiConfiguratore().get(i))) return true;
+        }
+        return false;
     }
 }
