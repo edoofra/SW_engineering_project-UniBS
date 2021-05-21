@@ -38,9 +38,10 @@ public class salvataggioFile {
      * Metodo per la lettura da file di una stringa.
      * @return stringa letta da file.
      */
-    public static String leggiGestoreRetiDaFile(){
+    public static String leggiGestoreRetiDaFile(int path){
+        String[] possibiliPath = {PATH_RETE, PATH_RETE_PETRI};
         try {
-            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(PATH_RETE)));
+            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(possibiliPath[path])));
             return gestoreRetiJSON;
         } catch (IOException e) {
             e.printStackTrace();

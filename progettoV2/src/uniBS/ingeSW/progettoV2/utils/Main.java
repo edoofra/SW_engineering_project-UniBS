@@ -7,6 +7,12 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 
 public class Main {
 
+    /**
+     *
+     */
+    private static final String PATH_RETE = "ListaRetiConfiguratore.json";
+    private static final String PATH_RETE_PETRI = "ListaRetiConfiguratore.json";
+
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Estendi una rete di Petri"};
 
@@ -21,18 +27,19 @@ public class Main {
         "$$    $$  $$$$$$$$     $$     $$$$$$$$            $      $$$$$$  $$   $$$$$$\n";                                                                               
                                                                             
     public static void main(String[] args) {  
-        GestoreReti retiSalvate = recuperoOCreazione();
-        GestoreReti retiPNSalvate = null; // da cambiare
+        GestoreReti retiSalvate = recuperoOCreazione(0);
+        GestoreReti retiPNSalvate = recuperoOCreazione(1);
         System.out.println(TITOLO);
         cicloSceltaMenu(retiSalvate, retiPNSalvate);
     }
 
-    public static GestoreReti recuperoOCreazione(){
+    public static GestoreReti recuperoOCreazione(int path){
         GestoreReti retiSalvate;
         
-        File fileSalvataggio = new File("ListaRetiConfiguratore.json");
+        String[] possibiliPath = {PATH_RETE, PATH_RETE_PETRI};
+        File fileSalvataggio = new File(possibiliPath[path]);
         if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
-            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile();
+            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile(path);
             retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
             return retiSalvate;
         }
