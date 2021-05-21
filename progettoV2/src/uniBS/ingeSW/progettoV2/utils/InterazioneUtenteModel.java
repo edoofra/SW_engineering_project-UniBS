@@ -111,7 +111,7 @@ public class InterazioneUtenteModel {
             try {
                 listaReti.addRete(nomeRete, daSalvare);
                 String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
-				salvataggioFile.salvaGestoreReti(listaRetiJSON);
+				salvataggioFile.salvaGestoreReti(listaRetiJSON,0 );
             } catch (giaPresenteException e) {
                 e.printStackTrace();
             }
@@ -149,19 +149,7 @@ public class InterazioneUtenteModel {
         RetePetri retePN = new RetePetri(reteScelta);
         cambiaMarcatura(retePN);
         cambiaPesi(retePN);
-        if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
-            String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
-            if(nomeSalvataggio != null){
-                try {
-                    listaPetriPN.addRete(nomeSalvataggio, retePN);
-                } catch (giaPresenteException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        else{
-            InterazioneUtente.printErroreRetePNDuplicata();
-        }
+        salvataggioRetePN(retePN, listaPetriPN);
     }
 
     private static void cambiaMarcatura(RetePetri retePN){
@@ -201,5 +189,23 @@ public class InterazioneUtenteModel {
             if(daControllare.isEqual(listaReti.getListaRetiConfiguratore().get(i))) return true;
         }
         return false;
+    }
+
+    private static void salvataggioRetePN(RetePetri retePN, GestoreReti listaPetriPN){
+        if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
+            String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
+            if(nomeSalvataggio != null){
+                try {
+                    listaPetriPN.addRete(nomeSalvataggio, retePN);
+                    String listaRetiPNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN);
+				    salvataggioFile.salvaGestoreReti(listaRetiPNJSON, 1);
+                } catch (giaPresenteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else{
+            InterazioneUtente.printErroreRetePNDuplicata();
+        }
     }
 }

@@ -15,16 +15,18 @@ import java.nio.file.Paths;
 public class salvataggioFile {
     
     
-    private static final String PATH = "ListaRetiConfiguratore.json";
+    private static final String PATH_RETE = "ListaRetiConfiguratore.json";
+    private static final String PATH_RETE_PETRI = "ListaRetiConfiguratore.json";
 
     /**
      * Metodo per il salvataggio di una stringa su file.
      * @param daSalvare Stringa da salvare.
      */
-    public static void salvaGestoreReti(String daSalvare){
+    public static void salvaGestoreReti(String daSalvare, int path){
         assert daSalvare != null : "daSalvare = null"; //precondizione
+        String[] possibiliPath = {PATH_RETE, PATH_RETE_PETRI};
         try {
-            FileWriter fileSalvataggio = new FileWriter(PATH);
+            FileWriter fileSalvataggio = new FileWriter(possibiliPath[path]);
             fileSalvataggio.write(daSalvare);
             fileSalvataggio.close();
         } catch (IOException e) {
@@ -38,7 +40,7 @@ public class salvataggioFile {
      */
     public static String leggiGestoreRetiDaFile(){
         try {
-            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(PATH)));
+            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(PATH_RETE)));
             return gestoreRetiJSON;
         } catch (IOException e) {
             e.printStackTrace();
