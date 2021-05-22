@@ -7,7 +7,7 @@ public class ElemFlussoPresentation {
     private ElemFlusso daPresentare;
     
     public ElemFlussoPresentation(ElemFlusso daPresentare) {
-	this.daPresentare = daPresentare;
+	    this.daPresentare = daPresentare;
     }
     
     public String getName() {

@@ -208,9 +208,7 @@ public class Rete {
 	private boolean duplicatedElemFlusso(ElemFlusso toCheck){
 	    assert toCheck != null : "toCheck = null";
 		return Stream.of(getRelazioneFlusso().toArray(new ElemFlusso[0]))
-					.anyMatch(n -> n.getElem1().getName().equalsIgnoreCase(toCheck.getElem1().getName()) &&
-					n.getElem2().getName().equalsIgnoreCase(toCheck.getElem2().getName()));
-		
+					.anyMatch(n -> n.controlloUguali(toCheck));		
 	}
 
 	/**
