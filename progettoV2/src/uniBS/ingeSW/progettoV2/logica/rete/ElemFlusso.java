@@ -53,4 +53,8 @@ public class ElemFlusso {
 	    return ((this.getElem1().equalControl(flusso2.getElem1()) && 
 		    (this.getElem2().equalControl(flusso2.getElem2()))));
 	}	
+
+	public String toString(){
+		return "(" + this.getElem1().getProperties() + "," + this.getElem2().getProperties() + ")";
+	}
 }

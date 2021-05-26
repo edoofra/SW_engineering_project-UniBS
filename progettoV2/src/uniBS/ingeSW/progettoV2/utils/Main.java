@@ -15,7 +15,7 @@ public class Main {
     private static final String PATH_RETE_PETRI = "ListaRetiConfiguratore.json";
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
-     "Visualizza le reti esistenti", "Estendi una rete di Petri"};
+     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
 
      private static final String TITOLO = 
   
@@ -58,6 +58,8 @@ public class Main {
         return new GestoreRetiPetri();
     }
 
+
+
     
     public static void cicloSceltaMenu(GestoreReti retiSalvate, GestoreRetiPetri retiPNSalvate){
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
@@ -69,11 +71,13 @@ public class Main {
                 case 1: InterazioneUtenteModel.aggiuntaRete(new Rete(), retiSalvate);
                         break;
                         
-                case 2: //InterazioneUtente.visualizzaReteDaGestore(retiSalvate);
-                        InterazioneUtenteModel.visualizzaRetiDaGestore(retiSalvate);
+                case 2: InterazioneUtenteModel.visualizzaRetiDaGestore(retiSalvate);
                         break;
 
-                case 3: InterazioneUtenteModel.estendiReteInPN(retiSalvate,retiPNSalvate);
+                case 3: 
+                        break;
+
+                case 4: InterazioneUtenteModel.estendiReteInPN(retiSalvate,retiPNSalvate);
                         break;
 
                 case 0: fine=true;

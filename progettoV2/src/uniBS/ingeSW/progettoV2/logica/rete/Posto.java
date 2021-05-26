@@ -23,4 +23,8 @@ public class Posto extends ElementoSemplice {
 	public Posto(String nome) {
 		setName(PREFISSO_POSTO+ nome);
 	}
+
+	public String toString(){
+		return this.getName();
+	}
 }
