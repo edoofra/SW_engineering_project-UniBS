@@ -189,7 +189,7 @@ public class InterazioneUtenteModel {
         //da exceptoon cast class
         //fare gestore reti petri diverso
         for(String nomeRete : listaReti.getListaRetiConfiguratore().keySet().toArray(new String[0])){
-            if(daControllare.controlloRetePetriUguale(listaReti.getListaRetiConfiguratore().get(nomeRete))) return true;
+            if(daControllare.controlloRetePetriUguale((RetePetri)listaReti.getListaRetiConfiguratore().get(nomeRete))) return true;
         }
         return false;
     }
