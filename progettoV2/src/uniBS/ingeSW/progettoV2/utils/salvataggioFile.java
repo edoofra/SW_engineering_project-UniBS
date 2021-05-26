@@ -16,7 +16,7 @@ public class salvataggioFile {
     
     
     private static final String PATH_RETE = "ListaRetiConfiguratore.json";
-    private static final String PATH_RETE_PETRI = "ListaRetiConfiguratore.json";
+    private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
 
     /**
      * Metodo per il salvataggio di una stringa su file.
@@ -38,10 +38,9 @@ public class salvataggioFile {
      * Metodo per la lettura da file di una stringa.
      * @return stringa letta da file.
      */
-    public static String leggiGestoreRetiDaFile(int path){
-        String[] possibiliPath = {PATH_RETE, PATH_RETE_PETRI};
+    public static String leggiGestoreRetiDaFile(String path){
         try {
-            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(possibiliPath[path])));
+            String gestoreRetiJSON = new String(Files.readAllBytes(Paths.get(path)));
             return gestoreRetiJSON;
         } catch (IOException e) {
             e.printStackTrace();
