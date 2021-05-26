@@ -1,6 +1,7 @@
 package uniBS.ingeSW.progettoV2.utils;
 
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
+import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetri;
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
@@ -140,7 +141,7 @@ public class InterazioneUtenteModel {
         }
     }
 
-    public static void estendiReteInPN(GestoreReti listaReti, GestoreReti listaPetriPN){
+    public static void estendiReteInPN(GestoreReti listaReti, GestoreRetiPetri listaPetriPN){
         if(listaReti.getListaRetiConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
         }
@@ -184,17 +185,17 @@ public class InterazioneUtenteModel {
         }
     }
 
-    private static boolean controlloRetePetriDuplicata(RetePetri daControllare, GestoreReti listaReti){
+    private static boolean controlloRetePetriDuplicata(RetePetri daControllare, GestoreRetiPetri listaReti){
 
         //da exceptoon cast class
         //fare gestore reti petri diverso
-        for(String nomeRete : listaReti.getListaRetiConfiguratore().keySet().toArray(new String[0])){
-            if(daControllare.controlloRetePetriUguale((RetePetri)listaReti.getListaRetiConfiguratore().get(nomeRete))) return true;
+        for(String nomeRete : listaReti.getListaRetiPetriConfiguratore().keySet().toArray(new String[0])){
+            if(daControllare.controlloRetePetriUguale((RetePetri)listaReti.getListaRetiPetriConfiguratore().get(nomeRete))) return true;
         }
         return false;
     }
 
-    private static void salvataggioRetePN(RetePetri retePN, GestoreReti listaPetriPN){
+    private static void salvataggioRetePN(RetePetri retePN, GestoreRetiPetri listaPetriPN){
         if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
             String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
             if(nomeSalvataggio != null){
