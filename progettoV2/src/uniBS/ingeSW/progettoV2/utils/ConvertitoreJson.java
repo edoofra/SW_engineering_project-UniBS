@@ -35,9 +35,9 @@ public class ConvertitoreJson {
     }
 
      /**
-     * Metodo che converte un oggetto GestoreReti in una stringa formattata in JSON.
+     * Metodo che converte un oggetto GestoreRetiPetri in una stringa formattata in JSON.
      * @param oggetto oggetto da convertire.
-     * @return stringa formattata in JSON contenente la descrizione di tutte le reti contenute nell'oggetto GestoreReti.
+     * @return stringa formattata in JSON contenente la descrizione di tutte le reti contenute nell'oggetto GestoreRetiPetri.
      */
     public static String daOggettoAJson(GestoreRetiPetri oggetto){
         assert oggetto != null: "oggetto = null"; //precondizione
@@ -46,9 +46,9 @@ public class ConvertitoreJson {
     }
 
      /**
-     * Metodo che converte una stringa formattata in JSON in un oggetto GestoreReti.
+     * Metodo che converte una stringa formattata in JSON in un oggetto GestoreRetiPetri.
      * @param json stringa da convertire.
-     * @return oggetto GestoreReti creato a partire da stringa JSON.
+     * @return oggetto GestoreRetiPetri creato a partire da stringa JSON.
      */
     public static GestoreRetiPetri daJsonAOggettoPetriHashSet(String json){
         assert json != null: "json = null"; //precondizione
