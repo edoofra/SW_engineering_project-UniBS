@@ -94,14 +94,14 @@ public class InterazioneUtenteModel {
         if(!connessa) InterazioneUtente.controlloRete(0);
 		boolean corretta = daControllare.controlloCorrettezza();
         if(!corretta) InterazioneUtente.controlloRete(1);
-        if(corretta && connessa) InterazioneUtente.controlloRete(2);
+        if(corretta && connessa) InterazioneUtente.controlloRete(3);
         boolean duplicata = false;
         for(String nomeRete : listaReti.getKeyLIst()){
 			if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(daControllare)) {
 				duplicata = true;
 			}			
 		}
-        if(duplicata)InterazioneUtente.controlloRete(3);
+        if(duplicata) InterazioneUtente.controlloRete(2);
         if(!corretta || !connessa || duplicata) return false;
         else return true;
     }
