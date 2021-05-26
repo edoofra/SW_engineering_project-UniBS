@@ -24,7 +24,8 @@ public class RetePetri extends Rete {
 		return this.listaPesi;
 	}
 
-	public boolean isEqual(RetePetri toCompare){
+	
+	public boolean controlloRetePetriUguale(RetePetri toCompare){
 		if(super.isEqual(toCompare)){
 			if(this.getMarcatura().isEqual(toCompare.getMarcatura()) && this.getListaPesi().isEqual(toCompare.getListaPesi())){
 				return true;

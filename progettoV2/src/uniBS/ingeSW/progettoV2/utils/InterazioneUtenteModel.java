@@ -185,8 +185,11 @@ public class InterazioneUtenteModel {
     }
 
     private static boolean controlloRetePetriDuplicata(RetePetri daControllare, GestoreReti listaReti){
-        for(int i=0; i<listaReti.getListaRetiConfiguratore().keySet().toArray(new String[0]).length; i++){
-            if(daControllare.isEqual(listaReti.getListaRetiConfiguratore().get(i))) return true;
+
+        //da exceptoon cast class
+        //fare gestore reti petri diverso
+        for(String nomeRete : listaReti.getListaRetiConfiguratore().keySet().toArray(new String[0])){
+            if(daControllare.controlloRetePetriUguale(listaReti.getListaRetiConfiguratore().get(nomeRete))) return true;
         }
         return false;
     }
