@@ -12,13 +12,13 @@ public class MarcaturaPresentation  {
     }
 
     public String toString(){
-        StringBuilder builder = new StringBuilder("Marcatura: \n { ");
+        StringBuilder builder = new StringBuilder("MARCATURA: { ");
         for(Posto eachPosto : marcatura.getMarcatura().keySet().toArray(new Posto[0])){
             builder.append(eachPosto.getName() + ":");
             builder.append(marcatura.getMarcatura().get(eachPosto) + ", ");
         }
         int lenght = builder.length();
-        builder.delete(lenght-1, lenght);
+        builder.delete(lenght-2, lenght);
         builder.append(" }");
         return builder.toString();
     }

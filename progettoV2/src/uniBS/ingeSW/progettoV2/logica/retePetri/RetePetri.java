@@ -33,5 +33,4 @@ public class RetePetri extends Rete {
 		}
 		return false;
 	}
-
 }

@@ -272,13 +272,32 @@ public class InterazioneUtente {
 		return daVisualizzare;
 	}
 
+	//overloaded
+	public static String getNomeReteDaVisualizzare(GestoreRetiPetri listaReti){
+		System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
+		stampaListaRetiGestore(listaReti);
+		String daVisualizzare = leggiStringaNonVuota("\n-> ");
+		return daVisualizzare;
+	}
+
 	public static void stampaListaRetiGestore(GestoreReti listaReti){
 		GestoreRetiPresentation listaView = new GestoreRetiPresentation(listaReti);
 		System.out.println("\t" + listaView.toString());
 	}
 
+	//overloaded 
+	public static void stampaListaRetiGestore(GestoreRetiPetri listaReti){
+		GestoreRetiPetriPresentation listaView = new GestoreRetiPetriPresentation(listaReti);
+		System.out.println("\t" + listaView.toString());
+	}
+
 	public static void stampaReteSceltaPerVisualizzazione(Rete daVisualizzare){
 		System.out.println(new RetePresentation(daVisualizzare));
+	}
+
+	//overloaded
+	public static void stampaReteSceltaPerVisualizzazione(RetePetri daVisualizzare){
+		System.out.println(new RetePetriPresentation(daVisualizzare));
 	}
 
 	public static String estendiReteView(GestoreReti listaReti){

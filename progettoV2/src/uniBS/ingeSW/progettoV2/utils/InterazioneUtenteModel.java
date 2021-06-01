@@ -210,4 +210,19 @@ public class InterazioneUtenteModel {
             InterazioneUtente.printErroreRetePNDuplicata();
         }
     }
+
+    public static void visualizzaRetiPetriDaGestore(GestoreRetiPetri listaReti){
+        assert listaReti != null; //precondizione
+        if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        else{
+            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+            for(String elem : listaReti.getKeyLIst()){
+				if (elem.equals(nomeReteDaVisualizzare)){
+                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare));
+                }
+            }    
+        }
+    }
 }

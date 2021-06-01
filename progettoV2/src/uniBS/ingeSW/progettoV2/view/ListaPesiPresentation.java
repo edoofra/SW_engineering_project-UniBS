@@ -12,13 +12,13 @@ public class ListaPesiPresentation {
     }
 
     public String toString(){
-        StringBuilder builder = new StringBuilder("Lista pesi: \n { ");
+        StringBuilder builder = new StringBuilder("LISTA PESI: { ");
         for(ElemFlusso eachFlusso : listaPesi.getListaPesi().keySet().toArray(new ElemFlusso[0])){
             builder.append(new ElemFlussoPresentation(eachFlusso).getName()+ ":");
             builder.append(listaPesi.getListaPesi().get(eachFlusso) + ", ");
         }
         int lenght = builder.length();
-        builder.delete(lenght-1, lenght);
+        builder.delete(lenght-2, lenght);
         builder.append(" }");
         return builder.toString();
     }
