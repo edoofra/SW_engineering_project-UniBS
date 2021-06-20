@@ -24,7 +24,13 @@ public class MarcaturaPN {
 		return this.marcatura;
 	}
     
-	// cambiuare e invece di far restituire un boolean lanciare eccezione personalizzata
+	// cambiare e invece di far restituire un boolean lanciare eccezione personalizzata
+
+	/** 
+	* Metodo che imposta la marcatura di un posto (il valore è preimpostato a 0 alla creazione della rete di petri) 
+	* @param nomePosto posto a cui va cambiata la marcatura, nuovaMarcatura Marcatura da impostare
+	* @return boolean che indica se la modifica è andata a buon fine
+	*/
     public boolean impostaMarcatura(String nomePosto, int nuovaMarcatura) {
 	
 		Posto[] postiArray = marcatura.keySet().toArray(new Posto[0]);
@@ -39,6 +45,11 @@ public class MarcaturaPN {
 		}
 		return false;	
     }
+
+	 /** Metodo che controlla se due marcature sono uguali
+	 * @param toCompare Marcatura da confrontare con la Marcatura su cui è stato chiamato il metodo
+	 * @return boolean che ritorna true se la Marcatura è uguale, false se la Marcatura è diversa.  
+	 */
 
 	public boolean isEqual(MarcaturaPN toCompare){
 		
