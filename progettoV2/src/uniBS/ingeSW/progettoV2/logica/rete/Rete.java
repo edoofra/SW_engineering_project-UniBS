@@ -11,7 +11,7 @@ import uniBS.ingeSW.progettoV2.view.ElemFlussoPresentation;
 
 /**
  * Classe per l'implementazione di una rete.
- * Una rete è composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di ekementi di flusso </em> </li> </ul>
+ * Una rete è composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di elementi di flusso </em> </li> </ul>
  * Una rete deve essere connessa per essere tale, ovvero ogni elemento di rete deve essere raggiunto da alemno un elemento di flusso.
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
