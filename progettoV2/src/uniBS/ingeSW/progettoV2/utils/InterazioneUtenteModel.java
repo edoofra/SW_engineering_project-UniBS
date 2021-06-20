@@ -1,5 +1,7 @@
 package uniBS.ingeSW.progettoV2.utils;
 
+import java.io.File;
+
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetri;
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
@@ -111,8 +113,7 @@ public class InterazioneUtenteModel {
         if(nomeRete != null){
             try {
                 listaReti.addRete(nomeRete, daSalvare);
-                String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
-				salvataggioFile.salvaGestoreReti(listaRetiJSON,0 );
+                SerializzatoreOggetti.salvaSingoloOggetto(new File("ListaRetiConfiguratore.txt"), listaReti);
             } catch (giaPresenteException e) {
                 e.printStackTrace();
             }
@@ -199,8 +200,7 @@ public class InterazioneUtenteModel {
             if(nomeSalvataggio != null){
                 try {
                     listaPetriPN.addRete(nomeSalvataggio, retePN);
-                    String listaRetiPNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN);
-				    salvataggioFile.salvaGestoreReti(listaRetiPNJSON, 1);
+                    SerializzatoreOggetti.salvaSingoloOggetto(new File("ListaRetiPetriConfiguratore.txt"), listaPetriPN);
                 } catch (giaPresenteException e) {
                     e.printStackTrace();
                 }

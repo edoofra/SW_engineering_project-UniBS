@@ -14,7 +14,7 @@ import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
  * @author Camilla Bonomini
  * @version 2.0 - attuazione separazione modello-vista.
  */
-public class GestoreReti {
+public class GestoreReti{
 
 	private HashMap<String, Rete> listaRetiConfiguratore;
 

@@ -11,8 +11,8 @@ public class Main {
     /**
      *
      */
-    private static final String PATH_RETE = "ListaRetiConfiguratore.json";
-    private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
+    private static final String PATH_RETE = "ListaRetiConfiguratore.txt";
+    private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.txt";
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
@@ -39,8 +39,7 @@ public class Main {
         
         File fileSalvataggio = new File(PATH_RETE);
         if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
-            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile(PATH_RETE);
-            retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
+            retiSalvate = (GestoreReti) SerializzatoreOggetti.caricaSingoloOggetto(fileSalvataggio);
             return retiSalvate;
         }
         return new GestoreReti();
@@ -51,8 +50,7 @@ public class Main {
         
         File fileSalvataggio = new File(PATH_RETE_PETRI);
         if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
-            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile(PATH_RETE_PETRI);
-            retiSalvate = ConvertitoreJson.daJsonAOggettoPetriHashSet(retiSalvateJSON);
+            retiSalvate = (GestoreRetiPetri) SerializzatoreOggetti.caricaSingoloOggetto(fileSalvataggio);
             return retiSalvate;
         }
         return new GestoreRetiPetri();
