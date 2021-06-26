@@ -111,8 +111,11 @@ public class InterazioneUtenteModel {
         if(nomeRete != null){
             try {
                 listaReti.addRete(nomeRete, daSalvare);
-                String listaRetiJSON = ConvertitoreJson.daOggettoAJson(listaReti);
-				salvataggioFile.salvaGestoreReti(listaRetiJSON,0 );
+                for(String name : listaReti.getKeyLIst()){
+                    String reteJSON = ConvertitoreJson.daOggettoAJson(listaReti.getListaRetiConfiguratore().get(name));
+                    salvataggioFile.salvaRete(reteJSON,name);
+                } 
+				
             } catch (giaPresenteException e) {
                 e.printStackTrace();
             }
@@ -199,6 +202,10 @@ public class InterazioneUtenteModel {
             if(nomeSalvataggio != null){
                 try {
                     listaPetriPN.addRete(nomeSalvataggio, retePN);
+                    for(String name : listaPetriPN.getKeyLIst()){
+                        String retePNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN.getListaRetiPetriConfiguratore().get(name));
+                        salvataggioFile.salvaRetePetri(retePNJSON, name);
+                    }
                     String listaRetiPNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN);
 				    salvataggioFile.salvaGestoreReti(listaRetiPNJSON, 1);
                 } catch (giaPresenteException e) {

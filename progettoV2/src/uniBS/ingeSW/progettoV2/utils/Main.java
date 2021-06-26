@@ -5,6 +5,8 @@ import java.io.File;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetri;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
+import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
+import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
 public class Main {
 
@@ -35,27 +37,47 @@ public class Main {
     }
 
     public static GestoreReti recuperoOCreazione(){
-        GestoreReti retiSalvate;
-        
-        File fileSalvataggio = new File(PATH_RETE);
-        if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
-            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile(PATH_RETE);
-            retiSalvate = ConvertitoreJson.daJsonAOggettoHashSet(retiSalvateJSON);
-            return retiSalvate;
-        }
-        return new GestoreReti();
+        GestoreReti retiSalvate = new GestoreReti();
+        File folder = new File("RETI");
+
+		if (!folder.exists())
+			folder.mkdirs();
+
+		for (File file : folder.listFiles()) {
+			if (file.isFile()) {
+                String reteJson = salvataggioFile.leggiGestoreRetiDaFile(file.getPath());
+                Rete reteCaricata = ConvertitoreJson.daJsonAOggettoHashSet(reteJson);
+                try {
+                    retiSalvate.addRete(file.getName(), reteCaricata);
+                } catch (giaPresenteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+			}
+		}
+        return retiSalvate;
     }
 
     public static GestoreRetiPetri recuperoOCreazionePetri(){
-        GestoreRetiPetri retiSalvate;
-        
-        File fileSalvataggio = new File(PATH_RETE_PETRI);
-        if(fileSalvataggio.exists() && fileSalvataggio.length() != 0) {
-            String retiSalvateJSON = salvataggioFile.leggiGestoreRetiDaFile(PATH_RETE_PETRI);
-            retiSalvate = ConvertitoreJson.daJsonAOggettoPetriHashSet(retiSalvateJSON);
-            return retiSalvate;
-        }
-        return new GestoreRetiPetri();
+        GestoreRetiPetri retiSalvate = new GestoreRetiPetri();
+        File folder = new File("RETI_PETRI");
+
+		if (!folder.exists())
+			folder.mkdirs();
+
+		for (File file : folder.listFiles()) {
+			if (file.isFile()) {
+                String retePetriJson = salvataggioFile.leggiGestoreRetiDaFile(file.getPath());
+                RetePetri reteCaricata = ConvertitoreJson.daJsonARetePetri(retePetriJson);
+                try {
+                    retiSalvate.addRete(file.getName(), reteCaricata);
+                } catch (giaPresenteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+			}
+		}
+        return retiSalvate;
     }
 
 

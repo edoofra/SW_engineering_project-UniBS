@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progettoV2.utils;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,6 +34,37 @@ public class salvataggioFile {
             e.printStackTrace();
         }
     }
+
+    public static void salvaRete(String daSalvare, String nomeRetePath){
+        assert daSalvare != null : "daSalvare = null"; //precondizione
+        File folder = new File("RETI");
+		if (!folder.exists())
+			folder.mkdirs();
+
+        try {
+            FileWriter fileSalvataggio = new FileWriter(folder+"/"+nomeRetePath);
+            fileSalvataggio.write(daSalvare);
+            fileSalvataggio.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void salvaRetePetri(String daSalvare, String nomeRetePath){
+        assert daSalvare != null : "daSalvare = null"; //precondizione
+        File folder = new File("RETI_PETRI");
+		if (!folder.exists())
+			folder.mkdirs();
+
+        try {
+            FileWriter fileSalvataggio = new FileWriter(folder+"/"+nomeRetePath);
+            fileSalvataggio.write(daSalvare);
+            fileSalvataggio.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Metodo per la lettura da file di una stringa.
