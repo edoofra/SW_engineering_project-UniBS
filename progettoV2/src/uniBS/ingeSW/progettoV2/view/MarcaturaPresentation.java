@@ -1,6 +1,5 @@
 package uniBS.ingeSW.progettoV2.view;
 
-import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.retePetri.MarcaturaPN;
 
 public class MarcaturaPresentation  {
@@ -13,9 +12,9 @@ public class MarcaturaPresentation  {
 
     public String toString(){
         StringBuilder builder = new StringBuilder("MARCATURA: { ");
-        for(Posto eachPosto : marcatura.getMarcatura().keySet().toArray(new Posto[0])){
-            builder.append(eachPosto.getName() + ":");
-            builder.append(marcatura.getMarcatura().get(eachPosto) + ", ");
+        for(int i=0; i<marcatura.getListaPosti().size(); i++){
+            builder.append(marcatura.getListaPosti().get(i).getName() + ":");
+            builder.append(marcatura.getMarcatura().get(i) + ", ");
         }
         int lenght = builder.length();
         builder.delete(lenght-2, lenght);

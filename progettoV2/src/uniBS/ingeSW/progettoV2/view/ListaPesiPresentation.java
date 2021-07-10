@@ -1,6 +1,5 @@
 package uniBS.ingeSW.progettoV2.view;
 
-import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.retePetri.ListaPesiFlussoPN;
 
 public class ListaPesiPresentation {
@@ -13,9 +12,9 @@ public class ListaPesiPresentation {
 
     public String toString(){
         StringBuilder builder = new StringBuilder("LISTA PESI: { ");
-        for(ElemFlusso eachFlusso : listaPesi.getListaPesi().keySet().toArray(new ElemFlusso[0])){
-            builder.append(new ElemFlussoPresentation(eachFlusso).getName()+ ":");
-            builder.append(listaPesi.getListaPesi().get(eachFlusso) + ", ");
+        for(int i=0; i<listaPesi.getListaPesi().size(); i++){
+            builder.append(new ElemFlussoPresentation(listaPesi.getListaElemFlusso().get(i)).getName()+ ":");
+            builder.append(listaPesi.getListaPesi().get(i) + ", ");
         }
         int lenght = builder.length();
         builder.delete(lenght-2, lenght);
