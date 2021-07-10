@@ -49,11 +49,11 @@ public class RetePetri extends Rete {
 	 * @return boolean che indica se le due reti sono uguali o meno 
 	 */
 	public boolean controlloRetePetriUguale(RetePetri toCompare){
-		if(super.isEqual(toCompare)){
-			if(this.getMarcatura().isEqual(toCompare.getMarcatura()) && this.getListaPesi().isEqual(toCompare.getListaPesi())){
-				return true;
-			}			
-		}
-		return false;
+		if(!super.isEqual(toCompare)) return false;
+		if(!this.getMarcatura().isEqual(toCompare.getMarcatura()) || !this.getListaPesi().isEqual(toCompare.getListaPesi())){
+			return false;
+		}			
+		
+		return true;
 	}
 }
