@@ -163,7 +163,7 @@ public class InterazioneUtenteModel {
                 InterazioneUtente.printListaMarcature(retePN.getMarcatura()); 
                 String nome = InterazioneUtente.leggiElementoDaCambiare(0);
                 int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
-                retePN.getMarcatura().impostaMarcatura(nome, nuovoValore);
+                retePN.getMarcatura().impostaNuovaMarcatura(nome, nuovoValore);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(3);
             }
            
