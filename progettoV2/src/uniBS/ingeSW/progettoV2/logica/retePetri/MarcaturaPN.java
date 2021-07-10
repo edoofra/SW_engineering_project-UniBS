@@ -31,8 +31,6 @@ public class MarcaturaPN {
 		return this.listaPosti;
 	}
     
-	// cambiare e invece di far restituire un boolean lanciare eccezione personalizzata
-
 	/** 
 	* Metodo che imposta la marcatura di un posto (il valore è preimpostato a 0 alla creazione della rete di petri) 
 	* @param nomePosto posto a cui va cambiata la marcatura, nuovaMarcatura Marcatura da impostare
