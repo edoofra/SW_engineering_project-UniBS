@@ -38,13 +38,15 @@ public class ListaPesiFlussoPN {
 	*/
     public boolean impostaPeso(String nomeElemento1, String nomeElemento2, int nuovoPeso) {
     	int posizione = -1;
+		boolean trovato = false;
 		for(int i=0; i<listaElementiFlusso.size(); i++){
 			if(listaElementiFlusso.get(i).getElem1().getName().equalsIgnoreCase(nomeElemento1) 
 				&& listaElementiFlusso.get(i).getElem2().getName().equalsIgnoreCase(nomeElemento2)){
 					posizione = i;
+					trovato = true;
 				}
 		}
-    	if(posizione>0) {
+    	if(trovato) {
     	   listaPesi.set(posizione, nuovoPeso);
     	    return true;		
     	}

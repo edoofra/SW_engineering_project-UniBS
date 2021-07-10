@@ -164,6 +164,7 @@ public class InterazioneUtenteModel {
                 String nome = InterazioneUtente.leggiElementoDaCambiare(0);
                 int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
                 retePN.getMarcatura().impostaNuovaMarcatura(nome, nuovoValore);
+                InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(3);
             }
            
@@ -183,6 +184,7 @@ public class InterazioneUtenteModel {
                 } catch (NonPresenteException e) {
                     e.printStackTrace();
                 }
+                InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(4);
             }
         }

@@ -1,10 +1,7 @@
 package uniBS.ingeSW.progettoV2.logica.retePetri;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 
@@ -38,12 +35,15 @@ public class MarcaturaPN {
 	*/
     public boolean impostaNuovaMarcatura(String nomePosto, int nuovaMarcatura) {
         int posizione = -1;
+		boolean trovato = false;
 		for(int i=0; i<listaPosti.size(); i++) {
 			if(listaPosti.get(i).getName().equalsIgnoreCase(nomePosto)){
 				posizione = i;
+				trovato = true;
+				break;
 			}
 		}
-		if(posizione>0){
+		if(trovato){
 			marcatura.set(posizione, nuovaMarcatura);
 			return true;
 		}
