@@ -244,6 +244,12 @@ public class InterazioneUtenteModel {
             RetePetri reteScelta = listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare);
             ArrayList<ElemFlusso> possibiliTrans = reteScelta.getPossibiliTransizioni();
             InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
+            String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(1);
+            ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+            //chiama metodo per agiornare marcatura
+            //fare controllo per vedere se rete è in deadlock
+
+
         }
     }
     

@@ -1,6 +1,9 @@
 package uniBS.ingeSW.progettoV2.logica.retePetri;
 
+import java.util.ArrayList;
+
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
+import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 
 /**
@@ -18,6 +21,7 @@ public class RetePetri extends Rete {
     private MarcaturaPN marcatura;
 	private MarcaturaPN marcaturaAttuale;
     private ListaPesiFlussoPN listaPesi;
+	ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
 	//in caso aggiungere variabile che tiene in memoria la rete da cui deriva
     
 	/**
@@ -60,7 +64,6 @@ public class RetePetri extends Rete {
 	}
 
 	public ArrayList<ElemFlusso> getPossibiliTransizioni(){
-		ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
 		for(int i=0; i<marcatura.getListaPosti().size(); i++){
 			Posto postoControllato = marcatura.getListaPosti.get(i);
 			Integer marcaturaPostoControllato = marcatura.getMarcatura().get(i);
@@ -74,6 +77,21 @@ public class RetePetri extends Rete {
 			}
 		}
 		return possibiliTrans;
+	}
+
+	public void aggiornaMarcaturaPerSimulazione(ElemFlusso elemScelto){
+		ArrayList<Posto> postiCambiareMarcatura = new ArrayList<Posto>();
+		Transizione daCercare = elemScelto.getElem2();
+
+		//controllare che trans scelta sia giusta
+
+		for(int i=0; i<listaPesi.getListaElemFlusso().size(); i++){
+			if(listaPesi.getListaElemFlusso().get(i).getElem1().isEqual(daCercare)){
+				Integer nuovaMarcatura = listaPesi.getListaPesi().get(i);
+				String nomePosto = listaPesi.getListaElemFlusso().get(i).getElem2().getName();
+				marcatura.impostaNuovaMarcaturaConSomma(nomePosto, nuovaMarcatura);
+			}
+		}
 	}
 
 

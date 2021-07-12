@@ -27,6 +27,24 @@ public class MarcaturaPN {
 	public ArrayList<Posto> getListaPosti(){
 		return this.listaPosti;
 	}
+
+	public boolean impostaNuovaMarcaturaConSomma(String nomePosto, int nuovaMarcatura) {
+        int posizione = -1;
+		boolean trovato = false;
+		for(int i=0; i<listaPosti.size(); i++) {
+			if(listaPosti.get(i).getName().equalsIgnoreCase(nomePosto)){
+				posizione = i;
+				trovato = true;
+				break;
+			}
+		}
+		if(trovato){
+			int vecchiaMarcatura = marcatura.get(posizione);
+			marcatura.set(posizione, vecchiaMarcatura + nuovaMarcatura);
+			return true;
+		}
+		else return false;
+	}
     
 	/** 
 	* Metodo che imposta la marcatura di un posto (il valore è preimpostato a 0 alla creazione della rete di petri) 
