@@ -337,6 +337,13 @@ public class InterazioneUtente {
 	public static void printErroreRetePNDuplicata(){
 		System.out.println(MESSAGGIO_RETE_PN_DUPLICATA);
 	}
+
+	public static void printPossibiliTransizioniPerSimulazione(ArrayList <ElemFlusso> possibiliTrans){
+		System.out.println("Transizioni abilitate: \n");
+		for(ElemFlusso elem : possibiliTrans){
+			System.out.println(new ElemFlussoPresentation(elem) + "\n");
+		}
+	}
 	
 }
 

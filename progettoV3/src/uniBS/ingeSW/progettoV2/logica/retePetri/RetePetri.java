@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progettoV2.logica.retePetri;
 
+import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 
 /**
@@ -15,6 +16,7 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 public class RetePetri extends Rete {
     
     private MarcaturaPN marcatura;
+	private MarcaturaPN marcaturaAttuale;
     private ListaPesiFlussoPN listaPesi;
 	//in caso aggiungere variabile che tiene in memoria la rete da cui deriva
     
@@ -56,4 +58,23 @@ public class RetePetri extends Rete {
 		
 		return true;
 	}
+
+	public ArrayList<ElemFlusso> getPossibiliTransizioni(){
+		ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
+		for(int i=0; i<marcatura.getListaPosti().size(); i++){
+			Posto postoControllato = marcatura.getListaPosti.get(i);
+			Integer marcaturaPostoControllato = marcatura.getMarcatura().get(i);
+			for(int j=0; j<listaPesi.getListaElemFlusso().size(); j++){
+				ElemFlusso elemControllato = listaPesi.getListaElemFlusso().get(j);
+				if(elemControllato.getElem1().isEqual(postoControllato)){
+					if(marcaturaPostoControllato>= listaPesi.getListaPesi().get(j)){
+						possibiliTrans.add(elemControllato);
+					}
+				}
+			}
+		}
+		return possibiliTrans;
+	}
+
+
 }

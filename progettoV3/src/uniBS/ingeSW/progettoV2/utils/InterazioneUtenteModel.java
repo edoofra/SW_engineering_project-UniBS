@@ -234,4 +234,18 @@ public class InterazioneUtenteModel {
             }    
         }
     }
+
+    public static void simulazioneEvoluzioneRete(GestoreRetiPetri listaReti){
+        if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        else{
+            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+            RetePetri reteScelta = listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare);
+            ArrayList<ElemFlusso> possibiliTrans = reteScelta.getPossibiliTransizioni();
+            InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
+        }
+    }
+    
+    
 }

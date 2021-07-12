@@ -17,7 +17,7 @@ public class Main {
     private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
-     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
+     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri", "Simula l'evoluzione di una rete"};
 
      private static final String TITOLO = 
   
@@ -101,6 +101,9 @@ public class Main {
 
                 case 4: InterazioneUtenteModel.estendiReteInPN(retiSalvate,retiPNSalvate);
                         break;
+                        
+                case 5: InterazioneUtenteModel.simulazioneEvoluzioneRete(retiPNSalvate);
+                    	break;
 
                 case 0: fine=true;
                         break;
