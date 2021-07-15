@@ -248,7 +248,7 @@ public class InterazioneUtenteModel {
             boolean finito = false;
             while(!finito){
                 possibiliTrans = reteScelta.getPossibiliTransizioni();
-                 if(possibiliTrans == null){
+                 if(possibiliTrans == null || possibiliTrans.isEmpty()){
                     InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
                     finito = true;
                  } 

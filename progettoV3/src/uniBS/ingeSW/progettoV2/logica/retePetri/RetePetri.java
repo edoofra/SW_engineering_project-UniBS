@@ -22,7 +22,7 @@ public class RetePetri extends Rete {
     private MarcaturaPN marcatura;
 	private MarcaturaPN marcaturaAttuale;
     private ListaPesiFlussoPN listaPesi;
-	ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
+	
 	//in caso aggiungere variabile che tiene in memoria la rete da cui deriva
     
 	/**
@@ -65,6 +65,7 @@ public class RetePetri extends Rete {
 	}
 
 	public ArrayList<ElemFlusso> getPossibiliTransizioni(){
+		ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
 		for(int i=0; i<marcatura.getListaPosti().size(); i++){
 			Posto postoControllato = marcatura.getListaPosti().get(i);
 			Integer marcaturaPostoControllato = marcatura.getMarcatura().get(i);
