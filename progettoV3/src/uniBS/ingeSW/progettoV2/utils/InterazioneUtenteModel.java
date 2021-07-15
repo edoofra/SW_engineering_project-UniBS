@@ -1,5 +1,7 @@
 package uniBS.ingeSW.progettoV2.utils;
 
+import java.util.ArrayList;
+
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetri;
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
@@ -243,9 +245,16 @@ public class InterazioneUtenteModel {
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
             RetePetri reteScelta = listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare);
             ArrayList<ElemFlusso> possibiliTrans = reteScelta.getPossibiliTransizioni();
+            if(possibiliTrans.size() == 0) InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
             InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
             String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(1);
-            ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+            try {
+                ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+                reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+            } catch (NonPresenteException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             //chiama metodo per agiornare marcatura
             //fare controllo per vedere se rete è in deadlock
 

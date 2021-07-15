@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
+import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
 
 /**
  * Classe per l'implementazione di una rete di petri che estende una rete.
@@ -65,11 +66,11 @@ public class RetePetri extends Rete {
 
 	public ArrayList<ElemFlusso> getPossibiliTransizioni(){
 		for(int i=0; i<marcatura.getListaPosti().size(); i++){
-			Posto postoControllato = marcatura.getListaPosti.get(i);
+			Posto postoControllato = marcatura.getListaPosti().get(i);
 			Integer marcaturaPostoControllato = marcatura.getMarcatura().get(i);
 			for(int j=0; j<listaPesi.getListaElemFlusso().size(); j++){
 				ElemFlusso elemControllato = listaPesi.getListaElemFlusso().get(j);
-				if(elemControllato.getElem1().isEqual(postoControllato)){
+				if(elemControllato.getElem1().equalControl(postoControllato)){
 					if(marcaturaPostoControllato>= listaPesi.getListaPesi().get(j)){
 						possibiliTrans.add(elemControllato);
 					}
@@ -81,12 +82,12 @@ public class RetePetri extends Rete {
 
 	public void aggiornaMarcaturaPerSimulazione(ElemFlusso elemScelto){
 		ArrayList<Posto> postiCambiareMarcatura = new ArrayList<Posto>();
-		Transizione daCercare = elemScelto.getElem2();
+		Transizione daCercare = (Transizione)elemScelto.getElem2();
 
 		//controllare che trans scelta sia giusta
 
 		for(int i=0; i<listaPesi.getListaElemFlusso().size(); i++){
-			if(listaPesi.getListaElemFlusso().get(i).getElem1().isEqual(daCercare)){
+			if(listaPesi.getListaElemFlusso().get(i).getElem1().equalControl(daCercare)){
 				Integer nuovaMarcatura = listaPesi.getListaPesi().get(i);
 				String nomePosto = listaPesi.getListaElemFlusso().get(i).getElem2().getName();
 				marcatura.impostaNuovaMarcaturaConSomma(nomePosto, nuovaMarcatura);

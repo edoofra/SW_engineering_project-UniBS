@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progettoV2.utils;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.*;
@@ -343,6 +344,10 @@ public class InterazioneUtente {
 		for(ElemFlusso elem : possibiliTrans){
 			System.out.println(new ElemFlussoPresentation(elem) + "\n");
 		}
+	}
+
+	public static void printErrorDeadlock(String nomeRete){
+		System.out.println("La rete "+ nomeRete + "è in deadlock.\n");
 	}
 	
 }
