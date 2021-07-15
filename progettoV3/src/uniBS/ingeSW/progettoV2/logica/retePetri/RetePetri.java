@@ -3,9 +3,9 @@ package uniBS.ingeSW.progettoV2.logica.retePetri;
 import java.util.ArrayList;
 
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
+import uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
-import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
 
 /**
  * Classe per l'implementazione di una rete di petri che estende una rete.
@@ -81,18 +81,30 @@ public class RetePetri extends Rete {
 	}
 
 	public void aggiornaMarcaturaPerSimulazione(ElemFlusso elemScelto){
-		ArrayList<Posto> postiCambiareMarcatura = new ArrayList<Posto>();
-		Transizione daCercare = (Transizione)elemScelto.getElem2();
-
-		//controllare che trans scelta sia giusta
+		ElementoSemplice daCercare = elemScelto.getElem2();
+		ElementoSemplice primoPosto = elemScelto.getElem1();
+		int indice = -1;
+		boolean trovato = false;
+		for(int j=0; j<listaPesi.getListaElemFlusso().size(); j++){
+			if(listaPesi.getListaElemFlusso().get(j).controlloUguali(elemScelto)){
+				indice = j;
+				trovato = true;
+				break;
+			}
+		}
+		if(trovato){
+			Integer pesoIniziale = listaPesi.getListaPesi().get(indice);
+			marcatura.impostaNuovaMarcaturaConDifferenza(primoPosto.getName(), pesoIniziale);
+		}
 
 		for(int i=0; i<listaPesi.getListaElemFlusso().size(); i++){
 			if(listaPesi.getListaElemFlusso().get(i).getElem1().equalControl(daCercare)){
-				Integer nuovaMarcatura = listaPesi.getListaPesi().get(i);
+				Integer peso = listaPesi.getListaPesi().get(i);
 				String nomePosto = listaPesi.getListaElemFlusso().get(i).getElem2().getName();
-				marcatura.impostaNuovaMarcaturaConSomma(nomePosto, nuovaMarcatura);
+				marcatura.impostaNuovaMarcaturaConSomma(nomePosto, peso);
 			}
 		}
+		
 	}
 
 

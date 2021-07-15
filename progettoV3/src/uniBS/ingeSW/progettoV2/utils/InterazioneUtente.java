@@ -319,7 +319,7 @@ public class InterazioneUtente {
 	}
 
 	public static String leggiElementoDaCambiare(int tipoElemento){
-		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:"};
+		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:", "scegli l'elemento di flusso da far scattare: "};
 		String nomePosto = leggiStringaNonVuota(possibiliDomande[tipoElemento]);
 		return nomePosto;
 	}
@@ -342,12 +342,16 @@ public class InterazioneUtente {
 	public static void printPossibiliTransizioniPerSimulazione(ArrayList <ElemFlusso> possibiliTrans){
 		System.out.println("Transizioni abilitate: \n");
 		for(ElemFlusso elem : possibiliTrans){
-			System.out.println(new ElemFlussoPresentation(elem) + "\n");
+			System.out.println(new ElemFlussoPresentation(elem).getName()+ "\n");
 		}
 	}
 
 	public static void printErrorDeadlock(String nomeRete){
-		System.out.println("La rete "+ nomeRete + "è in deadlock.\n");
+		System.out.println("La rete "+ nomeRete + " è in deadlock.\n");
+	}
+
+	public static boolean domandaContinuareSimulazione(){
+		return yesOrNo("Uscire dalla simulazione? ");
 	}
 	
 }

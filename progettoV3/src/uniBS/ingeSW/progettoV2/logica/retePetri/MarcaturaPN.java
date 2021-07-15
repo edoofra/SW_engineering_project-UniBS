@@ -28,6 +28,24 @@ public class MarcaturaPN {
 		return this.listaPosti;
 	}
 
+	public boolean impostaNuovaMarcaturaConDifferenza(String nomePosto, int peso) {
+        int posizione = -1;
+		boolean trovato = false;
+		for(int i=0; i<listaPosti.size(); i++) {
+			if(listaPosti.get(i).getName().equalsIgnoreCase(nomePosto)){
+				posizione = i;
+				trovato = true;
+				break;
+			}
+		}
+		if(trovato){
+			int vecchiaMarcatura = marcatura.get(posizione);
+			marcatura.set(posizione, vecchiaMarcatura - peso);
+			return true;
+		}
+		else return false;
+	}
+
 	public boolean impostaNuovaMarcaturaConSomma(String nomePosto, int nuovaMarcatura) {
         int posizione = -1;
 		boolean trovato = false;

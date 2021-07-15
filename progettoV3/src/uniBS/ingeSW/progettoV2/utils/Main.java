@@ -17,8 +17,12 @@ public class Main {
     private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
-     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri", "Simula l'evoluzione di una rete"};
+     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
 
+    private static final String[] VOCI_MENU_ESTERNO= {"Configuratore", "Fruitore"};
+
+    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete"};
+    
      private static final String TITOLO = 
   
         "$$$$$$$   $$$$$$$$  $$$$$$$$  $$$$$$$$        $$     $$    $$         $$$$$$\n" + 
@@ -33,7 +37,7 @@ public class Main {
         GestoreReti retiSalvate = recuperoOCreazione();
         GestoreRetiPetri retiPNSalvate = recuperoOCreazionePetri();
         System.out.println(TITOLO);
-        cicloSceltaMenu(retiSalvate, retiPNSalvate);
+        cicloSceltaMenuEsterno(retiPNSalvate, retiSalvate);
     }
 
     public static GestoreReti recuperoOCreazione(){
@@ -83,7 +87,7 @@ public class Main {
 
 
     
-    public static void cicloSceltaMenu(GestoreReti retiSalvate, GestoreRetiPetri retiPNSalvate){
+    public static void cicloSceltaMenuConfiguratore(GestoreReti retiSalvate, GestoreRetiPetri retiPNSalvate){
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
         boolean fine = false;
         do{
@@ -111,6 +115,51 @@ public class Main {
                 default : System.out.println("Attenzione selezione non valida");
             }
         }while(fine == false);
+    }
+
+    public static void cicloSceltaMenuFruitore(GestoreRetiPetri retiPNSalvate){
+        Menu menuFruitore = new Menu("seleziona un'alternativa", VOCI_MENU_FRUITORE);
+        boolean fine = false;
+        do{
+            //vuole chiamata a un solo metodo nello switch e con nomi che si capiscano
+            int scelta1 = menuFruitore.scegli();
+            switch(scelta1){
+
+                case 1: InterazioneUtenteModel.simulazioneEvoluzioneRete(retiPNSalvate);
+                        break;
+
+                case 0: fine=true;
+                        break;
+
+                default : System.out.println("Attenzione selezione non valida");
+            }
+        }while(fine == false);
+    }
+
+
+
+    public static void cicloSceltaMenuEsterno(GestoreRetiPetri retiPNSalvate, GestoreReti retiSalvate){
+        Menu menuEsterno = new Menu("seleziona il profilo con cui accedere.", VOCI_MENU_ESTERNO);
+        boolean fine = false;
+        do{
+            int scelta=menuEsterno.scegli();
+            switch(scelta){
+
+                case 1 : cicloSceltaMenuConfiguratore(retiSalvate, retiPNSalvate);
+                        break;
+                
+                case 2: cicloSceltaMenuFruitore(retiPNSalvate);
+                        break;
+
+                case 0: fine=true;
+                        break;
+
+                default : System.out.println("Attenzione selezione non valida");
+            }
+
+
+        }while(!fine);
+
     }
 }
 

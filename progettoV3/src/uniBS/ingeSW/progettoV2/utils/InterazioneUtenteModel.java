@@ -245,19 +245,27 @@ public class InterazioneUtenteModel {
         else{
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
             RetePetri reteScelta = listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare);
-            possibiliTrans = reteScelta.getPossibiliTransizioni();
-            //if(possibiliTrans.size() == 0) InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
-            //else{
-                InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
-                String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(1);
-                try {
-                    ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
-                    reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
-                } catch (NonPresenteException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+            boolean finito = false;
+            while(!finito){
+                possibiliTrans = reteScelta.getPossibiliTransizioni();
+                 if(possibiliTrans == null){
+                    InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
+                    finito = true;
+                 } 
+                else{
+                    InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
+                    String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
+                    try {
+                        ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+                        reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                    } catch (NonPresenteException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    finito = InterazioneUtente.domandaContinuareSimulazione();
                 }
-            //}
+            }
+            
         }
     }
     
