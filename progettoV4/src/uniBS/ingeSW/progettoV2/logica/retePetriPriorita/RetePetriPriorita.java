@@ -14,5 +14,18 @@ public class RetePetriPriorita extends RetePetri{
         this.listaPesi = retePN.getListaPesi();
         this.listaPriorita = new Priorita(retePN.getInsiemeTransizioni());
     }
+
+    public Priorita getPriorita(){
+        return this.listaPriorita;
+    }
+
+    public boolean controlloRetePetriPrioritaUguale(RetePetriPriorita toCompare){
+		if(!super.isEqual(toCompare)) return false;
+		if(!this.getPriorita().isEqual(toCompare.getPriorita())){
+			return false;
+		}			
+		
+		return true;
+	}
     
 }
