@@ -21,6 +21,10 @@ public class Priorita {
         return this.listaPriorita;
     }
 
+    public ArrayList<Transizione> getListaTransizioni(){
+        return this.getListaTransizioni();
+    }
+
     /** 
 	* Metodo che imposta la priorità di una transizione (il valore è preimpostato a 0 alla creazione della rete di petri) 
 	* @param nomePosto transizione a cui va cambiata la priorita, nuovaPriorita priorità da impostare

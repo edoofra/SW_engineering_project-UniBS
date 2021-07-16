@@ -13,7 +13,7 @@ public class GestoreRetiPetriPriorita {
 		this.listaRetiPetriPrioritaConfiguratore = new HashMap<String, RetePetriPriorita>();
 	}
 
-    public HashMap<String, RetePetriPriorita> getListaRetiPetriConfiguratore() {
+    public HashMap<String, RetePetriPriorita> getListaRetiPetriPrioritaConfiguratore() {
 		return listaRetiPetriPrioritaConfiguratore;
 	}
 

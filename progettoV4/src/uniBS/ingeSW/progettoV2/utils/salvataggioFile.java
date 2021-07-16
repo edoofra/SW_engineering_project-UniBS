@@ -65,6 +65,21 @@ public class salvataggioFile {
         }
     }
 
+    public static void salvaRetePetriPriorita(String daSalvare, String nomeRetePath){
+        assert daSalvare != null : "daSalvare = null"; //precondizione
+        File folder = new File("RETI_PETRI_PRIORITA");
+		if (!folder.exists())
+			folder.mkdirs();
+
+        try {
+            FileWriter fileSalvataggio = new FileWriter(folder+"/"+nomeRetePath);
+            fileSalvataggio.write(daSalvare);
+            fileSalvataggio.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Metodo per la lettura da file di una stringa.

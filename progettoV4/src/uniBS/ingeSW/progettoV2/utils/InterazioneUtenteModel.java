@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetri;
+import uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetriPriorita;
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
+import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.ErroreFormatoException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
@@ -268,6 +270,60 @@ public class InterazioneUtenteModel {
             
         }
     }
+
+    public static void estendiRetePNInPNConPriorita(GestoreRetiPetri listaRetiPN, GestoreRetiPetriPriorita listaPetriPNPriorita){
+        if(listaRetiPN.getListaRetiPetriConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        String nomeReteDaEstendere = InterazioneUtente.estendiRetePNinPrioritaView(listaRetiPN);
+        RetePetri reteScelta = listaRetiPN.getListaRetiPetriConfiguratore().get(nomeReteDaEstendere);        
+        RetePetriPriorita retePNPriorita = new RetePetriPriorita(reteScelta);
+        cambiaPriorita(retePNPriorita);
+        salvataggioRetePNPriorita(retePNPriorita, listaPetriPNPriorita);
+    }
+
+    private static void cambiaPriorita(RetePetriPriorita retePNPriorita){
+        boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(2);
+        if(risposta){
+            while(risposta != false){
+                InterazioneUtente.printListaPriorita(retePNPriorita.getPriorita()); 
+                String nome = InterazioneUtente.leggiElementoDaCambiare(3);
+                int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
+                retePNPriorita.getPriorita().impostaNuovaPriorita(nome, nuovoValore);
+                InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePNPriorita);
+                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(5);
+            }           
+        }
+    }
+
+    private static void salvataggioRetePNPriorita(RetePetriPriorita retePNP, GestoreRetiPetriPriorita listaPetriPNP){
+        if(!controlloRetePetriPrioritaDuplicata(retePNP, listaPetriPNP)){
+            String nomeSalvataggio = InterazioneUtente.salvataggioRete(2);
+            if(nomeSalvataggio != null){
+                try {
+                    listaPetriPNP.addRete(nomeSalvataggio, retePNP);
+                    for(String name : listaPetriPNP.getKeyLIst()){
+                        String retePNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPNP.getListaRetiPetriPrioritaConfiguratore().get(name));
+                        salvataggioFile.salvaRetePetri(retePNJSON, name);
+                    }
+                } catch (giaPresenteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else{
+            InterazioneUtente.printErroreRetePNDuplicata();
+        }
+    }
+
+    private static boolean controlloRetePetriPrioritaDuplicata(RetePetriPriorita daControllare, GestoreRetiPetriPriorita listaReti){
+
+        for(String nomeRete : listaReti.getListaRetiPetriPrioritaConfiguratore().keySet().toArray(new String[0])){
+            if(daControllare.controlloRetePetriUguale(listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeRete))) return true;
+        }
+        return false;
+    }
+
     
     
 }

@@ -8,6 +8,7 @@ import uniBS.ingeSW.progettoV2.logica.rete.*;
 import uniBS.ingeSW.progettoV2.logica.retePetri.ListaPesiFlussoPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.MarcaturaPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
+import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.Priorita;
 import uniBS.ingeSW.progettoV2.view.*;
 
 public class InterazioneUtente {	
@@ -223,7 +224,7 @@ public class InterazioneUtente {
 
 	public static boolean continuareAggiuntaYesOrNo(int tipoAggiunta){
 		String[] possibiliPresentazioni = {DOMANDA_AGGIUNTA_ALTRI_POSTI, MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI, DOMANDA_AGGIUNTA_ALTRI_FLUSSO,
-			 DOMANDA_AGGIUNTA_ALTRE_MARCATURE, DOMANDA_AGGIUNTA_ALTRI_PESI};
+			 DOMANDA_AGGIUNTA_ALTRE_MARCATURE, DOMANDA_AGGIUNTA_ALTRI_PESI, "vuoi cambiare altre priorità?"};
 		boolean risposta = yesOrNo(possibiliPresentazioni[tipoAggiunta]);
 		return risposta;
 	}
@@ -250,7 +251,8 @@ public class InterazioneUtente {
 	}
 
 	public static String salvataggioRete(int tipoRete){
-		String[] possibiliPresentazioni = {DOMANDA_SALVATAGGIO_RETE, DOMANDA_SALVATAGGIO_RETEPN};
+		String[] possibiliPresentazioni = {DOMANDA_SALVATAGGIO_RETE, DOMANDA_SALVATAGGIO_RETEPN, 
+			"Vuoi salvare in modo persistente la Rete di Petri con Priorità appena creata?"};
 		boolean risposta = yesOrNo(possibiliPresentazioni[tipoRete]);
 		if(risposta){
 			return leggiStringaNonVuota(DOMANDA_NOME_RETE);
@@ -309,7 +311,7 @@ public class InterazioneUtente {
 	}
 
 	public static boolean domandaCambiamentoDatiRetePetri(int tipoDato){
-		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare qualche elemento di flusso?"};
+		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare qualche elemento di flusso?", "vuoi cambiare qualche priorità?"};
 		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
@@ -319,7 +321,7 @@ public class InterazioneUtente {
 	}
 
 	public static String leggiElementoDaCambiare(int tipoElemento){
-		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:", "scegli l'elemento di flusso da far scattare: "};
+		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:", "scegli l'elemento di flusso da far scattare: ", "scegli la transizione di cui cambiare la priorità: "};
 		String nomePosto = leggiStringaNonVuota(possibiliDomande[tipoElemento]);
 		return nomePosto;
 	}
@@ -352,6 +354,18 @@ public class InterazioneUtente {
 
 	public static boolean domandaContinuareSimulazione(){
 		return yesOrNo("Uscire dalla simulazione? ");
+	}
+
+	public static String estendiRetePNinPrioritaView(GestoreRetiPetri listaRetiPN){
+		System.out.println("Scegli una delle seguenti reti di petri da estendere in Rete di Petri con priorità:");
+		stampaListaRetiGestore(listaRetiPN);
+		String nome = leggiStringaNonVuota("->");
+		return nome;
+	}
+
+	public static void printListaPriorita(Priorita listaPriorita){
+		PrioritaPresentation view = new PrioritaPresentation(listaPriorita);
+		System.out.println(view.toString());
 	}
 	
 }

@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import uniBS.ingeSW.progettoV2.logica.gestioneReti.*;
 import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
+import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.RetePetriPriorita;
 
 /** 
  * Classe per la conversione di un oggetto GestoreReti da/in formato JSON.
@@ -25,6 +26,12 @@ public class ConvertitoreJson {
     }
 
     public static String daOggettoAJson(RetePetri oggetto){
+        assert oggetto != null: "oggetto = null"; //precondizione
+        Gson convertitore = new Gson();
+        return convertitore.toJson(oggetto);
+    }
+
+    public static String daOggettoAJson(RetePetriPriorita oggetto){
         assert oggetto != null: "oggetto = null"; //precondizione
         Gson convertitore = new Gson();
         return convertitore.toJson(oggetto);
