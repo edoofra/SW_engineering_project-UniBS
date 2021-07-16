@@ -19,8 +19,8 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 
 public class RetePetri extends Rete {
     
-    private MarcaturaPN marcatura;
-    private ListaPesiFlussoPN listaPesi;
+    protected MarcaturaPN marcatura;
+    protected ListaPesiFlussoPN listaPesi;
     
 	/**
 	 * Metodo per la creazione di una rete.
@@ -34,6 +34,10 @@ public class RetePetri extends Rete {
 		this.marcatura = new MarcaturaPN(daUsare.getInsiemePosti());
 		this.listaPesi = new ListaPesiFlussoPN(daUsare.getRelazioneFlusso());
     }
+
+	public RetePetri(){
+		super();
+	}
 
 	public MarcaturaPN getMarcatura(){
 		return this.marcatura;
