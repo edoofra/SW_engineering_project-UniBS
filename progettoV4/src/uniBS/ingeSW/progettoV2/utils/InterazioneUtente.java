@@ -283,6 +283,13 @@ public class InterazioneUtente {
 		return daVisualizzare;
 	}
 
+	public static String getNomeReteDaVisualizzare(GestoreRetiPetriPriorita listaReti){
+		System.out.println(MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE);
+		stampaListaRetiGestore(listaReti);
+		String daVisualizzare = leggiStringaNonVuota("\n-> ");
+		return daVisualizzare;
+	}
+
 	public static void stampaListaRetiGestore(GestoreReti listaReti){
 		GestoreRetiPresentation listaView = new GestoreRetiPresentation(listaReti);
 		System.out.println("\t" + listaView.toString());
@@ -291,6 +298,11 @@ public class InterazioneUtente {
 	//overloaded 
 	public static void stampaListaRetiGestore(GestoreRetiPetri listaReti){
 		GestoreRetiPetriPresentation listaView = new GestoreRetiPetriPresentation(listaReti);
+		System.out.println("\t" + listaView.toString());
+	}
+
+	public static void stampaListaRetiGestore(GestoreRetiPetriPriorita listaReti){
+		GestoreRetiPetriPrioritaPresentation listaView = new GestoreRetiPetriPrioritaPresentation(listaReti);
 		System.out.println("\t" + listaView.toString());
 	}
 

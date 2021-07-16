@@ -324,6 +324,40 @@ public class InterazioneUtenteModel {
         return false;
     }
 
+
+    //da finire
+    public static void simulazioneEvoluzioneRetePriorita(GestoreRetiPetriPriorita listaReti){
+        ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
+        if(listaReti.getListaRetiPetriPrioritaConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        else{
+            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+            RetePetri reteScelta = listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare);
+            boolean finito = false;
+            while(!finito){
+                possibiliTrans = reteScelta.getPossibiliTransizioni();
+                 if(possibiliTrans == null || possibiliTrans.isEmpty()){
+                    InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
+                    finito = true;
+                 } 
+                else{
+                    
+                    InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
+                    String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
+                    try {
+                        ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+                        reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                    } catch (NonPresenteException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    finito = InterazioneUtente.domandaContinuareSimulazione();
+                }
+            }
+            
+        }
+    }
     
     
 }
