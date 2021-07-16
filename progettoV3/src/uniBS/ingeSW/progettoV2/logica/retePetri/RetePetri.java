@@ -14,16 +14,13 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
- * @version 2.0 - attuata separazione modello-vista. Cambiati getters e setters.
+ * @version 3.0 - aggiunti metodi relativi alla simulazione dell'evoluzione della rete.
  */
 
 public class RetePetri extends Rete {
     
     private MarcaturaPN marcatura;
-	private MarcaturaPN marcaturaAttuale;
     private ListaPesiFlussoPN listaPesi;
-	
-	//in caso aggiungere variabile che tiene in memoria la rete da cui deriva
     
 	/**
 	 * Metodo per la creazione di una rete.
@@ -64,6 +61,12 @@ public class RetePetri extends Rete {
 		return true;
 	}
 
+	/**
+	 * Metodo per trovare le <em> transizioni abilitate </em> all'interno della rete.
+	 * Una transizione è abilitata se il posto di partenza ha una marcatura maggiore o uguale
+	 * del peso per far scattare la transizione.
+	 * @return arrayList contenente tutte le transizioni abilitate. 
+	 */
 	public ArrayList<ElemFlusso> getPossibiliTransizioni(){
 		ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
 		for(int i=0; i<marcatura.getListaPosti().size(); i++){
@@ -81,6 +84,10 @@ public class RetePetri extends Rete {
 		return possibiliTrans;
 	}
 
+	/**
+	 * Metodo per aggiornare la marcatura della rete in seguito allo scatto di una transizione.
+	 * @param elemScelto elemento di flusso che identifica la transizione da far scattare.
+	 */
 	public void aggiornaMarcaturaPerSimulazione(ElemFlusso elemScelto){
 		ElementoSemplice daCercare = elemScelto.getElem2();
 		ElementoSemplice primoPosto = elemScelto.getElem1();

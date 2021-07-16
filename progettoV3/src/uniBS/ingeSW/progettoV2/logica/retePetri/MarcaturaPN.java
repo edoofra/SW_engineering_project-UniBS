@@ -5,9 +5,16 @@ import java.util.List;
 
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 
+/** 
+ * Classe che identifica la lista della mercatura legata ad ogni posto 
+ * contenuto all'interno di una rete di Petri.
+ * @author Lorenzo Bargnani
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @version 2.0 - aggunti metodi per la modifica della marcatura in caso di simulazione rete.
+*/
 public class MarcaturaPN {
     
-	//linked hashMap dovrebbe mantenere ordine
     private ArrayList<Posto> listaPosti;
 	private ArrayList<Integer> marcatura;
     
@@ -28,6 +35,12 @@ public class MarcaturaPN {
 		return this.listaPosti;
 	}
 
+	/** 
+	* Metodo che imposta la marcatura di un posto (il valore è preimpostato a 0 alla creazione della rete di petri) 
+	* facendo la differenza con la marcatura precedente.
+	* @param nomePosto posto a cui va cambiata la marcatura, nuovaMarcatura Marcatura da impostare
+	* @return boolean che indica se la modifica è andata a buon fine
+	*/
 	public boolean impostaNuovaMarcaturaConDifferenza(String nomePosto, int peso) {
         int posizione = -1;
 		boolean trovato = false;
@@ -46,6 +59,12 @@ public class MarcaturaPN {
 		else return false;
 	}
 
+	/** 
+	* Metodo che imposta la marcatura di un posto (il valore è preimpostato a 0 alla creazione della rete di petri) 
+	* facendo la somma con la marcatura precedente.
+	* @param nomePosto posto a cui va cambiata la marcatura, nuovaMarcatura Marcatura da impostare
+	* @return boolean che indica se la modifica è andata a buon fine
+	*/
 	public boolean impostaNuovaMarcaturaConSomma(String nomePosto, int nuovaMarcatura) {
         int posizione = -1;
 		boolean trovato = false;

@@ -5,9 +5,16 @@ import java.util.List;
 
 import uniBS.ingeSW.progettoV2.logica.rete.Posto;
 
+/** 
+ * Classe che identifica la lista della mercatura legata ad ogni posto 
+ * contenuto all'interno di una rete di Petri.
+ * @author Lorenzo Bargnani
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @version 1.0
+*/
 public class MarcaturaPN {
     
-	//linked hashMap dovrebbe mantenere ordine
     private ArrayList<Posto> listaPosti;
 	private ArrayList<Integer> marcatura;
     

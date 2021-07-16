@@ -1,13 +1,18 @@
 package uniBS.ingeSW.progettoV2.logica.retePetri;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 
+/** 
+ * Classe che identifica la lista dei pesi legati ad ogni elemento di flusso 
+ * contenuto all'interno di una rete di Petri.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+*/
 public class ListaPesiFlussoPN {
     
 	private ArrayList<ElemFlusso> listaElementiFlusso;
@@ -33,7 +38,9 @@ public class ListaPesiFlussoPN {
 
     /**
 	* Metodo che imposta il peso di un elemento di flusso (il valore è preimpostato ad 1 alla creazione della rete di petri) 
-	* @param nomeElemento1 primo elemento, nomeElemento2 secondo elemento, nuovoPeso Peso da impostare
+	* @param nomeElemento1 primo elemento
+	* @param nomeElemento2 secondo elemento
+	* @param nuovoPeso Peso da impostare
 	* @return boolean che indica se la modifica è andata a buon fine
 	*/
     public boolean impostaPeso(String nomeElemento1, String nomeElemento2, int nuovoPeso) {

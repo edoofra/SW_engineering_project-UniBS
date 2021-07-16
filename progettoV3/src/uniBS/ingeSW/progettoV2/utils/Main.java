@@ -10,12 +10,6 @@ import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
 public class Main {
 
-    /**
-     *
-     */
-    private static final String PATH_RETE = "ListaRetiConfiguratore.json";
-    private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
-
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
 
@@ -91,7 +85,7 @@ public class Main {
         Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
         boolean fine = false;
         do{
-            //vuole chiamata a un solo metodo nello switch e con nomi che si capiscano
+            
             int scelta1 = menuIniziale.scegli();
             switch(scelta1){
                 case 1: InterazioneUtenteModel.aggiuntaRete(new Rete(), retiSalvate);
