@@ -12,10 +12,16 @@ import uniBS.ingeSW.progettoV2.view.*;
 
 public class InterazioneUtente {	
 
-	/**
-	 *
-	 */
+	private static final String SCEGLI_UN_NUOVO_VALORE = "scegli un nuovo valore: \n->";
+	private static final String TRANSIZIONI_ABILITATE = "Transizioni abilitate: \n";
+	private static final String USCITA_SIMULAZIONE = "Uscire dalla simulazione? ";
+	private static final String SCATTO_ELEMENTOFLUSSO = "scegli l'elemento di flusso da far scattare: ";
+	private static final String ELEMENTOFLUSSO_CAMBIAMENTO_PESO = "scegli l'elemento di flusso a cui cambiare il peso:";
+	private static final String POSTO_CAMBIAMENTO_MARCATURA = "scegli il posto a cui cambiare la marcatura:";
+	private static final String CAMBIAMENTO_ELEMENTOFLUSSO = "vuoi cambiare qualche elemento di flusso?";
+	private static final String CAMBIAMENTO_MARCATURA = "vuoi cambiare qualche marcatura?";
 	
+	private static final String DOMANDA_ESTENSIONE_RETE = "Scegli una delle seguenti reti da estendere in Rete di Petri:";
 	private static Scanner lettore = creaScanner();
 	private static final String MESSAGGIO_RETE_PN_DUPLICATA = "Questa rete di Petri esiste già quindi non puo' essere salvata";
 	private static final String DOMANDA_SALVATAGGIO_RETEPN = "Vuoi salvare in modo persistente la rete di Petri appena creata?";
@@ -302,14 +308,14 @@ public class InterazioneUtente {
 	}
 
 	public static String estendiReteView(GestoreReti listaReti){
-		System.out.println("Scegli una delle seguenti reti da estendere in Rete di Petri:");
+		System.out.println(DOMANDA_ESTENSIONE_RETE);
 		stampaListaRetiGestore(listaReti);
 		String nome = leggiStringaNonVuota("->");
 		return nome;
 	}
 
 	public static boolean domandaCambiamentoDatiRetePetri(int tipoDato){
-		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare qualche elemento di flusso?"};
+		String[] possibiliDomande = {CAMBIAMENTO_MARCATURA, CAMBIAMENTO_ELEMENTOFLUSSO};
 		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
@@ -319,14 +325,14 @@ public class InterazioneUtente {
 	}
 
 	public static String leggiElementoDaCambiare(int tipoElemento){
-		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:", "scegli l'elemento di flusso da far scattare: "};
+		String[] possibiliDomande = {POSTO_CAMBIAMENTO_MARCATURA, ELEMENTOFLUSSO_CAMBIAMENTO_PESO, SCATTO_ELEMENTOFLUSSO};
 		String nomePosto = leggiStringaNonVuota(possibiliDomande[tipoElemento]);
 		return nomePosto;
 	}
 
 	public static int leggiNuovoValoreDaInserirePerCambiamentoDati(int tipoElemento){
 		int[] possibiliMinimi = {0,1};
-		int nuovoValore = leggiInteroConMinimo("scegli un nuovo valore: \n->", possibiliMinimi[tipoElemento]);
+		int nuovoValore = leggiInteroConMinimo(SCEGLI_UN_NUOVO_VALORE, possibiliMinimi[tipoElemento]);
 		return nuovoValore;
 	}
 
@@ -340,7 +346,7 @@ public class InterazioneUtente {
 	}
 
 	public static void printPossibiliTransizioniPerSimulazione(ArrayList <ElemFlusso> possibiliTrans){
-		System.out.println("Transizioni abilitate: \n");
+		System.out.println(TRANSIZIONI_ABILITATE);
 		for(ElemFlusso elem : possibiliTrans){
 			System.out.println(new ElemFlussoPresentation(elem).getName()+ "\n");
 		}
@@ -351,7 +357,7 @@ public class InterazioneUtente {
 	}
 
 	public static boolean domandaContinuareSimulazione(){
-		return yesOrNo("Uscire dalla simulazione? ");
+		return yesOrNo(USCITA_SIMULAZIONE);
 	}
 	
 }

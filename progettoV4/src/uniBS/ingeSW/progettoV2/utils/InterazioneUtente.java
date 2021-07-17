@@ -12,11 +12,10 @@ import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.Priorita;
 import uniBS.ingeSW.progettoV2.view.*;
 
 public class InterazioneUtente {	
-
-	/**
-	 *
-	 */
 	
+	private static final String DOMANDA_ESTENSIONE_RETEPETRI_RETEPNP = "Scegli una delle seguenti reti di petri da estendere in Rete di Petri con priorità:";	
+	private static final String DOMANDA_SALVATAGGIO_RETEPNP = "Vuoi salvare in modo persistente la Rete di Petri con Priorità appena creata?";
+	private static final String DOMANDA_AGGIUNTA_ALTRE_PRIORITA = "vuoi cambiare altre priorità?";	
 	private static Scanner lettore = creaScanner();
 	private static final String MESSAGGIO_RETE_PN_DUPLICATA = "Questa rete di Petri esiste già quindi non puo' essere salvata";
 	private static final String DOMANDA_SALVATAGGIO_RETEPN = "Vuoi salvare in modo persistente la rete di Petri appena creata?";
@@ -63,6 +62,17 @@ public class InterazioneUtente {
 	private final static String MESSAGGIO_AMMISSIBILI = "Attenzione: i caratteri ammissibili sono: ";
 	private final static char RISPOSTA_SI = 'S';
 	private final static char RISPOSTA_NO = 'N';
+	private static final String DOMANDA_ESTENSIONE_RETE = "Scegli una delle seguenti reti da estendere in Rete di Petri:";
+	private static final String SCEGLI_UN_NUOVO_VALORE = "scegli un nuovo valore: \n->";
+	private static final String TRANSIZIONI_ABILITATE = "Transizioni abilitate: \n";
+	private static final String USCITA_SIMULAZIONE = "Uscire dalla simulazione? ";
+	private static final String SCATTO_ELEMENTOFLUSSO = "scegli l'elemento di flusso da far scattare: ";
+	private static final String ELEMENTOFLUSSO_CAMBIAMENTO_PESO = "scegli l'elemento di flusso a cui cambiare il peso:";
+	private static final String POSTO_CAMBIAMENTO_MARCATURA = "scegli il posto a cui cambiare la marcatura:";
+	private static final String TRANSIZIONE_CAMBIAMENTO_PRIORITA = "scegli la transizione di cui cambiare la priorità: ";
+	private static final String CAMBIAMENTO_ELEMENTOFLUSSO = "vuoi cambiare qualche elemento di flusso?";
+	private static final String CAMBIAMENTO_MARCATURA = "vuoi cambiare qualche marcatura?";
+	private static final String CAMBIAMENTO_PRIORITA = "vuoi cambiare qualche priorità?";
 
 	private static Scanner creaScanner() {
 		Scanner creato = new Scanner(System.in);
@@ -224,7 +234,7 @@ public class InterazioneUtente {
 
 	public static boolean continuareAggiuntaYesOrNo(int tipoAggiunta){
 		String[] possibiliPresentazioni = {DOMANDA_AGGIUNTA_ALTRI_POSTI, MESSAGGIO_AGGIUNTA_ALTRE_TRANSIZIONI, DOMANDA_AGGIUNTA_ALTRI_FLUSSO,
-			 DOMANDA_AGGIUNTA_ALTRE_MARCATURE, DOMANDA_AGGIUNTA_ALTRI_PESI, "vuoi cambiare altre priorità?"};
+			 DOMANDA_AGGIUNTA_ALTRE_MARCATURE, DOMANDA_AGGIUNTA_ALTRI_PESI, DOMANDA_AGGIUNTA_ALTRE_PRIORITA};
 		boolean risposta = yesOrNo(possibiliPresentazioni[tipoAggiunta]);
 		return risposta;
 	}
@@ -252,7 +262,7 @@ public class InterazioneUtente {
 
 	public static String salvataggioRete(int tipoRete){
 		String[] possibiliPresentazioni = {DOMANDA_SALVATAGGIO_RETE, DOMANDA_SALVATAGGIO_RETEPN, 
-			"Vuoi salvare in modo persistente la Rete di Petri con Priorità appena creata?"};
+			DOMANDA_SALVATAGGIO_RETEPNP};
 		boolean risposta = yesOrNo(possibiliPresentazioni[tipoRete]);
 		if(risposta){
 			return leggiStringaNonVuota(DOMANDA_NOME_RETE);
@@ -316,14 +326,14 @@ public class InterazioneUtente {
 	}
 
 	public static String estendiReteView(GestoreReti listaReti){
-		System.out.println("Scegli una delle seguenti reti da estendere in Rete di Petri:");
+		System.out.println(DOMANDA_ESTENSIONE_RETE);
 		stampaListaRetiGestore(listaReti);
 		String nome = leggiStringaNonVuota("->");
 		return nome;
 	}
 
 	public static boolean domandaCambiamentoDatiRetePetri(int tipoDato){
-		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare qualche elemento di flusso?", "vuoi cambiare qualche priorità?"};
+		String[] possibiliDomande = {CAMBIAMENTO_MARCATURA, CAMBIAMENTO_ELEMENTOFLUSSO, CAMBIAMENTO_PRIORITA};
 		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
@@ -333,14 +343,14 @@ public class InterazioneUtente {
 	}
 
 	public static String leggiElementoDaCambiare(int tipoElemento){
-		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:", "scegli l'elemento di flusso da far scattare: ", "scegli la transizione di cui cambiare la priorità: "};
+		String[] possibiliDomande = {POSTO_CAMBIAMENTO_MARCATURA, ELEMENTOFLUSSO_CAMBIAMENTO_PESO, SCATTO_ELEMENTOFLUSSO, TRANSIZIONE_CAMBIAMENTO_PRIORITA};
 		String nomePosto = leggiStringaNonVuota(possibiliDomande[tipoElemento]);
 		return nomePosto;
 	}
 
 	public static int leggiNuovoValoreDaInserirePerCambiamentoDati(int tipoElemento){
 		int[] possibiliMinimi = {0,1};
-		int nuovoValore = leggiInteroConMinimo("scegli un nuovo valore: \n->", possibiliMinimi[tipoElemento]);
+		int nuovoValore = leggiInteroConMinimo(SCEGLI_UN_NUOVO_VALORE, possibiliMinimi[tipoElemento]);
 		return nuovoValore;
 	}
 
@@ -354,7 +364,7 @@ public class InterazioneUtente {
 	}
 
 	public static void printPossibiliTransizioniPerSimulazione(ArrayList <ElemFlusso> possibiliTrans){
-		System.out.println("Transizioni abilitate: \n");
+		System.out.println(TRANSIZIONI_ABILITATE);
 		for(ElemFlusso elem : possibiliTrans){
 			System.out.println(new ElemFlussoPresentation(elem).getName()+ "\n");
 		}
@@ -365,11 +375,11 @@ public class InterazioneUtente {
 	}
 
 	public static boolean domandaContinuareSimulazione(){
-		return yesOrNo("Uscire dalla simulazione? ");
+		return yesOrNo(USCITA_SIMULAZIONE);
 	}
 
 	public static String estendiRetePNinPrioritaView(GestoreRetiPetri listaRetiPN){
-		System.out.println("Scegli una delle seguenti reti di petri da estendere in Rete di Petri con priorità:");
+		System.out.println(DOMANDA_ESTENSIONE_RETEPETRI_RETEPNP);
 		stampaListaRetiGestore(listaRetiPN);
 		String nome = leggiStringaNonVuota("->");
 		return nome;
