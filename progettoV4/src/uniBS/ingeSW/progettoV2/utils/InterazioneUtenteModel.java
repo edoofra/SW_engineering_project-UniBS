@@ -342,7 +342,7 @@ public class InterazioneUtenteModel {
                     finito = true;
                  } 
                 else{
-                    
+                    //cambiare da qua
                     InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
                     String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
                     try {
