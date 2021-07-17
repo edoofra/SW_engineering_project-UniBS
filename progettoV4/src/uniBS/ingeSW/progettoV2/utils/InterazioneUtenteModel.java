@@ -352,7 +352,7 @@ public class InterazioneUtenteModel {
         }
         else{
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-            RetePetri reteScelta = listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare);
+            RetePetriPriorita reteScelta = listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare);
             boolean finito = false;
             while(!finito){
                 possibiliTrans = reteScelta.getPossibiliTransizioni();
@@ -362,7 +362,8 @@ public class InterazioneUtenteModel {
                  } 
                 else{
                     //cambiare da qua
-                    InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
+                    ArrayList<ElemFlusso> transizioniPossibiliMaxP = reteScelta.getTransizioniPrioritaMaggiore(possibiliTrans);
+                    InterazioneUtente.printPossibiliTransizioniPerSimulazione(transizioniPossibiliMaxP);
                     String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
                     try {
                         ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);

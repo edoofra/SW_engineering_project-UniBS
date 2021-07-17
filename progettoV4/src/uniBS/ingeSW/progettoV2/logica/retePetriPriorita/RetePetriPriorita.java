@@ -1,5 +1,8 @@
 package uniBS.ingeSW.progettoV2.logica.retePetriPriorita;
 
+import java.util.ArrayList;
+
+import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
 
 public class RetePetriPriorita extends RetePetri{
@@ -27,5 +30,9 @@ public class RetePetriPriorita extends RetePetri{
 		
 		return true;
 	}
+
+    public ArrayList<ElemFlusso> getTransizioniPrioritaMaggiore(ArrayList<ElemFlusso> transizioniPossibili){
+        return listaPriorita.getTransizioniPrioritaMaggiore(transizioniPossibili);
+    }    
     
 }

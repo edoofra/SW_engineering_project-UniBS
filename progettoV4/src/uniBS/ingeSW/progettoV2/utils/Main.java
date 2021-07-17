@@ -18,7 +18,7 @@ public class Main {
 
     private static final String[] VOCI_MENU_ESTERNO= {"Configuratore", "Fruitore"};
 
-    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete"};
+    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete", "Simula l'evoluzione di una rete con priorità"};
     
      private static final String TITOLO = 
   
@@ -137,7 +137,7 @@ public class Main {
         }while(fine == false);
     }
 
-    public static void cicloSceltaMenuFruitore(GestoreRetiPetri retiPNSalvate){
+    public static void cicloSceltaMenuFruitore(GestoreRetiPetri retiPNSalvate, GestoreRetiPetriPriorita retiPNPSalvate){
         Menu menuFruitore = new Menu("seleziona un'alternativa", VOCI_MENU_FRUITORE);
         boolean fine = false;
         do{
@@ -146,6 +146,9 @@ public class Main {
             switch(scelta1){
 
                 case 1: InterazioneUtenteModel.simulazioneEvoluzioneRete(retiPNSalvate);
+                        break;
+
+                case 2: InterazioneUtenteModel.simulazioneEvoluzioneRetePriorita(retiPNPSalvate);
                         break;
 
                 case 0: fine=true;
@@ -168,7 +171,7 @@ public class Main {
                 case 1 : cicloSceltaMenuConfiguratore(retiSalvate, retiPNSalvate, retiPNPSalvate);
                         break;
                 
-                case 2: cicloSceltaMenuFruitore(retiPNSalvate);
+                case 2: cicloSceltaMenuFruitore(retiPNSalvate, retiPNPSalvate);
                         break;
 
                 case 0: fine=true;

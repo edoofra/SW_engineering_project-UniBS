@@ -2,6 +2,7 @@ package uniBS.ingeSW.progettoV2.logica.retePetriPriorita;
 
 import java.util.ArrayList;
 
+import uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV2.logica.rete.Transizione;
 
 public class Priorita {
@@ -58,6 +59,32 @@ public class Priorita {
 			if(toCompareList.get(i) != listaPriorita.get(i)) return false;
 		}
 		return true;
+	}
+
+	public ArrayList<ElemFlusso> getTransizioniPrioritaMaggiore(ArrayList<ElemFlusso> transizioniPossibili){
+		ArrayList<Transizione> listaTransizioniMaxPriorita = new ArrayList<Transizione>();
+		int max = Integer.MIN_VALUE;
+		for(int i=0; i<listaPriorita.size(); i++){
+			if(listaPriorita.get(i) > max){
+				max = listaPriorita.get(i);
+			}
+		}
+		for(int j=0; j<listaTransizioni.size(); j++){
+			if(listaPriorita.get(j) == max) listaTransizioniMaxPriorita.add(listaTransizioni.get(j));
+		}
+
+		for(int k=0; k<transizioniPossibili.size(); k++){
+			boolean massimo = false;
+			cicloInterno :
+			for(int z=0; z<listaTransizioniMaxPriorita.size(); z++){
+				if(transizioniPossibili.get(k).getElem2().getName().equalsIgnoreCase(listaTransizioniMaxPriorita.get(z).getName())){
+					massimo = true;
+					break cicloInterno;
+				}
+			}
+			if(!massimo) transizioniPossibili.remove(k);
+		}
+		return transizioniPossibili;
 	}
 
 
