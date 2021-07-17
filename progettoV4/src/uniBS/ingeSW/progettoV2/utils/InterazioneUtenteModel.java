@@ -361,7 +361,6 @@ public class InterazioneUtenteModel {
                     finito = true;
                  } 
                 else{
-                    //cambiare da qua
                     ArrayList<ElemFlusso> transizioniPossibiliMaxP = reteScelta.getTransizioniPrioritaMaggiore(possibiliTrans);
                     InterazioneUtente.printPossibiliTransizioniPerSimulazione(transizioniPossibiliMaxP);
                     String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);

@@ -23,7 +23,7 @@ public class Priorita {
     }
 
     public ArrayList<Transizione> getListaTransizioni(){
-        return this.getListaTransizioni();
+        return this.listaTransizioni;
     }
 
     /** 
