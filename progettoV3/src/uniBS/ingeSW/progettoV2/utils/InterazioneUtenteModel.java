@@ -125,6 +125,7 @@ public class InterazioneUtenteModel {
     }
 
     public static void aggiuntaRete(Rete daCreare, GestoreReti listaReti){
+        assert daCreare != null && listaReti != null;
         InterazioneUtente.aggiuntaRete();
         creazioneRete(daCreare);
         boolean possibileSalvataggio = controlloRete(daCreare,listaReti);
@@ -159,6 +160,7 @@ public class InterazioneUtenteModel {
     }
 
     private static void cambiaMarcatura(RetePetri retePN){
+        assert retePN != null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(0);
         if(risposta){
             while(risposta != false){
@@ -174,6 +176,7 @@ public class InterazioneUtenteModel {
     }
 
     private static void cambiaPesi(RetePetri retePN){
+        assert retePN !=null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(1);
         if(risposta){
             while(risposta != false){
@@ -193,7 +196,7 @@ public class InterazioneUtenteModel {
     }
 
     private static boolean controlloRetePetriDuplicata(RetePetri daControllare, GestoreRetiPetri listaReti){
-
+        assert daControllare !=null && listaReti !=null;
         for(String nomeRete : listaReti.getListaRetiPetriConfiguratore().keySet().toArray(new String[0])){
             if(daControllare.controlloRetePetriUguale(listaReti.getListaRetiPetriConfiguratore().get(nomeRete))) return true;
         }
@@ -201,6 +204,7 @@ public class InterazioneUtenteModel {
     }
 
     private static void salvataggioRetePN(RetePetri retePN, GestoreRetiPetri listaPetriPN){
+        assert retePN !=null && listaPetriPN !=null;
         if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
             String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
             if(nomeSalvataggio != null){
@@ -238,6 +242,7 @@ public class InterazioneUtenteModel {
     }
 
     public static void simulazioneEvoluzioneRete(GestoreRetiPetri listaReti){
+        assert listaReti !=null;
         ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
         if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
