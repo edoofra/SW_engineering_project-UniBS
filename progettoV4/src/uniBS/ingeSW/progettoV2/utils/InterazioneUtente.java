@@ -389,6 +389,10 @@ public class InterazioneUtente {
 		PrioritaPresentation view = new PrioritaPresentation(listaPriorita);
 		System.out.println(view.toString());
 	}
+
+	public static void printErrorReteNonPresente(){
+		System.out.println("La rete scelta non è presente o il nome è stato digitato in modo sbagliato");
+	}
 	
 }
 

@@ -54,6 +54,12 @@ public class ConvertitoreJson {
         return convertitore.fromJson(json, RetePetri.class);
     }
 
+    public static RetePetriPriorita daJsonARetePetriPriorita(String json){
+        assert json != null: "json = null"; //precondizione
+        Gson convertitore = new Gson();
+        return convertitore.fromJson(json, RetePetriPriorita.class);
+    }
+
      /**
      * Metodo che converte un oggetto GestoreRetiPetri in una stringa formattata in JSON.
      * @param oggetto oggetto da convertire.

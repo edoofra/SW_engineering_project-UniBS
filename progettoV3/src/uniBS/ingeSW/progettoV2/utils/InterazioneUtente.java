@@ -359,6 +359,10 @@ public class InterazioneUtente {
 	public static boolean domandaContinuareSimulazione(){
 		return yesOrNo(USCITA_SIMULAZIONE);
 	}
+
+	public static void printErrorReteNonPresente(){
+		System.out.println("La rete scelta non è presente o il nome è stato digitato in modo sbagliato");
+	}
 	
 }
 
