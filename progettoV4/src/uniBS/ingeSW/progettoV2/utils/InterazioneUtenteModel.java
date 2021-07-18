@@ -337,7 +337,7 @@ public class InterazioneUtenteModel {
         assert daControllare != null && listaReti != null;
 
         for(String nomeRete : listaReti.getListaRetiPetriPrioritaConfiguratore().keySet().toArray(new String[0])){
-            if(daControllare.controlloRetePetriUguale(listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeRete))) return true;
+            if(daControllare.controlloRetePetriPrioritaUguale(listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeRete))) return true;
         }
         return false;
     }
