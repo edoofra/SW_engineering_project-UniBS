@@ -342,8 +342,22 @@ public class InterazioneUtenteModel {
         return false;
     }
 
+    public static void visualizzaRetiPetriPrioritaDaGestore(GestoreRetiPetriPriorita listaReti){
+        assert listaReti != null; //precondizione
+        if(listaReti.getListaRetiPetriPrioritaConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+        }
+        else{
+            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+            for(String elem : listaReti.getKeyLIst()){
+				if (elem.equals(nomeReteDaVisualizzare)){
+                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare));
+                }
+            }    
+        }
+    }
 
-    //da finire
+
     public static void simulazioneEvoluzioneRetePriorita(GestoreRetiPetriPriorita listaReti){
         assert listaReti != null;
         ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
