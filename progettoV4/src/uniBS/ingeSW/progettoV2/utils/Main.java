@@ -13,7 +13,7 @@ import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 public class Main {
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
-     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri",
+     "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete in rete di Petri",
     "Estendi una rete di petri in rete con priorità", "Visualizza le reti di petri con priorità esistenti"};
 
     private static final String[] VOCI_MENU_ESTERNO= {"Configuratore", "Fruitore"};

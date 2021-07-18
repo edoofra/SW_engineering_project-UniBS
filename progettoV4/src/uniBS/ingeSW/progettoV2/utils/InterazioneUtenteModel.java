@@ -15,6 +15,7 @@ import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.ErroreFormatoException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
+import uniBS.ingeSW.progettoV2.view.ElemFlussoPresentation;
 
 public class InterazioneUtenteModel {
     
@@ -31,7 +32,7 @@ public class InterazioneUtenteModel {
             }
         }
         catch (giaPresenteException ex){
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
 	}
 
@@ -48,7 +49,7 @@ public class InterazioneUtenteModel {
             }
         }
         catch (giaPresenteException ex){
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
 	}
 
@@ -75,13 +76,13 @@ public class InterazioneUtenteModel {
             }
         }
         catch (giaPresenteException ex){
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
         catch(NonPresenteException ex1){
-            ex1.printStackTrace();
+            System.out.println(ex1.getMessage());
         }
         catch(ErroreFormatoException ex2){
-            ex2.printStackTrace();
+            System.out.println(ex2.getMessage());
         }
 	}
 
@@ -121,7 +122,7 @@ public class InterazioneUtenteModel {
                 } 
 				
             } catch (giaPresenteException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -134,65 +135,116 @@ public class InterazioneUtenteModel {
         if(possibileSalvataggio) salvataggioRete(daCreare,listaReti);        
     }
 
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     public static void visualizzaRetiDaGestore(GestoreReti listaReti){
         assert listaReti != null; //precondizione
         if(listaReti.getListaRetiConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
         }
         else{
-            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-            for(String elem : listaReti.getKeyLIst()){
-				if (elem.equals(nomeReteDaVisualizzare)){
-                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
-                }
-            }    
+            boolean presente = false;
+            while(!presente){
+                String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+                for(String elem : listaReti.getKeyLIst()){
+                    if (elem.equals(nomeReteDaVisualizzare)){
+                        presente = true;
+                        InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
+                        break;
+                    }
+                }    
+            }           
         }
     }
 
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     public static void estendiReteInPN(GestoreReti listaReti, GestoreRetiPetri listaPetriPN){
         if(listaReti.getListaRetiConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
         }
-        String nomeReteDaEstendere = InterazioneUtente.estendiReteView(listaReti);
-        Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
-        RetePetri retePN = new RetePetri(reteScelta);
-        cambiaMarcatura(retePN);
-        cambiaPesi(retePN);
-        salvataggioRetePN(retePN, listaPetriPN);
+        boolean presente = false;
+        String nomeReteDaEstendere = null;
+        while(!presente){
+            nomeReteDaEstendere = InterazioneUtente.estendiReteView(listaReti);
+            for(String nomeRete : listaReti.getKeyLIst()){
+                if(nomeRete.equalsIgnoreCase(nomeReteDaEstendere)){
+                    presente = true;
+                    break;
+                }
+            }
+            if(!presente) InterazioneUtente.printErrorReteNonPresente();
+        }
+        if(nomeReteDaEstendere != null){
+            Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
+            RetePetri retePN = new RetePetri(reteScelta);
+            cambiaMarcatura(retePN);
+            cambiaPesi(retePN);
+            salvataggioRetePN(retePN, listaPetriPN);
+        }
+        
     }
-
+    
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     private static void cambiaMarcatura(RetePetri retePN){
         assert retePN != null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(0);
         if(risposta){
             while(risposta != false){
-                InterazioneUtente.printListaMarcature(retePN.getMarcatura()); 
-                String nome = InterazioneUtente.leggiElementoDaCambiare(0);
-                int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
-                retePN.getMarcatura().impostaNuovaMarcatura(nome, nuovoValore);
-                InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
-                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(3);
-            }
-           
+                String nome = null;
+                boolean presente = false;
+                while(!presente){
+                    InterazioneUtente.printListaMarcature(retePN.getMarcatura()); 
+                    nome = InterazioneUtente.leggiElementoDaCambiare(0);
+                    for(Posto posto : retePN.getMarcatura().getListaPosti()){
+                        if(posto.getName().equalsIgnoreCase(nome)){
+                            presente = true;
+                            break;
+                        }
+                    }
+                    if(!presente) InterazioneUtente.printErrorPostoNonPresente();
+                }
+                if(nome != null){
+                    int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
+                    retePN.getMarcatura().impostaNuovaMarcatura(nome, nuovoValore);
+                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
+                    risposta = InterazioneUtente.continuareAggiuntaYesOrNo(3);
+                }
+                
+            }           
         }
     }
 
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     private static void cambiaPesi(RetePetri retePN){
         assert retePN !=null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(1);
         if(risposta){
             while(risposta != false){
-                InterazioneUtente.printListaPesi(retePN.getListaPesi()); 
-                String nome = InterazioneUtente.leggiElementoDaCambiare(1);
-                int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
-                try {
-                    ElemFlusso elemDaCambiare = retePN.getElemFlussoByName(nome);
-                    retePN.getListaPesi().impostaPeso(elemDaCambiare.getElem1().getName(), elemDaCambiare.getElem2().getName(), nuovoValore);
-                } catch (NonPresenteException e) {
-                    e.printStackTrace();
+                boolean presente = false;
+                String nome = null;
+                while(!presente){
+                    InterazioneUtente.printListaPesi(retePN.getListaPesi()); 
+                    nome = InterazioneUtente.leggiElementoDaCambiare(1);
+                    for(ElemFlusso elem : retePN.getListaPesi().getListaElemFlusso()){
+                        if(new ElemFlussoPresentation(elem).getName().equalsIgnoreCase(nome)){
+                            presente = true;
+                            break;
+                        }
+                    }
+                    if(!presente) InterazioneUtente.printErrorElemFlussoNonPresente();
                 }
-                InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
-                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(4);
+                
+                if(nome != null){
+                    int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
+                    try {
+                        ElemFlusso elemDaCambiare = retePN.getElemFlussoByName(nome);
+                        retePN.getListaPesi().impostaPeso(elemDaCambiare.getElem1().getName(), elemDaCambiare.getElem2().getName(), nuovoValore);
+                    } catch (NonPresenteException e) {
+                        e.printStackTrace();
+                    }
+                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
+                    risposta = InterazioneUtente.continuareAggiuntaYesOrNo(4);
+                }
+               
             }
         }
     }
@@ -206,44 +258,57 @@ public class InterazioneUtenteModel {
         return false;
     }
 
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     private static void salvataggioRetePN(RetePetri retePN, GestoreRetiPetri listaPetriPN){
         assert retePN !=null && listaPetriPN !=null;
         if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
-            String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
-            if(nomeSalvataggio != null){
-                try {
-                    listaPetriPN.addRete(nomeSalvataggio, retePN);
-                    for(String name : listaPetriPN.getKeyLIst()){
-                        String retePNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN.getListaRetiPetriConfiguratore().get(name));
-                        salvataggioFile.salvaRetePetri(retePNJSON, name);
+            boolean nomeDuplicato = false;
+            do{
+                String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
+                if(nomeSalvataggio != null){
+                    try {
+                        listaPetriPN.addRete(nomeSalvataggio, retePN);
+                        for(String name : listaPetriPN.getKeyLIst()){
+                            String retePNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN.getListaRetiPetriConfiguratore().get(name));
+                            salvataggioFile.salvaRetePetri(retePNJSON, name);
+                        }
+                        String listaRetiPNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN);
+                        salvataggioFile.salvaGestoreReti(listaRetiPNJSON, 1);
+                    } catch (giaPresenteException e) {
+                        System.out.println(e.getMessage());
+                        nomeDuplicato = true;
                     }
-                    String listaRetiPNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN);
-				    salvataggioFile.salvaGestoreReti(listaRetiPNJSON, 1);
-                } catch (giaPresenteException e) {
-                    e.printStackTrace();
                 }
-            }
+            }while(nomeDuplicato);
+            
         }
         else{
             InterazioneUtente.printErroreRetePNDuplicata();
         }
     }
 
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     public static void visualizzaRetiPetriDaGestore(GestoreRetiPetri listaReti){
         assert listaReti != null; //precondizione
         if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
         }
         else{
-            String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-            for(String elem : listaReti.getKeyLIst()){
-				if (elem.equals(nomeReteDaVisualizzare)){
-                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare));
-                }
-            }    
+            boolean presente = false;
+            while(!presente){
+                String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+                for(String elem : listaReti.getKeyLIst()){
+                    if (elem.equals(nomeReteDaVisualizzare)){
+                        presente = true;
+                        InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare));
+                        break;
+                    }
+                }    
+            }           
         }
     }
 
+    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
     public static void simulazioneEvoluzioneRete(GestoreRetiPetri listaReti){
         assert listaReti !=null;
         ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
@@ -263,17 +328,21 @@ public class InterazioneUtenteModel {
                         finito = true;
                      } 
                     else{
-                        InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
-                        String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
-                        try {
-                            ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
-                            reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
-                            InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
-                        } catch (NonPresenteException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        finito = InterazioneUtente.domandaContinuareSimulazione();
+                        boolean presente = true;
+                        do{
+                            InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
+                            String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
+                            try {
+                                ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+                                reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                                InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
+                            } catch (NonPresenteException e) {
+                                System.out.println(e.getMessage());
+                                presente = false;
+                            }
+                            finito = InterazioneUtente.domandaContinuareSimulazione();
+                        }while(!presente);
+                        
                     }
                 }
             }
@@ -284,6 +353,8 @@ public class InterazioneUtenteModel {
             
         }
     }
+
+// DA QUA BISOGNA CONTINUARE AD AGGIUNGERE I CONTROLLI
 
     public static void estendiRetePNInPNConPriorita(GestoreRetiPetri listaRetiPN, GestoreRetiPetriPriorita listaPetriPNPriorita){
         assert listaPetriPNPriorita !=null && listaRetiPN != null;
