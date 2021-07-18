@@ -9,6 +9,7 @@ import uniBS.ingeSW.progettoV2.logica.retePetri.ListaPesiFlussoPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.MarcaturaPN;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.Priorita;
+import uniBS.ingeSW.progettoV2.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV2.view.*;
 
 public class InterazioneUtente {	
@@ -323,6 +324,10 @@ public class InterazioneUtente {
 	//overloaded
 	public static void stampaReteSceltaPerVisualizzazione(RetePetri daVisualizzare){
 		System.out.println(new RetePetriPresentation(daVisualizzare));
+	}
+
+	public static void stampaReteSceltaPerVisualizzazione(RetePetriPriorita daVisualizzare){
+		System.out.println(new RetePetriPrioritaPresentation(daVisualizzare));
 	}
 
 	public static String estendiReteView(GestoreReti listaReti){

@@ -353,6 +353,7 @@ public class InterazioneUtenteModel {
         else{
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
             RetePetriPriorita reteScelta = listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare);
+            InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
             boolean finito = false;
             while(!finito){
                 possibiliTrans = reteScelta.getPossibiliTransizioni();
@@ -367,6 +368,7 @@ public class InterazioneUtenteModel {
                     try {
                         ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
                         reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                        InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
                     } catch (NonPresenteException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
