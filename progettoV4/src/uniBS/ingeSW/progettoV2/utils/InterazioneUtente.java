@@ -71,7 +71,7 @@ public class InterazioneUtente {
 	private static final String ELEMENTOFLUSSO_CAMBIAMENTO_PESO = "scegli l'elemento di flusso a cui cambiare il peso:";
 	private static final String POSTO_CAMBIAMENTO_MARCATURA = "scegli il posto a cui cambiare la marcatura:";
 	private static final String TRANSIZIONE_CAMBIAMENTO_PRIORITA = "scegli la transizione di cui cambiare la priorità: ";
-	private static final String CAMBIAMENTO_ELEMENTOFLUSSO = "vuoi cambiare qualche elemento di flusso?";
+	private static final String CAMBIAMENTO_ELEMENTOFLUSSO = "vuoi cambiare il peso di qualche elemento di flusso?";
 	private static final String CAMBIAMENTO_MARCATURA = "vuoi cambiare qualche marcatura?";
 	private static final String CAMBIAMENTO_PRIORITA = "vuoi cambiare qualche priorità?";
 

@@ -18,7 +18,7 @@ public class InterazioneUtente {
 	private static final String SCATTO_ELEMENTOFLUSSO = "scegli l'elemento di flusso da far scattare: ";
 	private static final String ELEMENTOFLUSSO_CAMBIAMENTO_PESO = "scegli l'elemento di flusso a cui cambiare il peso:";
 	private static final String POSTO_CAMBIAMENTO_MARCATURA = "scegli il posto a cui cambiare la marcatura:";
-	private static final String CAMBIAMENTO_ELEMENTOFLUSSO = "vuoi cambiare qualche elemento di flusso?";
+	private static final String CAMBIAMENTO_ELEMENTOFLUSSO = "vuoi cambiare il peso di qualche elemento di flusso?";
 	private static final String CAMBIAMENTO_MARCATURA = "vuoi cambiare qualche marcatura?";
 	
 	private static final String DOMANDA_ESTENSIONE_RETE = "Scegli una delle seguenti reti da estendere in Rete di Petri:";
