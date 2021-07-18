@@ -146,6 +146,10 @@ public class Rete {
 	public boolean isEqual(Rete toCheck){
 	    assert toCheck != null : "toCheck = null";
 		boolean uguali = BOOL_CONST_FALSE;
+		if(this.getInsiemePosti().length != toCheck.getInsiemePosti().length) return BOOL_CONST_FALSE;
+		if(this.getInsiemeTransizioni().length != toCheck.getInsiemeTransizioni().length) return BOOL_CONST_FALSE;
+		if(this.getRelazioneFlusso().length!= toCheck.getRelazioneFlusso().length) return BOOL_CONST_FALSE;
+
 
 		for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
 			cicloInterno:
