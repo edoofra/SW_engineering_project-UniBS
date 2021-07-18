@@ -14,7 +14,7 @@ public class Main {
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri",
-    "Estendi una rete di petri in rete con priorità."};
+    "Estendi una rete di petri in rete con priorità", "Visualizza le reti di petri con priorità esistenti"};
 
     private static final String[] VOCI_MENU_ESTERNO= {"Configuratore", "Fruitore"};
 
@@ -127,6 +127,9 @@ public class Main {
                         break;
                         
                 case 5: InterazioneUtenteModel.estendiRetePNInPNConPriorita(retiPNSalvate, retiPNPSalvate);
+                    	break;
+
+                case 6: InterazioneUtenteModel.visualizzaRetiPetriPrioritaDaGestore(retiPNPSalvate);
                     	break;
 
                 case 0: fine=true;
