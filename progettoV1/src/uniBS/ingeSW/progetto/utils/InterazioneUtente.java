@@ -240,7 +240,7 @@ public class InterazioneUtente {
 				salvataggioFile.salvaGestoreReti(listaRetiJSON);
 			}
 		}
-		//postcondizione se file exist EDO
+		
 	}
 
 	private static void aggiuntaPosto(Rete daCreare) {
@@ -350,9 +350,4 @@ public class InterazioneUtente {
 		}
 		return (connessa && corretta);
 	}
-}
-
-//cambiare ogni syso con la chiamata a due metodi printInfo(msg) o printError(msg) in modo
-//che sia chiaro cosa fa ogni stampa
-
-//dare nomi autoesplicativi ai metodi 
+} 
