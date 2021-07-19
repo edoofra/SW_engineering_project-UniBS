@@ -2,8 +2,8 @@
 <class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
-  <class id="1" language="java" name="uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreReti" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/gestioneReti/GestoreReti.java" binary="false" 
+  <class id="1" language="java" name="uniBS.ingeSW.progettoV4.logica.gestioneReti.GestoreReti" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/gestioneReti/GestoreReti.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="110" y="72"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -12,8 +12,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="uniBS.ingeSW.progettoV2.logica.rete.Rete" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/rete/Rete.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="uniBS.ingeSW.progettoV4.logica.rete.Rete" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/rete/Rete.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="102" y="385"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -21,8 +21,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="uniBS.ingeSW.progettoV2.logica.rete.ElemFlusso" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/rete/ElemFlusso.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="uniBS.ingeSW.progettoV4.logica.rete.ElemFlusso" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/rete/ElemFlusso.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="356" y="80"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -30,8 +30,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="uniBS.ingeSW.progettoV2.logica.rete.Transizione" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/rete/Transizione.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="uniBS.ingeSW.progettoV4.logica.rete.Transizione" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/rete/Transizione.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="563" y="300"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -39,8 +39,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="uniBS.ingeSW.progettoV2.logica.rete.ElementoSemplice" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/rete/ElementoSemplice.java" binary="false" 
+  <class id="5" language="java" name="uniBS.ingeSW.progettoV4.logica.rete.ElementoSemplice" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/rete/ElementoSemplice.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="705" y="86"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -49,8 +49,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="uniBS.ingeSW.progettoV2.logica.rete.Posto" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/rete/Posto.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="uniBS.ingeSW.progettoV4.logica.rete.Posto" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/rete/Posto.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="756" y="411"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -58,8 +58,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/retePetri/RetePetri.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="uniBS.ingeSW.progettoV4.logica.retePetri.RetePetri" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/retePetri/RetePetri.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="246" y="824"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -67,8 +67,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="uniBS.ingeSW.progettoV2.logica.retePetri.ListaPesiFlussoPN" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/retePetri/ListaPesiFlussoPN.java" binary="false" 
+  <class id="8" language="java" name="uniBS.ingeSW.progettoV4.logica.retePetri.ListaPesiFlussoPN" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/retePetri/ListaPesiFlussoPN.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="158" width="220" x="306" y="496"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -77,8 +77,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="uniBS.ingeSW.progettoV2.logica.retePetri.MarcaturaPN" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/retePetri/MarcaturaPN.java" binary="false" 
+  <class id="9" language="java" name="uniBS.ingeSW.progettoV4.logica.retePetri.MarcaturaPN" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/retePetri/MarcaturaPN.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="717" y="689"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -87,8 +87,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetri" 
-    project="progettoV4" file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/gestioneReti/GestoreRetiPetri.java" 
+  <class id="10" language="java" name="uniBS.ingeSW.progettoV4.logica.gestioneReti.GestoreRetiPetri" 
+    project="progettoV4" file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/gestioneReti/GestoreRetiPetri.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="844" y="909"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -97,8 +97,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="uniBS.ingeSW.progettoV2.logica.retePetriPriorita.RetePetriPriorita" 
-    project="progettoV4" file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/retePetriPriorita/RetePetriPriorita.java" 
+  <class id="11" language="java" name="uniBS.ingeSW.progettoV4.logica.retePetriPriorita.RetePetriPriorita" 
+    project="progettoV4" file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/retePetriPriorita/RetePetriPriorita.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="196" y="1021"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -107,8 +107,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="uniBS.ingeSW.progettoV2.logica.retePetriPriorita.Priorita" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/retePetriPriorita/Priorita.java" binary="false" 
+  <class id="12" language="java" name="uniBS.ingeSW.progettoV4.logica.retePetriPriorita.Priorita" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/retePetriPriorita/Priorita.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="552" y="1010"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -117,9 +117,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="uniBS.ingeSW.progettoV2.logica.gestioneReti.GestoreRetiPetriPriorita" 
+  <class id="13" language="java" name="uniBS.ingeSW.progettoV4.logica.gestioneReti.GestoreRetiPetriPriorita" 
     project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/logica/gestioneReti/GestoreRetiPetriPriorita.java" binary="false" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/logica/gestioneReti/GestoreRetiPetriPriorita.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="189" y="1223"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -128,8 +128,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="uniBS.ingeSW.progettoV2.view.ElemFlussoPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/ElemFlussoPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="uniBS.ingeSW.progettoV4.view.ElemFlussoPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/ElemFlussoPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="379" y="-83"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -137,8 +137,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="uniBS.ingeSW.progettoV2.view.GestoreRetiPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/GestoreRetiPresentation.java" binary="false" 
+  <class id="15" language="java" name="uniBS.ingeSW.progettoV4.view.GestoreRetiPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/GestoreRetiPresentation.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-170" y="-52"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -147,8 +147,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="uniBS.ingeSW.progettoV2.view.RetePresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/RetePresentation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="uniBS.ingeSW.progettoV4.view.RetePresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/RetePresentation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="118" width="176" x="-274" y="122"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -156,8 +156,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="uniBS.ingeSW.progettoV2.view.RetePetriPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/RetePetriPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="uniBS.ingeSW.progettoV4.view.RetePetriPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/RetePetriPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-129" y="713"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -165,8 +165,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="uniBS.ingeSW.progettoV2.view.RetePetriPrioritaPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/RetePetriPrioritaPresentation.java" binary="false" 
+  <class id="18" language="java" name="uniBS.ingeSW.progettoV4.view.RetePetriPrioritaPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/RetePetriPrioritaPresentation.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-155" y="867"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -175,8 +175,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="uniBS.ingeSW.progettoV2.view.ListaPesiPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/ListaPesiPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="19" language="java" name="uniBS.ingeSW.progettoV4.view.ListaPesiPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/ListaPesiPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-183" y="604"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -184,8 +184,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="uniBS.ingeSW.progettoV2.view.MarcaturaPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/MarcaturaPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="20" language="java" name="uniBS.ingeSW.progettoV4.view.MarcaturaPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/MarcaturaPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="690" y="1185"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -193,8 +193,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="uniBS.ingeSW.progettoV2.view.PrioritaPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/PrioritaPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="21" language="java" name="uniBS.ingeSW.progettoV4.view.PrioritaPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/PrioritaPresentation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="461" y="1214"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -202,8 +202,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="uniBS.ingeSW.progettoV2.view.GestoreRetiPetriPrioritaPresentation" 
-    project="progettoV4" file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/GestoreRetiPetriPrioritaPresentation.java" 
+  <class id="22" language="java" name="uniBS.ingeSW.progettoV4.view.GestoreRetiPetriPrioritaPresentation" 
+    project="progettoV4" file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/GestoreRetiPetriPrioritaPresentation.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-286" y="1234"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -212,8 +212,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="uniBS.ingeSW.progettoV2.view.GestoreRetiPetriPresentation" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/view/GestoreRetiPetriPresentation.java" binary="false" 
+  <class id="23" language="java" name="uniBS.ingeSW.progettoV4.view.GestoreRetiPetriPresentation" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/view/GestoreRetiPetriPresentation.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="78" width="281" x="746" y="1029"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -222,8 +222,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="uniBS.ingeSW.progettoV2.utils.ConvertitoreJson" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/utils/ConvertitoreJson.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="24" language="java" name="uniBS.ingeSW.progettoV4.utils.ConvertitoreJson" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/utils/ConvertitoreJson.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="945" y="-5"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -231,8 +231,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="uniBS.ingeSW.progettoV2.utils.InterazioneUtente" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/utils/InterazioneUtente.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="25" language="java" name="uniBS.ingeSW.progettoV4.utils.InterazioneUtente" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/utils/InterazioneUtente.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1417" y="347"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -240,8 +240,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="uniBS.ingeSW.progettoV2.utils.InterazioneUtenteModel" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/utils/InterazioneUtenteModel.java" binary="false" 
+  <class id="26" language="java" name="uniBS.ingeSW.progettoV4.utils.InterazioneUtenteModel" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/utils/InterazioneUtenteModel.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1036" y="367"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
@@ -250,8 +250,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="uniBS.ingeSW.progettoV2.utils.Menu" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/utils/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="27" language="java" name="uniBS.ingeSW.progettoV4.utils.Menu" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/utils/Menu.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1047" y="724"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -259,8 +259,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="uniBS.ingeSW.progettoV2.utils.Main" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/utils/Main.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="28" language="java" name="uniBS.ingeSW.progettoV4.utils.Main" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/utils/Main.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1200" y="1006"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -268,8 +268,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="uniBS.ingeSW.progettoV2.utils.salvataggioFile" project="progettoV4" 
-    file="/progettoV4/src/uniBS/ingeSW/progettoV2/utils/salvataggioFile.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="29" language="java" name="uniBS.ingeSW.progettoV4.utils.salvataggioFile" project="progettoV4" 
+    file="/progettoV4/src/uniBS/ingeSW/progettoV4/utils/salvataggioFile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="939" y="1248"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
