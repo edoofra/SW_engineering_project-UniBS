@@ -14,11 +14,11 @@ public class Main {
 
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete in rete di Petri",
-    "Estendi una rete di petri in rete con priorità", "Visualizza le reti di petri con priorità esistenti"};
+    "Estendi una rete di petri in rete di petri con priorità", "Visualizza le reti di petri con priorità esistenti"};
 
     private static final String[] VOCI_MENU_ESTERNO= {"Configuratore", "Fruitore"};
 
-    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete", "Simula l'evoluzione di una rete con priorità"};
+    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete di petri", "Simula l'evoluzione di una rete di petri con priorità"};
     
      private static final String TITOLO = 
   

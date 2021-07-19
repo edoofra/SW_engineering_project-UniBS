@@ -308,7 +308,7 @@ public class InterazioneUtente {
 	}
 
 	public static boolean domandaCambiamentoDatiRetePetri(int tipoDato){
-		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare qualche elemento di flusso?"};
+		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare il peso di qualche elemento di flusso?"};
 		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
