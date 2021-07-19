@@ -14,7 +14,12 @@ import uniBS.ingeSW.progettoV4.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV4.view.*;
 
 public class InterazioneUtente {	
-	
+    	public static final String ERROR_FLUSSO_NON_PRESENTE = "L'elemento scelto non e' presente o il nome e' stato digitato in modo sbagliato";
+	public static final String ERROR_POSTO_NON_PRESENTE = "Il posto non e' presente o il nome e' stato digitato in modo sbagliato";
+	public static final String ERROR_RETE_NON_PRESENTE = "La rete scelta non e'presente o il nome e' stato digitato in modo sbagliato";
+	public static final String ERROR_TRANSIZIONE_NON_PRESENTE = "La transizione scelta non e' presente o il nome e' stato digitato in modo sbagliato";
+	public static final String E_IN_DEADLOCK = " e'� in deadlock.\n";
+	public static final String LA_RETE = "La rete ";
 	private static final String DOMANDA_ESTENSIONE_RETEPETRI_RETEPNP = "Scegli una delle seguenti reti di petri da estendere in Rete di Petri con priorità:";	
 	private static final String DOMANDA_SALVATAGGIO_RETEPNP = "Vuoi salvare in modo persistente la Rete di Petri con Priorità appena creata?";
 	private static final String DOMANDA_AGGIUNTA_ALTRE_PRIORITA = "vuoi cambiare altre priorità?";	
@@ -377,7 +382,7 @@ public class InterazioneUtente {
 	}
 
 	public static void printErrorDeadlock(String nomeRete){
-		System.out.println("La rete "+ nomeRete + " è in deadlock.\n");
+		System.out.println(LA_RETE+ nomeRete + E_IN_DEADLOCK);
 	}
 
 	public static boolean domandaContinuareSimulazione(){
@@ -396,31 +401,22 @@ public class InterazioneUtente {
 		System.out.println(view.toString());
 	}
 
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
 	public static void printErrorReteNonPresente(){
-		System.out.println("La rete scelta non è presente o il nome è stato digitato in modo sbagliato");
+		System.out.println(ERROR_RETE_NON_PRESENTE);
 	}
-
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
-	public static void printErrorPostoNonPresente(){
-		System.out.println("Il posto non è presente o il nome è stato digitato in modo sbagliato");
-	}
-
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
-	public static void printErrorElemFlussoNonPresente(){
-		System.out.println("L'elemento scelto non è presente o il nome è stato digitato in modo sbagliato");
-	}
-
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
-	public static void printErrorTransizioneNonPresente(){
-		System.out.println("La transizione scelta non è presente o il nome è stato digitato in modo sbagliato");
-	}
-
 
 	
+	public static void printErrorPostoNonPresente(){
+		System.out.println(ERROR_POSTO_NON_PRESENTE);
+	}
+
+	
+	public static void printErrorElemFlussoNonPresente(){
+		System.out.println(ERROR_FLUSSO_NON_PRESENTE);
+	}
+
+	
+	public static void printErrorTransizioneNonPresente(){
+		System.out.println(ERROR_TRANSIZIONE_NON_PRESENTE);
+	}	
 }
-
-//cambiare ogni syso con la chiamata a due metodi printInfo(msg) o printError(msg) in modo
-//che sia chiaro cosa fa ogni stampa
-
-//dare nomi autoesplicativi ai metodi 

@@ -6,9 +6,9 @@ import uniBS.ingeSW.progettoV4.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV4.utils.eccezioni.giaPresenteException;
 
 /**
- * Classe per la gestione delle <em> reti di Petri con Periorità </em> da salvare in modo persistente.
+ * Classe per la gestione delle <em> reti di Petri� </em> da salvare in modo persistente.
  * Possono essere inserite solamente reti corrette.
- * Ogni rete è salvata tramite un nome che deve essere univoco.
+ * Ogni rete e' salvata tramite un nome che deve essere univoco.
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
@@ -32,10 +32,10 @@ public class GestoreRetiPetri {
 
     /**
 	 * Metodo che aggiunge una rete di Petri alla lista delle reti da salvare.
-	 * Una rete può essere aggiunta solamente se ha un nome diverso da tutti quelli salvati.
+	 * Una rete puo' essere aggiunta solamente se ha un nome diverso da tutti quelli salvati.
 	 * @param name nome della nuova rete da aggiungere
 	 * @param toAdd rete da aggungere 
-	 * @return boolean che indica se l'aggiunta è andata a buon fine o meno.
+	 * @return boolean che indica se l'aggiunta e' andata a buon fine o meno.
 	 * @throws giaPresenteException
 	 */
 	public void addRete(String name, RetePetri toAdd) throws giaPresenteException {

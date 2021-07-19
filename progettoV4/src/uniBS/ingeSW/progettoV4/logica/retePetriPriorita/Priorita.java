@@ -6,7 +6,7 @@ import uniBS.ingeSW.progettoV4.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV4.logica.rete.Transizione;
 
 /** 
- * Classe che identifica la lista delle priorità legate ad ogni transizione
+ * Classe che identifica la lista delle priorita' legate ad ogni transizione
  * contenuta all'interno di una rete di Petri.
  * @author Lorenzo Bargnani
  * @author Edoardo Fratus
@@ -35,10 +35,10 @@ public class Priorita {
     }
 
     /** 
-	* Metodo che imposta la priorità di una transizione (il valore è preimpostato a 0 alla creazione della rete di petri) 
+	* Metodo che imposta la priorita' di una transizione (il valore e' preimpostato a 0 alla creazione della rete di petri) 
 	* @param nomePosto transizione a cui va cambiata la priorita
-	* @param nuovaPriorita priorità da impostare
-	* @return boolean che indica se la modifica è andata a buon fine
+	* @param nuovaPriorita priorita' da impostare
+	* @return boolean che indica se la modifica e' andata a buon fine
 	*/
     public boolean impostaNuovaPriorita(String nomeTrans, int nuovaPriorita) {
         int posizione = -1;
@@ -57,9 +57,9 @@ public class Priorita {
 		else return false;
 	}
 
-     /** Metodo che controlla se due liste di priorità sono uguali
-	 * @param toCompare lista priorità da confrontare con la lista priorità su cui è stato chiamato il metodo
-	 * @return boolean che ritorna true se la lista priorità è uguale 
+     /** Metodo che controlla se due liste di priorita' sono uguali
+	 * @param toCompare lista priorita' da confrontare con la lista priorita' su cui e' stato chiamato il metodo
+	 * @return boolean che ritorna true se la lista priorita' e' uguale 
 	 */
 	public boolean isEqualPriorita(Priorita toCompare){
 		ArrayList<Integer> toCompareList =toCompare.getListaPriorita();
@@ -71,7 +71,7 @@ public class Priorita {
 	}
 
 	/**
-	 * Metodo che restituisce la lista delle transizioni possibili a priorità maggiore.
+	 * Metodo che restituisce la lista delle transizioni possibili a priorita' maggiore.
 	 * @param transizioniPossibili lista di tutte le transizioni possibili.
 	 * @return lista di tutte le transizioni possibili a priorità maggiore.
 	 */

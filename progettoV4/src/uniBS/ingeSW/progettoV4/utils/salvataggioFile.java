@@ -11,11 +11,14 @@ import java.nio.file.Paths;
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
  * @author Edoardo Fratus
- * @version 1.0 
+ * @version 3.0 - aggiunti metodi per Reti di Petri con Priorita' 
  */
 public class salvataggioFile {
     
     
+    public static final String RETI = "RETI";
+    public static final String RETI_PETRI = "RETI_PETRI";
+    public static final String RETI_PETRI_PRIORITA = "RETI_PETRI_PRIORITA";
     private static final String PATH_RETE = "ListaRetiConfiguratore.json";
     private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
 
@@ -35,9 +38,14 @@ public class salvataggioFile {
         }
     }
 
+    /**
+     * Metodo per il salvataggio di una rete in formato JSON
+     * @param daSalvare JSON da salvare
+     * @param nomeRetePath path salvataggio
+     */
     public static void salvaRete(String daSalvare, String nomeRetePath){
         assert daSalvare != null : "daSalvare = null"; //precondizione
-        File folder = new File("RETI");
+        File folder = new File(RETI);
 		if (!folder.exists())
 			folder.mkdirs();
 
@@ -50,9 +58,14 @@ public class salvataggioFile {
         }
     }
 
+    /**
+     * Metodo per il salvataggio di una rete di Petri in formato JSON
+     * @param daSalvare JSON da salvare
+     * @param nomeRetePath path salvataggio
+     */
     public static void salvaRetePetri(String daSalvare, String nomeRetePath){
         assert daSalvare != null : "daSalvare = null"; //precondizione
-        File folder = new File("RETI_PETRI");
+        File folder = new File(RETI_PETRI);
 		if (!folder.exists())
 			folder.mkdirs();
 
@@ -65,9 +78,14 @@ public class salvataggioFile {
         }
     }
 
+    /**
+     * Metodo per il salvataggio di una rete di Petri con Priorita' in formato JSON
+     * @param daSalvare JSON da salvare
+     * @param nomeRetePath path salvataggio
+     */
     public static void salvaRetePetriPriorita(String daSalvare, String nomeRetePath){
         assert daSalvare != null : "daSalvare = null"; //precondizione
-        File folder = new File("RETI_PETRI_PRIORITA");
+        File folder = new File(RETI_PETRI_PRIORITA);
 		if (!folder.exists())
 			folder.mkdirs();
 

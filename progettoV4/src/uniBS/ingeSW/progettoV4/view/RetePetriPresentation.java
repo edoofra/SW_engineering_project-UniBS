@@ -1,13 +1,27 @@
 package uniBS.ingeSW.progettoV4.view;
 
+import uniBS.ingeSW.progettoV4.view.ElemFlussoPresentation;
+import uniBS.ingeSW.progettoV4.view.ListaPesiPresentation;
+import uniBS.ingeSW.progettoV4.view.MarcaturaPresentation;
 import uniBS.ingeSW.progettoV4.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV4.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV4.logica.rete.Posto;
 import uniBS.ingeSW.progettoV4.logica.rete.Transizione;
 import uniBS.ingeSW.progettoV4.logica.retePetri.RetePetri;
 
+/**
+ * Classe per la gestione della <em>presentazione </em> della classe RetePetri.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+ */
 public class RetePetriPresentation {
     
+    public static final String RELAZIONE_FLUSSO = "RELAZIONE FLUSSO: ";
+    public static final String TRANSIZIONI = "TRANSIZIONI: ";
+    public static final String POSTI = "POSTI: ";
+    public static final String DESCRIZIONE_DELLA_RETE = "Descrizione della rete: \n";
     private RetePetri daPresentare;
 
     /**
@@ -52,10 +66,10 @@ public class RetePetriPresentation {
     }
     
     public String toString() {
-        StringBuilder description = new StringBuilder("Descrizione della rete: \n");
-        description.append("POSTI: " + getStringList(daPresentare.getInsiemePosti().toArray(new Posto[0])) + "\n");
-        description.append("TRANSIZIONI: " + getStringList(daPresentare.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
-        description.append("RELAZIONE FLUSSO: " + getStringList(daPresentare.getRelazioneFlusso().toArray(new ElemFlusso[0])) + "\n");
+        StringBuilder description = new StringBuilder(DESCRIZIONE_DELLA_RETE);
+        description.append(POSTI + getStringList(daPresentare.getInsiemePosti().toArray(new Posto[0])) + "\n");
+        description.append(TRANSIZIONI + getStringList(daPresentare.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
+        description.append(RELAZIONE_FLUSSO + getStringList(daPresentare.getRelazioneFlusso().toArray(new ElemFlusso[0])) + "\n");
         description.append(new MarcaturaPresentation(daPresentare.getMarcatura()).toString() + "\n");
         description.append(new ListaPesiPresentation(daPresentare.getListaPesi()).toString() + "\n");
         

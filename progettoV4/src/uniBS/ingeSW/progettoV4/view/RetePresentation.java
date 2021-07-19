@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progettoV4.view;
 
+import uniBS.ingeSW.progettoV4.view.ElemFlussoPresentation;
 import uniBS.ingeSW.progettoV4.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV4.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV4.logica.rete.Posto;
@@ -15,6 +16,10 @@ import uniBS.ingeSW.progettoV4.logica.rete.Transizione;
  */
 public class RetePresentation {
     
+    public static final String RELAZIONE_FLUSSO = "RELAZIONE FLUSSO: ";
+    public static final String TRANSIZIONI = "TRANSIZIONI: ";
+    public static final String POSTI = "POSTI: ";
+    public static final String DESCRIZIONE_DELLA_RETE = "Descrizione della rete: \n";
     private Rete daPresentare;
     
 	/**
@@ -59,10 +64,10 @@ public class RetePresentation {
 	}
 
 	public String toString() {
-	StringBuilder description = new StringBuilder("Descrizione della rete: \n");
-	description.append("POSTI: " + getStringList(daPresentare.getInsiemePosti().toArray(new Posto[0])) + "\n");
-	description.append("TRANSIZIONI: " + getStringList(daPresentare.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
-	description.append("RELAZIONE FLUSSO: " + getStringList(daPresentare.getRelazioneFlusso().toArray(new ElemFlusso[0])) + "\n");
+	StringBuilder description = new StringBuilder(DESCRIZIONE_DELLA_RETE);
+	description.append(POSTI + getStringList(daPresentare.getInsiemePosti().toArray(new Posto[0])) + "\n");
+	description.append(TRANSIZIONI + getStringList(daPresentare.getInsiemeTransizioni().toArray(new Transizione[0])) + "\n");
+	description.append(RELAZIONE_FLUSSO + getStringList(daPresentare.getRelazioneFlusso().toArray(new ElemFlusso[0])) + "\n");
 	return description.toString();
 
 	}

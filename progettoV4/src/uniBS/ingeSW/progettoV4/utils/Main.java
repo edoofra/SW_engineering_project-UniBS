@@ -12,13 +12,25 @@ import uniBS.ingeSW.progettoV4.utils.eccezioni.giaPresenteException;
 
 public class Main {
 
+    public static final String SELEZIONA_IL_PROFILO_CON_CUI_ACCEDERE = "seleziona il profilo con cui accedere.";
+
+    public static final String ATTENZIONE_SELEZIONE_NON_VALIDA = "Attenzione selezione non valida";
+
+    private static final String SELEZIONA_UN_ALTERNATIVA = "seleziona un'alternativa.";
+
+    public static final String RETI_PETRI_PRIORITA = "RETI_PETRI_PRIORITA";
+
+    public static final String RETI_PETRI = "RETI_PETRI";
+
+    public static final String RETI = "RETI";
+
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete in rete di Petri",
-    "Estendi una rete di petri in rete di petri con priorità", "Visualizza le reti di petri con priorità esistenti"};
+    "Estendi una rete di petri in rete di petri con priorita'", "Visualizza le reti di petri con priorita' esistenti"};
 
     private static final String[] VOCI_MENU_ESTERNO= {"Configuratore", "Fruitore"};
 
-    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete di petri", "Simula l'evoluzione di una rete di petri con priorità"};
+    private static final String[] VOCI_MENU_FRUITORE= {"Simula l'evoluzione di una rete di petri", "Simula l'evoluzione di una rete di petri con priorita'"};
     
      private static final String TITOLO = 
   
@@ -40,7 +52,7 @@ public class Main {
 
     public static GestoreReti recuperoOCreazione(){
         GestoreReti retiSalvate = new GestoreReti();
-        File folder = new File("RETI");
+        File folder = new File(RETI);
 
 		if (!folder.exists())
 			folder.mkdirs();
@@ -62,7 +74,7 @@ public class Main {
 
     public static GestoreRetiPetri recuperoOCreazionePetri(){
         GestoreRetiPetri retiSalvate = new GestoreRetiPetri();
-        File folder = new File("RETI_PETRI");
+        File folder = new File(RETI_PETRI);
 
 		if (!folder.exists())
 			folder.mkdirs();
@@ -84,7 +96,7 @@ public class Main {
 
     public static GestoreRetiPetriPriorita recuperoOCreazionePetriPriorita(){
         GestoreRetiPetriPriorita retiSalvate = new GestoreRetiPetriPriorita();
-        File folder = new File("RETI_PETRI_PRIORITA");
+        File folder = new File(RETI_PETRI_PRIORITA);
 
 		if (!folder.exists())
 			folder.mkdirs();
@@ -108,7 +120,7 @@ public class Main {
 
     
     public static void cicloSceltaMenuConfiguratore(GestoreReti retiSalvate, GestoreRetiPetri retiPNSalvate, GestoreRetiPetriPriorita retiPNPSalvate){
-        Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
+        Menu menuIniziale = new Menu(SELEZIONA_UN_ALTERNATIVA, VOCI_MENU_INIZIALE);
         boolean fine = false;
         do{
             
@@ -135,13 +147,13 @@ public class Main {
                 case 0: fine=true;
                         break;
 
-                default : System.out.println("Attenzione selezione non valida");
+                default : System.out.println(ATTENZIONE_SELEZIONE_NON_VALIDA);
             }
         }while(fine == false);
     }
 
     public static void cicloSceltaMenuFruitore(GestoreRetiPetri retiPNSalvate, GestoreRetiPetriPriorita retiPNPSalvate){
-        Menu menuFruitore = new Menu("seleziona un'alternativa", VOCI_MENU_FRUITORE);
+        Menu menuFruitore = new Menu(SELEZIONA_UN_ALTERNATIVA, VOCI_MENU_FRUITORE);
         boolean fine = false;
         do{
             //vuole chiamata a un solo metodo nello switch e con nomi che si capiscano
@@ -157,7 +169,7 @@ public class Main {
                 case 0: fine=true;
                         break;
 
-                default : System.out.println("Attenzione selezione non valida");
+                default : System.out.println(ATTENZIONE_SELEZIONE_NON_VALIDA);
             }
         }while(fine == false);
     }
@@ -165,7 +177,7 @@ public class Main {
 
 
     public static void cicloSceltaMenuEsterno(GestoreRetiPetri retiPNSalvate, GestoreReti retiSalvate, GestoreRetiPetriPriorita retiPNPSalvate){
-        Menu menuEsterno = new Menu("seleziona il profilo con cui accedere.", VOCI_MENU_ESTERNO);
+        Menu menuEsterno = new Menu(SELEZIONA_IL_PROFILO_CON_CUI_ACCEDERE, VOCI_MENU_ESTERNO);
         boolean fine = false;
         do{
             int scelta=menuEsterno.scegli();
@@ -180,7 +192,7 @@ public class Main {
                 case 0: fine=true;
                         break;
 
-                default : System.out.println("Attenzione selezione non valida");
+                default : System.out.println(ATTENZIONE_SELEZIONE_NON_VALIDA);
             }
 
 

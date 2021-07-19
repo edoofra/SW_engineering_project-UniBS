@@ -2,8 +2,16 @@ package uniBS.ingeSW.progettoV4.view;
 
 import uniBS.ingeSW.progettoV4.logica.retePetri.MarcaturaPN;
 
+/**
+ * Classe per la gestione della <em>presentazione </em> della classe MarcaturaPN.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+ */
 public class MarcaturaPresentation  {
     
+    public static final String MARCATURA = "MARCATURA: { ";
     MarcaturaPN marcatura;
 
     public MarcaturaPresentation (MarcaturaPN daPresentare){
@@ -11,7 +19,7 @@ public class MarcaturaPresentation  {
     }
 
     public String toString(){
-        StringBuilder builder = new StringBuilder("MARCATURA: { ");
+        StringBuilder builder = new StringBuilder(MARCATURA);
         for(int i=0; i<marcatura.getListaPosti().size(); i++){
             builder.append(marcatura.getListaPosti().get(i).getName() + ":");
             builder.append(marcatura.getMarcatura().get(i) + ", ");
