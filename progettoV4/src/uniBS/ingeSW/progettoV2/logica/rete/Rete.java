@@ -62,7 +62,7 @@ public class Rete {
 						.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 						.findFirst()
 						.orElse(null);
-		if(trovato == null) throw new NonPresenteException();				
+		if(trovato == null) throw new NonPresenteException("Questo elemento non è presente");				
 		return trovato;
 	}
 
@@ -79,7 +79,7 @@ public class Rete {
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		if(trovato == null) throw new NonPresenteException();
+		if(trovato == null) throw new NonPresenteException("Questo elemento non è presente");
 		return trovato;
 	}
 
@@ -89,7 +89,7 @@ public class Rete {
 					.filter(n -> new ElemFlussoPresentation(n).getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		if(trovato == null) throw new NonPresenteException();
+		if(trovato == null) throw new NonPresenteException("Questo elemento non è presente");
 		return trovato;
 	}
 
@@ -112,7 +112,7 @@ public class Rete {
 			insiemeTransizioni.add(toAdd);
 			assert size < insiemeTransizioni.size() : "error add"; //postcondizione
 		}
-		else throw new giaPresenteException();
+		else throw new giaPresenteException("Questa transizione è già presente");
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class Rete {
 			insiemePosti.add(toAdd);
 			assert size < insiemePosti.size() : "error add"; //postcondizione
 		}
-		else throw new giaPresenteException();
+		else throw new giaPresenteException("Questo posto è già presente.");
 	}
 
 	
@@ -152,7 +152,7 @@ public class Rete {
 				relazioneFlusso.add(elem);
 				assert size < relazioneFlusso.size() : "error in add"; //postcondizione
 			}
-			else throw new giaPresenteException();
+			else throw new giaPresenteException("Questo elemento di flusso è già presente.");
 		} 
 		else throw new ErroreFormatoException();
 	}

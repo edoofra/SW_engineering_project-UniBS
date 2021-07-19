@@ -46,7 +46,7 @@ public class GestoreReti {
 		assert toAdd !=null : "toAdd = null"; //precondizione
 		int beforeAdd = listaRetiConfiguratore.size();
 
-		if (listaRetiConfiguratore.containsKey(name)) throw new giaPresenteException();			
+		if (listaRetiConfiguratore.containsKey(name)) throw new giaPresenteException("Questa rete è già presente.");			
 		else {
 			listaRetiConfiguratore.put(name, toAdd);
 			int nextAdd = listaRetiConfiguratore.size();

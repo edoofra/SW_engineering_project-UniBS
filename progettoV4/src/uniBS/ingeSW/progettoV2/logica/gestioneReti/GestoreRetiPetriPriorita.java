@@ -34,7 +34,7 @@ public class GestoreRetiPetriPriorita {
 		assert toAdd !=null : "toAdd = null"; //precondizione
 		int beforeAdd = listaRetiPetriPrioritaConfiguratore.size();
 
-		if (listaRetiPetriPrioritaConfiguratore.containsKey(name)) throw new giaPresenteException();			
+		if (listaRetiPetriPrioritaConfiguratore.containsKey(name)) throw new giaPresenteException("Questa rete di Petri con Priorità è già presente.");			
 		else {
 			listaRetiPetriPrioritaConfiguratore.put(name, toAdd);
 			int nextAdd = listaRetiPetriPrioritaConfiguratore.size();

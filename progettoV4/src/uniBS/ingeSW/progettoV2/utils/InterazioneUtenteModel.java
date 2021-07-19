@@ -21,70 +21,93 @@ public class InterazioneUtenteModel {
     
     private static void aggiuntaTransizione(Rete daCreare) {
 		assert daCreare != null; //precondizione
-		try{
             boolean risposta = true;
             while (risposta != false) {
 
-                String nome = InterazioneUtente.aggiuntaElemento(1);
-                var nuovo = new Transizione(nome);
-                daCreare.addTrans(nuovo);
+                boolean presente = false;
+                do{
+                    presente = false;
+                    try{
+                        String nome = InterazioneUtente.aggiuntaElemento(1);
+                        var nuovo = new Transizione(nome);
+                        daCreare.addTrans(nuovo);
+                    }catch (giaPresenteException ex){
+                        System.out.println(ex.getMessage());
+                        presente = true;
+                    }
+
+                }while(presente);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(1);
-            }
-        }
-        catch (giaPresenteException ex){
-            System.out.println(ex.getMessage());
-        }
+            }        
 	}
 
     private static void aggiuntaPosto(Rete daCreare) {
 		assert daCreare != null; //precondizione
-		try{
             boolean risposta = true;
             while (risposta != false) {
 
-                String nome = InterazioneUtente.aggiuntaElemento(0);
-                var nuovo = new Posto(nome);
-                daCreare.addPosto(nuovo);
+                boolean presente = false;
+                do{
+                    presente = false;
+                    try{
+                        String nome = InterazioneUtente.aggiuntaElemento(0);
+                        var nuovo = new Posto(nome);
+                        daCreare.addPosto(nuovo);
+                    }catch (giaPresenteException ex){
+                        System.out.println(ex.getMessage());
+                        presente = true;
+                    }
+
+                }while(presente);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(0);
             }
-        }
-        catch (giaPresenteException ex){
-            System.out.println(ex.getMessage());
-        }
 	}
 
     private static void aggiuntaElemFlusso(Rete daCreare) {
 		assert daCreare != null; //precondizione
-		try{
             boolean risposta = true;
             while (risposta != false) {
+                boolean giusto = true;
+                do{
+                    try{
+                        giusto = true;
+                        ElementoSemplice elem1 = null;
+                        ElementoSemplice elem2 = null;
+                        String[] nomi = InterazioneUtente.aggiuntaFlusso(daCreare);
+                        String nome1 = nomi[0];
+                        String nome2 = nomi[1];
+                        if(nome1.charAt(0)=='P') elem1 = daCreare.getPostoByName(nome1);
+                        else elem1 = daCreare.getTransByName(nome1);
+                
+                        if(nome2.charAt(0)=='P') elem2 = daCreare.getPostoByName(nome2);
+                        else elem2 = daCreare.getTransByName(nome2);
+        
+                        daCreare.addElemFlusso(new ElemFlusso(elem1,elem2));
+        
+                       
 
-                ElementoSemplice elem1 = null;
-		        ElementoSemplice elem2 = null;
-                String[] nomi = InterazioneUtente.aggiuntaFlusso(daCreare);
-                String nome1 = nomi[0];
-                String nome2 = nomi[1];
-                if(nome1.charAt(0)=='P') elem1 = daCreare.getPostoByName(nome1);
-		        else elem1 = daCreare.getTransByName(nome1);
-		
-                if(nome2.charAt(0)=='P') elem2 = daCreare.getPostoByName(nome2);
-                else elem2 = daCreare.getTransByName(nome2);
-
-                daCreare.addElemFlusso(new ElemFlusso(elem1,elem2));
-
+                    }catch (giaPresenteException ex){
+                        System.out.println(ex.getMessage());
+                        giusto = false;
+                    }
+                    catch(NonPresenteException ex1){
+                        System.out.println(ex1.getMessage());
+                        giusto = false;
+                    }
+                    catch(ErroreFormatoException ex2){
+                        System.out.println(ex2.getMessage());
+                        giusto = false;
+                    }
+                    
+                }while(!giusto);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(2);
             }
+           
         }
-        catch (giaPresenteException ex){
-            System.out.println(ex.getMessage());
-        }
-        catch(NonPresenteException ex1){
-            System.out.println(ex1.getMessage());
-        }
-        catch(ErroreFormatoException ex2){
-            System.out.println(ex2.getMessage());
-        }
-	}
+               
+        
+        
+	
 
     private static void creazioneRete(Rete daCreare){
         assert daCreare != null;
@@ -151,7 +174,8 @@ public class InterazioneUtenteModel {
                         InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
                         break;
                     }
-                }    
+                }
+                if(!presente) InterazioneUtente.printErrorReteNonPresente();    
             }           
         }
     }
@@ -305,6 +329,7 @@ public class InterazioneUtenteModel {
                         break;
                     }
                 }    
+                if(!presente) InterazioneUtente.printErrorReteNonPresente();
             }           
         }
     }
@@ -337,7 +362,6 @@ public class InterazioneUtenteModel {
                             try {
                                 ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
                                 reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
-                                if(elemScelto != null)
                                 InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
                             } catch (NonPresenteException e) {
                                 System.out.println(e.getMessage());
@@ -479,35 +503,37 @@ public class InterazioneUtenteModel {
         }
         else{
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-            RetePetriPriorita reteScelta = listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare);
-            InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
-            boolean finito = false;
-            while(!finito){
-                possibiliTrans = reteScelta.getPossibiliTransizioni();
-                 if(possibiliTrans == null || possibiliTrans.isEmpty()){
-                    InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
-                    finito = true;
-                 } 
-                else{
-                    ArrayList<ElemFlusso> transizioniPossibiliMaxP = reteScelta.getTransizioniPrioritaMaggiore(possibiliTrans);
-                    boolean presente = true;
-                    do{
-                        presente = true;
-                        InterazioneUtente.printPossibiliTransizioniPerSimulazione(transizioniPossibiliMaxP);
-                        String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
-                        try {
-                            ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
-                            reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
-                            InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
-                        } catch (NonPresenteException e) {
-                            System.out.println((e.getMessage()));
-                            presente = false;
-                        }
-                    }while(!presente);
-                    finito = InterazioneUtente.domandaContinuareSimulazione();
+                if(listaReti.getListaRetiPetriPrioritaConfiguratore().containsKey(nomeReteDaVisualizzare)){
+                RetePetriPriorita reteScelta = listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare);
+                InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
+                boolean finito = false;
+                while(!finito){
+                    possibiliTrans = reteScelta.getPossibiliTransizioni();
+                    if(possibiliTrans == null || possibiliTrans.isEmpty()){
+                        InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
+                        finito = true;
+                    } 
+                    else{
+                        ArrayList<ElemFlusso> transizioniPossibiliMaxP = reteScelta.getTransizioniPrioritaMaggiore(possibiliTrans);
+                        boolean presente = true;
+                        do{
+                            presente = true;
+                            InterazioneUtente.printPossibiliTransizioniPerSimulazione(transizioniPossibiliMaxP);
+                            String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
+                            try {
+                                ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
+                                reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                                InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
+                            } catch (NonPresenteException e) {
+                                System.out.println((e.getMessage()));
+                                presente = false;
+                            }
+                        }while(!presente);
+                        finito = InterazioneUtente.domandaContinuareSimulazione();
+                    }
+                    
                 }
-                   
-            }
+            }else InterazioneUtente.printErrorReteNonPresente();
             
         }
     }
