@@ -1,7 +1,7 @@
 package uniBS.ingeSW.progetto.rete;
 
 /**
- * Classe per la gestione ad un livello più alto di posti e transizioni. 
+ * Classe per la gestione ad un livello piu' alto di posti e transizioni. 
  * Un elemento semplice e' un' <em> astrazione </em> di un posto o di una transizione e 
  * descrive un elemento di una rete caratterizzato da un nome.
  * @author Lorenzo Bargnani
@@ -32,7 +32,7 @@ public class ElementoSemplice {
 	}
 	
 	/**
-	 * Metodo per ottenere le proprietà principali di ogni elemento di una rete.
+	 * Metodo per ottenere le proprieta' principali di ogni elemento di una rete.
 	 * In questo caso viene considerato solo il nome come elemento caratterizzante.
 	 * @return nome dell'elemento.
 	 */

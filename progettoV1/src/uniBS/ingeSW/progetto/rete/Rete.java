@@ -77,7 +77,7 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge una transizione all'insieme delle transizioni.
-	 * Una transizione non puo' essere aggiunta se all'interno dell'insieme e' gia'� presente una transizione con lo stesso nome.
+	 * Una transizione non puo' essere aggiunta se all'interno dell'insieme e' gia' presente una transizione con lo stesso nome.
 	 * @param toAdd Transizione da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
@@ -95,7 +95,7 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge un posto all'insieme dei posti.
-	 * Un posto non puo' essere aggiunto se all'interno dell'insieme e' gia'� presente un posto con lo stesso nome.
+	 * Un posto non puo' essere aggiunto se all'interno dell'insieme e' gia' presente un posto con lo stesso nome.
 	 * @param toAdd Posto da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
@@ -225,7 +225,7 @@ public class Rete {
 
 	/**
 	 * Metodo che controlla se una rete e' corretta 
-	 * Una rete è corretta se ha almeno un posto e una transizione e se ogni transizione
+	 * Una rete e' corretta se ha almeno un posto e una transizione e se ogni transizione
 	 * non si trova mai come ultimo elemento della rete
 	 * @return boolean che indica se la rete e' corretta o meno.
 	 */

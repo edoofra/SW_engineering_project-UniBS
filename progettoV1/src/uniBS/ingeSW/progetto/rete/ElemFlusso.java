@@ -42,7 +42,7 @@ public class ElemFlusso {
 	 * Metodo che controlla che l'elemento sia corretto.
 	 * Un elemento di flusso e' corretto se e' composto da due elementi di rete diversi.
 	 * Non sono ammessse coppie transizione-transizione o posto-posto.
-	 * @return boolean che dice se l'elemento è corretto.
+	 * @return boolean che dice se l'elemento e' corretto.
 	 */
 	public boolean areSameType(){
 		boolean doublePosto = this.getElem1() instanceof Posto && this.getElem2() instanceof Posto;
