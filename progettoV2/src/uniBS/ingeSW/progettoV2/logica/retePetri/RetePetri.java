@@ -4,7 +4,10 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
 
 /**
  * Classe per l'implementazione di una rete di petri che estende una rete.
- * Una rete di petri è composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di elementi di flusso </em> </li> </ul> una marcatura </em> </li> </ul> una lista pesi flusso </em> </li> </ul>
+ * Una rete di petri e' composta da <ul> <li> <em> un insieme di posti </em> </li>
+ * <li> <em> un insieme di transizioni </em> </li>
+ * <li> <em> un insieme di elementi di flusso </em> </li>
+ * <li> <em> una marcatura </em> </li> <li> <em> una lista pesi flusso </em> </li> </ul>
  * Una rete deve essere connessa per essere tale, ovvero ogni elemento di rete deve essere raggiunto da almeno un elemento di flusso.
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
@@ -16,7 +19,6 @@ public class RetePetri extends Rete {
     
     private MarcaturaPN marcatura;
     private ListaPesiFlussoPN listaPesi;
-	//in caso aggiungere variabile che tiene in memoria la rete da cui deriva
     
 	/**
 	 * Metodo per la creazione di una rete.
@@ -42,7 +44,7 @@ public class RetePetri extends Rete {
 
 	/**
 	 * Metodo per controllare se due reti sono o meno uguali
-	 * <em> Due reti di petri (derivate dalla stessa rete) si considerano uguali se la loro marcatura e la loro lista pesi è uguale </em>
+	 * <em> Due reti di petri (derivate dalla stessa rete) si considerano uguali se la loro marcatura e la loro lista pesi e' uguale </em>
 	 * Si assume che le reti da cui sono derivate le due reti di petri siano uguali, altrimenti le reti di petri sono diverse a prescindere
 	 * dalla marcatura e dalla lista pesi
 	 * @param toCompare rete da comparare

@@ -66,15 +66,6 @@ public class ConvertitoreJson {
     public static GestoreRetiPetri daJsonAOggettoPetriHashSet(String json){
         assert json != null: "json = null"; //precondizione
         Gson convertitore = new Gson();
-//        try {
-//	    GestoreRetiPetri message= new ObjectMapper().readValue(json, GestoreRetiPetri.class);
-//	} catch (JsonMappingException e) {
-//	    // TODO Auto-generated catch block
-//	    e.printStackTrace();
-//	} catch (JsonProcessingException e) {
-//	    // TODO Auto-generated catch block
-//	    e.printStackTrace();
-//	}
         return convertitore.fromJson(json, GestoreRetiPetri.class);
     }
 }

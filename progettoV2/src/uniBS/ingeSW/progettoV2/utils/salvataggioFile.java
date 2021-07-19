@@ -11,11 +11,13 @@ import java.nio.file.Paths;
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
  * @author Edoardo Fratus
- * @version 1.0 
+ * @version 2.0 - cambiato metodo di salvataggio
  */
 public class salvataggioFile {
     
     
+    public static final String RETI = "RETI";
+    public static final String RETE_PETRI = "RETI_PETRI";
     private static final String PATH_RETE = "ListaRetiConfiguratore.json";
     private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
 
@@ -35,9 +37,14 @@ public class salvataggioFile {
         }
     }
 
+    /**
+     * Metodo per il salvataggio di una rete in formato JSON
+     * @param daSalvare JSON da salvare
+     * @param nomeRetePath path di salvataggio
+     */
     public static void salvaRete(String daSalvare, String nomeRetePath){
         assert daSalvare != null : "daSalvare = null"; //precondizione
-        File folder = new File("RETI");
+        File folder = new File(RETI);
 		if (!folder.exists())
 			folder.mkdirs();
 
@@ -50,9 +57,14 @@ public class salvataggioFile {
         }
     }
 
+    /**
+     * Metodo per il salvataggio di una rete di Petri in formato JSON
+     * @param daSalvare JSON da salvare
+     * @param nomeRetePath path di salvataggio
+     */
     public static void salvaRetePetri(String daSalvare, String nomeRetePath){
         assert daSalvare != null : "daSalvare = null"; //precondizione
-        File folder = new File("RETI_PETRI");
+        File folder = new File(RETE_PETRI);
 		if (!folder.exists())
 			folder.mkdirs();
 
