@@ -20,6 +20,12 @@ import uniBS.ingeSW.progettoV3.view.ElemFlussoPresentation;
  */
 public class Rete {
 
+	private static final String QUESTO_ELEMENTO_DI_FLUSSO_È_GIÀ_PRESENTE = "Questo elemento di flusso è già presente.";
+	private static final String QUESTO_POSTO_È_GIÀ_PRESENTE = "Questo posto è già presente.";
+	private static final String QUESTA_TRANSIZIONE_È_GIÀ_PRESENTE = "Questa transizione è già presente.";
+	private static final String QUESTO_ELEMENTO_DI_FLUSSO_NON_È_PRESENTE = "Questo elemento di flusso non è presente.";
+	private static final String QUESTA_TRANSIZIONE_NON_È_PRESENTE = "Questa transizione non è presente.";
+	private static final String QUESTO_POSTO_NON_È_PRESENTE = "Questo posto non è presente.";
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final boolean BOOL_CONST_FALSE = false;
 
@@ -62,7 +68,7 @@ public class Rete {
 						.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 						.findFirst()
 						.orElse(null);
-		if(trovato == null) throw new NonPresenteException("Questo posto non è presente.");				
+		if(trovato == null) throw new NonPresenteException(QUESTO_POSTO_NON_È_PRESENTE);				
 		return trovato;
 	}
 
@@ -79,7 +85,7 @@ public class Rete {
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		if(trovato == null) throw new NonPresenteException("Questa transizione non è presente.");
+		if(trovato == null) throw new NonPresenteException(QUESTA_TRANSIZIONE_NON_È_PRESENTE);
 		return trovato;
 	}
 
@@ -89,7 +95,7 @@ public class Rete {
 					.filter(n -> new ElemFlussoPresentation(n).getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		if(trovato == null) throw new NonPresenteException("Questo elemento di flusso non è presente.");
+		if(trovato == null) throw new NonPresenteException(QUESTO_ELEMENTO_DI_FLUSSO_NON_È_PRESENTE);
 		return trovato;
 	}
 
@@ -112,7 +118,7 @@ public class Rete {
 			insiemeTransizioni.add(toAdd);
 			assert size < insiemeTransizioni.size() : "error add"; //postcondizione
 		}
-		else throw new giaPresenteException("Questa transizione è già presente.");
+		else throw new giaPresenteException(QUESTA_TRANSIZIONE_È_GIÀ_PRESENTE);
 	}
 
 	/**
@@ -131,7 +137,7 @@ public class Rete {
 			insiemePosti.add(toAdd);
 			assert size < insiemePosti.size() : "error add"; //postcondizione
 		}
-		else throw new giaPresenteException("Questo posto è già presente.");
+		else throw new giaPresenteException(QUESTO_POSTO_È_GIÀ_PRESENTE);
 	}
 
 	
@@ -152,7 +158,7 @@ public class Rete {
 				relazioneFlusso.add(elem);
 				assert size < relazioneFlusso.size() : "error in add"; //postcondizione
 			}
-			else throw new giaPresenteException("Questo elemento di flusso è già presente.");
+			else throw new giaPresenteException(QUESTO_ELEMENTO_DI_FLUSSO_È_GIÀ_PRESENTE);
 		} 
 		else throw new ErroreFormatoException();
 	}

@@ -20,6 +20,10 @@ import uniBS.ingeSW.progettoV4.view.ElemFlussoPresentation;
  */
 public class Rete {
 
+	private static final String QUESTO_ELEMENTO_DI_FLUSSO_È_GIÀ_PRESENTE = "Questo elemento di flusso è già presente.";
+	private static final String QUESTO_POSTO_È_GIÀ_PRESENTE = "Questo posto è già presente.";
+	private static final String QUESTA_TRANSIZIONE_È_GIÀ_PRESENTE = "Questa transizione è già presente.";
+	private static final String QUESTO_ELEMENTO_NON_E_PRESENTE = "Questo elemento non è presente.";
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final boolean BOOL_CONST_FALSE = false;
 
@@ -62,7 +66,7 @@ public class Rete {
 						.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 						.findFirst()
 						.orElse(null);
-		if(trovato == null) throw new NonPresenteException("Questo elemento non è presente");				
+		if(trovato == null) throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);				
 		return trovato;
 	}
 
@@ -79,7 +83,7 @@ public class Rete {
 					.filter(n -> n.getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		if(trovato == null) throw new NonPresenteException("Questo elemento non è presente");
+		if(trovato == null) throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);
 		return trovato;
 	}
 
@@ -89,7 +93,7 @@ public class Rete {
 					.filter(n -> new ElemFlussoPresentation(n).getName().equalsIgnoreCase(daCercare))
 					.findFirst()
 					.orElse(null);
-		if(trovato == null) throw new NonPresenteException("Questo elemento non è presente");
+		if(trovato == null) throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);
 		return trovato;
 	}
 
@@ -98,7 +102,7 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge una transizione all'insieme delle transizioni.
-	 * Una transizione non puo' essere aggiunta se all'interno dell'insieme e' gia'� presente una transizione con lo stesso nome.
+	 * Una transizione non puo' essere aggiunta se all'interno dell'insieme e' gia'� presente una transizione con lo stesso nome.
 	 * @param toAdd Transizione da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
@@ -112,12 +116,12 @@ public class Rete {
 			insiemeTransizioni.add(toAdd);
 			assert size < insiemeTransizioni.size() : "error add"; //postcondizione
 		}
-		else throw new giaPresenteException("Questa transizione è già presente");
+		else throw new giaPresenteException(QUESTA_TRANSIZIONE_È_GIÀ_PRESENTE);
 	}
 
 	/**
 	 * Metodo che aggiunge un posto all'insieme dei posti.
-	 * Un posto non puo' essere aggiunto se all'interno dell'insieme e' gia'� presente un posto con lo stesso nome.
+	 * Un posto non puo' essere aggiunto se all'interno dell'insieme e' gia'� presente un posto con lo stesso nome.
 	 * @param toAdd Posto da aggiungere.
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
@@ -131,7 +135,7 @@ public class Rete {
 			insiemePosti.add(toAdd);
 			assert size < insiemePosti.size() : "error add"; //postcondizione
 		}
-		else throw new giaPresenteException("Questo posto è già presente.");
+		else throw new giaPresenteException(QUESTO_POSTO_È_GIÀ_PRESENTE);
 	}
 
 	
@@ -152,7 +156,7 @@ public class Rete {
 				relazioneFlusso.add(elem);
 				assert size < relazioneFlusso.size() : "error in add"; //postcondizione
 			}
-			else throw new giaPresenteException("Questo elemento di flusso è già presente.");
+			else throw new giaPresenteException(QUESTO_ELEMENTO_DI_FLUSSO_È_GIÀ_PRESENTE);
 		} 
 		else throw new ErroreFormatoException();
 	}
