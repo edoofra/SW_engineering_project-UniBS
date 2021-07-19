@@ -158,7 +158,7 @@ public class InterazioneUtenteModel {
         if(possibileSalvataggio) salvataggioRete(daCreare,listaReti);        
     }
 
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     public static void visualizzaRetiDaGestore(GestoreReti listaReti){
         assert listaReti != null; //precondizione
         if(listaReti.getListaRetiConfiguratore().isEmpty()) {
@@ -180,8 +180,9 @@ public class InterazioneUtenteModel {
         }
     }
 
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     public static void estendiReteInPN(GestoreReti listaReti, GestoreRetiPetri listaPetriPN){
+        assert listaReti != null && listaPetriPN != null;
         if(listaReti.getListaRetiConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
         }
@@ -207,7 +208,7 @@ public class InterazioneUtenteModel {
         
     }
     
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     private static void cambiaMarcatura(RetePetri retePN){
         assert retePN != null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(0);
@@ -237,7 +238,7 @@ public class InterazioneUtenteModel {
         }
     }
 
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     private static void cambiaPesi(RetePetri retePN){
         assert retePN !=null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(1);
@@ -282,7 +283,7 @@ public class InterazioneUtenteModel {
         return false;
     }
 
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     private static void salvataggioRetePN(RetePetri retePN, GestoreRetiPetri listaPetriPN){
         assert retePN !=null && listaPetriPN !=null;
         if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
@@ -312,7 +313,7 @@ public class InterazioneUtenteModel {
         }
     }
 
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     public static void visualizzaRetiPetriDaGestore(GestoreRetiPetri listaReti){
         assert listaReti != null; //precondizione
         if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
@@ -334,7 +335,7 @@ public class InterazioneUtenteModel {
         }
     }
 
-    //DA CAMBIARE IN VERSIONI PRECEDENTI CON CICLO WHILE PER CONTROLLO
+    
     public static void simulazioneEvoluzioneRete(GestoreRetiPetri listaReti){
         assert listaReti !=null;
         ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
