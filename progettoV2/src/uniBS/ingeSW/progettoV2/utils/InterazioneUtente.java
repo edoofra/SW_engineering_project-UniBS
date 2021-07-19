@@ -337,6 +337,25 @@ public class InterazioneUtente {
 	public static void printErroreRetePNDuplicata(){
 		System.out.println(MESSAGGIO_RETE_PN_DUPLICATA);
 	}
+
+	public static void printErrorReteNonPresente(){
+		System.out.println("La rete scelta non è presente o il nome è stato digitato in modo sbagliato");
+	}
+
+	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
+	public static void printErrorPostoNonPresente(){
+		System.out.println("Il posto non è presente o il nome è stato digitato in modo sbagliato");
+	}
+
+	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
+	public static void printErrorElemFlussoNonPresente(){
+		System.out.println("L'elemento scelto non è presente o il nome è stato digitato in modo sbagliato");
+	}
+
+	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
+	public static void printErrorTransizioneNonPresente(){
+		System.out.println("La transizione scelta non è presente o il nome è stato digitato in modo sbagliato");
+	}
 	
 }
 
