@@ -51,7 +51,7 @@ public class Priorita {
 			}
 		}
 		if(trovato){
-			listaPriorita.set(posizione, Math.min(1,nuovaPriorita));
+			listaPriorita.set(posizione, Math.max(1,nuovaPriorita));
 			return true;
 		}
 		else return false;
@@ -61,7 +61,7 @@ public class Priorita {
 	 * @param toCompare lista priorità da confrontare con la lista priorità su cui è stato chiamato il metodo
 	 * @return boolean che ritorna true se la lista priorità è uguale 
 	 */
-	public boolean isEqual(Priorita toCompare){
+	public boolean isEqualPriorita(Priorita toCompare){
 		ArrayList<Integer> toCompareList =toCompare.getListaPriorita();
 		if(toCompareList.size() != listaPriorita.size()) return false;
 		for(int i=0;i<toCompareList.size();i++){

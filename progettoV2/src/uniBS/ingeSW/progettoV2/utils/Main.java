@@ -10,24 +10,18 @@ import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
 public class Main {
 
-    /**
-     *
-     */
-    private static final String PATH_RETE = "ListaRetiConfiguratore.json";
-    private static final String PATH_RETE_PETRI = "ListaRetiPetriConfiguratore.json";
-
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
 
-     private static final String TITOLO = 
+     private static final String TITOLO =   
   
-        "$$$$$$$   $$$$$$$$  $$$$$$$$  $$$$$$$$        $$     $$    $$         $$$$$$\n" + 
-        "$$    $$  $$           $$     $$              $$     $$  $$$$        $$$   $$\n" +
-        "$$    $$  $$           $$     $$              $$     $$    $$        $$$$  $$\n" +
-        "$$$$$$$   $$$$$        $$     $$$$$            $$   $$     $$        $$ $$ $$\n" +
-        "$$    $$  $$           $$     $$                $$ $$      $$        $$  $$$$\n" +
-        "$$    $$  $$           $$     $$                 $$$       $$        $$   $$$\n" +
-        "$$    $$  $$$$$$$$     $$     $$$$$$$$            $      $$$$$$  $$   $$$$$$\n";                                                                               
+     "$$$$$$$   $$$$$$$$  $$$$$$$$  $$$$$$$$        $$     $$    $$$$$$$$         $$$$$$\n" + 
+     "$$    $$  $$           $$     $$              $$     $$          $$        $$$   $$\n" +
+     "$$    $$  $$           $$     $$              $$     $$     $$$$$$         $$$$  $$\n" +
+     "$$$$$$$   $$$$$        $$     $$$$$            $$   $$     $$              $$ $$ $$\n" +
+     "$$    $$  $$           $$     $$                $$ $$      $$              $$  $$$$\n" +
+     "$$    $$  $$           $$     $$                 $$$       $$              $$   $$$\n" +
+     "$$    $$  $$$$$$$$     $$     $$$$$$$$            $        $$$$$$$$  $$     $$$$$$\n";                                                                                
                                                                             
     public static void main(String[] args) {  
         GestoreReti retiSalvate = recuperoOCreazione();

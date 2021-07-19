@@ -43,8 +43,8 @@ public class RetePetriPriorita extends RetePetri{
 	 * @return boolean che indica se le due reti sono uguali o meno 
 	 */
     public boolean controlloRetePetriPrioritaUguale(RetePetriPriorita toCompare){
-		if(!super.isEqual(toCompare)) return false;
-		if(!this.getPriorita().isEqual(toCompare.getPriorita())){
+		if(!super.controlloRetePetriUguale(toCompare)) return false;
+		if(!this.getPriorita().isEqualPriorita(toCompare.getPriorita())){
 			return false;
 		}			
 		
