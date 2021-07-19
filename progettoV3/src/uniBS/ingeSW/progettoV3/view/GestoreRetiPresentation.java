@@ -2,6 +2,14 @@ package uniBS.ingeSW.progettoV3.view;
 
 import uniBS.ingeSW.progettoV3.logica.gestioneReti.GestoreReti;
 
+/**
+ * Classe per la gestione della <em>presentazione </em> della classe GestoreReti.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+ */
+
 public class GestoreRetiPresentation {
     GestoreReti daPresentare;
 

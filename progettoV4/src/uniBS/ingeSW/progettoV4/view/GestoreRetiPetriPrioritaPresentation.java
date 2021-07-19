@@ -2,6 +2,14 @@ package uniBS.ingeSW.progettoV4.view;
 
 import uniBS.ingeSW.progettoV4.logica.gestioneReti.GestoreRetiPetriPriorita;
 
+/**
+ * Classe per la gestione della <em>presentazione </em> della classe GestoreRetiPetriPriorita.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+ */
+
 public class GestoreRetiPetriPrioritaPresentation {
     
     GestoreRetiPetriPriorita daPresentare;

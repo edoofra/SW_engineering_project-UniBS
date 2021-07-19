@@ -6,6 +6,14 @@ import uniBS.ingeSW.progettoV3.logica.rete.Posto;
 import uniBS.ingeSW.progettoV3.logica.rete.Transizione;
 import uniBS.ingeSW.progettoV3.logica.retePetri.RetePetri;
 
+/**
+ * Classe per la gestione della <em>presentazione </em> della classe RetePetri.
+ * @author Edoardo Fratus
+ * @author Camilla Bonomini
+ * @author Lorenzo Bargnani
+ * @version 1.0
+ */
+
 public class RetePetriPresentation {
     
     private RetePetri daPresentare;
