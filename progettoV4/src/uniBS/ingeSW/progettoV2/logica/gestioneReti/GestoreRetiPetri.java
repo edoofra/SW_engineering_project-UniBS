@@ -5,6 +5,15 @@ import java.util.HashMap;
 import uniBS.ingeSW.progettoV2.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
+/**
+ * Classe per la gestione delle <em> reti di Petri con Periorità </em> da salvare in modo persistente.
+ * Possono essere inserite solamente reti corrette.
+ * Ogni rete è salvata tramite un nome che deve essere univoco.
+ * @author Edoardo Fratus
+ * @author Lorenzo Bargnani
+ * @author Camilla Bonomini
+ * @version 1.0
+ */
 public class GestoreRetiPetri {
 
     private HashMap<String, RetePetri> listaRetiPetriConfiguratore;
@@ -22,7 +31,7 @@ public class GestoreRetiPetri {
 	}
 
     /**
-	 * Metodo che aggiunge una rete alla lista delle reti da salvare.
+	 * Metodo che aggiunge una rete di Petri alla lista delle reti da salvare.
 	 * Una rete può essere aggiunta solamente se ha un nome diverso da tutti quelli salvati.
 	 * @param name nome della nuova rete da aggiungere
 	 * @param toAdd rete da aggungere 
@@ -43,7 +52,7 @@ public class GestoreRetiPetri {
 	}
 
 	/**
-	 * Metodo che controlla se due reti sono uguali.
+	 * Metodo che controlla se due reti di Petri sono uguali.
 	 * @param rete1 prima rete da comparare
 	 * @param rete2 seconda rete da comparare.
 	 * @return boolean che indicano se sono uguali.

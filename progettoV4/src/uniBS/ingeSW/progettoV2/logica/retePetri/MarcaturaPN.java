@@ -85,7 +85,8 @@ public class MarcaturaPN {
     
 	/** 
 	* Metodo che imposta la marcatura di un posto (il valore è preimpostato a 0 alla creazione della rete di petri) 
-	* @param nomePosto posto a cui va cambiata la marcatura, nuovaMarcatura Marcatura da impostare
+	* @param nomePosto posto a cui va cambiata la marcatura
+	* @param nuovaMarcatura Marcatura da impostare
 	* @return boolean che indica se la modifica è andata a buon fine
 	*/
     public boolean impostaNuovaMarcatura(String nomePosto, int nuovaMarcatura) {

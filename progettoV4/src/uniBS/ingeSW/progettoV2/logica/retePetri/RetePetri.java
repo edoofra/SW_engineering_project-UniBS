@@ -14,7 +14,7 @@ import uniBS.ingeSW.progettoV2.logica.rete.Rete;
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
  * @author Camilla Bonomini
- * @version 3.0 - aggiunti metodi relativi alla simulazione dell'evoluzione della rete.
+ * @version 2.0 - aggiunti metodi relativi alla simulazione dell'evoluzione della rete.
  */
 
 public class RetePetri extends Rete {
