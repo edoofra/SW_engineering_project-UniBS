@@ -10,6 +10,14 @@ import uniBS.ingeSW.progettoV2.utils.eccezioni.giaPresenteException;
 
 public class Main {
 
+    public static final String ERROR_SELEZIONE_NON_VALIDA = "Attenzione selezione non valida";
+
+    public static final String TITOLO_MENU = "seleziona un'alternativa.";
+
+    public static final String RETI_PETRI = "RETI_PETRI";
+
+    public static final String RETI = "RETI";
+
     private static final String [] VOCI_MENU_INIZIALE= {"Crea nuova rete",
      "Visualizza le reti esistenti", "Visualizza le reti di Petri esistenti", "Estendi una rete di Petri"};
 
@@ -32,7 +40,7 @@ public class Main {
 
     public static GestoreReti recuperoOCreazione(){
         GestoreReti retiSalvate = new GestoreReti();
-        File folder = new File("RETI");
+        File folder = new File(RETI);
 
 		if (!folder.exists())
 			folder.mkdirs();
@@ -54,7 +62,7 @@ public class Main {
 
     public static GestoreRetiPetri recuperoOCreazionePetri(){
         GestoreRetiPetri retiSalvate = new GestoreRetiPetri();
-        File folder = new File("RETI_PETRI");
+        File folder = new File(RETI_PETRI);
 
 		if (!folder.exists())
 			folder.mkdirs();
@@ -78,7 +86,7 @@ public class Main {
 
     
     public static void cicloSceltaMenu(GestoreReti retiSalvate, GestoreRetiPetri retiPNSalvate){
-        Menu menuIniziale = new Menu("seleziona un'alternativa.", VOCI_MENU_INIZIALE);
+        Menu menuIniziale = new Menu(TITOLO_MENU, VOCI_MENU_INIZIALE);
         boolean fine = false;
         do{
             //vuole chiamata a un solo metodo nello switch e con nomi che si capiscano
@@ -99,7 +107,7 @@ public class Main {
                 case 0: fine=true;
                         break;
 
-                default : System.out.println("Attenzione selezione non valida");
+                default : System.out.println(ERROR_SELEZIONE_NON_VALIDA);
             }
         }while(fine == false);
     }

@@ -11,34 +11,39 @@ import uniBS.ingeSW.progettoV2.view.*;
 
 public class InterazioneUtente {	
 
+	public static final String ERROR_TRANSIZIONE_NON_PRESENTE = "La transizione scelta non e' presente o il nome e' stato digitato in modo sbagliato";
+	public static final String ERROR_FLUSSO_NON_PRESENTE = "L'elemento scelto non e' presente o il nome e' stato digitato in modo sbagliato";
+	public static final String ERROR_POSTO_NON_PRESENTE = "Il posto non e' presente o il nome e' stato digitato in modo sbagliato";
+	public static final String ERROR_RETE_NON_PRESENTE = "La rete scelta non e'presente o il nome e' stato digitato in modo sbagliato";
+	private static final String MSG_SCELTA_NUOVO_VALORE = "scegli un nuovo valore: \n->";
+	public static final String MSG_FLUSSO_SCELTA_PESO = "scegli l'elemento di flusso a cui cambiare il peso:";
+	public static final String MSG_POSTO_SCELTA_MARCATURA = "scegli il posto a cui cambiare la marcatura:";
+	public static final String DOMANDA_CAMBIO_PESO = "vuoi cambiare il peso di qualche elemento di flusso?";
+	public static final String DOMANDA_CAMBIO_MARCATURA = "vuoi cambiare qualche marcatura?";
+	public static final String MSG_ESTENSIONE_RETE = "Scegli una delle seguenti reti da estendere in Rete di Petri:";
 	/**
 	 *
 	 */
 	
 	private static Scanner lettore = creaScanner();
-	private static final String MESSAGGIO_RETE_PN_DUPLICATA = "Questa rete di Petri esiste già quindi non puo' essere salvata";
+	private static final String MESSAGGIO_RETE_PN_DUPLICATA = "Questa rete di Petri esiste gia'� quindi non puo' essere salvata";
 	private static final String DOMANDA_SALVATAGGIO_RETEPN = "Vuoi salvare in modo persistente la rete di Petri appena creata?";
 	private static final String DOMANDA_AGGIUNTA_ALTRI_PESI = "Vuoi cambiare altri pesi?";
 	private static final String DOMANDA_AGGIUNTA_ALTRE_MARCATURE = "Vuoi cambiare altre marcature?";
-	private static final String WARNING_TRANSIZIONE_GIA_PRESENTE = "Attenzione:questa transizione è già stata aggiunta";
-	private static final String WARNING_POSTO_GIA_AGGIUNTO = "Attenzione: questo posto è già stato aggiunto";
-	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete è già presente!";
+	private static final String WARNING_RETE_GIA_PRESENTE = "Attenzione: questa rete e' gia'� presente!";
 	private static final boolean BOOL_CONST_FALSE = false;
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final String MESSAGGIO_RETE_CORRETTA_CONNESSA = "COMPLIMENTI! LA TUA RETE E' CORRETTA E CONNESSA \n";
-	private static final String WARNING_RETE_NON_CORRETTA = "Attenzione: la tua rete non è corretta!\n";
-	private static final String WARNING_RETE_NON_CONNESSA = "Attenzione: la tua rete non è connessa!\n";
-	private static final String WARNING_RETE_NON_ESISTE = "Attenzione: Non esiste una rete con questo nome";
+	private static final String WARNING_RETE_NON_CORRETTA = "Attenzione: la tua rete non e' corretta!\n";
+	private static final String WARNING_RETE_NON_CONNESSA = "Attenzione: la tua rete non e' connessa!\n";
 	private static final String MESSAGGIO_SCELTA_RETE_DA_VISUALIZZARE = "\nScegli una tra le seguenti reti da visualizzare: \n";
-	private static final String WARNING_LISTA_RETI_VUOTA = "\nAttenzione: La lista di reti è vuota";
-	private static final String WARNING_ELEMENTO_INTERNO_FLUSSO_NON_TROVATO = "\tUno dei due elementi non è stato trovato! \n";
+	private static final String WARNING_LISTA_RETI_VUOTA = "\nAttenzione: La lista di reti e' vuota";
 	private static final String MESSAGGIO_SCELTA_ELEMENTO_2_FLUSSO = "\tElemento 2 -> ";
 	private static final String MESSAGGIO_SCELTA_ELEMENTO_1_FLUSSO = "\tElemento 1 -> ";
 	private static final String TRANSIZIONI = "\tTRANSIZIONI ";
 	private static final String POSTI = "\tPOSTI: ";
 	private static final String ELEMENTI_DELLA_TUA_RETE = "\tElementi della tua rete:";
 	private static final String DOMANDA_AGGIUNTA_ALTRI_FLUSSO = "\tVuoi aggiungere altri elementi di flusso? (S|N) -> ";
-	private static final String WARNING_ELEMENTO_SCORRETTO = "\tAttenzione: l'elemento non è corretto!";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_2 = "Elemento di flusso = (transizione -> posto)\n";
 	private static final String COMBINAZIONE_AMMESSA_FLUSSO_1 = "Elemento di flusso = (posto -> transizione)";
 	private static final String AVVERTIMENTO_INIZIALE_FLUSSO = "ATTENZIONE: sono ammesse solo le seguenti combinazioni:";
@@ -49,8 +54,6 @@ public class InterazioneUtente {
 	private static final String DOMANDA_AGGIUNTA_ALTRI_POSTI = "\tVuoi aggiungere altri posti? (S|N) -> ";
 	private static final String MESSAGGIO_SCELTA_NOME_POSTO = "\tScegli un nome per il posto -> ";
 	private static final String AVVERTIMENTO_INIZIALE_POSTO = "Per iniziare devi aggiungere almeno un posto!";
-	private static final String DOMANDA_CAMBIO_NOME = "vuoi cambiare nome? (S|N) -> ";
-	private static final String WARNING_NOME_GIA_USATO = "Attenzione: esiste già una rete con questo nome.";
 	private static final String DOMANDA_NOME_RETE = "Che nome vuoi dare a questa rete? -> ";
 	private static final String DOMANDA_SALVATAGGIO_RETE = "Vuoi salvare in modo permanente la tua rete? -> ";
 	private static final String MESSAGGIO_CREAZIONE_RETE = "\nHAI DECISO DI CREARE UNA RETE!\n";
@@ -301,14 +304,14 @@ public class InterazioneUtente {
 	}
 
 	public static String estendiReteView(GestoreReti listaReti){
-		System.out.println("Scegli una delle seguenti reti da estendere in Rete di Petri:");
+		System.out.println(MSG_ESTENSIONE_RETE);
 		stampaListaRetiGestore(listaReti);
 		String nome = leggiStringaNonVuota("->");
 		return nome;
 	}
 
 	public static boolean domandaCambiamentoDatiRetePetri(int tipoDato){
-		String[] possibiliDomande = {"vuoi cambiare qualche marcatura?", "vuoi cambiare il peso di qualche elemento di flusso?"};
+		String[] possibiliDomande = {DOMANDA_CAMBIO_MARCATURA, DOMANDA_CAMBIO_PESO};
 		return yesOrNo(possibiliDomande[tipoDato]);
 	}
 	
@@ -318,14 +321,14 @@ public class InterazioneUtente {
 	}
 
 	public static String leggiElementoDaCambiare(int tipoElemento){
-		String[] possibiliDomande = {"scegli il posto a cui cambiare la marcatura:", "scegli l'elemento di flusso a cui cambiare il peso:"};
+		String[] possibiliDomande = {MSG_POSTO_SCELTA_MARCATURA, MSG_FLUSSO_SCELTA_PESO};
 		String nomePosto = leggiStringaNonVuota(possibiliDomande[tipoElemento]);
 		return nomePosto;
 	}
 
 	public static int leggiNuovoValoreDaInserirePerCambiamentoDati(int tipoElemento){
 		int[] possibiliMinimi = {0,1};
-		int nuovoValore = leggiInteroConMinimo("scegli un nuovo valore: \n->", possibiliMinimi[tipoElemento]);
+		int nuovoValore = leggiInteroConMinimo(MSG_SCELTA_NUOVO_VALORE, possibiliMinimi[tipoElemento]);
 		return nuovoValore;
 	}
 
@@ -339,27 +342,22 @@ public class InterazioneUtente {
 	}
 
 	public static void printErrorReteNonPresente(){
-		System.out.println("La rete scelta non è presente o il nome è stato digitato in modo sbagliato");
+		System.out.println(ERROR_RETE_NON_PRESENTE);
 	}
 
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
+	
 	public static void printErrorPostoNonPresente(){
-		System.out.println("Il posto non è presente o il nome è stato digitato in modo sbagliato");
+		System.out.println(ERROR_POSTO_NON_PRESENTE);
 	}
 
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
+	
 	public static void printErrorElemFlussoNonPresente(){
-		System.out.println("L'elemento scelto non è presente o il nome è stato digitato in modo sbagliato");
+		System.out.println(ERROR_FLUSSO_NON_PRESENTE);
 	}
 
-	//DA AGGIUNGERE IN VERSIONI PRECEDENTI
+	
 	public static void printErrorTransizioneNonPresente(){
-		System.out.println("La transizione scelta non è presente o il nome è stato digitato in modo sbagliato");
+		System.out.println(ERROR_TRANSIZIONE_NON_PRESENTE);
 	}
 	
 }
-
-//cambiare ogni syso con la chiamata a due metodi printInfo(msg) o printError(msg) in modo
-//che sia chiaro cosa fa ogni stampa
-
-//dare nomi autoesplicativi ai metodi 
