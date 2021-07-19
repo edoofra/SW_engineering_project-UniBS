@@ -32,7 +32,7 @@ public class ElemFlusso {
 
 	/**
 	 * Metodo che controlla che l'elemento sia corretto.
-	 * Un elemento di flusso è corretto se è composto da due elementi di rete diversi.
+	 * Un elemento di flusso e' corretto se e' composto da due elementi di rete diversi.
 	 * Non sono ammessse coppie transizione-transizione o posto-posto.
 	 * @return boolean che dice se l'elemento è corretto.
 	 */
