@@ -1,7 +1,7 @@
 package uniBS.ingeSW.progettoV3.logica.rete;
 /**
  * Classe che descrive l'implementazione di un elemento di flusso all'interno di una rete.
- * ElemFlusso è visto come una coppia di <em> due elementi semplici </em>.
+ * ElemFlusso e' visto come una coppia di <em> due elementi semplici </em>.
  * @author Camilla Bonomini
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani 
@@ -32,7 +32,7 @@ public class ElemFlusso {
 
 	/**
 	 * Metodo che controlla che l'elemento sia corretto.
-	 * Un elemento di flusso è corretto se è composto da due elementi di rete diversi.
+	 * Un elemento di flusso e' corretto se e' composto da due elementi di rete diversi.
 	 * Non sono ammessse coppie transizione-transizione o posto-posto.
 	 * @return boolean che dice se l'elemento è corretto.
 	 */

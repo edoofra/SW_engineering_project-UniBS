@@ -23,10 +23,10 @@ public class GestoreRetiPetri {
 
     /**
 	 * Metodo che aggiunge una rete alla lista delle reti da salvare.
-	 * Una rete può essere aggiunta solamente se ha un nome diverso da tutti quelli salvati.
+	 * Una rete puo' essere aggiunta solamente se ha un nome diverso da tutti quelli salvati.
 	 * @param name nome della nuova rete da aggiungere
 	 * @param toAdd rete da aggungere 
-	 * @return boolean che indica se l'aggiunta è andata a buon fine o meno.
+	 * @return boolean che indica se l'aggiunta e' andata a buon fine o meno.
 	 * @throws giaPresenteException
 	 */
 	public void addRete(String name, RetePetri toAdd) throws giaPresenteException {

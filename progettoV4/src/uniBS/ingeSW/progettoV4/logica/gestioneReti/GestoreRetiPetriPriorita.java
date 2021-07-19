@@ -6,7 +6,7 @@ import uniBS.ingeSW.progettoV4.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV4.utils.eccezioni.giaPresenteException;
 
 /**
- * Classe per la gestione delle <em> reti di Petri con Priorita'  </em> da salvare in modo persistente.
+ * Classe per la gestione delle <em> reti di Petri con Priorita' </em> da salvare in modo persistente.
  * Possono essere inserite solamente reti corrette.
  * Ogni rete e' salvata tramite un nome che deve essere univoco.
  * @author Edoardo Fratus
@@ -31,7 +31,7 @@ public class GestoreRetiPetriPriorita {
 	}
 
      /**
-	 * Metodo che aggiunge una rete di Petri con priorita'  alla lista delle reti da salvare.
+	 * Metodo che aggiunge una rete di Petri con priorita' alla lista delle reti da salvare.
 	 * Una rete puo' essere aggiunta solamente se ha un nome diverso da tutti quelli salvati.
 	 * @param name nome della nuova rete da aggiungere
 	 * @param toAdd rete da aggungere 
@@ -52,7 +52,7 @@ public class GestoreRetiPetriPriorita {
 	}
 
     /** 
-    * Metodo che controlla se due reti di Petri con Priorita'  sono uguali.
+    * Metodo che controlla se due reti di Petri con Priorita' sono uguali.
     * @param rete1 prima rete da comparare
     * @param rete2 seconda rete da comparare.
     * @return boolean che indicano se sono uguali.

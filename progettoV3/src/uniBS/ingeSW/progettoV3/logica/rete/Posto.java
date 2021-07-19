@@ -2,7 +2,7 @@ package uniBS.ingeSW.progettoV3.logica.rete;
 
 /**
  * Classe che descrive l'implementazione di un posto all'interno di una rete.
- * Posto è visto come un' <em> estensione di un elemento semplice </em>.
+ * Posto e' visto come un' <em> estensione di un elemento semplice </em>.
  * @author Camilla Bonomini
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani 

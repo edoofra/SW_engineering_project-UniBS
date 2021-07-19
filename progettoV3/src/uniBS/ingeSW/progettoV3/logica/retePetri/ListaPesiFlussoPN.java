@@ -37,11 +37,11 @@ public class ListaPesiFlussoPN {
 
 
     /**
-	* Metodo che imposta il peso di un elemento di flusso (il valore è preimpostato ad 1 alla creazione della rete di petri) 
+	* Metodo che imposta il peso di un elemento di flusso (il valore e' preimpostato ad 1 alla creazione della rete di petri) 
 	* @param nomeElemento1 primo elemento
 	* @param nomeElemento2 secondo elemento
 	* @param nuovoPeso Peso da impostare
-	* @return boolean che indica se la modifica è andata a buon fine
+	* @return boolean che indica se la modifica e' andata a buon fine
 	*/
     public boolean impostaPeso(String nomeElemento1, String nomeElemento2, int nuovoPeso) {
     	int posizione = -1;
@@ -61,8 +61,8 @@ public class ListaPesiFlussoPN {
      }
 
 	 /** Metodo che controlla se due listePesi sono uguali
-	 * @param toCompare listaPesiFlussoPN da confrontare con la listaPesi su cui è stato chiamato il metodo
-	 * @return boolean che ritorna true se la lista è uguale, false se la ListaPesiFlussoPN è diversa.  
+	 * @param toCompare listaPesiFlussoPN da confrontare con la listaPesi su cui e' stato chiamato il metodo
+	 * @return boolean che ritorna true se la lista e' uguale, false se la ListaPesiFlussoPN e' diversa.  
 	 */
 	 public boolean isEqual(ListaPesiFlussoPN toCompare){
 		ArrayList<Integer> toCompareList = toCompare.getListaPesi();

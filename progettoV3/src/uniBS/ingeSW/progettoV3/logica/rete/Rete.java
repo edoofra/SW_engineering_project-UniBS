@@ -11,7 +11,7 @@ import uniBS.ingeSW.progettoV3.view.ElemFlussoPresentation;
 
 /**
  * Classe per l'implementazione di una rete.
- * Una rete è composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di elementi di flusso </em> </li> </ul>
+ * Una rete e' composta da <ul> <li> <em> un insieme di posti </em> </li> <li> <em> un insieme di transizioni </em> </li> <li> <em> un insieme di elementi di flusso </em> </li> </ul>
  * Una rete deve essere connessa per essere tale, ovvero ogni elemento di rete deve essere raggiunto da alemno un elemento di flusso.
  * @author Edoardo Fratus
  * @author Lorenzo Bargnani
@@ -53,7 +53,7 @@ public class Rete {
 	 * Metodo che, dato il nome di un posto, lo cerca all'interno dell'insieme e restituisce l'oggetto 
 	 * posto corrispondente.
 	 * @param daCercare il nome del posto da cercare.
-	 * @return il posto cercato o <em> NULL </em> se non è stato trovato.
+	 * @return il posto cercato o <em> NULL </em> se non e' stato trovato.
 	 * @throws NonPresenteException
 	 */
 	public Posto getPostoByName(String daCercare) throws NonPresenteException {
@@ -70,7 +70,7 @@ public class Rete {
 	 * Metodo che, dato il nome di una transizione, la cerca all'interno dell'insieme e restituisce l'oggetto 
 	 * transizione corrispondente.
 	 * @param daCercare il nome della transizione da cercare.
-	 * @return la transizione cercata o <em> NULL </em> se non è stato trovata.
+	 * @return la transizione cercata o <em> NULL </em> se non e' stato trovata.
 	 * @throws NonPresenteException
 	 */
 	public Transizione getTransByName(String daCercare) throws NonPresenteException {
@@ -98,9 +98,9 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge una transizione all'insieme delle transizioni.
-	 * Una transizione non può essere aggiunta se all'interno dell'insieme è già presente una transizione con lo stesso nome.
+	 * Una transizione non può essere aggiunta se all'interno dell'insieme e' già presente una transizione con lo stesso nome.
 	 * @param toAdd Transizione da aggiungere.
-	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
 	public void addTrans(Transizione toAdd) throws giaPresenteException {
 	    assert toAdd != null : "Transizione da aggiungere = null"; //precondizione
@@ -117,9 +117,9 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge un posto all'insieme dei posti.
-	 * Un posto non può essere aggiunto se all'interno dell'insieme è già presente un posto con lo stesso nome.
+	 * Un posto non può essere aggiunto se all'interno dell'insieme e' già presente un posto con lo stesso nome.
 	 * @param toAdd Posto da aggiungere.
-	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 */
 	public void addPosto(Posto toAdd) throws giaPresenteException{
 	    assert toAdd != null : "Posto da aggiungere = null"; //precondizione
@@ -138,9 +138,9 @@ public class Rete {
 
 	/**
 	 * Metodo che aggiunge un elemento di flusso all'insieme degli elementi di flusso.
-	 * Un elemento di flusso non può essere aggiunto se è duplicato o se non è corretto.
+	 * Un elemento di flusso non può essere aggiunto se e' duplicato o se non e' corretto.
 	 * @param toAdd ElemFlusso da aggiungere.
-	 * @return boolean che indica se l'aggiunta è andata a buon fine.
+	 * @return boolean che indica se l'aggiunta e' andata a buon fine.
 	 * @throws giaPresenteException
 	 * @throws ErroreFormatoException
 	 */
@@ -195,7 +195,7 @@ public class Rete {
 
 	/**
 	 * Metodo che controlla se uno o più insiemi della rete sono vuoti.
-	 * @return boolean ch eindica se un insieme è vuoto.
+	 * @return boolean ch eindica se un insieme e' vuoto.
 	 */
 	public boolean emptyControl() {
 		if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
@@ -219,14 +219,14 @@ public class Rete {
 	 * Metodo per il conrollo della connessione della rete
 	 * Visitati1 = lista degli ElementiSemplici raggiunti dagli elementi di flusso della rete
 	 * Visitati2 = lista degli ElementiSemplici raggiunti considerando invertiti gli elementi di flusso
-	 * Se un posto o una transizione non è contenuto ne in Visitati1 ne in Visitati2 allora è isolato e la rete non è connessa
+	 * Se un posto o una transizione non e' contenuto ne in Visitati1 ne in Visitati2 allora e' isolato e la rete non e' connessa
 	 * @return boolean che indica se la rete è connessa o meno.
 	 */
 	public boolean controlloConnessione(){
 		HashMap<ElementoSemplice,Boolean> visitati1 = new HashMap<ElementoSemplice,Boolean>();
 		HashMap<ElementoSemplice,Boolean> visitati2 = new HashMap<ElementoSemplice,Boolean>();
 		for (ElemFlusso elem : this.getRelazioneFlusso()){
-			visitati1.put(elem.getElem2(), BOOL_CONST_TRUE); //secondo elemento è quello verso cui punta la freccia
+			visitati1.put(elem.getElem2(), BOOL_CONST_TRUE); //secondo elemento e' quello verso cui punta la freccia
 			visitati2.put(elem.getElem1(), BOOL_CONST_TRUE); //inverto gli elementi di flusso
 		}
 		for (Posto posto : this.getInsiemePosti()){
@@ -248,10 +248,10 @@ public class Rete {
 	}
 
 	/**
-	 * Metodo che controlla se una rete è corretta 
-	 * Una rete è corretta se ha almeno un posto e una transizione e se ogni transizione
+	 * Metodo che controlla se una rete e' corretta 
+	 * Una rete e' corretta se ha almeno un posto e una transizione e se ogni transizione
 	 * non si trova mai come ultimo elemento della rete
-	 * @return boolean che indica se la rete è corretta o meno.
+	 * @return boolean che indica se la rete e' corretta o meno.
 	 */
 	public boolean controlloCorrettezza(){
 		if(emptyControl()) return BOOL_CONST_FALSE;
