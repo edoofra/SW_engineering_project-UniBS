@@ -14,12 +14,17 @@ import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV5.view.*;
 
 public class InterazioneUtente {	
-    	public static final String ERROR_FLUSSO_NON_PRESENTE = "L'elemento scelto non e' presente o il nome e' stato digitato in modo sbagliato";
-	public static final String ERROR_POSTO_NON_PRESENTE = "Il posto non e' presente o il nome e' stato digitato in modo sbagliato";
-	public static final String ERROR_RETE_NON_PRESENTE = "La rete scelta non e'presente o il nome e' stato digitato in modo sbagliato";
-	public static final String ERROR_TRANSIZIONE_NON_PRESENTE = "La transizione scelta non e' presente o il nome e' stato digitato in modo sbagliato";
-	public static final String E_IN_DEADLOCK = " e'� in deadlock.\n";
-	public static final String LA_RETE = "La rete ";
+
+	private static final String LA_RETE_DI_PETRI_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_COMPATIBILE = "La rete di Petri non e' accettata perche' non esiste in memoria una rete compatibile.";
+	private static final String LA_RETE_DI_PETRI_CON_PRIORITA_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_DI_PETRI_COMPATI = "La rete di Petri con Priorita' non e' accettata perche' non esiste in memoria una rete di Petri compatibile.";
+	private static final String IL_PATH_INSERITO_NON_COINCIDE_CON_NESSUN_FILE = "Il path inserito non coincide con nessun file";
+	private static final String INSERISCI_IL_PATH_DEL_FILE_DA_CUI_IMPORTARE_LA_RETE = "Inserisci il path del file da cui importare la rete: \n";
+	private static final String ERROR_FLUSSO_NON_PRESENTE = "L'elemento scelto non e' presente o il nome e' stato digitato in modo sbagliato";
+	private static final String ERROR_POSTO_NON_PRESENTE = "Il posto non e' presente o il nome e' stato digitato in modo sbagliato";
+	private static final String ERROR_RETE_NON_PRESENTE = "La rete scelta non e'presente o il nome e' stato digitato in modo sbagliato";
+	private static final String ERROR_TRANSIZIONE_NON_PRESENTE = "La transizione scelta non e' presente o il nome e' stato digitato in modo sbagliato";
+	private static final String E_IN_DEADLOCK = " e' in deadlock.\n";
+	private static final String LA_RETE = "La rete ";
 	private static final String DOMANDA_ESTENSIONE_RETEPETRI_RETEPNP = "Scegli una delle seguenti reti di petri da estendere in Rete di Petri con priorità:";	
 	private static final String DOMANDA_SALVATAGGIO_RETEPNP = "Vuoi salvare in modo persistente la Rete di Petri con Priorità appena creata?";
 	private static final String DOMANDA_AGGIUNTA_ALTRE_PRIORITA = "vuoi cambiare altre priorità?";	
@@ -421,18 +426,18 @@ public class InterazioneUtente {
 	}	
 
 	public static String leggiPath(){
-		return leggiStringaNonVuota("Inserisci il path del file da cui importare la rete: \n");
+		return leggiStringaNonVuota(INSERISCI_IL_PATH_DEL_FILE_DA_CUI_IMPORTARE_LA_RETE);
 	}
 
 	public static void printErrorNoFile(){
-		System.out.println("Il path inserito non coincide con nessun file");
+		System.out.println(IL_PATH_INSERITO_NON_COINCIDE_CON_NESSUN_FILE);
 	}
 
 	public static void printErrorRetePetriPrioritaNonAccettata(){
-		System.out.println("La rete di Petri con Priorita' non e' accettata perche' non esiste in memoria una rete di Petri compatibile.");
+		System.out.println(LA_RETE_DI_PETRI_CON_PRIORITA_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_DI_PETRI_COMPATI);
 	}
 
 	public static void printErrorRetePetriNonAccettata(){
-		System.out.println("La rete di Petri non e' accettata perche' non esiste in memoria una rete compatibile.");
+		System.out.println(LA_RETE_DI_PETRI_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_COMPATIBILE);
 	}
 }
