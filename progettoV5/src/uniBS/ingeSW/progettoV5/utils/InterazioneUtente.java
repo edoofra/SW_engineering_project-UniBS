@@ -18,7 +18,7 @@ public class InterazioneUtente {
 	public static final String ERROR_POSTO_NON_PRESENTE = "Il posto non e' presente o il nome e' stato digitato in modo sbagliato";
 	public static final String ERROR_RETE_NON_PRESENTE = "La rete scelta non e'presente o il nome e' stato digitato in modo sbagliato";
 	public static final String ERROR_TRANSIZIONE_NON_PRESENTE = "La transizione scelta non e' presente o il nome e' stato digitato in modo sbagliato";
-	public static final String E_IN_DEADLOCK = " e'� in deadlock.\n";
+	public static final String E_IN_DEADLOCK = " e'� in deadlock.\n";
 	public static final String LA_RETE = "La rete ";
 	private static final String DOMANDA_ESTENSIONE_RETEPETRI_RETEPNP = "Scegli una delle seguenti reti di petri da estendere in Rete di Petri con priorità:";	
 	private static final String DOMANDA_SALVATAGGIO_RETEPNP = "Vuoi salvare in modo persistente la Rete di Petri con Priorità appena creata?";
@@ -419,4 +419,20 @@ public class InterazioneUtente {
 	public static void printErrorTransizioneNonPresente(){
 		System.out.println(ERROR_TRANSIZIONE_NON_PRESENTE);
 	}	
+
+	public static String leggiPath(){
+		return leggiStringaNonVuota("Inserisci il path del file da cui importare la rete: \n");
+	}
+
+	public static void printErrorNoFile(){
+		System.out.println("Il path inserito non coincide con nessun file");
+	}
+
+	public static void printErrorRetePetriPrioritaNonAccettata(){
+		System.out.println("La rete di Petri con Priorita' non e' accettata perche' non esiste in memoria una rete di Petri compatibile.");
+	}
+
+	public static void printErrorRetePetriNonAccettata(){
+		System.out.println("La rete di Petri non e' accettata perche' non esiste in memoria una rete compatibile.");
+	}
 }

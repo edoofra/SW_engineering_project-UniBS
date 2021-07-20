@@ -6,6 +6,7 @@ import uniBS.ingeSW.progettoV5.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV5.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Posto;
 import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.Transizione;
 
 /**
  * Classe per l'implementazione di una rete di petri che estende una rete.
@@ -37,6 +38,14 @@ public class RetePetri extends Rete {
 		this.marcatura = new MarcaturaPN(daUsare.getInsiemePosti());
 		this.listaPesi = new ListaPesiFlussoPN(daUsare.getRelazioneFlusso());
     }
+
+	public RetePetri(ArrayList<Posto> insiemePosti, ArrayList<Transizione> insiemeTransizioni, ArrayList<ElemFlusso> relazioneFlusso, MarcaturaPN marcatura, ListaPesiFlussoPN listaPesi){
+		this.insiemePosti = insiemePosti;
+		this.insiemeTransizioni = insiemeTransizioni;
+		this.relazioneFlusso = relazioneFlusso;
+		this.marcatura = marcatura;
+		this.listaPesi = listaPesi;
+	}
 
 	public RetePetri(){
 		super();

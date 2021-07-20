@@ -1,5 +1,6 @@
 package uniBS.ingeSW.progettoV5.utils;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
@@ -537,6 +538,114 @@ public class InterazioneUtenteModel {
             }else InterazioneUtente.printErrorReteNonPresente();
             
         }
+    }
+
+    public static void leggiReteDaFile(GestoreReti listaReti){
+        String path = InterazioneUtente.leggiPath();
+        File fileRete = new File(path);
+        if (fileRete.isFile()) {
+            String reteJson = salvataggioFile.leggiGestoreRetiDaFile(fileRete.getPath());
+            Rete reteCaricata = ConvertitoreJson.daJsonAOggettoHashSet(reteJson);
+            if(!reteCaricata.emptyControl()){
+                String nomeRete = InterazioneUtente.salvataggioRete(0);
+                if(nomeRete != null){
+                    try {
+                        listaReti.addRete(nomeRete, reteCaricata);
+                        for(String name : listaReti.getKeyLIst()){
+                            String reteJSON = ConvertitoreJson.daOggettoAJson(listaReti.getListaRetiConfiguratore().get(name));
+                            salvataggioFile.salvaRete(reteJSON,name);
+                        } 
+                        
+                    } catch (giaPresenteException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            }           
+        }
+        else{
+            InterazioneUtente.printErrorNoFile();
+        }
+    }
+
+    public static void leggiRetePetriDaFile(GestoreRetiPetri listaRetiPetri, GestoreReti listaReti){
+        String path = InterazioneUtente.leggiPath();
+        File fileRete = new File(path);
+        if (fileRete.isFile()) {
+            String reteJson = salvataggioFile.leggiGestoreRetiDaFile(fileRete.getPath());
+            RetePetri reteCaricata = ConvertitoreJson.daJsonARetePetri(reteJson);
+            boolean accettata = controlloAccettazioneRetePetri(reteCaricata, listaReti);
+            if(!reteCaricata.emptyControl() && accettata){
+                String nomeRete = InterazioneUtente.salvataggioRete(0);
+                if(nomeRete != null){
+                    try {
+                        listaRetiPetri.addRete(nomeRete, reteCaricata);
+                        for(String name : listaRetiPetri.getKeyLIst()){
+                            String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetri.getListaRetiPetriConfiguratore().get(name));
+                            salvataggioFile.salvaRete(reteJSON,name);
+                        } 
+                        
+                    } catch (giaPresenteException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            } else{
+                InterazioneUtente.printErrorRetePetriNonAccettata();
+            }        
+        }
+        else{
+            InterazioneUtente.printErrorNoFile();
+        }
+    }
+
+    public static boolean controlloAccettazioneRetePetri(RetePetri reteCaricata, GestoreReti listaReti){
+        Rete reteBase = new Rete(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso());
+        for(String nomeRete : listaReti.getKeyLIst()){
+            if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(reteBase)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void leggiRetePetriPrioritaDaFile(GestoreRetiPetriPriorita listaRetiPetriPriorita, GestoreRetiPetri listaRetiPetri){
+        String path = InterazioneUtente.leggiPath();
+        File fileRete = new File(path);
+        if (fileRete.isFile()) {
+            String reteJson = salvataggioFile.leggiGestoreRetiDaFile(fileRete.getPath());
+            RetePetriPriorita reteCaricata = ConvertitoreJson.daJsonARetePetriPriorita(reteJson);
+            boolean accettata = controlloAccettazioneRetePetriPriorita(reteCaricata, listaRetiPetri);
+            if(!reteCaricata.emptyControl() && accettata){
+                String nomeRete = InterazioneUtente.salvataggioRete(0);
+                if(nomeRete != null){
+                    try {
+                        listaRetiPetriPriorita.addRete(nomeRete, reteCaricata);
+                        for(String name : listaRetiPetriPriorita.getKeyLIst()){
+                            String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetriPriorita.getListaRetiPetriPrioritaConfiguratore().get(name));
+                            salvataggioFile.salvaRete(reteJSON,name);
+                        } 
+                        
+                    } catch (giaPresenteException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            } else {
+                InterazioneUtente.printErrorRetePetriPrioritaNonAccettata();
+            }          
+        }
+        else{
+            InterazioneUtente.printErrorNoFile();
+        }
+    }
+
+    public static boolean controlloAccettazioneRetePetriPriorita(RetePetriPriorita reteCaricata, GestoreRetiPetri listaRetiPetri){
+        RetePetri retePetriBase = new RetePetri(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso(), 
+                                reteCaricata.getMarcatura(), reteCaricata.getListaPesi());
+        for(String nomeRete : listaRetiPetri.getKeyLIst()){
+            if(listaRetiPetri.getListaRetiPetriConfiguratore().get(nomeRete).isEqual(retePetriBase)){
+                return true;
+            }
+        }
+        return false;
     }
     
     

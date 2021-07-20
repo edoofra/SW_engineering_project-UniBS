@@ -41,6 +41,12 @@ public class Rete {
 		this.relazioneFlusso = new ArrayList<ElemFlusso>();
 	}
 
+	public Rete(ArrayList<Posto> insiemePosti, ArrayList<Transizione> insiemeTransizioni, ArrayList<ElemFlusso> relazioneFlusso){
+		this.insiemePosti = insiemePosti;
+		this.insiemeTransizioni = insiemeTransizioni;
+		this.relazioneFlusso = relazioneFlusso;
+	}
+
 	public ArrayList<Posto> getInsiemePosti() {
 		return this.insiemePosti;
 	}
