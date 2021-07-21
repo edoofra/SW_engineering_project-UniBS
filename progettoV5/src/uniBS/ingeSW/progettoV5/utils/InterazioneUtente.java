@@ -15,6 +15,10 @@ import uniBS.ingeSW.progettoV5.view.*;
 
 public class InterazioneUtente {	
 
+	/**
+	 *
+	 */
+	private static final String LA_RETE_E_STATA_CARICATA_CON_SUCCESSO = "La rete e' stata caricata con successo!";
 	private static final String LA_RETE_DI_PETRI_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_COMPATIBILE = "La rete di Petri non e' accettata perche' non esiste in memoria una rete compatibile.";
 	private static final String LA_RETE_DI_PETRI_CON_PRIORITA_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_DI_PETRI_COMPATI = "La rete di Petri con Priorita' non e' accettata perche' non esiste in memoria una rete di Petri compatibile.";
 	private static final String IL_PATH_INSERITO_NON_COINCIDE_CON_NESSUN_FILE = "Il path inserito non coincide con nessun file";
@@ -439,5 +443,9 @@ public class InterazioneUtente {
 
 	public static void printErrorRetePetriNonAccettata(){
 		System.out.println(LA_RETE_DI_PETRI_NON_E_ACCETTATA_PERCHE_NON_ESISTE_IN_MEMORIA_UNA_RETE_COMPATIBILE);
+	}
+
+	public static void msgLetturaDaFileCompletata(){
+		System.out.println(LA_RETE_E_STATA_CARICATA_CON_SUCCESSO);
 	}
 }

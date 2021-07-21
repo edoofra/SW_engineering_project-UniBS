@@ -554,6 +554,7 @@ public class InterazioneUtenteModel {
                         for(String name : listaReti.getKeyLIst()){
                             String reteJSON = ConvertitoreJson.daOggettoAJson(listaReti.getListaRetiConfiguratore().get(name));
                             salvataggioFile.salvaRete(reteJSON,name);
+                            InterazioneUtente.msgLetturaDaFileCompletata();
                         } 
                         
                     } catch (giaPresenteException e) {
@@ -582,6 +583,7 @@ public class InterazioneUtenteModel {
                         for(String name : listaRetiPetri.getKeyLIst()){
                             String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetri.getListaRetiPetriConfiguratore().get(name));
                             salvataggioFile.salvaRete(reteJSON,name);
+                            InterazioneUtente.msgLetturaDaFileCompletata();
                         } 
                         
                     } catch (giaPresenteException e) {
@@ -622,6 +624,7 @@ public class InterazioneUtenteModel {
                         for(String name : listaRetiPetriPriorita.getKeyLIst()){
                             String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetriPriorita.getListaRetiPetriPrioritaConfiguratore().get(name));
                             salvataggioFile.salvaRete(reteJSON,name);
+                            InterazioneUtente.msgLetturaDaFileCompletata();
                         } 
                         
                     } catch (giaPresenteException e) {
