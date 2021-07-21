@@ -554,8 +554,8 @@ public class InterazioneUtenteModel {
                         for(String name : listaReti.getKeyLIst()){
                             String reteJSON = ConvertitoreJson.daOggettoAJson(listaReti.getListaRetiConfiguratore().get(name));
                             salvataggioFile.salvaRete(reteJSON,name);
-                            InterazioneUtente.msgLetturaDaFileCompletata();
                         } 
+                        InterazioneUtente.msgLetturaDaFileCompletata();
                         
                     } catch (giaPresenteException e) {
                         System.out.println(e.getMessage());
@@ -582,9 +582,9 @@ public class InterazioneUtenteModel {
                         listaRetiPetri.addRete(nomeRete, reteCaricata);
                         for(String name : listaRetiPetri.getKeyLIst()){
                             String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetri.getListaRetiPetriConfiguratore().get(name));
-                            salvataggioFile.salvaRete(reteJSON,name);
-                            InterazioneUtente.msgLetturaDaFileCompletata();
+                            salvataggioFile.salvaRetePetri(reteJSON, name);
                         } 
+                        InterazioneUtente.msgLetturaDaFileCompletata();
                         
                     } catch (giaPresenteException e) {
                         System.out.println(e.getMessage());
@@ -623,9 +623,9 @@ public class InterazioneUtenteModel {
                         listaRetiPetriPriorita.addRete(nomeRete, reteCaricata);
                         for(String name : listaRetiPetriPriorita.getKeyLIst()){
                             String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetriPriorita.getListaRetiPetriPrioritaConfiguratore().get(name));
-                            salvataggioFile.salvaRete(reteJSON,name);
-                            InterazioneUtente.msgLetturaDaFileCompletata();
+                            salvataggioFile.salvaRetePetriPriorita(reteJSON,name);
                         } 
+                        InterazioneUtente.msgLetturaDaFileCompletata();
                         
                     } catch (giaPresenteException e) {
                         System.out.println(e.getMessage());
