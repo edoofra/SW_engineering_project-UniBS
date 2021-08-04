@@ -127,7 +127,7 @@ public class Main {
             
             int scelta1 = menuIniziale.scegli();
             switch(scelta1){
-                case 1: InterazioneUtenteModel.aggiuntaRete(new Rete(), retiSalvate);
+                case 1: InterazioneUtenteModel.aggiuntaRete(retiSalvate);
                         break;
                         
                 case 2: InterazioneUtenteModel.visualizzaRetiDaGestore(retiSalvate);

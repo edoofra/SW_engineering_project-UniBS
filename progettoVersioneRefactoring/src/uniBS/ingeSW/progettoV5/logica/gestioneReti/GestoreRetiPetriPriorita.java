@@ -2,6 +2,7 @@ package uniBS.ingeSW.progettoV5.logica.gestioneReti;
 
 import java.util.HashMap;
 
+import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 
@@ -49,6 +50,10 @@ public class GestoreRetiPetriPriorita {
 			int nextAdd = listaRetiPetriPrioritaConfiguratore.size();
 			assert nextAdd == beforeAdd +1 : "size error"; //postcondizione
 		}
+	}
+	
+	public RetePetriPriorita creaRetePetriPriorita(RetePetri daEstendere) {
+	    return new RetePetriPriorita(daEstendere);
 	}
 
     /** 

@@ -53,6 +53,11 @@ public class GestoreReti {
 			assert nextAdd == beforeAdd +1 : "size error"; //postcondizione
 		}
 	}
+	
+	//CODICE PER PRESENTAZIONE SAETTI
+	public Rete creaRete() {
+	    return new Rete();
+	}
 
 	/**
 	 * Metodo che controlla se due reti sono uguali.

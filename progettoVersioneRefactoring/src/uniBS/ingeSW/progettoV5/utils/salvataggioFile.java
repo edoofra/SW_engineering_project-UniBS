@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
+import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
+
 /**
  * Classe per il salvataggio e il recuperso da file di stringhe.
  * @author Lorenzo Bargnani
@@ -97,6 +101,46 @@ public class salvataggioFile {
             e.printStackTrace();
         }
     }
+    
+    public static Rete leggiReteDaFile(String path) {
+	 File fileRete = new File(path);
+	 if (fileRete.isFile()) {
+	     String reteJson = salvataggioFile.leggiGestoreRetiDaFile(fileRete.getPath());
+	     Rete reteCaricata = ConvertitoreJson.daJsonAOggettoHashSet(reteJson);
+	     return reteCaricata;
+	 }
+	 else {
+	     InterazioneUtente.printErrorNoFile();
+	     return null;	     
+	 }
+    }
+    
+    public static RetePetri leggiRetePetriDaFile(String path) {
+	 File fileRete = new File(path);
+	 if (fileRete.isFile()) {
+	     String reteJson = salvataggioFile.leggiGestoreRetiDaFile(fileRete.getPath());
+	     RetePetri reteCaricata = ConvertitoreJson.daJsonARetePetri(reteJson);
+	     return reteCaricata;
+	 }
+	 else {
+	     InterazioneUtente.printErrorNoFile();
+	     return null;	     
+	 }
+    }
+    
+    public static RetePetriPriorita leggiRetePetriPrioritaDaFile(String path) {
+	 File fileRete = new File(path);
+	 if (fileRete.isFile()) {
+	     String reteJson = salvataggioFile.leggiGestoreRetiDaFile(fileRete.getPath());
+	     RetePetriPriorita reteCaricata = ConvertitoreJson.daJsonARetePetriPriorita(reteJson);
+	     return reteCaricata;
+	 }
+	 else {
+	     InterazioneUtente.printErrorNoFile();
+	     return null;	     
+	 }
+    }
+
 
 
     /**
