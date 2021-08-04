@@ -102,6 +102,23 @@ public class Rete {
 		if(trovato == null) throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);
 		return trovato;
 	}
+	
+	//CODICE PER PRESENTAZIONE SAETTI
+	public Transizione creaTransizione(String nome) {
+	    return new Transizione(nome);
+	}
+	
+	// CODICE PER PRESENTAZIONE SAETTI
+	public Posto creaPosto(String nome) {
+	    return new Posto(nome);
+	}
+	
+	// CODICE PER PRESENTAZIONE SAETTI
+	public ElemFlusso creaElemFlusso(ElementoSemplice elem1, ElementoSemplice elem2) {
+	    return new ElemFlusso(elem1,elem2);
+	}
+	
+	
 
 	/**************************************************************************************************************************/
 	//SEZIONE AGGIUNTE

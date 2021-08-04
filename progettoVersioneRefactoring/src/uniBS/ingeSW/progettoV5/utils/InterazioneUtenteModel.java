@@ -20,6 +20,7 @@ import uniBS.ingeSW.progettoV5.view.ElemFlussoPresentation;
 
 public class InterazioneUtenteModel {
     
+  //CODICE PER PRESENTAZIONE SAETTI
     private static void aggiuntaTransizione(Rete daCreare) {
 		assert daCreare != null; //precondizione
             boolean risposta = true;
@@ -30,7 +31,7 @@ public class InterazioneUtenteModel {
                     presente = false;
                     try{
                         String nome = InterazioneUtente.aggiuntaElemento(1);
-                        var nuovo = new Transizione(nome);
+                        var nuovo = daCreare.creaTransizione(nome);
                         daCreare.addTrans(nuovo);
                     }catch (giaPresenteException ex){
                         System.out.println(ex.getMessage());
@@ -42,6 +43,7 @@ public class InterazioneUtenteModel {
             }        
 	}
 
+  //CODICE PER PRESENTAZIONE SAETTI
     private static void aggiuntaPosto(Rete daCreare) {
 		assert daCreare != null; //precondizione
             boolean risposta = true;
@@ -52,7 +54,7 @@ public class InterazioneUtenteModel {
                     presente = false;
                     try{
                         String nome = InterazioneUtente.aggiuntaElemento(0);
-                        var nuovo = new Posto(nome);
+                        var nuovo = daCreare.creaPosto(nome);
                         daCreare.addPosto(nuovo);
                     }catch (giaPresenteException ex){
                         System.out.println(ex.getMessage());
@@ -64,6 +66,7 @@ public class InterazioneUtenteModel {
             }
 	}
 
+  //CODICE PER PRESENTAZIONE SAETTI
     private static void aggiuntaElemFlusso(Rete daCreare) {
 		assert daCreare != null; //precondizione
             boolean risposta = true;
@@ -82,8 +85,9 @@ public class InterazioneUtenteModel {
                 
                         if(nome2.charAt(0)=='P') elem2 = daCreare.getPostoByName(nome2);
                         else elem2 = daCreare.getTransByName(nome2);
-        
-                        daCreare.addElemFlusso(new ElemFlusso(elem1,elem2));
+                        
+                        ElemFlusso daAggiungere = daCreare.creaElemFlusso(elem1, elem2);        
+                        daCreare.addElemFlusso(daAggiungere);
         
                        
 
@@ -183,7 +187,7 @@ public class InterazioneUtenteModel {
         }
     }
 
-    
+  //CODICE PER PRESENTAZIONE SAETTI
     public static void estendiReteInPN(GestoreReti listaReti, GestoreRetiPetri listaPetriPN){
         assert listaReti != null && listaPetriPN != null;
         if(listaReti.getListaRetiConfiguratore().isEmpty()) {
@@ -384,6 +388,7 @@ public class InterazioneUtenteModel {
         }
     }
 
+  //CODICE PER PRESENTAZIONE SAETTI
     public static void estendiRetePNInPNConPriorita(GestoreRetiPetri listaRetiPN, GestoreRetiPetriPriorita listaPetriPNPriorita){
         assert listaPetriPNPriorita !=null && listaRetiPN != null;
         if(listaRetiPN.getListaRetiPetriConfiguratore().isEmpty()) {
