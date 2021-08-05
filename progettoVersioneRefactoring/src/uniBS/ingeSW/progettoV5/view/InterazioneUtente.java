@@ -1,4 +1,4 @@
-package uniBS.ingeSW.progettoV5.utils;
+package uniBS.ingeSW.progettoV5.view;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,7 +11,6 @@ import uniBS.ingeSW.progettoV5.logica.retePetri.MarcaturaPN;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.Priorita;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
-import uniBS.ingeSW.progettoV5.view.*;
 
 public class InterazioneUtente {	
 

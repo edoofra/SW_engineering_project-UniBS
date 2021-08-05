@@ -1,4 +1,4 @@
-package uniBS.ingeSW.progettoV5.utils;
+package uniBS.ingeSW.progettoV5.view;
 
 public class Menu {
 

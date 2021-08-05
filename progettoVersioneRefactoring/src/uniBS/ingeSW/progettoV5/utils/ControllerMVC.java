@@ -17,31 +17,134 @@ import uniBS.ingeSW.progettoV5.utils.eccezioni.ErroreFormatoException;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 import uniBS.ingeSW.progettoV5.view.ElemFlussoPresentation;
+import uniBS.ingeSW.progettoV5.view.InterazioneUtente;
+import uniBS.ingeSW.progettoV5.view.UIMenu;
 
-public class InterazioneUtenteModel {
+public class ControllerMVC {
     
-  //CODICE PER PRESENTAZIONE SAETTI
+    boolean fineMenuPrincipale = false;
+    boolean fineMenuFruitore = false;
+    boolean fineMenuConfiguratore = false;
+    UIMenu menu = new UIMenu();
+    
+    public void startMenuUI(GestoreReti listaReti, GestoreRetiPetri listaPN, GestoreRetiPetriPriorita listaPNP) {
+	menu.printTitolo();
+	do {
+	    int scelta = menu.startMenuEsterno();
+	    switch (scelta) {
+
+	    case 1:
+		startMenuConfiguratoreUI(listaReti, listaPN, listaPNP);
+		break;
+
+	    case 2:
+		startMenuFruitoreUI(listaPN, listaPNP);
+		break;
+
+	    case 0:
+		fineMenuPrincipale = true;
+		break;
+
+	    // default : System.out.println(ATTENZIONE_SELEZIONE_NON_VALIDA);
+	    }
+	} while (fineMenuPrincipale == false);
+    }
+    
+    private void startMenuFruitoreUI(GestoreRetiPetri listaPN, GestoreRetiPetriPriorita listaPNP) {
+	do {
+	    int scelta = menu.startMenuFruitore();
+	    switch (scelta) {
+
+	    case 1:
+		simulazioneEvoluzioneRete(listaPN);
+		break;
+
+	    case 2:
+		simulazioneEvoluzioneRetePriorita(listaPNP);
+		break;
+
+	    case 0:
+		fineMenuFruitore = true;
+		break;
+
+	    // default : System.out.println(ATTENZIONE_SELEZIONE_NON_VALIDA);
+	    }
+	} while (fineMenuFruitore == false);
+    }
+    
+    private void startMenuConfiguratoreUI(GestoreReti listaReti, GestoreRetiPetri listaPN,
+	    GestoreRetiPetriPriorita listaPNP) {
+	do {
+	    int scelta = menu.startMenuConfiguratore();
+	    switch (scelta) {
+
+	    case 1:
+		ControllerMVC.aggiuntaRete(listaReti);
+		break;
+
+	    case 2:
+		ControllerMVC.visualizzaRetiDaGestore(listaReti);
+		break;
+
+	    case 3:
+		ControllerMVC.visualizzaRetiPetriDaGestore(listaPN);
+		break;
+
+	    case 4:
+		ControllerMVC.estendiReteInPN(listaReti, listaPN);
+		break;
+
+	    case 5:
+		ControllerMVC.estendiRetePNInPNConPriorita(listaPN, listaPNP);
+		break;
+
+	    case 6:
+		ControllerMVC.visualizzaRetiPetriPrioritaDaGestore(listaPNP);
+		break;
+
+	    case 7:
+		ControllerMVC.leggiReteDaFile(listaReti);
+		break;
+
+	    case 8:
+		ControllerMVC.leggiRetePetriDaFile(listaPN, listaReti);
+		break;
+
+	    case 9:
+		ControllerMVC.leggiRetePetriPrioritaDaFile(listaPNP, listaPN);
+		break;
+
+	    case 0:
+		fineMenuConfiguratore = true;
+		break;
+
+	    // default : System.out.println(ATTENZIONE_SELEZIONE_NON_VALIDA);
+	    }
+	} while (fineMenuConfiguratore == false);
+    }
+    
+    // CODICE PER PRESENTAZIONE SAETTI
     private static void aggiuntaTransizione(Rete daCreare) {
-		assert daCreare != null; //precondizione
-            boolean risposta = true;
-            while (risposta != false) {
+	assert daCreare != null; // precondizione
+	boolean risposta = true;
+	while (risposta != false) {
 
-                boolean presente = false;
-                do{
-                    presente = false;
-                    try{
-                        String nome = InterazioneUtente.aggiuntaElemento(1);
-                        var nuovo = daCreare.creaTransizione(nome);
-                        daCreare.addTrans(nuovo);
-                    }catch (giaPresenteException ex){
-                        System.out.println(ex.getMessage());
-                        presente = true;
-                    }
+	    boolean presente = false;
+	    do {
+		presente = false;
+		try {
+		    String nome = InterazioneUtente.aggiuntaElemento(1);
+		    var nuovo = daCreare.creaTransizione(nome);
+		    daCreare.addTrans(nuovo);
+		} catch (giaPresenteException ex) {
+		    System.out.println(ex.getMessage());
+		    presente = true;
+		}
 
-                }while(presente);
-                risposta = InterazioneUtente.continuareAggiuntaYesOrNo(1);
-            }        
+	    } while (presente);
+	    risposta = InterazioneUtente.continuareAggiuntaYesOrNo(1);
 	}
+    }
 
   //CODICE PER PRESENTAZIONE SAETTI
     private static void aggiuntaPosto(Rete daCreare) {
