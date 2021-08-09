@@ -1,6 +1,6 @@
 package uniBS.ingeSW.progettoV5.utils;
 
-import java.io.File;
+
 import java.util.ArrayList;
 
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
@@ -285,19 +285,18 @@ public class ControllerMVC {
         }
         boolean presente = false;
         String nomeReteDaEstendere = null;
-        while(!presente){
-            nomeReteDaEstendere = InterazioneUtente.estendiReteView(listaReti);
-            for(String nomeRete : listaReti.getKeyLIst()){
-                if(nomeRete.equalsIgnoreCase(nomeReteDaEstendere)){
-                    presente = true;
-                    break;
-                }
-            }
-            if(!presente) InterazioneUtente.printErrorReteNonPresente();
-        }
+	while (!presente) {
+	    nomeReteDaEstendere = InterazioneUtente.estendiReteView(listaReti);
+	    EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+	    presente = handler.controlloRetePresente(listaReti, nomeReteDaEstendere);
+	    if (!presente)
+		    InterazioneUtente.printErrorReteNonPresente();
+	}
+	
+
         if(nomeReteDaEstendere != null){
-            Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
-            RetePetri retePN = listaPetriPN.creaRetePetri(reteScelta);
+            EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+            RetePetri retePN = handler.creazioneRetePetri(listaReti, listaPetriPN, nomeReteDaEstendere);
             cambiaMarcatura(retePN);
             cambiaPesi(retePN);
             salvataggioRetePN(retePN, listaPetriPN);
@@ -316,21 +315,17 @@ public class ControllerMVC {
                 while(!presente){
                     InterazioneUtente.printListaMarcature(retePN.getMarcatura()); 
                     nome = InterazioneUtente.leggiElementoDaCambiare(0);
-                    for(Posto posto : retePN.getMarcatura().getListaPosti()){
-                        if(posto.getName().equalsIgnoreCase(nome)){
-                            presente = true;
-                            break;
-                        }
-                    }
+                    EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+                    presente = handler.controlloPostoPresente(retePN, nome);
                     if(!presente) InterazioneUtente.printErrorPostoNonPresente();
                 }
                 if(nome != null){
                     int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(0);
-                    retePN.getMarcatura().impostaNuovaMarcatura(nome, nuovoValore);
+                    EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+                    handler.impostaNuovaMarcatura(retePN, nome, nuovoValore);
                     InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePN);
                     risposta = InterazioneUtente.continuareAggiuntaYesOrNo(3);
-                }
-                
+                }                
             }           
         }
     }
