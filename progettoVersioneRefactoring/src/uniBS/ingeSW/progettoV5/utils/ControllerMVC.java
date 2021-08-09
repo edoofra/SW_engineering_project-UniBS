@@ -134,8 +134,8 @@ public class ControllerMVC {
 		presente = false;
 		try {
 		    String nome = InterazioneUtente.aggiuntaElemento(1);
-		    var nuovo = daCreare.creaTransizione(nome);
-		    daCreare.addTrans(nuovo);
+		    CreazioneReteHandler handler = new CreazioneReteHandler();
+		    handler.aggiuntaTransizione(daCreare, nome);
 		} catch (giaPresenteException ex) {
 		    System.out.println(ex.getMessage());
 		    presente = true;
@@ -157,8 +157,8 @@ public class ControllerMVC {
                     presente = false;
                     try{
                         String nome = InterazioneUtente.aggiuntaElemento(0);
-                        var nuovo = daCreare.creaPosto(nome);
-                        daCreare.addPosto(nuovo);
+                        CreazioneReteHandler handler = new CreazioneReteHandler();
+    		    	handler.aggiuntaPosto(daCreare, nome);
                     }catch (giaPresenteException ex){
                         System.out.println(ex.getMessage());
                         presente = true;
@@ -189,11 +189,9 @@ public class ControllerMVC {
                         if(nome2.charAt(0)=='P') elem2 = daCreare.getPostoByName(nome2);
                         else elem2 = daCreare.getTransByName(nome2);
                         
-                        ElemFlusso daAggiungere = daCreare.creaElemFlusso(elem1, elem2);        
-                        daCreare.addElemFlusso(daAggiungere);
-        
-                       
-
+                        CreazioneReteHandler handler = new CreazioneReteHandler();
+    		    	handler.aggiuntaElemFlusso(daCreare, elem1, elem2);
+                        
                     }catch (giaPresenteException ex){
                         System.out.println(ex.getMessage());
                         giusto = false;
@@ -209,86 +207,75 @@ public class ControllerMVC {
                     
                 }while(!giusto);
                 risposta = InterazioneUtente.continuareAggiuntaYesOrNo(2);
-            }
-           
+            }           
         }
                
-        
-        
-	
-
     private static void creazioneRete(Rete daCreare){
         assert daCreare != null;
         aggiuntaPosto(daCreare);
         aggiuntaTransizione(daCreare);
         aggiuntaElemFlusso(daCreare);
     }
-
-    private static boolean controlloRete(Rete daControllare, GestoreReti listaReti){
-        assert daControllare != null && listaReti != null; //precondizioni
-		boolean connessa = daControllare.controlloConnessione();
-        if(!connessa) InterazioneUtente.controlloRete(0);
-		boolean corretta = daControllare.controlloCorrettezza();
-        if(!corretta) InterazioneUtente.controlloRete(1);
-        if(corretta && connessa) InterazioneUtente.controlloRete(3);
-        boolean duplicata = false;
-        for(String nomeRete : listaReti.getKeyLIst()){
-			if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(daControllare)) {
-				duplicata = true;
-			}			
-		}
-        if(duplicata) InterazioneUtente.controlloRete(2);
-        if(!corretta || !connessa || duplicata) return false;
-        else return true;
+    
+    private static boolean controlloRete(Rete daControllare, GestoreReti listaReti) {
+	CreazioneReteHandler handler = new CreazioneReteHandler();
+	ArrayList<Boolean> esiti = handler.controlloRete(daControllare, listaReti);
+	if(!esiti.get(0)) InterazioneUtente.controlloRete(0);
+	if(!esiti.get(1)) InterazioneUtente.controlloRete(1);
+	if(esiti.get(2)) InterazioneUtente.controlloRete(2);
+	if(esiti.get(0) && esiti.get(1) && !esiti.get(2)) {
+	    InterazioneUtente.controlloRete(3);
+	    return true;
+	}
+	else return false;
+	
     }
 
-    private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti){
-        String nomeRete = InterazioneUtente.salvataggioRete(0);
-        if(nomeRete != null){
-            try {
-                listaReti.addRete(nomeRete, daSalvare);
-                for(String name : listaReti.getKeyLIst()){
-                    String reteJSON = ConvertitoreJson.daOggettoAJson(listaReti.getListaRetiConfiguratore().get(name));
-                    salvataggioFile.salvaRete(reteJSON,name);
-                } 
-				
-            } catch (giaPresenteException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti) {
+	String nomeRete = InterazioneUtente.salvataggioRete(0);
+	try {
+
+	    CreazioneReteHandler handler = new CreazioneReteHandler();
+	    handler.salvataggioRete(daSalvare, listaReti, nomeRete);
+
+	} catch (giaPresenteException e) {
+	    System.out.println(e.getMessage());
+	}
     }
+    
 
     //CODICE PER PRESENTAZIONE SAETTI
     public static void aggiuntaRete(GestoreReti listaReti){
         assert listaReti != null;
         InterazioneUtente.aggiuntaRete();
-        Rete daCompletare = listaReti.creaRete();
+        CreazioneReteHandler handler = new CreazioneReteHandler();
+        Rete daCompletare = handler.creaRete(listaReti);
         creazioneRete(daCompletare);
         boolean possibileSalvataggio = controlloRete(daCompletare,listaReti);
         if(possibileSalvataggio) salvataggioRete(daCompletare,listaReti);        
     }
 
     
-    public static void visualizzaRetiDaGestore(GestoreReti listaReti){
-        assert listaReti != null; //precondizione
-        if(listaReti.getListaRetiConfiguratore().isEmpty()) {
-            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
-        }
-        else{
-            boolean presente = false;
-            while(!presente){
-                String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-                for(String elem : listaReti.getKeyLIst()){
-                    if (elem.equals(nomeReteDaVisualizzare)){
-                        presente = true;
-                        InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
-                        break;
-                    }
-                }
-                if(!presente) InterazioneUtente.printErrorReteNonPresente();    
-            }           
-        }
+    public static void visualizzaRetiDaGestore(GestoreReti listaReti) {
+	assert listaReti != null; // precondizione
+	if (listaReti.getListaRetiConfiguratore().isEmpty()) {
+	    InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+	} else {
+	    boolean presente = false;
+	    while (!presente) {
+		String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+		VisualizzazioneRetiHandler handler = new VisualizzazioneRetiHandler();
+		presente = handler.controlloRetePresente(listaReti, nomeReteDaVisualizzare);
+		if (presente) {
+		    InterazioneUtente.stampaReteSceltaPerVisualizzazione(
+			    listaReti.getListaRetiConfiguratore().get(nomeReteDaVisualizzare));
+		}
+	    }
+	    if (!presente)
+		InterazioneUtente.printErrorReteNonPresente();
+	}
     }
+    
 
   //CODICE PER PRESENTAZIONE SAETTI
     public static void estendiReteInPN(GestoreReti listaReti, GestoreRetiPetri listaPetriPN){

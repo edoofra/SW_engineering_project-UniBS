@@ -1,8 +1,6 @@
 package uniBS.ingeSW.progettoV5.view;
 
-import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
-import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetri;
-import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetriPriorita;
+
 
 public class UIMenu {
     
