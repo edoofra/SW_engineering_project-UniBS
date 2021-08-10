@@ -243,7 +243,6 @@ public class ControllerMVC {
 	}
     }
     
-
     //CODICE PER PRESENTAZIONE SAETTI
     public static void aggiuntaRete(GestoreReti listaReti){
         assert listaReti != null;
@@ -255,7 +254,6 @@ public class ControllerMVC {
         if(possibileSalvataggio) salvataggioRete(daCompletare,listaReti);        
     }
 
-    
     public static void visualizzaRetiDaGestore(GestoreReti listaReti) {
 	assert listaReti != null; // precondizione
 	if (listaReti.getListaRetiConfiguratore().isEmpty()) {
@@ -276,7 +274,6 @@ public class ControllerMVC {
 	}
     }
     
-
   //CODICE PER PRESENTAZIONE SAETTI
     public static void estendiReteInPN(GestoreReti listaReti, GestoreRetiPetri listaPetriPN){
         assert listaReti != null && listaPetriPN != null;
@@ -330,7 +327,6 @@ public class ControllerMVC {
         }
     }
 
-    
     private static void cambiaPesi(RetePetri retePN){
         assert retePN !=null;
         boolean risposta = InterazioneUtente.domandaCambiamentoDatiRetePetri(1);
@@ -341,20 +337,16 @@ public class ControllerMVC {
                 while(!presente){
                     InterazioneUtente.printListaPesi(retePN.getListaPesi()); 
                     nome = InterazioneUtente.leggiElementoDaCambiare(1);
-                    for(ElemFlusso elem : retePN.getListaPesi().getListaElemFlusso()){
-                        if(new ElemFlussoPresentation(elem).getName().equalsIgnoreCase(nome)){
-                            presente = true;
-                            break;
-                        }
-                    }
+                    EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+                    presente = handler.controlloElementoPresente(retePN, nome);
                     if(!presente) InterazioneUtente.printErrorElemFlussoNonPresente();
                 }
                 
                 if(nome != null){
                     int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
                     try {
-                        ElemFlusso elemDaCambiare = retePN.getElemFlussoByName(nome);
-                        retePN.getListaPesi().impostaPeso(elemDaCambiare.getElem1().getName(), elemDaCambiare.getElem2().getName(), nuovoValore);
+                	EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+                	handler.impostaNuovoPeso(retePN, nome, nuovoValore);
                     } catch (NonPresenteException e) {
                         e.printStackTrace();
                     }
@@ -366,32 +358,17 @@ public class ControllerMVC {
         }
     }
 
-    private static boolean controlloRetePetriDuplicata(RetePetri daControllare, GestoreRetiPetri listaReti){
-        assert daControllare !=null && listaReti !=null;
-
-        for(String nomeRete : listaReti.getListaRetiPetriConfiguratore().keySet().toArray(new String[0])){
-            if(daControllare.controlloRetePetriUguale(listaReti.getListaRetiPetriConfiguratore().get(nomeRete))) return true;
-        }
-        return false;
-    }
-
-    
     private static void salvataggioRetePN(RetePetri retePN, GestoreRetiPetri listaPetriPN){
         assert retePN !=null && listaPetriPN !=null;
-        if(!controlloRetePetriDuplicata(retePN, listaPetriPN)){
+        EstensioneReteInRetePetriHandler handler = new EstensioneReteInRetePetriHandler();
+        if(!handler.controlloRetePetriDuplicata(retePN, listaPetriPN)){
             boolean nomeDuplicato = false;
             do{
                 String nomeSalvataggio = InterazioneUtente.salvataggioRete(1);
                 if(nomeSalvataggio != null){
                     nomeDuplicato = false;
                     try {
-                        listaPetriPN.addRete(nomeSalvataggio, retePN);
-                        for(String name : listaPetriPN.getKeyLIst()){
-                            String retePNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN.getListaRetiPetriConfiguratore().get(name));
-                            salvataggioFile.salvaRetePetri(retePNJSON, name);
-                        }
-                        String listaRetiPNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPN);
-                        salvataggioFile.salvaGestoreReti(listaRetiPNJSON, 1);
+                       handler.salvataggioRetePN(retePN, listaPetriPN, nomeSalvataggio);
                     } catch (giaPresenteException e) {
                         System.out.println(e.getMessage());
                         nomeDuplicato = true;
@@ -415,13 +392,11 @@ public class ControllerMVC {
             boolean presente = false;
             while(!presente){
                 String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-                for(String elem : listaReti.getKeyLIst()){
-                    if (elem.equals(nomeReteDaVisualizzare)){
-                        presente = true;
-                        InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare));
-                        break;
-                    }
-                }    
+                VisualizzazioneRetiPetriHandler handler = new VisualizzazioneRetiPetriHandler();
+                presente = handler.controlloRetePetriPresente(nomeReteDaVisualizzare, listaReti);
+                if(presente) {
+                    InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare));
+                }
                 if(!presente) InterazioneUtente.printErrorReteNonPresente();
             }           
         }
@@ -453,8 +428,8 @@ public class ControllerMVC {
                             InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
                             String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
                             try {
-                                ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
-                                reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                                SimulazioneReteHandler handler = new SimulazioneReteHandler();
+                                handler.simulaEvoluzione(reteScelta, nomeElemFlussoScelto);
                                 InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
                             } catch (NonPresenteException e) {
                                 System.out.println(e.getMessage());
@@ -465,12 +440,10 @@ public class ControllerMVC {
                     }
                 }
             }
-            else {
-                InterazioneUtente.printErrorReteNonPresente();
-            }
-           
-            
-        }
+	    else {
+		InterazioneUtente.printErrorReteNonPresente();
+	    }
+	}
     }
 
   //CODICE PER PRESENTAZIONE SAETTI
@@ -483,22 +456,17 @@ public class ControllerMVC {
         String nomeReteDaEstendere = null;
         while(!presente){
             nomeReteDaEstendere = InterazioneUtente.estendiRetePNinPrioritaView(listaRetiPN);
-            for(String rete : listaRetiPN.getListaRetiPetriConfiguratore().keySet()){
-                if(rete.equalsIgnoreCase(nomeReteDaEstendere)){
-                    presente = true;
-                    break;
-                }
-            }
+            EstensionePNInPNPHandler handler = new EstensionePNInPNPHandler();
+            presente = handler.controlloRetePresente(listaRetiPN, nomeReteDaEstendere);
             if(!presente) InterazioneUtente.printErrorReteNonPresente();
         }
         
         if(nomeReteDaEstendere!=null){
-            RetePetri reteScelta = listaRetiPN.getListaRetiPetriConfiguratore().get(nomeReteDaEstendere);        
-            RetePetriPriorita retePNPriorita = listaPetriPNPriorita.creaRetePetriPriorita(reteScelta);
+            EstensionePNInPNPHandler handler = new EstensionePNInPNPHandler();
+            RetePetriPriorita retePNPriorita = handler.creazioneRetePNP(listaRetiPN, nomeReteDaEstendere, listaPetriPNPriorita);
             cambiaPriorita(retePNPriorita);
             salvataggioRetePNPriorita(retePNPriorita, listaPetriPNPriorita);
-        }
-        
+        }  
     }
 
     private static void cambiaPriorita(RetePetriPriorita retePNPriorita){
@@ -511,18 +479,15 @@ public class ControllerMVC {
                 while(!presente){
                     InterazioneUtente.printListaPriorita(retePNPriorita.getPriorita()); 
                     nomeTransizione = InterazioneUtente.leggiElementoDaCambiare(3);
-                    for(Transizione trans : retePNPriorita.getPriorita().getListaTransizioni()){
-                        if(trans.getName().equalsIgnoreCase(nomeTransizione)){
-                            presente = true;
-                            break;
-                        }
-                    }
+                    EstensionePNInPNPHandler handler = new EstensionePNInPNPHandler();
+                    presente = handler.controlloTransizionePresente(retePNPriorita, nomeTransizione);
                     if(!presente) InterazioneUtente.printErrorTransizioneNonPresente();
 
                 }
                 if(nomeTransizione != null){
                     int nuovoValore = InterazioneUtente.leggiNuovoValoreDaInserirePerCambiamentoDati(1);
-                    retePNPriorita.getPriorita().impostaNuovaPriorita(nomeTransizione, nuovoValore);
+                    EstensionePNInPNPHandler handler = new EstensionePNInPNPHandler();
+                    handler.impostaNuovaPriorita(retePNPriorita, nomeTransizione, nuovoValore);
                     InterazioneUtente.stampaReteSceltaPerVisualizzazione(retePNPriorita);
                     risposta = InterazioneUtente.continuareAggiuntaYesOrNo(5);
                 }                
@@ -532,18 +497,15 @@ public class ControllerMVC {
 
     private static void salvataggioRetePNPriorita(RetePetriPriorita retePNP, GestoreRetiPetriPriorita listaPetriPNP){
         assert retePNP !=null && listaPetriPNP !=null;
-        if(!controlloRetePetriPrioritaDuplicata(retePNP, listaPetriPNP)){
+        EstensionePNInPNPHandler handler = new EstensionePNInPNPHandler();
+        if(!handler.controlloRetePetriPrioritaDuplicata(retePNP, listaPetriPNP)){
             boolean nomeDuplicato = false;
             do{
                 String nomeSalvataggio = InterazioneUtente.salvataggioRete(2);
                 if(nomeSalvataggio != null){
                     nomeDuplicato = false;
                     try {
-                        listaPetriPNP.addRete(nomeSalvataggio, retePNP);
-                        for(String name : listaPetriPNP.getKeyLIst()){
-                            String retePNJSON = ConvertitoreJson.daOggettoAJson(listaPetriPNP.getListaRetiPetriPrioritaConfiguratore().get(name));
-                            salvataggioFile.salvaRetePetriPriorita(retePNJSON, name);
-                        }
+                       handler.salvataggioRetePNP(retePNP, listaPetriPNP, nomeSalvataggio);
                     } catch (giaPresenteException e) {
                         System.out.println(e.getMessage());
                         nomeDuplicato = true;
@@ -557,35 +519,25 @@ public class ControllerMVC {
         }
     }
 
-    private static boolean controlloRetePetriPrioritaDuplicata(RetePetriPriorita daControllare, GestoreRetiPetriPriorita listaReti){
-        assert daControllare != null && listaReti != null;
+    public static void visualizzaRetiPetriPrioritaDaGestore(GestoreRetiPetriPriorita listaReti) {
+	assert listaReti != null; // precondizione
+	if (listaReti.getListaRetiPetriPrioritaConfiguratore().isEmpty()) {
+	    InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+	} else {
+	    boolean presente = false;
+	    while (!presente) {
+		String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
+		VisualizzazioneRetiPetriPrioritaHandler handler = new VisualizzazioneRetiPetriPrioritaHandler();
+		presente = handler.controlloRetePetriPrioritaPresente(nomeReteDaVisualizzare, listaReti);
+		if (presente) {
+		    InterazioneUtente.stampaReteSceltaPerVisualizzazione(
+			    listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare));
+		}
+		if (!presente)
+		    InterazioneUtente.printErrorReteNonPresente();
+	    }
 
-        for(String nomeRete : listaReti.getListaRetiPetriPrioritaConfiguratore().keySet().toArray(new String[0])){
-            if(daControllare.controlloRetePetriPrioritaUguale(listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeRete))) return true;
-        }
-        return false;
-    }
-
-    public static void visualizzaRetiPetriPrioritaDaGestore(GestoreRetiPetriPriorita listaReti){
-        assert listaReti != null; //precondizione
-        if(listaReti.getListaRetiPetriPrioritaConfiguratore().isEmpty()) {
-            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
-        }
-        else{
-            boolean presente = false;
-            while(!presente){
-                String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
-                for(String elem : listaReti.getKeyLIst()){
-                    if (elem.equals(nomeReteDaVisualizzare)){
-                        InterazioneUtente.stampaReteSceltaPerVisualizzazione(listaReti.getListaRetiPetriPrioritaConfiguratore().get(nomeReteDaVisualizzare));
-                        presente = true;
-                        break;
-                    }
-                }
-                if(!presente) InterazioneUtente.printErrorReteNonPresente();    
-            }
-            
-        }
+	}
     }
 
 
@@ -615,8 +567,8 @@ public class ControllerMVC {
                             InterazioneUtente.printPossibiliTransizioniPerSimulazione(transizioniPossibiliMaxP);
                             String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
                             try {
-                                ElemFlusso elemScelto = reteScelta.getElemFlussoByName(nomeElemFlussoScelto);
-                                reteScelta.aggiornaMarcaturaPerSimulazione(elemScelto);
+                                SimulazioneRetePNPHandler handler = new SimulazioneRetePNPHandler();
+                                handler.simulaEvoluzione(reteScelta, nomeElemFlussoScelto);
                                 InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
                             } catch (NonPresenteException e) {
                                 System.out.println((e.getMessage()));
@@ -715,7 +667,6 @@ public class ControllerMVC {
         }          
     }
         
-
     public static boolean controlloAccettazioneRetePetriPriorita(RetePetriPriorita reteCaricata, GestoreRetiPetri listaRetiPetri){
         RetePetri retePetriBase = new RetePetri(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso(), 
                                 reteCaricata.getMarcatura(), reteCaricata.getListaPesi());
