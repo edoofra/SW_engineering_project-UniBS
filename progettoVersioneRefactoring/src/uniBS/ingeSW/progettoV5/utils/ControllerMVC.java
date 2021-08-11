@@ -586,16 +586,13 @@ public class ControllerMVC {
 
     public static void leggiReteDaFile(GestoreReti listaReti){
         String path = InterazioneUtente.leggiPath();       
-        Rete reteCaricata = salvataggioFile.leggiReteDaFile(path);
+        CaricamentoReteDaFileHandler handler = new CaricamentoReteDaFileHandler();
+        Rete reteCaricata = handler.caricaDaFile(path);
         if(!reteCaricata.emptyControl()){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){
                 try {
-                    listaReti.addRete(nomeRete, reteCaricata);
-                    for(String name : listaReti.getKeyLIst()){
-                        String reteJSON = ConvertitoreJson.daOggettoAJson(listaReti.getListaRetiConfiguratore().get(name));
-                        salvataggioFile.salvaRete(reteJSON,name);
-                    } 
+                    handler.aggiuntaReteAGestore(listaReti, nomeRete, reteCaricata);
                     InterazioneUtente.msgLetturaDaFileCompletata();
                     
                 } catch (giaPresenteException e) {
@@ -605,21 +602,16 @@ public class ControllerMVC {
         }           
     }
         
-    
-
     public static void leggiRetePetriDaFile(GestoreRetiPetri listaRetiPetri, GestoreReti listaReti){
         String path = InterazioneUtente.leggiPath();
-        RetePetri reteCaricata = salvataggioFile.leggiRetePetriDaFile(path);
-        boolean accettata = controlloAccettazioneRetePetri(reteCaricata, listaReti);
+        CaricamentoPNDaFileHandler handler = new CaricamentoPNDaFileHandler();
+        RetePetri reteCaricata = handler.caricaDaFile(path);
+        boolean accettata = handler.controlloAccettazioneRetePetri(reteCaricata, listaReti);
         if(!reteCaricata.emptyControl() && accettata){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){
                 try {
-                    listaRetiPetri.addRete(nomeRete, reteCaricata);
-                    for(String name : listaRetiPetri.getKeyLIst()){
-                        String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetri.getListaRetiPetriConfiguratore().get(name));
-                        salvataggioFile.salvaRetePetri(reteJSON, name);
-                    } 
+                    handler.aggiuntaReteAGestore(listaRetiPetri, nomeRete, reteCaricata);
                     InterazioneUtente.msgLetturaDaFileCompletata();
                     
                 } catch (giaPresenteException e) {
@@ -631,31 +623,16 @@ public class ControllerMVC {
         }        
     }
        
-    
-
-    public static boolean controlloAccettazioneRetePetri(RetePetri reteCaricata, GestoreReti listaReti){
-        Rete reteBase = new Rete(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso());
-        for(String nomeRete : listaReti.getKeyLIst()){
-            if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(reteBase)){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static void leggiRetePetriPrioritaDaFile(GestoreRetiPetriPriorita listaRetiPetriPriorita, GestoreRetiPetri listaRetiPetri){
         String path = InterazioneUtente.leggiPath();
-        RetePetriPriorita reteCaricata = salvataggioFile.leggiRetePetriPrioritaDaFile(path);
-        boolean accettata = controlloAccettazioneRetePetriPriorita(reteCaricata, listaRetiPetri);
+        CaricamentoPNPDaFileHandler handler = new CaricamentoPNPDaFileHandler();
+        RetePetriPriorita reteCaricata = handler.caricaDaFile(path);
+        boolean accettata = handler.controlloAccettazioneRetePetriPriorita(reteCaricata, listaRetiPetri);
         if(!reteCaricata.emptyControl() && accettata){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){
                 try {
-                    listaRetiPetriPriorita.addRete(nomeRete, reteCaricata);
-                    for(String name : listaRetiPetriPriorita.getKeyLIst()){
-                        String reteJSON = ConvertitoreJson.daOggettoAJson(listaRetiPetriPriorita.getListaRetiPetriPrioritaConfiguratore().get(name));
-                        salvataggioFile.salvaRetePetriPriorita(reteJSON,name);
-                    } 
+                    handler.aggiuntaReteAGestore(listaRetiPetriPriorita, nomeRete, reteCaricata);
                     InterazioneUtente.msgLetturaDaFileCompletata();
                     
                 } catch (giaPresenteException e) {
@@ -667,16 +644,6 @@ public class ControllerMVC {
         }          
     }
         
-    public static boolean controlloAccettazioneRetePetriPriorita(RetePetriPriorita reteCaricata, GestoreRetiPetri listaRetiPetri){
-        RetePetri retePetriBase = new RetePetri(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso(), 
-                                reteCaricata.getMarcatura(), reteCaricata.getListaPesi());
-        for(String nomeRete : listaRetiPetri.getKeyLIst()){
-            if(listaRetiPetri.getListaRetiPetriConfiguratore().get(nomeRete).isEqual(retePetriBase)){
-                return true;
-            }
-        }
-        return false;
-    }
-    
+   
     
 }
