@@ -3,7 +3,7 @@ package uniBS.ingeSW.progettoV5.utils;
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetri;
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetriPriorita;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;

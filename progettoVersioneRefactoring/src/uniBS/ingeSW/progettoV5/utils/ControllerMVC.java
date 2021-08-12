@@ -9,7 +9,7 @@ import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetriPriorita;
 import uniBS.ingeSW.progettoV5.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV5.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Posto;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Transizione;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
@@ -124,7 +124,7 @@ public class ControllerMVC {
     }
     
     // CODICE PER PRESENTAZIONE SAETTI
-    private static void aggiuntaTransizione(Rete daCreare) {
+    private static void aggiuntaTransizione(ReteSemplice daCreare) {
 	assert daCreare != null; // precondizione
 	boolean risposta = true;
 	while (risposta != false) {
@@ -147,7 +147,7 @@ public class ControllerMVC {
     }
 
   //CODICE PER PRESENTAZIONE SAETTI
-    private static void aggiuntaPosto(Rete daCreare) {
+    private static void aggiuntaPosto(ReteSemplice daCreare) {
 		assert daCreare != null; //precondizione
             boolean risposta = true;
             while (risposta != false) {
@@ -170,7 +170,7 @@ public class ControllerMVC {
 	}
 
   //CODICE PER PRESENTAZIONE SAETTI
-    private static void aggiuntaElemFlusso(Rete daCreare) {
+    private static void aggiuntaElemFlusso(ReteSemplice daCreare) {
 		assert daCreare != null; //precondizione
             boolean risposta = true;
             while (risposta != false) {
@@ -210,14 +210,14 @@ public class ControllerMVC {
             }           
         }
                
-    private static void creazioneRete(Rete daCreare){
+    private static void creazioneRete(ReteSemplice daCreare){
         assert daCreare != null;
         aggiuntaPosto(daCreare);
         aggiuntaTransizione(daCreare);
         aggiuntaElemFlusso(daCreare);
     }
     
-    private static boolean controlloRete(Rete daControllare, GestoreReti listaReti) {
+    private static boolean controlloRete(ReteSemplice daControllare, GestoreReti listaReti) {
 	CreazioneReteHandler handler = new CreazioneReteHandler();
 	ArrayList<Boolean> esiti = handler.controlloRete(daControllare, listaReti);
 	if(!esiti.get(0)) InterazioneUtente.controlloRete(0);
@@ -231,7 +231,7 @@ public class ControllerMVC {
 	
     }
 
-    private static void salvataggioRete(Rete daSalvare, GestoreReti listaReti) {
+    private static void salvataggioRete(ReteSemplice daSalvare, GestoreReti listaReti) {
 	String nomeRete = InterazioneUtente.salvataggioRete(0);
 	try {
 
@@ -248,7 +248,7 @@ public class ControllerMVC {
         assert listaReti != null;
         InterazioneUtente.aggiuntaRete();
         CreazioneReteHandler handler = new CreazioneReteHandler();
-        Rete daCompletare = handler.creaRete(listaReti);
+        ReteSemplice daCompletare = handler.creaRete(listaReti);
         creazioneRete(daCompletare);
         boolean possibileSalvataggio = controlloRete(daCompletare,listaReti);
         if(possibileSalvataggio) salvataggioRete(daCompletare,listaReti);        
@@ -587,7 +587,7 @@ public class ControllerMVC {
     public static void leggiReteDaFile(GestoreReti listaReti){
         String path = InterazioneUtente.leggiPath();       
         CaricamentoReteDaFileHandler handler = new CaricamentoReteDaFileHandler();
-        Rete reteCaricata = handler.caricaDaFile(path);
+        ReteSemplice reteCaricata = handler.caricaDaFile(path);
         if(!reteCaricata.emptyControl()){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){

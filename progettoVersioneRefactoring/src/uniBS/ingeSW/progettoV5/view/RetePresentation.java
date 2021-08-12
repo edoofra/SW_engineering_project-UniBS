@@ -3,7 +3,7 @@ package uniBS.ingeSW.progettoV5.view;
 import uniBS.ingeSW.progettoV5.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV5.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Posto;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Transizione;
 import uniBS.ingeSW.progettoV5.view.ElemFlussoPresentation;
 
@@ -20,13 +20,13 @@ public class RetePresentation {
     public static final String TRANSIZIONI = "TRANSIZIONI: ";
     public static final String POSTI = "POSTI: ";
     public static final String DESCRIZIONE_DELLA_RETE = "Descrizione della rete: \n";
-    private Rete daPresentare;
+    private ReteSemplice daPresentare;
     
 	/**
 	 * Metodo per istanziare la rete da presentare.
 	 * @param daPresentare Rete di cui costruire la presentazione.
 	 */
-	public RetePresentation(Rete daPresentare) {
+	public RetePresentation(ReteSemplice daPresentare) {
 	this.daPresentare = daPresentare;
 	}
 

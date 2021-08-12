@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
 import uniBS.ingeSW.progettoV5.view.InterazioneUtente;

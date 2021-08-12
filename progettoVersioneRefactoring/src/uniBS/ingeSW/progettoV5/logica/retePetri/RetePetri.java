@@ -1,12 +1,16 @@
 package uniBS.ingeSW.progettoV5.logica.retePetri;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import uniBS.ingeSW.progettoV5.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV5.logica.rete.ElementoSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Posto;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteInterface;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.rete.Transizione;
+import uniBS.ingeSW.progettoV5.utils.eccezioni.NonPresenteException;
+import uniBS.ingeSW.progettoV5.view.ElemFlussoPresentation;
 
 /**
  * Classe per l'implementazione di una rete di petri che estende una rete.
@@ -21,17 +25,25 @@ import uniBS.ingeSW.progettoV5.logica.rete.Transizione;
  * @version 3.0 - aggiunti metodi per simulazione
  */
 
-public class RetePetri extends Rete {
+public class RetePetri implements ReteInterface {
     
-    protected MarcaturaPN marcatura;
-    protected ListaPesiFlussoPN listaPesi;
+    private static final String QUESTO_ELEMENTO_NON_E_PRESENTE = "Questo elemento non è presente.";
+    private static final boolean BOOL_CONST_TRUE = true;
+    private static final boolean BOOL_CONST_FALSE = false;
+    
+    private MarcaturaPN marcatura;
+    private ListaPesiFlussoPN listaPesi;
+    private ArrayList<Posto> insiemePosti;
+    private ArrayList<Transizione> insiemeTransizioni;
+    private ArrayList<ElemFlusso> relazioneFlusso;
+    
     
 	/**
 	 * Metodo per la creazione di una rete.
 	 * Vengono istanziati i 2 insiemi (marcatura e listaPesi), aggiunti i posti, le transizioni e la relazione di flusso della rete
 	 * da cui viene implementata la rete di petri
 	 */
-    public RetePetri(Rete daUsare) {
+    public RetePetri(ReteSemplice daUsare) {
 		this.insiemePosti = daUsare.getInsiemePosti();
 		this.insiemeTransizioni = daUsare.getInsiemeTransizioni();
 		this.relazioneFlusso = daUsare.getRelazioneFlusso();
@@ -45,10 +57,6 @@ public class RetePetri extends Rete {
 		this.relazioneFlusso = relazioneFlusso;
 		this.marcatura = marcatura;
 		this.listaPesi = listaPesi;
-	}
-
-	public RetePetri(){
-		super();
 	}
 
 	public MarcaturaPN getMarcatura(){
@@ -69,7 +77,7 @@ public class RetePetri extends Rete {
 	 * @return boolean che indica se le due reti sono uguali o meno 
 	 */
 	public boolean controlloRetePetriUguale(RetePetri toCompare){
-		if(!super.isEqual(toCompare)) return false;
+		if(isEqual(toCompare)) return false;
 		if(!this.getMarcatura().isEqual(toCompare.getMarcatura()) || !this.getListaPesi().isEqual(toCompare.getListaPesi())){
 			return false;
 		}			
@@ -129,6 +137,87 @@ public class RetePetri extends Rete {
 			}
 		}
 		
+	}
+
+	@Override
+	public ArrayList<Posto> getInsiemePosti() {
+	    return this.insiemePosti;	    
+	}
+
+	@Override
+	public ArrayList<Transizione> getInsiemeTransizioni() {
+	    return this.insiemeTransizioni;
+	}
+
+	@Override
+	public ArrayList<ElemFlusso> getRelazioneFlusso() {
+	    return this.relazioneFlusso;
+	}
+
+	@Override
+	public Posto getPostoByName(String daCercare) throws NonPresenteException {
+	    assert daCercare != null : "stringaNome = null"; // precondizione
+	    var trovato = Stream.of(getInsiemePosti().toArray(new Posto[0]))
+		    .filter(n -> n.getName().equalsIgnoreCase(daCercare)).findFirst().orElse(null);
+	    if (trovato == null)
+		throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);
+	    return trovato;
+	}
+
+	@Override
+	public Transizione getTransByName(String daCercare) throws NonPresenteException {
+	    assert daCercare != null : "stringaNome = null"; // precondizione
+	    var trovato = Stream.of(getInsiemeTransizioni().toArray(new Transizione[0]))
+		    .filter(n -> n.getName().equalsIgnoreCase(daCercare)).findFirst().orElse(null);
+	    if (trovato == null)
+		throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);
+	    return trovato;
+	}
+
+	@Override
+	public ElemFlusso getElemFlussoByName(String daCercare) throws NonPresenteException {
+	    assert daCercare != null : "stringaNome = null"; // precondizione
+	    var trovato = Stream.of(getRelazioneFlusso().toArray(new ElemFlusso[0]))
+		    .filter(n -> new ElemFlussoPresentation(n).getName().equalsIgnoreCase(daCercare)).findFirst()
+		    .orElse(null);
+	    if (trovato == null)
+		throw new NonPresenteException(QUESTO_ELEMENTO_NON_E_PRESENTE);
+	    return trovato;
+	}
+
+	@Override
+	public boolean isEqual(ReteInterface toCheck) {
+	    assert toCheck != null : "toCheck = null";
+	    boolean uguali = BOOL_CONST_FALSE;
+	    if (this.getInsiemePosti().size() != toCheck.getInsiemePosti().size())
+		return BOOL_CONST_FALSE;
+	    if (this.getInsiemeTransizioni().size() != toCheck.getInsiemeTransizioni().size())
+		return BOOL_CONST_FALSE;
+	    if (this.getRelazioneFlusso().size() != toCheck.getRelazioneFlusso().size())
+		return BOOL_CONST_FALSE;
+
+	    for (ElemFlusso elemRete1 : this.getRelazioneFlusso()) {
+		ciclo2: for (ElemFlusso elemRete2 : toCheck.getRelazioneFlusso()) {
+		    if (elemRete1.controlloUguali(elemRete2)) {
+			uguali = BOOL_CONST_TRUE;
+			break ciclo2;
+			// se ne trovo uno uguale esco dal ciclo interno
+			// con valore BOOL_CONST_TRUE
+		    }
+		    uguali = BOOL_CONST_FALSE;
+		}
+		if (!uguali)
+		    return BOOL_CONST_FALSE;
+	    }
+	    return BOOL_CONST_TRUE;
+	}
+
+	@Override
+	public boolean emptyControl() {
+	    if (insiemePosti.isEmpty() || insiemeTransizioni.isEmpty() || relazioneFlusso.isEmpty())
+		return BOOL_CONST_TRUE;
+	    else
+		return BOOL_CONST_FALSE;
 	}
 
 

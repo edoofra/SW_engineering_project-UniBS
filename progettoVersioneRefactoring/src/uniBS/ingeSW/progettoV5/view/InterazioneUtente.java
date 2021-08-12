@@ -254,7 +254,7 @@ public class InterazioneUtente {
 		return risposta;
 	}
 
-	public static String[] aggiuntaFlusso(Rete rete){
+	public static String[] aggiuntaFlusso(ReteSemplice rete){
 		assert rete != null; //precondizione
 		RetePresentation reteView = new RetePresentation(rete);
 		System.out.println(MESSAGGIO_INIZIALE_FLUSSO);
@@ -331,7 +331,7 @@ public class InterazioneUtente {
 		System.out.println("\t" + listaView.toString());
 	}
 
-	public static void stampaReteSceltaPerVisualizzazione(Rete daVisualizzare){
+	public static void stampaReteSceltaPerVisualizzazione(ReteSemplice daVisualizzare){
 		System.out.println(new RetePresentation(daVisualizzare));
 	}
 

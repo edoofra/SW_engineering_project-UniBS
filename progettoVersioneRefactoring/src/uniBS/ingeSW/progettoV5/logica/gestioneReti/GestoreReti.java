@@ -2,7 +2,7 @@ package uniBS.ingeSW.progettoV5.logica.gestioneReti;
 
 import java.util.HashMap;
 
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 
 /**
@@ -16,16 +16,16 @@ import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
  */
 public class GestoreReti {
 
-	private HashMap<String, Rete> listaRetiConfiguratore;
+	private HashMap<String, ReteSemplice> listaRetiConfiguratore;
 
 	/**
 	 * Metodo per inizializzare la lista delle reti da salvare.
 	 */
 	public GestoreReti() {
-		this.listaRetiConfiguratore = new HashMap<String, Rete>();
+		this.listaRetiConfiguratore = new HashMap<String, ReteSemplice>();
 	}
 
-	public HashMap<String, Rete> getListaRetiConfiguratore() {
+	public HashMap<String, ReteSemplice> getListaRetiConfiguratore() {
 		return listaRetiConfiguratore;
 	}
 
@@ -41,7 +41,7 @@ public class GestoreReti {
 	 * @return boolean che indica se l'aggiunta e' andata a buon fine o meno.
 	 * @throws giaPresenteException
 	 */
-	public void addRete(String name, Rete toAdd) throws giaPresenteException {
+	public void addRete(String name, ReteSemplice toAdd) throws giaPresenteException {
 		assert name != null : "name = null"; //precondizione
 		assert toAdd !=null : "toAdd = null"; //precondizione
 		int beforeAdd = listaRetiConfiguratore.size();
@@ -55,8 +55,8 @@ public class GestoreReti {
 	}
 	
 	//CODICE PER PRESENTAZIONE SAETTI
-	public Rete creaRete() {
-	    return new Rete();
+	public ReteSemplice creaRete() {
+	    return new ReteSemplice();
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class GestoreReti {
 	 * @param rete2 seconda rete da comparare.
 	 * @return boolean che indicano se sono uguali.
 	 */
-	public boolean isEqual(Rete rete1, Rete rete2) {
+	public boolean isEqual(ReteSemplice rete1, ReteSemplice rete2) {
 		assert rete1 != null : "rete1 = null"; //precondizione
 		assert rete2 != null : "rete2 = null"; //precondizione
 		return rete1.isEqual(rete2);		

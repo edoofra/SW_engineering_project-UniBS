@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV5.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV5.logica.rete.ElementoSemplice;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.ErroreFormatoException;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
@@ -13,28 +13,28 @@ import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 public class CreazioneReteHandler {
 
     // CODICE PER PRESENTAZIONE SAETTI
-    public void aggiuntaTransizione(Rete daCreare,String nome) throws giaPresenteException {
+    public void aggiuntaTransizione(ReteSemplice daCreare,String nome) throws giaPresenteException {
 	assert daCreare != null; // precondizione
 	var nuovo = daCreare.creaTransizione(nome); //creator grasp
 	daCreare.addTrans(nuovo);
     }
 
     // CODICE PER PRESENTAZIONE SAETTI
-    public void aggiuntaPosto(Rete daCreare, String nome) throws giaPresenteException {
+    public void aggiuntaPosto(ReteSemplice daCreare, String nome) throws giaPresenteException {
 	assert daCreare != null; // precondizione
 	var nuovo = daCreare.creaPosto(nome);
 	daCreare.addPosto(nuovo);
     }
 
     // CODICE PER PRESENTAZIONE SAETTI
-    public void aggiuntaElemFlusso(Rete daCreare, ElementoSemplice elem1, ElementoSemplice elem2)
+    public void aggiuntaElemFlusso(ReteSemplice daCreare, ElementoSemplice elem1, ElementoSemplice elem2)
 	    throws giaPresenteException, NonPresenteException, ErroreFormatoException {
 	assert daCreare != null; // precondizione
 	ElemFlusso daAggiungere = daCreare.creaElemFlusso(elem1, elem2);
 	daCreare.addElemFlusso(daAggiungere);
     }
 
-    public ArrayList<Boolean> controlloRete(Rete daControllare, GestoreReti listaReti){
+    public ArrayList<Boolean> controlloRete(ReteSemplice daControllare, GestoreReti listaReti){
 	
 	assert daControllare != null && listaReti != null; // precondizioni
 	ArrayList<Boolean> esiti = new ArrayList<Boolean>();
@@ -66,7 +66,7 @@ public class CreazioneReteHandler {
         return esiti;
     }
 
-    public void salvataggioRete(Rete daSalvare, GestoreReti listaReti, String nomeRete) throws giaPresenteException {
+    public void salvataggioRete(ReteSemplice daSalvare, GestoreReti listaReti, String nomeRete) throws giaPresenteException {
 	if (nomeRete != null) {
 	    listaReti.addRete(nomeRete, daSalvare);
 	    for (String name : listaReti.getKeyLIst()) {
@@ -76,7 +76,7 @@ public class CreazioneReteHandler {
 	}
     }
     
-    public Rete creaRete(GestoreReti listaReti) {
+    public ReteSemplice creaRete(GestoreReti listaReti) {
 	return listaReti.creaRete(); //creator GRASP
     }
 

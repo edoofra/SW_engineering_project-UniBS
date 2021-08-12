@@ -2,7 +2,7 @@ package uniBS.ingeSW.progettoV5.utils;
 import com.google.gson.Gson;
 
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.*;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.logica.retePetriPriorita.RetePetriPriorita;
 
@@ -20,7 +20,7 @@ public class ConvertitoreJson {
      * @param oggetto oggetto da convertire.
      * @return stringa formattata in JSON contenente la descrizione di tutte le reti contenute nell'oggetto GestoreReti.
      */
-    public static String daOggettoAJson(Rete oggetto){
+    public static String daOggettoAJson(ReteSemplice oggetto){
         assert oggetto != null: "oggetto = null"; //precondizione
         Gson convertitore = new Gson();
         return convertitore.toJson(oggetto);
@@ -53,10 +53,10 @@ public class ConvertitoreJson {
      * @param json stringa da convertire.
      * @return oggetto GestoreReti creato a partire da stringa JSON.
      */
-    public static Rete daJsonAOggettoHashSet(String json){
+    public static ReteSemplice daJsonAOggettoHashSet(String json){
         assert json != null: "json = null"; //precondizione
         Gson convertitore = new Gson();
-        return convertitore.fromJson(json, Rete.class);
+        return convertitore.fromJson(json, ReteSemplice.class);
     }
 
     /**

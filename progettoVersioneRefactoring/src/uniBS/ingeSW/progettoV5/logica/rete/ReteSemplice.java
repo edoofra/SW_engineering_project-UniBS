@@ -18,7 +18,7 @@ import uniBS.ingeSW.progettoV5.view.ElemFlussoPresentation;
  * @author Camilla Bonomini
  * @version 2.0 - attuata separazione modello-vista. Cambiati getters e setters.
  */
-public class Rete {
+public class ReteSemplice implements ReteInterface {
 
 	private static final String QUESTO_ELEMENTO_DI_FLUSSO_È_GIÀ_PRESENTE = "Questo elemento di flusso è già presente.";
 	private static final String QUESTO_POSTO_È_GIÀ_PRESENTE = "Questo posto è già presente.";
@@ -27,21 +27,21 @@ public class Rete {
 	private static final boolean BOOL_CONST_TRUE = true;
 	private static final boolean BOOL_CONST_FALSE = false;
 
-	protected ArrayList<Posto> insiemePosti;
-	protected ArrayList<Transizione> insiemeTransizioni;
-	protected ArrayList<ElemFlusso> relazioneFlusso;
+	private ArrayList<Posto> insiemePosti;
+	private ArrayList<Transizione> insiemeTransizioni;
+	private ArrayList<ElemFlusso> relazioneFlusso;
 
 	/**
 	 * Metodo per la creazione di una rete.
 	 * Vengono istanziati i 3 insiemi, implementati attraverso un arrayList.
 	 */
-	public Rete() {
+	public ReteSemplice() {
 		this.insiemePosti = new ArrayList<Posto>();
 		this.insiemeTransizioni = new ArrayList<Transizione>();
 		this.relazioneFlusso = new ArrayList<ElemFlusso>();
 	}
 
-	public Rete(ArrayList<Posto> insiemePosti, ArrayList<Transizione> insiemeTransizioni, ArrayList<ElemFlusso> relazioneFlusso){
+	public ReteSemplice(ArrayList<Posto> insiemePosti, ArrayList<Transizione> insiemeTransizioni, ArrayList<ElemFlusso> relazioneFlusso){
 		this.insiemePosti = insiemePosti;
 		this.insiemeTransizioni = insiemeTransizioni;
 		this.relazioneFlusso = relazioneFlusso;
@@ -195,7 +195,7 @@ public class Rete {
 	 * @param toCheck rete da comparare
 	 * @return boolean che indica se le due reti sono uguali o meno 
 	 */
-	public boolean isEqual(Rete toCheck){
+	public boolean isEqual(ReteInterface toCheck){
 	    assert toCheck != null : "toCheck = null";
 		boolean uguali = BOOL_CONST_FALSE;
 		if(this.getInsiemePosti().size() != toCheck.getInsiemePosti().size()) return BOOL_CONST_FALSE;

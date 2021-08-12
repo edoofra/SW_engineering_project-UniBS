@@ -2,7 +2,7 @@ package uniBS.ingeSW.progettoV5.utils;
 
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetri;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 
@@ -22,7 +22,7 @@ public class CaricamentoPNDaFileHandler {
        }
        
        public boolean controlloAccettazioneRetePetri(RetePetri reteCaricata, GestoreReti listaReti){
-	        Rete reteBase = new Rete(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso());
+	        ReteSemplice reteBase = new ReteSemplice(reteCaricata.getInsiemePosti(), reteCaricata.getInsiemeTransizioni(), reteCaricata.getRelazioneFlusso());
 	        for(String nomeRete : listaReti.getKeyLIst()){
 	            if(listaReti.getListaRetiConfiguratore().get(nomeRete).isEqual(reteBase)){
 	                return true;

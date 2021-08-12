@@ -4,7 +4,7 @@ import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreReti;
 import uniBS.ingeSW.progettoV5.logica.gestioneReti.GestoreRetiPetri;
 import uniBS.ingeSW.progettoV5.logica.rete.ElemFlusso;
 import uniBS.ingeSW.progettoV5.logica.rete.Posto;
-import uniBS.ingeSW.progettoV5.logica.rete.Rete;
+import uniBS.ingeSW.progettoV5.logica.rete.ReteSemplice;
 import uniBS.ingeSW.progettoV5.logica.retePetri.RetePetri;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.NonPresenteException;
 import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
@@ -24,7 +24,7 @@ public class EstensioneReteInRetePetriHandler {
     }
     
     public RetePetri creazioneRetePetri(GestoreReti listaReti, GestoreRetiPetri listaPetri, String nomeReteDaEstendere) {
-	Rete reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
+	ReteSemplice reteScelta = listaReti.getListaRetiConfiguratore().get(nomeReteDaEstendere);        
         RetePetri retePN = listaPetri.creaRetePetri(reteScelta);
         return retePN;
     }
