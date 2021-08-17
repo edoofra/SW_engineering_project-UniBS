@@ -18,8 +18,9 @@ import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 public class GestoreRetiPetri {
 
     private HashMap<String, RetePetri> listaRetiPetriConfiguratore;
+    private static GestoreRetiPetri instance;
 
-    public GestoreRetiPetri() {
+    private GestoreRetiPetri() {
 		this.listaRetiPetriConfiguratore = new HashMap<String, RetePetri>();
 	}
 
@@ -68,5 +69,13 @@ public class GestoreRetiPetri {
 		assert rete2 != null : "rete2 = null"; //precondizione
 		return rete1.controlloRetePetriUguale(rete2);		
 	}
-    
-}
+	
+	// singleton
+	public static synchronized GestoreRetiPetri getInstance() {
+	    if (instance == null) {
+		instance = new GestoreRetiPetri();
+	    }
+	    return instance;
+	}
+
+    }

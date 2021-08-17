@@ -17,11 +17,12 @@ import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 public class GestoreReti {
 
 	private HashMap<String, ReteSemplice> listaRetiConfiguratore;
+	private static GestoreReti instance;
 
 	/**
 	 * Metodo per inizializzare la lista delle reti da salvare.
 	 */
-	public GestoreReti() {
+	private GestoreReti() {
 		this.listaRetiConfiguratore = new HashMap<String, ReteSemplice>();
 	}
 
@@ -69,6 +70,14 @@ public class GestoreReti {
 		assert rete1 != null : "rete1 = null"; //precondizione
 		assert rete2 != null : "rete2 = null"; //precondizione
 		return rete1.isEqual(rete2);		
+	}
+	
+	//singleton
+	public static synchronized GestoreReti getInstance() {
+	  if (instance == null) {
+	      instance = new GestoreReti();
+	  }
+	  return instance;
 	}
 
 	

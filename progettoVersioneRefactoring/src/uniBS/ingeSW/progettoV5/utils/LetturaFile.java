@@ -76,7 +76,7 @@ public class LetturaFile {
    }
    
    public static GestoreReti recuperoOCreazione(){
-       GestoreReti retiSalvate = new GestoreReti();
+       GestoreReti retiSalvate = GestoreReti.getInstance();
        File folder = new File(RETI);
 
 		if (!folder.exists())
@@ -89,7 +89,6 @@ public class LetturaFile {
                try {
                    retiSalvate.addRete(file.getName(), reteCaricata);
                } catch (giaPresenteException e) {
-                   // TODO Auto-generated catch block
                    e.printStackTrace();
                }
 			}
@@ -98,7 +97,7 @@ public class LetturaFile {
    }
 
    public static GestoreRetiPetri recuperoOCreazionePetri(){
-       GestoreRetiPetri retiSalvate = new GestoreRetiPetri();
+       GestoreRetiPetri retiSalvate = GestoreRetiPetri.getInstance();
        File folder = new File(RETI_PETRI);
 
 		if (!folder.exists())
@@ -120,7 +119,7 @@ public class LetturaFile {
    }
 
    public static GestoreRetiPetriPriorita recuperoOCreazionePetriPriorita(){
-       GestoreRetiPetriPriorita retiSalvate = new GestoreRetiPetriPriorita();
+       GestoreRetiPetriPriorita retiSalvate = GestoreRetiPetriPriorita.getInstance();
        File folder = new File(RETI_PETRI_PRIORITA);
 
 		if (!folder.exists())
