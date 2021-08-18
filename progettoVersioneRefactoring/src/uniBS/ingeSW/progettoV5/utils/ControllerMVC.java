@@ -586,8 +586,8 @@ public class ControllerMVC {
 
     public static void leggiReteDaFile(GestoreReti listaReti){
         String path = InterazioneUtente.leggiPath();       
-        CaricamentoReteDaFileHandler handler = new CaricamentoReteDaFileHandler();
-        ReteSemplice reteCaricata = handler.caricaDaFile(path);
+        CaricamentoDaFileHandler handler = new CaricamentoDaFileHandler();
+        ReteSemplice reteCaricata = handler.caricaReteDaFile(path);
         if(!reteCaricata.emptyControl()){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){
@@ -604,14 +604,14 @@ public class ControllerMVC {
         
     public static void leggiRetePetriDaFile(GestoreRetiPetri listaRetiPetri, GestoreReti listaReti){
         String path = InterazioneUtente.leggiPath();
-        CaricamentoPNDaFileHandler handler = new CaricamentoPNDaFileHandler();
-        RetePetri reteCaricata = handler.caricaDaFile(path);
+        CaricamentoDaFileHandler handler = new CaricamentoDaFileHandler();
+        RetePetri reteCaricata = handler.caricaPNDaFile(path);
         boolean accettata = handler.controlloAccettazioneRetePetri(reteCaricata, listaReti);
         if(!reteCaricata.emptyControl() && accettata){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){
                 try {
-                    handler.aggiuntaReteAGestore(listaRetiPetri, nomeRete, reteCaricata);
+                    handler.aggiuntaPNAGestore(listaRetiPetri, nomeRete, reteCaricata);
                     InterazioneUtente.msgLetturaDaFileCompletata();
                     
                 } catch (giaPresenteException e) {
@@ -625,14 +625,14 @@ public class ControllerMVC {
        
     public static void leggiRetePetriPrioritaDaFile(GestoreRetiPetriPriorita listaRetiPetriPriorita, GestoreRetiPetri listaRetiPetri){
         String path = InterazioneUtente.leggiPath();
-        CaricamentoPNPDaFileHandler handler = new CaricamentoPNPDaFileHandler();
-        RetePetriPriorita reteCaricata = handler.caricaDaFile(path);
+        CaricamentoDaFileHandler handler = new CaricamentoDaFileHandler();
+        RetePetriPriorita reteCaricata = handler.caricaPNPDaFile(path);
         boolean accettata = handler.controlloAccettazioneRetePetriPriorita(reteCaricata, listaRetiPetri);
         if(!reteCaricata.emptyControl() && accettata){
             String nomeRete = InterazioneUtente.salvataggioRete(0);
             if(nomeRete != null){
                 try {
-                    handler.aggiuntaReteAGestore(listaRetiPetriPriorita, nomeRete, reteCaricata);
+                    handler.aggiuntaPNPAGestore(listaRetiPetriPriorita, nomeRete, reteCaricata);
                     InterazioneUtente.msgLetturaDaFileCompletata();
                     
                 } catch (giaPresenteException e) {
