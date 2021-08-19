@@ -405,37 +405,15 @@ public class ControllerMVC {
     
     public static void simulazioneEvoluzioneRete(GestoreRetiPetri listaReti){
         assert listaReti !=null;
-        ArrayList<ElemFlusso> possibiliTrans = new ArrayList<ElemFlusso>();
-        if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
-            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
-        }
-        else{
+        if(!controlloSeListaRetiVuota(listaReti)){ //applicato extract method
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
             if(listaReti.getListaRetiPetriConfiguratore().containsKey(nomeReteDaVisualizzare)){
-                RetePetri reteScelta = listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare);
-                InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
+                RetePetri reteScelta = ottieniReteSceltaPerSimulazione(listaReti, nomeReteDaVisualizzare);
                 boolean finito = false;
                 while(!finito){
-                    possibiliTrans = reteScelta.getPossibiliTransizioni();
-                    if(possibiliTrans == null || possibiliTrans.isEmpty()){
-                        InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
-                        finito = true;
-                    } 
-                    else{
-                        boolean presente = true;
-                        do{
-                            presente= true;
-                            InterazioneUtente.printPossibiliTransizioniPerSimulazione(possibiliTrans);
-                            String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
-                            try {
-                                SimulazioneReteHandler handler = new SimulazioneReteHandler();
-                                handler.simulaEvoluzione(reteScelta, nomeElemFlussoScelto);
-                                InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
-                            } catch (NonPresenteException e) {
-                                System.out.println(e.getMessage());
-                                presente = false;
-                            }
-                        }while(!presente);
+                    finito = controlloSeReteInDeadlock(reteScelta, nomeReteDaVisualizzare);
+                    if(!finito){
+                        cicloSimulazioneEvoluzione(reteScelta);
                         finito = InterazioneUtente.domandaContinuareSimulazione(); 
                     }
                 }
@@ -444,6 +422,60 @@ public class ControllerMVC {
 		InterazioneUtente.printErrorReteNonPresente();
 	    }
 	}
+    }
+
+    //metodo creato per extract method
+    private static void cicloSimulazioneEvoluzione(RetePetri reteScelta) {
+	boolean presente = true;
+	do{
+	    presente= true;
+	    InterazioneUtente.printPossibiliTransizioniPerSimulazione(ottieniPossibiliTrans(reteScelta));
+	    String nomeElemFlussoScelto = InterazioneUtente.leggiElementoDaCambiare(2);
+	    try {
+	        delegaSimulazioneAHandler(reteScelta, nomeElemFlussoScelto);
+	    } catch (NonPresenteException e) {
+	        System.out.println(e.getMessage());
+	        presente = false;
+	    }
+	}while(!presente);
+    }
+
+    //metodo creato con extract method
+    private static void delegaSimulazioneAHandler(RetePetri reteScelta, String nomeElemFlussoScelto)
+	    throws NonPresenteException {
+	SimulazioneReteHandler handler = new SimulazioneReteHandler();
+	handler.simulaEvoluzione(reteScelta, nomeElemFlussoScelto);
+	InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
+    }
+    
+    //metodo creato per extract method
+    private static boolean controlloSeReteInDeadlock(RetePetri reteScelta, String nomeReteDaVisualizzare) {
+	 if(ottieniPossibiliTrans(reteScelta) == null || ottieniPossibiliTrans(reteScelta).isEmpty()){
+             InterazioneUtente.printErrorDeadlock(nomeReteDaVisualizzare);
+             return true;
+         } 
+	 return false;
+    }
+
+    //metodo creato per extract method
+    private static RetePetri ottieniReteSceltaPerSimulazione(GestoreRetiPetri listaReti, String nomeReteDaVisualizzare) {
+	RetePetri reteScelta = listaReti.getListaRetiPetriConfiguratore().get(nomeReteDaVisualizzare);
+	InterazioneUtente.stampaReteSceltaPerVisualizzazione(reteScelta);
+	return reteScelta;
+    }
+    
+    //metodo creato ramite extract method
+    private static boolean controlloSeListaRetiVuota(GestoreRetiPetri listaReti) {
+	if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
+            InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
+            return true;
+        }
+	return false;
+    }
+    
+    //metodo creato per replace temp with query
+    private static ArrayList<ElemFlusso> ottieniPossibiliTrans(RetePetri reteScelta){
+	return reteScelta.getPossibiliTransizioni();
     }
 
   //CODICE PER PRESENTAZIONE SAETTI
