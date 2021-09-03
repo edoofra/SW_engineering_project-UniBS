@@ -21,7 +21,7 @@ import uniBS.ingeSW.progettoV5.utils.eccezioni.giaPresenteException;
 public class SalvataggioFileTest {
 
     @Test
-    public void testNewFileCreated() {
+    public void testNuovoFile() {
 		String name = "reteProvaTest";
 		ReteSemplice reteProvaTest = new ReteSemplice();
 		try {

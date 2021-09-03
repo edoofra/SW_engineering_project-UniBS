@@ -405,7 +405,7 @@ public class ControllerMVC {
     
     public static void simulazioneEvoluzioneRete(GestoreRetiPetri listaReti){
         assert listaReti !=null;
-        if(!controlloSeListaRetiVuota(listaReti)){ //applicato extract method
+        if(!controlloSeListaRetiVuota(listaReti)){ 
             String nomeReteDaVisualizzare = InterazioneUtente.getNomeReteDaVisualizzare(listaReti);
             if(listaReti.getListaRetiPetriConfiguratore().containsKey(nomeReteDaVisualizzare)){
                 RetePetri reteScelta = ottieniReteSceltaPerSimulazione(listaReti, nomeReteDaVisualizzare);
@@ -440,7 +440,7 @@ public class ControllerMVC {
 	}while(!presente);
     }
 
-    //metodo creato con extract method
+    //metodo creato per extract method
     private static void delegaSimulazioneAHandler(RetePetri reteScelta, String nomeElemFlussoScelto)
 	    throws NonPresenteException {
 	SimulazioneReteHandler handler = new SimulazioneReteHandler();
@@ -464,7 +464,7 @@ public class ControllerMVC {
 	return reteScelta;
     }
     
-    //metodo creato ramite extract method
+    //metodo creato per extract method
     private static boolean controlloSeListaRetiVuota(GestoreRetiPetri listaReti) {
 	if(listaReti.getListaRetiPetriConfiguratore().isEmpty()) {
             InterazioneUtente.messaggioErroreListaRetiDaVisualizzareVuota();
