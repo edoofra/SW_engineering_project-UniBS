@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"uniBS.ingeSW.progettoV3.logica.gestioneReti"},{"l":"uniBS.ingeSW.progettoV3.logica.rete"},{"l":"uniBS.ingeSW.progettoV3.logica.retePetri"},{"l":"uniBS.ingeSW.progettoV3.utils"},{"l":"uniBS.ingeSW.progettoV3.utils.eccezioni"},{"l":"uniBS.ingeSW.progettoV3.view"}]
